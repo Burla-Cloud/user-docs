@@ -14,13 +14,9 @@ layout:
 
 # Welcome
 
-\
-\
-
-
 <div align="center">
 
-<img src=".gitbook/assets/banner.png" alt="banner" width="1000">
+<img src=".gitbook/assets/banner.png" alt="" width="1000">
 
 </div>
 
@@ -84,3 +80,6 @@ Instead major components are split across 4 separate GitHub repositories:
    Service running on each node, manages containers, routes requests to container\_services.
 4. [container\_service](https://github.com/burla-cloud/container\_service)\
    Service running inside each container, executes user submitted functions.
+
+
+
