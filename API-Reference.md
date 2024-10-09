@@ -14,7 +14,9 @@ layout:
 
 # API-Reference
 
-## `burla.remote_parallel_map`
+## API-Reference
+
+### `burla.remote_parallel_map`
 
 Run an arbitrary python function on many computers at the same time.
 
