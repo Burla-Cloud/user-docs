@@ -1,18 +1,7 @@
----
-layout:
-  title:
-    visible: false
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
----
 
-## burla.remote_parallel_map
+# fake-hidden-title
+
+## `burla.remote_parallel_map`
 
 Run an arbitrary python function on many computers at the same time.
 
