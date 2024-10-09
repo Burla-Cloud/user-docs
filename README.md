@@ -1,5 +1,5 @@
 ---
-cover: .gitbook/assets/GitHub banner.png
+cover: .gitbook/assets/banner.png
 coverY: 0
 layout:
   cover:
@@ -16,6 +16,9 @@ layout:
   pagination:
     visible: true
 ---
+<br></br>
+
+<p align="center"><img src=".gitbook/assets/banner.png" alt="banner" title="banner" width="1000" height="auto" /></p>
 
 ### Goal:
 
