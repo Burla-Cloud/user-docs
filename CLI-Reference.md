@@ -1,5 +1,18 @@
+---
+layout:
+  title:
+    visible: false
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
 
-# fake-hidden-title
+# CLI-Reference
 
 ## CLI-Reference
 
@@ -15,7 +28,7 @@ The global arg `--help` can be placed after any command or command group to see 
 
 ***
 
-#### `burla login`
+### `burla login`
 
 **Authenticate with Burla cloud.**
 
@@ -25,6 +38,8 @@ Obtains access credentials for your user account via a web-based (OAuth2) author
 When this command completes successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating systems recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python package.
 
 This auth-token is refreshed each time the `burla login` authorization flow is completed.
+
+
 
 
 
