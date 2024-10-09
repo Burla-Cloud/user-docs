@@ -12,7 +12,7 @@ layout:
     visible: true
 ---
 
-## `burla.remote_parallel_map`
+## burla.remote_parallel_map
 
 Run an arbitrary python function on many computers at the same time.
 
