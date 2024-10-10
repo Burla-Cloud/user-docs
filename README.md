@@ -49,15 +49,15 @@ Burla is kind of like AWS Lambda, except it:
 
 * deploys code in seconds
 * is invoked like a normal local python function
-* lets you use custom hardware you can change on the fly / per request
-* lets you run code in custom docker/OCI containers
+* lets you run code on any hardware, and change it change on the fly / per request
+* lets you run code in any custom docker/OCI container
 * has no limit on runtime (lambda has a 15min limit)
 * is open-source, and designed to be self-hosted
 
 To use Burla you must have a cluster running that the client knows about.\
-Currently, out library is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)).
+Currently, our library is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)).\
+Right now, this cluster is configured to run 16 nodes, each with 32 cpus & 128G ram.
 
-Currently, our public cluster is configured to run 16, 32 cpu vms.\
 Burla clusters are multi-tenant/ can run many jobs from separate users.\
 Nodes in a burla cluster are single-tenant/ your job will never be on the same machine as another job.
 
