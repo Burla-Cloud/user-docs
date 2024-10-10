@@ -20,57 +20,50 @@ layout:
 
 </div>
 
-### Goal:
+**Burla is a library for running python functions on (lots of) remote computers.**
 
-It’s 2024, it should be trivial, even for complete beginners, to scale python over thousands of computers in the cloud, with any hardware, and any software environment. Moreover, the software used to do this, should be free and open source.
+## Quickstart:
 
-### Overview:
+1. To install, run: `pip install burla`
+2. To create an account/login, run: `burla login`
+3. Click the "start cluster" button at [cluster.burla.dev](https://cluster.burla.dev)
+4. Once booted, try the following basic example:
 
-#### **Burla is a python package that makes it easy to run code on (lots of) other computers.**
+<pre class="language-python"><code class="lang-python">from burla import remote_parallel_map
 
-Burla only has one function: `remote_parallel_map`.\
-This function requires just two arguments, here's how it works:
+my_inputs = list(range(100))
 
-```python
-from burla import remote_parallel_map
-
-# Arg 1: Any python function:
 def my_function(my_input):
-    ...
+    print(f"processing input #{my_input}")
+    return my_input * 2
 
-# Arg 2: List of inputs for `my_function`
-my_inputs = [1, 2, 3, ...]
+<strong>results = remote_parallel_map(my_function, my_inputs)
+</strong><strong>
+</strong><strong>print(f"return values: {list(results)}")
+</strong></code></pre>
 
-# Calls `my_function` on every input in `my_inputs`,
-# at the same time, each on a separate computer in the cloud.
-remote_parallel_map(my_function, my_inputs)
-```
+### What is Burla:
 
-* Burla is **fast** and **scalable**.\
-  Code starts running within 1 second, on up to 1000 CPU's.
-* Running code remotely with Burla **feels like local development**. This means that:
-  * Errors thrown on remote computers are raised on your local machine.
-  * Anything you print appears in the terminal on your local machine.
-  * Your python environment is automaticaly cloned on all remote computers.\
-    This allows you to call any local python package in a function sent to `remote_parallel_map`.\
-    After installing once, environments are cached to keep latency below 1 second.
-* Burla is **easy to install**.\
-  Try our managed service with [two commands](https://docs.burla.dev/Getting-Started#getting-started-fully-managed). Install Burla in your cloud with [three commands](https://docs.burla.dev/Getting-Started#getting-started-self-managed-gcp-only).
-* Burla supports **custom resource requirements**.\
-  Allocate up to 96 CPUs and 360G of ram to each individual function call with [two simple arguments](https://docs.burla.dev/API-Reference).
-* Burla **supports GPU's**.\
-  Just add one argument: `remote_parallel_map(my_function, my_inputs, gpu="A100")`
-* Burla supports **custom Docker images**.\
-  Just add one argument: `remote_parallel_map(my_function, my_inputs, dockerfile="./Dockerfile")`\
-  After building once, images are cached to keep latency below 1 second.
-* Burla offers **simple network storage**.\
-  By default, all remote machines are attached to the same persistent network disk.\
-  Upload & download files to this disk through a simple CLI: `> burla nas upload / download / ls / rm ...`
+Burla is kind of like AWS Lambda, except it:
+
+* deploys code in seconds
+* is invoked like a normal local python function
+* lets you specify custom hardware you can change on the fly / per request
+* lets you run code in custom docker/OCI containers
+* will run for as long as you want (lambda has a 15min limit)
+* is open-source, and designed to be self-hosted
+
+To use Burla you must have a cluster running that the client knows about.\
+Currently, burla is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)).
+
+Currently, our public cluster is configured to run 16, 32 cpu vms.\
+Burla clusters are multi-tenant, burla nodes are single-tenant.
+
+
 
 ### Components / How it works:
 
-Unlike many open-source projects Burla does not to use a monorepo.\
-Instead major components are split across 4 separate GitHub repositories:
+Burla's major components are split across 4 separate GitHub repositories.
 
 1. [Burla](https://github.com/burla-cloud/burla)\
    The python package (the client).
