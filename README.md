@@ -58,7 +58,7 @@ To use Burla you must have a cluster running that the client knows about.\
 Currently, out library is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)).
 
 Currently, our public cluster is configured to run 16, 32 cpu vms.\
-Burla clusters are multi-tenant/ can run many jobs form separate users.\
+Burla clusters are multi-tenant/ can run many jobs from separate users.\
 Nodes in a burla cluster are single-tenant/ your job will never be on the same machine as another job.
 
 ### Components / How it works:
