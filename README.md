@@ -20,9 +20,9 @@ layout:
 
 </div>
 
-**Burla is a library for running python functions on (lots of) remote computers.**
+Burla is a library for running python functions on (lots of) computers in the cloud.
 
-## Quickstart:
+### Quickstart:
 
 1. To install, run: `pip install burla`
 2. To create an account/login, run: `burla login`
