@@ -18,7 +18,7 @@ layout:
 
 ### `burla.remote_parallel_map`
 
-Run an arbitrary python function on many computers at the same time.
+Run an arbitrary python function on many remote computers at the same time.
 
 ```python
 remote_parallel_map(
