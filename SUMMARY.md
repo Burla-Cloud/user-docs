@@ -5,3 +5,4 @@
 * [API-Reference](API-Reference.md)
 * [CLI-Reference](CLI-Reference.md)
 * [About](about.md)
+* [auth-success](auth-success.md)
