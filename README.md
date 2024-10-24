@@ -7,7 +7,7 @@ layout:
   tableOfContents:
     visible: true
   outline:
-    visible: true
+    visible: false
   pagination:
     visible: true
 ---
@@ -16,63 +16,73 @@ layout:
 
 <div align="center">
 
-<img src=".gitbook/assets/banner.png" alt="" width="1000">
+<img src=".gitbook/assets/Screenshot 2024-10-21 at 8.45.39 PM.png" alt="">
 
 </div>
 
-Burla is a library for running python functions on (lots of) computers in the cloud.
+### Burla is a library for running python functions on remote computers.
 
-### Quickstart:
+With Burla, anyone can scale arbitrary code over thousands of virtual machines in the cloud.\
+It's open-source, requires almost no setup, and is so simple even complete beginners can use it.
 
-1. To install, run: `pip install burla`
-2. To create an account/login, run: `burla login`
-3. Click the "start cluster" button at [cluster.burla.dev](https://cluster.burla.dev)
-4. Once booted, try the following basic example:
+### How does it work?
+
+Burla is a library with only one function: `remote_parallel_map`.
+
+Given some python function, and a list of arguments, `remote_parallel_map` calls the given function, on every argument in the list, at the same time, each on a separate virtual machine in the cloud.
+
+Here's an example:
 
 ```python
 from burla import remote_parallel_map
 
-my_inputs = list(range(100))
+my_arguments = [1, 2, 3, 4]
 
-def my_function(my_input):
-    print(f"processing input #{my_input}")
-    return my_input * 2
+def my_function(my_argument: int):
+    print(f"Running remote computer #{my_argument} in the cloud!")
+    return my_argument * 2
     
-results = remote_parallel_map(my_function, my_inputs)
+results = remote_parallel_map(my_function, my_arguments)
 
 print(f"return values: {list(results)}")
 ```
 
-### What is Burla:
+#### [Click here to run this example in Google Colab.](https://colab.research.google.com/drive/17MWiQFyFKxTmNBaq7POGL0juByWIMA3w?usp=sharing)
 
-Burla is kind of like AWS Lambda, except it:
+In the above example, each call to `my_function` runs on a separate virtual machine, in parallel.\
+With Burla, running code on remote computers feels the same as running locally. This means:
 
-* deploys code in seconds
-* is invoked like a normal local python function
-* lets you run code on any hardware, and change it change on the fly / per request
-* lets you run code in any custom docker/OCI container
-* has no limit on runtime (lambda has a 15min limit)
-* is open-source, and designed to be self-hosted
+* Any errors your function throws will appear on local machine just like they normally do.
+* Anything you print appears in your local stdout, just like it normally does.
+* responses are pretty quick (you can run a million simple functions in a couple seconds).
+
+[Click here to learn more about remote\_parallel\_map](overview.md#burla.remote\_parallel\_map).
+
+#### Where does my code run?
+
+Burla is open-source cluster-compute software designed to be self-hosted in the cloud.
 
 To use Burla you must have a cluster running that the client knows about.\
-Currently, our library is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)).\
-Right now, this cluster is configured to run 16 nodes, each with 32 cpus & 128G ram.
+Currently, our library is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)) which we've deployed to make Burla easy for anyone to try. This cluster is currently configured to run 16 nodes, each with 32 cpus & 128G ram.
 
 Burla clusters are multi-tenant/ can run many jobs from separate users.\
-Nodes in a burla cluster are single-tenant/ your job will never be on the same machine as another job.
-
-### Components / How it works:
-
-Burla's major components are split across 4 separate GitHub repositories.
-
-1. [Burla](https://github.com/burla-cloud/burla)\
-   The python package (the client).
-2. [main\_service](https://github.com/burla-cloud/main\_service)\
-   Service representing a single cluster, manages nodes, routes requests to node\_services.
-3. [node\_service](https://github.com/burla-cloud/node\_service)\
-   Service running on each node, manages containers, routes requests to container\_services.
-4. [container\_service](https://github.com/burla-cloud/container\_service)\
-   Service running inside each container, executes user submitted functions.
+Nodes in a burla cluster are single-tenant/ your job will never be on the same machine as another job.\
+[Click here to learn more about how burla-clusters work.](overview.md#how-does-it-work)
 
 
+
+
+
+
+
+
+
+
+
+
+
+***
+
+Questions?\
+[Schedule a call with us](http://cal.com/jakez/burla), or [email us](mailto:jake@burla.dev). We're always happy to talk.
 
