@@ -58,7 +58,9 @@ With Burla, running code on remote computers feels the same as running locally. 
 
 [Click here to learn more about remote\_parallel\_map](overview.md#burla.remote\_parallel\_map).
 
-#### Where does my code run?
+
+
+### Where does my code run?
 
 Burla is open-source cluster-compute software designed to be self-hosted in the cloud.
 
