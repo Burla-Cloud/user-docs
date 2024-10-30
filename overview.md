@@ -90,17 +90,7 @@ If one limitation in particular is blocking you, tell us! on our [discord](https
 
 ### How does it work?
 
-This section is intentionally kept brief because Burla is still early and constantly changing.\
-Burla's major components are split across 4 separate GitHub repositories:
-
-1. [Burla](https://github.com/burla-cloud/burla)\
-   The python package (the client).
-2. [main\_service](https://github.com/burla-cloud/main\_service)\
-   Service representing a single cluster, manages nodes, routes requests to node\_services.
-3. [node\_service](https://github.com/burla-cloud/node\_service)\
-   Service running on each node, manages containers, routes requests to container\_services.
-4. [container\_service](https://github.com/burla-cloud/container\_service)\
-   Service running inside each container, executes user submitted functions.
+This section is intentionally kept brief because Burla is still early and constantly changing.
 
 #### When the cluster starts:
 
