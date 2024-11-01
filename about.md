@@ -2,7 +2,7 @@
 
 ### Why does the world need Burla?
 
-Cloud infrastructure isn’t always as straitforeward as it should be.\
+Cloud infrastructure isn’t always as straightforward as it should be.\
 More importantly, it often isn’t _satisfying_ to work on.
 
 Developers have the most fun, and are most productive when in a flow state. If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, opaque, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and less productive.
