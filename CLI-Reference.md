@@ -46,4 +46,4 @@ This auth-token is refreshed each time the `burla login` authorization flow is c
 ***
 
 Questions?\
-[Schedule a call with us](https://cal.com/jakez/burla/), or [email us](mailto:jake@burla.dev). We're always happy to talk.
+[Schedule a call with us](https://cal.com/jakez/burla/), or email **jake@burla.dev**. We're always happy to talk.

@@ -29,14 +29,14 @@ outputs = remote_parallel_map(my_function, my_inputs)
 print(list(outputs))
 ```
 
-When run, `remote_parallel_map` will call `my_function`, on every object in `my_inputs`, at the same time, each in a separate CPU in the cloud.
+When run, `remote_parallel_map` will call `my_function`, on every object in `my_inputs`, at the same time, each on a separate CPU in the cloud.
 
 In under 1 second, the three function calls are made simultaneously:\
 `my_function(1)` , `my_function(2)`, `my_function(3)`
 
 Stdout produced on the remote machines is streamed back to the client (your machine).\
 The return values of each function are also collected and sent back to the client.\
-The following displays in their clients terminal:
+The following displays in the client's terminal:
 
 ```bash
 1
@@ -63,20 +63,20 @@ remote_parallel_map(
 )
 ```
 
-The **`func_cpu`** and **`func_ram`** arguments can be used to assign more resources to each individual function call, up to 32 CPUs and 128G of RAM per function call currently.
+The **`func_cpu`** and **`func_ram`** arguments can be used to assign more resources to each individual function call, up to 32 CPUs and 128G of RAM per function call.
 
 **`max_parallelism`** can be used to limit the number of function calls running at the same time.\
-By default, the cluster will execute as many parallel functions as possible given the resources it has. Our free public burla cluster is configured to run 256 cpus, and so can execute a maximum of 256 function calls in parallel, however this can be increased if self-hosting.
+By default, the cluster will execute as many parallel functions as possible given the resources it has. Our free public Burla cluster is configured to run 256 CPUs, allowing up to 256 function calls at the same time, however this can be increased if self-hosting.
 
 **`spinner`** can be used to turn off the spinner, which also displays status messages from the cluster, like the state of the current job.
 
-**`api_key`** exists so users can call `remote_parallel_map` inside deployment environments where `burla login` cannot be run. To get an api key send us an email: [jake@burla.dev](mailto:jake@burla.dev).
+**`api_key`** exists so users can call `remote_parallel_map` inside deployment environments where `burla login` cannot be run. To get an API key send us an email: [jake@burla.dev](mailto:jake@burla.dev).
 
 #### Limitations:
 
 We're actively working to improve / reduce / eliminate the limitations listed below.\
 The order in which we do this is determined by you!\
-If one limitation in particular is blocking you, tell us! on our [discord](https://discord.gg/TsbCUwBUdy), over [email](mailto:jake@burla.dev), or in a [meeting](http://cal.com/jakez/burla).
+If one limitation in particular is blocking you, tell us! on our [discord](https://discord.gg/TsbCUwBUdy), in a [meeting](http://cal.com/jakez/burla), or over email (jake@burla.dev).
 
 * Maximum size of all inputs combined can be no larger than 84.8MB
 * Maximum number of parallel function calls: 256
@@ -96,8 +96,8 @@ This section is intentionally kept brief because Burla is still early and consta
 
 A cluster spec exists somewhere (changing constantly) that defines:
 
-* how many / what kinds of virtual machines to have running/waiting for requests.
-* what/how many OCI containers to have ready to serve requests inside each VM.
+* The number & types of VMs to have running/waiting for requests.
+* The OCI containers & amount to have ready to serve requests inside each VM.
 
 #### When `remote_parallel_map` is called:
 
@@ -115,11 +115,11 @@ As soon as the `container_services` are aware of what job they're working on, tw
 
 Once this happens the client immediately begins listening to two other distributed message queues:
 
-* one streaming log messages (stdout/stderr) from workers back to the client:
+* one streaming log messages (stdout/stderr) from workers back to the client.
 * another streaming objects returned by the UDF (user defined function) back to the client.
 
 The client listens to these streams until it has one return value for every input the user provided.\
-As the client recieves return values it yields them to the user through a generator.
+As the client receives return values it yields them to the user through a generator.
 
 If the job takes a while the client sends health-check pings to the `main_service`, which propagates them to `node_services`, which propagate them to all `container_services`. These pings make sure that all workers are still working on the correct job and none of the services have stopped responding.
 

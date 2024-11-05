@@ -27,9 +27,9 @@ It's open-source, requires almost no setup, and is so simple even complete begin
 
 ### How does it work?
 
-Burla is a library with only one function: `remote_parallel_map`.
+Burla is a  with only one function: `remote_parallel_map`.
 
-Given some python function, and a list of arguments, `remote_parallel_map` calls the given function, on every argument in the list, at the same time, each on a separate virtual machine in the cloud.
+Given a python function, and a list of arguments, `remote_parallel_map` calls the function, on every argument in the list, at the same time, each on a separate virtual machine in the cloud.
 
 Here's an example:
 
@@ -52,9 +52,9 @@ print(f"return values: {list(results)}")
 In the above example, each call to `my_function` runs on a separate virtual machine, in parallel.\
 With Burla, running code on remote computers feels the same as running locally. This means:
 
-* Any errors your function throws will appear on local machine just like they normally do.
+* Any errors your function throws will appear on your local machine as they normally would.&#x20;
 * Anything you print appears in your local stdout, just like it normally does.
-* responses are pretty quick (you can run a million simple functions in a couple seconds).
+* Responses are pretty quick (you can run a million simple functions in a couple seconds).
 
 [Click here to learn more about remote\_parallel\_map](overview.md#burla.remote\_parallel\_map).
 
@@ -81,10 +81,8 @@ Nodes in a burla cluster are single-tenant/ your job will never be on the same m
 
 
 
-
-
 ***
 
 Questions?\
-[Schedule a call with us](http://cal.com/jakez/burla), or [email us](mailto:jake@burla.dev). We're always happy to talk.
+[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
 

@@ -5,7 +5,7 @@
 Cloud infrastructure isn’t always as straightforward as it should be.\
 More importantly, it often isn’t _satisfying_ to work on.
 
-Developers have the most fun, and are most productive when in a flow state. If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, opaque, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and less productive.
+Developers have the most fun, and are most productive when in a flow state. If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, unclear, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and less productive.
 
 We’ve created Burla with the goal of making cloud infrastructure fun. This means Burla will need to be simple, fast, and easy to debug, even if you’re building something really complex.
 
@@ -55,4 +55,4 @@ We're three lifelong friends with some experience working on cloud-infrastructur
 ***
 
 Questions?\
-[Schedule a call with us](http://cal.com/jakez/burla), or [email us](mailto:jake@burla.dev). We're always happy to talk.
+[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
