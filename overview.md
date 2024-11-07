@@ -88,6 +88,23 @@ If one limitation in particular is blocking you, tell us! on our [discord](https
 * no GPU support (yet).
 * unable to specify OCI/Docker containers on a per-request basis.
 
+### Components
+
+Burla's major components are split across 4 separate directories in the [Burla GitHub](https://github.com/burla-cloud/burla) repository. &#x20;
+
+1.  [Burla](https://github.com/Burla-Cloud/burla/tree/main/burla)&#x20;
+
+    The python package (the client).
+2.  [main\_service ](https://github.com/Burla-Cloud/burla/tree/main/main\_service)
+
+    Service representing a single cluster, manages nodes, routes requests to node\_services.
+3.  [node\_service ](https://github.com/Burla-Cloud/burla/tree/main/node\_service)
+
+    Service running on each node, manages containers, routes requests to container\_services.
+4.  [container\_service ](https://github.com/Burla-Cloud/burla/tree/main/container\_service)
+
+    Service running inside each container, executes user submitted functions.
+
 ### How does it work?
 
 This section is intentionally kept brief because Burla is still early and constantly changing.
@@ -104,14 +121,14 @@ A cluster spec exists somewhere (changing constantly) that defines:
 The client concurrently:
 
 * Begins uploading inputs into a distributed message queue.
-* Tells the `main_service` that a job is starting.
+* Tells the [`main_service`](overview.md#components) that a job is starting.
 
-The `main_service` then tells the correct number of compatible `node_services`, to start work on a particuler job. Each node service then, in parallel, forwards this request to the correct number of compatible `container_services` (workers). And, at the same time, kills any containers that are incompatible/ not needed for the current request.
+The [`main_service`](overview.md#components) then tells the correct number of compatible [`node_services`](overview.md#components), to start work on a particular job. Each node service then, in parallel, forwards this request to the correct number of compatible [`container_services`](overview.md#components) (workers). And, at the same time, kills any containers that are incompatible/ not needed for the current request.
 
-As soon as the `container_services` are aware of what job they're working on, two things happen:
+As soon as the [`container_services`](overview.md#components) are aware of what job they're working on, two things happen:
 
 * Workers start popping/processing inputs from the input queue.
-* The client recieves a 200 response from the `main_service` telling it that the workers have started.
+* The client receives a 200 response from the [`main_service`](overview.md#components) telling it that the workers have started.
 
 Once this happens the client immediately begins listening to two other distributed message queues:
 
@@ -121,7 +138,7 @@ Once this happens the client immediately begins listening to two other distribut
 The client listens to these streams until it has one return value for every input the user provided.\
 As the client receives return values it yields them to the user through a generator.
 
-If the job takes a while the client sends health-check pings to the `main_service`, which propagates them to `node_services`, which propagate them to all `container_services`. These pings make sure that all workers are still working on the correct job and none of the services have stopped responding.
+If the job takes a while the client sends health-check pings to the [`main_service`](overview.md#components), which propagates them to [`node_services`](overview.md#components), which propagate them to all [`container_services`](overview.md#components). These pings make sure that all workers are still working on the correct job and none of the services have stopped responding.
 
 While the job is running every individual node is watching the results stream, constantly checking if the number of results is the same as the number of inputs. Once this is true, the node reboots itself, starting all the containers it's supposed to be keeping warm as defined in the cluster spec.
 

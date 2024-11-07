@@ -27,7 +27,7 @@ It's open-source, requires almost no setup, and is so simple even complete begin
 
 ### How does it work?
 
-Burla is a  with only one function: `remote_parallel_map`.
+Burla is a library with only one function: `remote_parallel_map`.
 
 Given a python function, and a list of arguments, `remote_parallel_map` calls the function, on every argument in the list, at the same time, each on a separate virtual machine in the cloud.
 
