@@ -14,11 +14,7 @@ layout:
 
 # Welcome
 
-<div align="center">
-
-<img src=".gitbook/assets/Screenshot 2024-10-21 at 8.45.39 PM.png" alt="">
-
-</div>
+<figure><img src=".gitbook/assets/random logos and graphics (3).png" alt=""><figcaption></figcaption></figure>
 
 ### Burla is a library for running python functions on remote computers.
 
