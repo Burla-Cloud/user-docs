@@ -16,9 +16,9 @@ layout:
 
 <figure><img src=".gitbook/assets/random logos and graphics (6).png" alt=""><figcaption></figcaption></figure>
 
-### Burla is a library for running python functions on remote computers.
+### Burla is a python package for running functions on remote computers.
 
-With Burla, anyone can scale arbitrary code over thousands of virtual machines in the cloud.\
+With Burla, anyone can scale arbitrary python over thousands of virtual machines in the cloud.\
 It's open-source, requires little setup, and is simple enough for even complete beginners.
 
 ### Basic example:
