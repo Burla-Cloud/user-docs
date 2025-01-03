@@ -20,7 +20,7 @@ layout:
 
 **Description**
 
-Currently the only purpose of Burla's CLI is to provide the ability to authenticate with Burla's cloud, using the command: `burla login.`
+Currently the only purpose of Burla's CLI is to provide the ability to authenticate with our backend using the command: `burla login`.
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 
@@ -28,14 +28,20 @@ The global arg `--help` can be placed after any command or command group to see 
 
 ### `burla login`
 
-**Authenticate with Burla cloud.**
+(currently required for all users, requires a google account)
 
 **Description**
 
-Obtains access credentials for your user account via a web-based (OAuth2) authorization flow.\
-When this command completes successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating systems recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
+Launches the "sign in with google" page in your default web browser.\
+This gives our backend access only to your email and name from your google account.\
+See our [privacy-policy](privacy-policy.md) to learn how we protect this information.
 
-This auth-token is refreshed each time the `burla login` authorization flow is completed.
+Once signed-in successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating systems recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
+
+We currently require login because the client is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)) and we want to track who is doing what there in order to prevent abuse.\
+This requirement will probably change once we add the ability to self-host Burla.
+
+This token is refreshed each time the `burla login` authorization flow is completed.
 
 
 

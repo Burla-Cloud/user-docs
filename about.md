@@ -9,26 +9,14 @@ Developers have the most fun, and are most productive when in a flow state. If y
 
 We’ve created Burla with the goal of making cloud infrastructure fun. This means Burla will need to be simple, fast, and easy to debug, even if you’re building something really complex.
 
-At Burla we're on a mission, to make cloud infrastructure fun.\
+At Burla, our mission is to make cloud infrastructure fun ... (starting with batch-processing at scale).\
 
 
 ### About Us:
 
 We're three lifelong friends with some experience working on cloud-infrastructure at startups.
 
-<div>
-
-<figure><img src=".gitbook/assets/headshot_upscaled (1).png.webp" alt=""><figcaption><p>Jake Zuliani</p></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/jack headshot_edited.jpg.webp" alt=""><figcaption><p>Jack Rzucidlo</p></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/DSC00070 (2)_edited_edited.jpg.webp" alt=""><figcaption><p>Joe Perry</p></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/headshot_upscaled (1).png.webp" alt=""><figcaption><p>Jake Zuliani</p></figcaption></figure> <figure><img src=".gitbook/assets/jack headshot_edited.jpg.webp" alt=""><figcaption><p>Jack Rzucidlo</p></figcaption></figure> <figure><img src=".gitbook/assets/DSC00070 (2)_edited_edited.jpg.webp" alt=""><figcaption><p>Joe Perry</p></figcaption></figure></div>
 
 
 
@@ -36,15 +24,7 @@ We're three lifelong friends with some experience working on cloud-infrastructur
 
 ### Burla is backed by:
 
-<div>
-
-<figure><img src=".gitbook/assets/Untitled-3.png" alt="pioneer.app"><figcaption><p>Pioneer.app</p></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/Untitled-4.png" alt=""><figcaption><p>Boost.vc</p></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/Untitled-3.png" alt="pioneer.app"><figcaption><p>Pioneer.app</p></figcaption></figure> <figure><img src=".gitbook/assets/Untitled-4.png" alt=""><figcaption><p>Boost.vc</p></figcaption></figure></div>
 
 
 

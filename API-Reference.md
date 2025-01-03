@@ -18,7 +18,8 @@ layout:
 
 ### `burla.remote_parallel_map`
 
-Run an arbitrary python function on many remote computers at the same time.
+Run an arbitrary python function on many remote computers at the same time.\
+See our [overview](overview.md) for a more detailed description of how to use `remote_parallel_map.`
 
 ```python
 remote_parallel_map(
@@ -32,7 +33,9 @@ remote_parallel_map(
 )
 ```
 
-Run provided `function_` on each item in `inputs` at the same time, each on a separate CPU, up to 256 CPUs (as of 10/11). If more than 256 inputs are provided, inputs are queued and processed sequentially on each worker.
+Run provided `function_` on each item in `inputs` at the same time, each on a separate CPU, up to 256 CPUs (as of 1/3/25). If more than 256 inputs are provided, inputs are queued and processed sequentially on each worker.
+
+If the provided `function_` raises an exception, the exception, including stack trace is reraised on the client machine.
 
 | **Parameters**    |                                                                                                                                                                                         |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
