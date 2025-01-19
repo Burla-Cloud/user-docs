@@ -16,7 +16,7 @@ Burla has 4 major components: &#x20;
 2.  **The "Main Service"**
 
     Service representing a single cluster, manages nodes, routes requests to node\_services.\
-    Hosts the cluster dashboard, a small react/typescript website.
+    Hosts the cluster dashboard.
 3.  **The "Node Service"**
 
     Service running on each node, manages containers, routes requests to worker\_services.
