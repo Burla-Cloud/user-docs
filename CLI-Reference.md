@@ -38,8 +38,8 @@ See our [privacy-policy](privacy-policy.md) to learn how we protect this informa
 
 Once signed-in successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating systems recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
 
-We currently require login because the client is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)) and we want to track who is doing what there in order to prevent abuse.\
-This requirement will probably change once we add the ability to self-host Burla.
+We currently require login because the client is hardcoded to only call our public demo cluster ([cluster.burla.dev](https://cluster.burla.dev)) and we want to track who is doing what there in order to prevent abuse.\
+This requirement will probably change once we add the ability to easily self-host Burla.
 
 This token is refreshed each time the `burla login` authorization flow is completed.
 
