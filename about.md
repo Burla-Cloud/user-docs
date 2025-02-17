@@ -3,22 +3,18 @@
 ### Why does the world need Burla?
 
 Cloud infrastructure isn’t always as straightforward as it should be.\
-More importantly, it often isn’t _satisfying_ to work on.
+More importantly, it often pretty damn boring!
 
-Developers have the most fun, and are most productive when in a flow state. If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, unclear, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and less productive.
+Developers have the most fun, and are most productive when they get into a "flow state". If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, unclear, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and a lot less productive.
 
-We’ve created Burla with the goal of making cloud infrastructure fun. This means Burla will need to be simple, fast, and easy to debug, even if you’re building something really complex.
-
-At Burla, our mission is to make cloud infrastructure fun ... (starting with batch-processing at scale).\
+We’ve created Burla with the goal of making cloud infrastructure fun. This means Burla will need to be simple, fast, and easy to debug, even if you’re building something really complex. It shouldn't be hard to slide into a flow state, whether you're coding locally, or on a cluster of 1000 machines. We should be able to iterate at the speed of thought, not at the speed my lambda function takes to redeploy!\
 
 
 ### About Us:
 
-We're three lifelong friends with some experience working on cloud-infrastructure at startups.
+We're three lifelong friends with some experience (and frustrations) working on cloud-infrastructure at startups.
 
-<div><figure><img src=".gitbook/assets/headshot_upscaled (1).png.webp" alt=""><figcaption><p>Jake Zuliani</p></figcaption></figure> <figure><img src=".gitbook/assets/jack headshot_edited.jpg.webp" alt=""><figcaption><p>Jack Rzucidlo</p></figcaption></figure> <figure><img src=".gitbook/assets/DSC00070 (2)_edited_edited.jpg.webp" alt=""><figcaption><p>Joe Perry</p></figcaption></figure></div>
-
-
+<figure><img src=".gitbook/assets/PXL_20250215_005828604.jpg" alt="" width="563"><figcaption><p>Joe Perry, Jack Rzucidlo, and Jake Zuliani (in order) at the BoostVC office in San Mateo.</p></figcaption></figure>
 
 
 
