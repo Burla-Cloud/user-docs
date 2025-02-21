@@ -52,10 +52,10 @@ If the provided `function_` raises an exception, the exception, including stack 
 
 
 
-| **Returns**                                 |                                                                                                                                                                       |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Type**                                    | **Description**                                                                                                                                                       |
-| `List[Any]` or `Generator[Any, None, None]` | List of objects returned by `function_` in no particular order. If `Generator=True`, returns generator yielding objects returned by `function_` as they are produced. |
+| **Returns**           |                                                                                                                                                                       |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**              | **Description**                                                                                                                                                       |
+| `List` or `Generator` | List of objects returned by `function_` in no particular order. If `Generator=True`, returns generator yielding objects returned by `function_` as they are produced. |
 
 
 
