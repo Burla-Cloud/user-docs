@@ -10,4 +10,4 @@
 * [auth-success](auth-success.md)
 * [Privacy-Policy](privacy-policy.md)
 * [Example: Analyze every notebook on Kaggle.com ](https://colab.research.google.com/drive/1A8reU23sdN8HRvaOuDlPunZz_XJ36rN6?usp=sharing)
-* [IDATs to PGEN Biotech Demo](https://colab.research.google.com/drive/1Qza09HuIC8ZC8O7IO4erNlbo_chvfu0a?usp=sharing)
+* [IDATs to PGEN Biotech Pipeline Demo](https://colab.research.google.com/drive/1Qza09HuIC8ZC8O7IO4erNlbo_chvfu0a?usp=sharing)
