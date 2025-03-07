@@ -58,6 +58,7 @@ remote_parallel_map(
   func_cpu=1,
   func_ram=4,
   spinner=True,
+  generator=False,
   max_parallelism=None,
   api_key=None,
 )
@@ -83,10 +84,8 @@ Or even better, [schedule a quick meeting](http://cal.com/jakez/burla)!
 * Maximum number of inputs: \~5,000,000
 * Maximum number of CPUs per function call: 32
 * Maximum RAM per function call: 128G
-* Average e2e runtime for a function with small inputs: \~1.5s
 * uneven/inflexible distribution of inputs between nodes can sometimes cause long runtimes.
 * no GPU support (yet).
-* unable to specify OCI/Docker containers on a per-request basis.
 
 ### Any Questions?
 

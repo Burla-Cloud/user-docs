@@ -34,7 +34,7 @@ Nodes in a burla cluster are single-tenant/ separate jobs never share VM's.
 
 ### When the cluster starts:
 
-A cluster spec exists somewhere (changing constantly) that defines:
+A cluster-config document is created in Google Cloud Firestore that defines:
 
 * The number & types of VMs to have running/waiting for requests.
 * What containers to leave running, ready to serve requests, inside each VM.

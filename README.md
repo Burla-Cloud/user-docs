@@ -43,8 +43,6 @@ results = remote_parallel_map(my_function, my_arguments)
 print(f"return values: {list(results)}")
 ```
 
-#### [Click here to run this example in Google Colab.](https://colab.research.google.com/drive/17MWiQFyFKxTmNBaq7POGL0juByWIMA3w?usp=sharing)
-
 In the above example, each call to `my_function` runs on a separate virtual machine, in parallel.\
 With Burla, **running code on remote computers feels the same as running locally**. This means:
 
@@ -53,17 +51,6 @@ With Burla, **running code on remote computers feels the same as running locally
 * Responses are pretty quick (you can run a million simple functions in a couple seconds).
 
 [Click here to learn more about remote\_parallel\_map](overview.md#burla.remote_parallel_map).
-
-### Where does my code run?
-
-Burla is open-source cluster-compute software designed to be self-hosted in the cloud.
-
-To use Burla you must have a cluster running that the client knows about.\
-Currently, our library is hardcoded to only call our free public cluster ([cluster.burla.dev](https://cluster.burla.dev)) which we've deployed to make Burla easy for anyone to try. Follow our [quickstart](https://colab.research.google.com/drive/17MWiQFyFKxTmNBaq7POGL0juByWIMA3w?usp=sharing) to use this cluster.
-
-Burla clusters are multi-tenant/ can run many jobs from separate users.\
-Nodes in a burla cluster are single-tenant/ separate jobs never share a VM.\
-[Click here to learn more about how burla-clusters work.](how-does-it-work.md)
 
 
 
