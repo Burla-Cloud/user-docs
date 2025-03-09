@@ -54,8 +54,8 @@ This token is refreshed each time the `burla login` authorization flow is comple
 
 Installs burla inside the google cloud project that `gcloud` is currently pointing to.
 
-To view this run `gcloud config get project`\
-To modify this run `gcloud config set project <desired-project-id>`
+To view your current project run: `gcloud config get project`\
+To change your current project run: `gcloud config set project <desired-project-id>`
 
 When run, `burla install` enables the following google cloud services:
 
@@ -66,13 +66,11 @@ When run, `burla install` enables the following google cloud services:
 
 In order to install burla you will need a Google Cloud account with user or admin level permission on all of these resources. If a permission is missing the error should tell you which permission you'll need.
 
-After enabling, three gcloud commands are run that:
+After enabling, `burla install` runs three `gcloud` commands in the background that:
 
 * Open port 8080 to any VM's having the tag `burla-cluster-node`
-* Creates a new firestore database called `burla`
-* Deploys [the latest Burla-main-service image](https://hub.docker.com/repository/docker/jakezuliani/burla_main_service/general) to google cloud run.
-
-Once installed this command will print a short quicksrt guide:
+* Create a new firestore database called `burla`
+* Deploys the latest [Burla-main-service](https://hub.docker.com/repository/docker/jakezuliani/burla_main_service/general) image to google cloud run.
 
 
 
