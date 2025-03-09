@@ -72,6 +72,8 @@ After enabling, `burla install` runs three `gcloud` commands in the background t
 * Create a new firestore database called `burla`
 * Deploys the latest [Burla-main-service](https://hub.docker.com/repository/docker/jakezuliani/burla_main_service/general) image to google cloud run.
 
+Once installed, simply point your client at the new burla cluster by setting the enviroinment variable `BURLA_API_URL` to the url of the cloud run service that was just deployed. `burla install` will print this url as well a short quickstart when finished.
+
 
 
 
