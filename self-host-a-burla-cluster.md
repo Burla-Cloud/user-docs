@@ -32,7 +32,17 @@ Burla install requires that your user account permission to run the following gc
 * gcloud compute firewall-rules create ...
 * gcloud services enable ...
 
-If you're missing any permissions, `burla install` will tell you which ones.
+If you're missing any permissions, `burla install` will tell you which ones you still need.
 
 Once installed, point your client at the new burla cluster by setting the enviroinment variable `BURLA_API_URL` to the url of the cloud run service that was just deployed. `burla install` will print this url as well a short quickstart when finished.
 
+
+
+
+
+
+
+***
+
+Questions?\
+[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
