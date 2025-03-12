@@ -7,7 +7,7 @@ More importantly, it often pretty damn boring!
 
 Developers have the most fun, and are most productive when they get into a "flow state". If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, unclear, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and a lot less productive.
 
-We’ve created Burla with the goal of making cloud infrastructure fun. This means Burla will need to be simple, fast, and easy to debug, even if you’re building something really complex. It shouldn't be hard to slide into a flow state, whether you're coding locally, or on a cluster of 1000 machines. We should be able to iterate at the speed of thought, not at the speed my lambda function takes to redeploy!\
+We’ve created Burla with the goal of making cloud infrastructure fun. This means Burla will need to be simple, fast, and easy to debug, even if you’re building something really complex. Whether you're coding locally, or on a cluster of 1000 machines, infrastructure should update and react quickly, like under-a-second quickly. We should be able to iterate at the speed of thought, not at the speed my lambda function, batch workload, ETL-pipeline, or Kubernetes service takes to redeploy!\
 
 
 ### About Us:

@@ -50,6 +50,12 @@ With Burla, **running code on remote computers feels the same as running locally
 * Anything you print appears in your local stdout, just like it normally does.
 * Responses are pretty quick (you can run a million simple functions in a couple seconds).
 
+To run the example above simply run:
+
+* Run the following code:
+* Start our free demo cluster: [cluster.burla.dev](https://cluster.burla.dev)
+* Run `burla login`
+
 [Click here to learn more about remote\_parallel\_map](overview.md#burla.remote_parallel_map).
 
 

@@ -1,0 +1,28 @@
+# Examples
+
+## Quickstart:
+
+1. Run `pip install Burla`
+2. Run `burla login`
+3. Start our free demo cluster: [cluster.burla.dev](https://cluster.burla.dev)
+4. Run the following code:
+
+```python
+from burla import remote_parallel_map
+
+my_arguments = [1, 2, 3, 4]
+
+def my_function(my_argument: int):
+    print(f"Running on remote computer #{my_argument} in the cloud!")
+    return my_argument * 2
+    
+results = remote_parallel_map(my_function, my_arguments)
+
+print(f"return values: {list(results)}")
+```
+
+## Other Examples:
+
+
+
+<table data-card-size="large" data-column-title-hidden data-view="cards" data-full-width="false"><thead><tr><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>Analyze every notebook on kaggle.com</td><td><a href="https://colab.research.google.com/drive/1A8reU23sdN8HRvaOuDlPunZz_XJ36rN6?usp=sharing">https://colab.research.google.com/drive/1A8reU23sdN8HRvaOuDlPunZz_XJ36rN6?usp=sharing</a></td></tr><tr><td>IDATs to PGEN Biotech Pipeline Demo</td><td><a href="https://colab.research.google.com/drive/1Qza09HuIC8ZC8O7IO4erNlbo_chvfu0a?usp=sharing">https://colab.research.google.com/drive/1Qza09HuIC8ZC8O7IO4erNlbo_chvfu0a?usp=sharing</a></td></tr></tbody></table>

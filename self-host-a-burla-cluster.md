@@ -2,12 +2,37 @@
 
 ### Where can I deploy my Burla Cluster?
 
-Burla is built to be self-hosted in the cloud.
-
-Currently, Burla can only be deployed in GCP (relies on google cloud firestore).\
-We fully intend to eventually support AWS and Azure, please email me ([jake@burla.dev](mailto:jake@burla.dev)) if you're an AWS/Azure shop and you're really interested in Burla.
+Burla is built to be self-hosted in the cloud, and is currently GCP-only.\
+\
+We fully intend to support AWS, Azure, and on-prem deployments, but don't yet.\
+E-mail [jake@burla.dev](mailto:jake@burla.dev) if you're an AWS/Azure shop and are really interested in Burla,\
+We give access to [private Burla instances](use-a-private-managed-cluster.md) hosted in our cloud for select users.
 
 ### How do I install Burla in my GCP Project?
 
-As of 2/5/25 Burla is hardcoded to use only our public demo cluster ([cluster.burla.dev](https://cluster.burla.dev)).\
-This is a very high priority item for us to fix, if you're interested in self-hosting, please email me ([jake@burla.dev](mailto:jake@burla.dev))!
+#### First, ensure gcloud is installed and configured correctly:
+
+If you haven't yet, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).\
+Also, ensure `gcloud` is pointing at the project you wish to install Burla inside:
+
+* To view your current project run: `gcloud config get project`
+* To change your current project run: `gcloud config set project <desired-project-id>`
+
+#### Then deploy Burla with:
+
+1. `pip install burla`
+2. `burla install`
+
+**That's it!**
+
+Burla install requires that your user account permission to run the following gcloud commands:
+
+* gcloud run deploy ...
+* gcloud firestore databases create ...
+* gcloud compute firewall-rules create ...
+* gcloud services enable ...
+
+If you're missing any permissions, `burla install` will tell you which ones.
+
+Once installed, point your client at the new burla cluster by setting the enviroinment variable `BURLA_API_URL` to the url of the cloud run service that was just deployed. `burla install` will print this url as well a short quickstart when finished.
+

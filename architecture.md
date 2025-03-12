@@ -4,7 +4,7 @@ description: >-
   constantly changing.
 ---
 
-# How does it work ?
+# Architecture
 
 ### Components
 
@@ -44,14 +44,14 @@ A cluster-config document is created in Google Cloud Firestore that defines:
 The client concurrently:
 
 * Begins uploading inputs into a message queue (currently uses google cloud firestore).
-* Tells the [`main_service`](how-does-it-work.md#components) that a job is starting.
+* Tells the [`main_service`](architecture.md#components) that a job is starting.
 
-The [`main_service`](how-does-it-work.md#components) then tells the correct number of compatible [`node_services`](how-does-it-work.md#components), to start work on a particular job. Each node service then, in parallel, forwards this request to the correct number of compatible [`worker_services`](how-does-it-work.md#components). And, at the same time, kills any containers that are incompatible/ not needed for the current request.
+The [`main_service`](architecture.md#components) then tells the correct number of compatible [`node_services`](architecture.md#components), to start work on a particular job. Each node service then, in parallel, forwards this request to the correct number of compatible [`worker_services`](architecture.md#components). And, at the same time, kills any containers that are incompatible/ not needed for the current request.
 
-As soon as the [`worker_services`](how-does-it-work.md#components) have been assigned a job, two things happen:
+As soon as the [`worker_services`](architecture.md#components) have been assigned a job, two things happen:
 
 * Workers start popping/processing inputs from the input queue.
-* The client receives a response from the [`main_service`](how-does-it-work.md#components) telling it that the workers have started.
+* The client receives a response from the [`main_service`](architecture.md#components) telling it that the workers have started.
 
 Next, the client immediately begins listening to two other message queues:
 
@@ -61,7 +61,7 @@ Next, the client immediately begins listening to two other message queues:
 The client listens to these streams until it has received one object for every input the user provided.\
 As the client receives objects it yields them from `remote_parallel_map` which is a generator.
 
-If the job takes a while the client sends health-check pings to the [`main_service`](how-does-it-work.md#components), which propagates them to [`node_services`](how-does-it-work.md#components), which propagate them to all [`worker_services`](how-does-it-work.md#components). These pings make sure that all workers are still working on the correct job and none of the services have crashed.
+If the job takes a while the client sends health-check pings to the [`main_service`](architecture.md#components), which propagates them to [`node_services`](architecture.md#components), which propagate them to all [`worker_services`](architecture.md#components). These pings make sure that all workers are still working on the correct job and none of the services have crashed.
 
 While the job is running every individual node is watching both the results/outputs stream, and it's own set of workers. If a user function error is detected (on any node), or all the workers on the current node finish their work, the node reboots itself, starting a new set of containers to keep warm as defined in the cluster spec.
 
