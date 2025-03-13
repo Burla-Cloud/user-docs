@@ -10,7 +10,7 @@ We give access to [private Burla instances](use-a-private-managed-cluster.md) ho
 
 ### How do I install Burla in my GCP Project?
 
-#### First, ensure gcloud is installed and configured correctly:
+#### First, ensure `gcloud` is installed and configured correctly:
 
 If you haven't yet, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).\
 Also, ensure `gcloud` is pointing at the project you wish to install Burla inside:
@@ -25,7 +25,7 @@ Also, ensure `gcloud` is pointing at the project you wish to install Burla insid
 
 **That's it!**
 
-Burla install requires that your user account permission to run the following gcloud commands:
+Burla install requires that your user account have permission to run the following commands:
 
 * gcloud run deploy ...
 * gcloud firestore databases create ...
@@ -34,7 +34,8 @@ Burla install requires that your user account permission to run the following gc
 
 If you're missing any permissions, `burla install` will tell you which ones you still need.
 
-Once installed, point your client at the new burla cluster by setting the enviroinment variable `BURLA_API_URL` to the url of the cloud run service that was just deployed. `burla install` will print this url as well a short quickstart when finished.
+Once installed, point your client at your new burla cluster by setting the enviroinment variable `BURLA_API_URL` to the URL of the cloud run service that was just deployed.\
+The `burla install` command will print this URL as well a short quickstart when finished.
 
 
 

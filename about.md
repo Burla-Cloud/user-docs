@@ -3,7 +3,7 @@
 ### Why does the world need Burla?
 
 Cloud infrastructure isn’t always as straightforward as it should be.\
-More importantly, it often pretty damn boring!
+More importantly, it often pretty damn boring to work on!
 
 Developers have the most fun, and are most productive when they get into a "flow state". If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, unclear, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and a lot less productive.
 

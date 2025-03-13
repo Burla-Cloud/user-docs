@@ -43,14 +43,15 @@ results = remote_parallel_map(my_function, my_arguments)
 print(f"return values: {list(results)}")
 ```
 
-In the above example, each call to `my_function` runs on a separate virtual machine, in parallel.\
-With Burla, **running code on remote computers feels the same as running locally**. This means:
+Each call to `my_function` runs on a separate virtual machine in the cloud, in parallel.\
+With Burla, **running code on remote computers feels the same as coding locally**. This means:
 
-* Any errors your function throws will appear on your local machine same as they normally would.&#x20;
-* Anything you print appears in your local stdout, just like it normally does.
+* Errors thrown in your code will appear on your local machine just like they normally would.&#x20;
+* Anything you print appears on your local machine, just like it normally does.
 * Responses are pretty quick (you can run a million simple functions in a couple seconds).
 
-[Click here to learn more about remote\_parallel\_map](overview.md#burla.remote_parallel_map).
+For more info on `remote_parallel_map` see our [overview](overview.md#burla.remote_parallel_map) page, or the [API docs](API-Reference.md).\
+To test out the code in the example above, hit the "[Try it now](https://colab.research.google.com/drive/17MWiQFyFKxTmNBaq7POGL0juByWIMA3w?usp=sharing)" button at the top of the page!
 
 
 

@@ -22,8 +22,8 @@ layout:
 
 Burla's CLI provides the ability to:
 
-* authenticate with our backend using the command: `burla login`.
-* Install burla in inside your Google Cloud project.
+* Authenticate using the command: `burla login`.
+* Install Burla in inside your Google Cloud project using the command: `burla install`
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 
@@ -36,8 +36,10 @@ Required. Ensures only authorized users can run commands on your cluster.
 **Description**
 
 Launches the "sign in with google" page in your default web browser.\
-This gives our backend access to **only your email and name** from your google account.\
+This gives **our** backend access to **only your email and name** according to your google account.\
 See our [privacy-policy](privacy-policy.md) to learn how we protect this information.
+
+This is used to ensure that only emails you have authorized can run things on your cluster.
 
 Once signed-in successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
 
@@ -65,11 +67,12 @@ In order to install burla you will need a Google Cloud account with user or admi
 
 After enabling, `burla install` runs three `gcloud` commands in the background that:
 
-* Open port 8080 to any VM's having the tag `burla-cluster-node`
+* Open port 8080 to any VM's with the tag `burla-cluster-node`
 * Create a new firestore database called `burla`
 * Deploys the latest [Burla-main-service](https://hub.docker.com/repository/docker/jakezuliani/burla_main_service/general) image to google cloud run.
 
-Once installed, simply point your client at the new burla cluster by setting the enviroinment variable `BURLA_API_URL` to the url of the cloud run service that was just deployed. `burla install` will print this url as well a short quickstart when finished.
+Once installed, simply point your client at the new burla cluster by setting the enviroinment variable `BURLA_API_URL` to the URL of the cloud run service that was just deployed.\
+The `burla install` command will print this URL as well a short quickstart when finished.
 
 
 

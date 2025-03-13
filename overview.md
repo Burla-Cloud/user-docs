@@ -29,9 +29,9 @@ outputs = remote_parallel_map(my_function, my_inputs)
 print(list(outputs))
 ```
 
-When run, `remote_parallel_map` will call `my_function`, on every object in `my_inputs`, at the same time, each on a separate CPU in the cloud.
+When run, `remote_parallel_map` will call `my_function`, on every object in `my_inputs`, at the same time, each on a separate CPU in the cloud (the max #CPUs depends on your cluster settings).
 
-In under 1 second, the three function calls are made simultaneously:\
+In under 1 second, the three function calls are made, all at the same time:\
 `my_function(1)` , `my_function(2)`, `my_function(3)`
 
 Stdout produced on the remote machines is streamed back to the client (your machine).\
@@ -71,7 +71,7 @@ By default, the cluster will execute as many parallel functions as possible give
 
 **`spinner`** can be used to turn off the spinner, which also displays status messages from the cluster, like the state of the current job.
 
-**`api_key`** exists so users can call `remote_parallel_map` inside deployment environments where `burla login` cannot be run. To get an API key send us an email: [jake@burla.dev](mailto:jake@burla.dev).
+**`api_key`** exists so users can call `remote_parallel_map` inside deployment environments where `burla login` cannot be run. To get an API key send me an email: [jake@burla.dev](mailto:jake@burla.dev).
 
 #### Limitations:
 
@@ -81,11 +81,10 @@ Or even better, [schedule a quick meeting](http://cal.com/jakez/burla)!
 
 * Maximum size of all inputs combined can be no larger than 84.8MB
 * Maximum number of parallel function calls: 256
-* Maximum number of inputs: \~5,000,000
+* Maximum number of inputs: 5,000,000
 * Maximum number of CPUs per function call: 32
 * Maximum RAM per function call: 128G
-* uneven/inflexible distribution of inputs between nodes can sometimes cause long runtimes.
-* no GPU support (yet).
+* no GPU support yet (If you ask me we can add this quickly!).
 
 ### Any Questions?
 

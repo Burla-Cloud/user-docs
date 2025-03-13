@@ -1,5 +1,5 @@
 ---
-description: 'Effective Date: 1/3/25'
+description: 'Effective Date: 3/13/25'
 hidden: true
 ---
 
@@ -10,12 +10,12 @@ This Privacy Policy explains how we collect, use, and protect your personal info
 #### **Information We Collect**
 
 * **Name**: Provided during registration or account creation.
-* **Email Address**: Used for communication and account identification.
+* **Email Address**: Used for account identification and cluster authorization.
 
 #### **How We Use Your Information**
 
 * To manage your account and provide services.
-* To send important updates related to our services.
+* To send important (very occational, unsubscribable) updates related to our services.
 
 #### **Data Storage and Security**
 
@@ -35,4 +35,4 @@ This Privacy Policy explains how we collect, use, and protect your personal info
 
 If you have any questions or concerns about this Privacy Policy, please contact us at joe@burla.dev
 
-**Last Updated:** 1/3/25
+**Last Updated:** 3/13/25
