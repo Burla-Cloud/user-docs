@@ -6,4 +6,7 @@
 
 
 
-{% embed url="https://buy.stripe.com/28o9BF7gR9E81xudQQ" fullWidth="false" %}
+## &#x20;                                                  [Buy Now: $100](https://buy.stripe.com/28o9BF7gR9E81xudQQ)
+
+
+
