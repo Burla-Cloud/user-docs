@@ -11,3 +11,4 @@
 * [About](about.md)
 * [auth-success](auth-success.md)
 * [Privacy-Policy](privacy-policy.md)
+* [Get free compute!](get-free-compute.md)
