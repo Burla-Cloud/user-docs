@@ -6,4 +6,4 @@
 
 
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td>Brick: $100</td><td><a href="https://buy.stripe.com/28o9BF7gR9E81xudQQ">https://buy.stripe.com/28o9BF7gR9E81xudQQ</a></td><td><a href=".gitbook/assets/PXL_20250311_184440369.jpg">PXL_20250311_184440369.jpg</a></td></tr></tbody></table>
+<table data-card-size="large" data-view="cards"><thead><tr><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td>Brick: $100</td><td><a href="https://buy.stripe.com/28o9BF7gR9E81xudQQ">https://buy.stripe.com/28o9BF7gR9E81xudQQ</a></td><td></td></tr></tbody></table>
