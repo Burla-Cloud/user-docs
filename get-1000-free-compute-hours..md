@@ -2,11 +2,9 @@
 
 ### (with your purchase of a Burla Brick!)
 
-<figure><img src=".gitbook/assets/PXL_20250311_184440369.jpg" alt="" width="563"><figcaption><p>The only brick you can write software with!</p></figcaption></figure>
+<figure><img src=".gitbook/assets/PXL_20250311_184440369.jpg" alt="" width="563"><figcaption><p><a href="https://buy.stripe.com/28o9BF7gR9E81xudQQ">The only brick you can write software with!</a></p></figcaption></figure>
 
-
-
-## &#x20;                                                  [Buy Now: $100](https://buy.stripe.com/28o9BF7gR9E81xudQQ)
+## [Buy Now: $100](https://buy.stripe.com/28o9BF7gR9E81xudQQ)
 
 
 
