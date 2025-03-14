@@ -7,7 +7,7 @@ description: With your purchase of a Burla Brick :)
 I have a question, have you ever written software with a brick?\
 Now you can!
 
-Unironically though, every brick comes with 1000 Free CPU-Hours of compute on a private managed burla-cluster. At $100 for 1000 CPU-Hours, it's actually not a bad a deal!
+Unironically though, every brick comes with 1000 Free CPU-Hours of compute on a private managed burla-cluster. At $100 for 1000 CPU-Hours, it's actually not a bad deal!
 
 ### [\[Buy 1000 CPU-hours now\]](https://buy.stripe.com/28o9BF7gR9E81xudQQ)
 
