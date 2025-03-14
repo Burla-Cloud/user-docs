@@ -1,7 +1,6 @@
 # Get 1000 free compute hours!
 
-### With your purchase of a Burla Brick :)
-
+With your purchase of a Burla Brick :)\
 Every brick comes with 1000 Free CPU-Hours of compute on a private managed burla-cluster.
 
 ### [\[Buy a brick now\]](https://buy.stripe.com/28o9BF7gR9E81xudQQ)
