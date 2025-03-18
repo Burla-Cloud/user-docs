@@ -12,3 +12,4 @@
 * [auth-success](auth-success.md)
 * [Privacy-Policy](privacy-policy.md)
 * [Get 1000 free compute hours!](get-1000-free-compute-hours.md)
+* [Brick Discount](brick-discount.md)
