@@ -11,5 +11,6 @@
 * [About](about.md)
 * [auth-success](auth-success.md)
 * [Privacy-Policy](privacy-policy.md)
-* [Get 1000 free compute hours.](get-1000-free-compute-hours..md)
+* [Buy a brick. Get 10% off for life.](buy-a-brick.-get-10-off-for-life..md)
 * [Brick Discount](brick-discount.md)
+* [Redeem](redeem.md)
