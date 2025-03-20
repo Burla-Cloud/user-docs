@@ -1,6 +1,15 @@
-# Buy a brick. Get 10% off for life.
+---
+hidden: true
+---
 
-### Why are you selling bricks?
+# Exclusive Brick Discount
+
+### Hello person we love!
+
+If you're seeing this that means we love you enough to give you an exclusive, massive discount on our brick. Normally we sell these for $1000, but here they only cost $40, that's 96% off!\
+**Please don't share this link**, you received it because you are special and we love you and trust you❤️
+
+### Why are we selling bricks?
 
 At Burla.dev, our mission is to make cloud infrastructure fun.\
 We enable rapid progress with very simple primitives, like `remote_parallel_map`.\
@@ -8,7 +17,7 @@ What's more fun than rapid progress?\
 \
 To symbolize this ethos, we're offering bricks—the fundamental building blocks of construction. By purchasing a brick, you support our mission and become part of a community. A community that together, is building the future of cloud computing, one brick at a time.​
 
-### [Buy a brick](https://buy.stripe.com/fZe5lp30B3fKdgc5km) $1000
+### [Buy a brick](https://buy.stripe.com/8wM7txdFfeYs2ByfYZ) ~~$1000~~ $40
 
 <div align="left"><figure><img src=".gitbook/assets/PXL_20250311_184440369.jpg" alt="" width="375"><figcaption></figcaption></figure></div>
 
