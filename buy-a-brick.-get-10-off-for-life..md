@@ -1,3 +1,7 @@
+---
+description: Buy a brick. Get 10% off any current or future Burla services. For life.
+---
+
 # Buy a brick. Get 10% off for life.
 
 ### Why are you selling bricks?

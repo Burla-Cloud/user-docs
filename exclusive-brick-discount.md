@@ -7,7 +7,7 @@ hidden: true
 ### Hello person we love!
 
 If you're seeing this that means we love you enough to give you an exclusive, massive discount on our brick. Normally we sell these for $1000, but here they only cost $40, that's 96% off!\
-**Please don't share this link**, you received it because you are special and we love you and trust you❤️
+**Please don't share this link**, you received it because you are special and we love you and trust you.
 
 ### Why are we selling bricks?
 
