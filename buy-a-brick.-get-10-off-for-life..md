@@ -16,7 +16,7 @@ Bricks are customized (on the back) with your name or your company name, and a s
 
 ### One caviot so we don't bankrupt ourself:
 
-To clarify, ANY future software services we do or will offer are eligible for this 10% discount.
+To clarify, ANY future software services we do or will offer are eligible for this 10% lifetime discount.
 
 When purchasing specifically **compute services** from us (which you would only do if you are using a **fully-managed** Burla cluster that is **not self-hosted**) your 10% lifetime discount applies exclusively to any margin or service fee, not the total transaction amount. Otherwise we would be selling compute for less than we paid for it!
 
