@@ -10,7 +10,7 @@ At Burla.dev, our mission is to make cloud infrastructure fun.\
 We enable rapid progress with very simple primitives, like `remote_parallel_map`.\
 What's more fun than rapid progress?\
 \
-To symbolize this ethos, we're offering bricks—the fundamental building blocks of construction. By purchasing a brick, you support our mission and become part of a community. A community that together, is building the future of cloud computing, one brick at a time.​
+To symbolize this, we're offering bricks—the fundamental building blocks of construction. By purchasing a brick, you support our mission and become part of a community. A community that together, is building the future of cloud computing, one brick at a time.​
 
 ### [Buy a brick](https://buy.stripe.com/fZe5lp30B3fKdgc5km) $1000
 
