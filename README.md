@@ -68,5 +68,3 @@ To test out the code in the example above, hit the "[Try it now](https://colab.r
 Questions?\
 [Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
 
-[click here to see our privacy policy.](privacy-policy.md)
-

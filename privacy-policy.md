@@ -1,11 +1,12 @@
 ---
-description: 'Effective Date: 3/13/25'
+description: 'Effective Date: 3/25/25'
 hidden: true
 ---
 
 # Privacy-Policy
 
-This Privacy Policy explains how we collect, use, and protect your personal information.
+This Privacy Policy explains how we collect, use, and protect your personal information.\
+Like all [GitBook](API-Reference.md) websites, Burla.dev is subject to the [GitBook Privacy-Policy](https://policies.gitbook.com/privacy-and-security/statement) in addition to our custom privacy -policy stated below.
 
 #### **Information We Collect**
 
@@ -35,4 +36,5 @@ This Privacy Policy explains how we collect, use, and protect your personal info
 
 If you have any questions or concerns about this Privacy Policy, please contact us at joe@burla.dev
 
-**Last Updated:** 3/13/25
+**Last Updated:** 3/25/25
+
