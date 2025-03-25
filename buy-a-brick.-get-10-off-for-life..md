@@ -7,22 +7,19 @@ description: Buy a brick. Get 10% off any current or future Burla services. For 
 ### Why are you selling bricks?
 
 At Burla.dev, our mission is to make cloud infrastructure fun.\
-We enable rapid progress with very simple primitives, like `remote_parallel_map`.\
+We enable rapid progress using very simple primitives, like `remote_parallel_map`.\
 What's more fun than rapid progress?\
 \
 To symbolize this, we're offering bricks—the fundamental building blocks of construction. By purchasing a brick, you support our mission and become part of a community. A community that together, is building the future of cloud computing, one brick at a time.​
 
-### [Buy a brick](https://buy.stripe.com/fZe5lp30B3fKdgc5km) $1000
+<div align="center" data-full-width="false"><figure><img src=".gitbook/assets/PXL_20250311_184440369.jpg" alt="" width="375"><figcaption></figcaption></figure></div>
 
-<div align="left"><figure><img src=".gitbook/assets/PXL_20250311_184440369.jpg" alt="" width="375"><figcaption></figcaption></figure></div>
+### [Buy 10% off for life:](https://buy.stripe.com/fZe5lp30B3fKdgc5km) $1000
 
-Bricks are customized (on the back) with your name or your company name, and a sequential serial number to identify it. Every brick also comes with a handwritten note from [us](about.md), the founders.
+* Bricks are customized (on the back) with your name or company name, and a sequential serial number to identify it.
+* Bricks grant you direct lifetime support from [us](about.md) in our private slack, or by phone 24/7.
+* Every brick comes with a handwritten note from [us](about.md), the founders.
+* Most importantly Bricks really do grant you 10% off any current or future Burla products **for life** which is a really really good deal!
 
-### One caviot:
-
-To clarify, ANY future software services we do or will offer are eligible for this 10% lifetime discount.
-
-When purchasing specifically **compute services** from us (which you would only do if you are using a **fully-managed** Burla cluster that is **not self-hosted**) your 10% lifetime discount applies exclusively to any margin or service fee, not the total transaction amount. Otherwise we would be selling compute for less than we paid for it!
-
-Brick discounts cannot be transferred.
+Brick discounts cannot be transferred!
 
