@@ -4,7 +4,7 @@
 * [Overview](overview.md)
 * [API-Reference](API-Reference.md)
 * [CLI-Reference](CLI-Reference.md)
-* [Install Burla in your cloud](install-burla-in-your-cloud.md)
+* [How to Install Burla](how-to-install-burla.md)
 * [Use a private managed Cluster](use-a-private-managed-cluster.md)
 * [Architecture](architecture.md)
 * [Examples](examples.md)

@@ -1,4 +1,4 @@
-# Self-Host a Burla Cluster
+# How to Install Burla
 
 ### Where can I deploy my Burla Cluster?
 
