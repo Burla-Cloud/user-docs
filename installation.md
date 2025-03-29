@@ -1,14 +1,17 @@
-# How to Install Burla
+---
+description: Instructions to install Burla inside your private cloud.
+---
 
-### Where can I deploy my Burla Cluster?
+# Installation
 
-Burla is built to be self-hosted in the cloud, and is currently GCP-only.\
-\
+### Burla is currently GCP only.
+
 We fully intend to support AWS, Azure, and on-prem deployments, but don't yet.\
-E-mail [jake@burla.dev](mailto:jake@burla.dev) if you're an AWS/Azure shop and are really interested in Burla,\
-We give access to [private Burla instances](use-a-private-managed-cluster.md) hosted in our cloud for select users.
+E-mail [jake@burla.dev](mailto:jake@burla.dev) if you're an AWS/Azure shop and are really interested in Burla,
 
-### How do I install Burla in my GCP Project?
+Private managed Burla clusters are available if you're not on GCP and want to use Burla.
+
+### How to install Burla in GCP:
 
 #### First, ensure `gcloud` is installed and configured correctly:
 
@@ -37,7 +40,14 @@ If you're missing any permissions, `burla install` will tell you which ones you 
 Once installed, point your client at your new burla cluster by setting the enviroinment variable `BURLA_API_URL` to the URL of the cloud run service that was just deployed.\
 The `burla install` command will print this URL as well a short quickstart when finished.
 
+### Not on GCP? Use a private managed Burla cluster.
 
+Private deployments are fully managed by us, and are available at your own custom `.burla.dev` domain. If you're interested a private, fully-managed Burla deployment please email me at [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or schedule a meeting here: [cal.com/jakez](https://cal.com/jakez)
+
+#### Pricing:
+
+We charge a flat 1.5x multiple of our underlying compute cost from your deployment.\
+If you spend $100 on compute, we will bill you $150.
 
 
 
