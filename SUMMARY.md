@@ -12,4 +12,3 @@
 * [Privacy-Policy](privacy-policy.md)
 * [Buy a brick. Get 10% off for life.](buy-a-brick.-get-10-off-for-life..md)
 * [Exclusive Brick Discount](exclusive-brick-discount.md)
-* [Redeem](redeem.md)

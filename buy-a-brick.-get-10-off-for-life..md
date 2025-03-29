@@ -10,7 +10,9 @@ To symbolize this, we're offering bricks—the fundamental building blocks of co
 
 <div align="center" data-full-width="false"><figure><img src=".gitbook/assets/PXL_20250311_184440369.jpg" alt="" width="375"><figcaption></figcaption></figure></div>
 
-### [Buy 10% off for life:](https://buy.stripe.com/fZe5lp30B3fKdgc5km) $1000
+### [Buy a brick:](https://buy.stripe.com/fZe5lp30B3fKdgc5km) $1000
+
+(10% Lifetime discount)
 
 * Bricks are customized (on the back) with your name or company name, and a sequential serial number to identify it.
 * Bricks grant you direct lifetime support from [us](about.md) in our private slack, or by phone 24/7.
