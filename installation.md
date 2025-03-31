@@ -4,12 +4,17 @@ description: Instructions to install Burla inside your private cloud.
 
 # Installation
 
+#### TLDR:
+
+* Simply run `pip install burla` then run `burla install`&#x20;
+* If you're missing anything the command will tell you what to do!
+
 ### Burla is currently GCP only.
 
 We fully intend to support AWS, Azure, and on-prem deployments, but don't yet.\
 E-mail [jake@burla.dev](mailto:jake@burla.dev) if you're an AWS/Azure shop and are really interested in Burla,
 
-Private managed Burla clusters are also available if you're not on GCP and want to use Burla.
+[Private managed Burla clusters](installation.md#not-on-gcp-use-a-private-managed-burla-cluster-instead) are available if you're not on GCP and want to use Burla now.
 
 ### How to install Burla in GCP:
 
