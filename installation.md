@@ -18,15 +18,14 @@ E-mail [jake@burla.dev](mailto:jake@burla.dev) if you're an AWS/Azure shop and a
 
 ### How to install Burla in GCP:
 
-#### First, ensure `gcloud` is installed and configured correctly:
-
+**First, ensure `gcloud` is installed and configured correctly:**\
 If you haven't yet, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).\
 Also, ensure `gcloud` is pointing at the project you wish to install Burla inside:
 
 * To view your current project run: `gcloud config get project`
 * To change your current project run: `gcloud config set project <desired-project-id>`
 
-#### Then deploy Burla with:
+**Then deploy Burla with:**
 
 1. `pip install burla`
 2. `burla install`
