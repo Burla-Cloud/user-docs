@@ -65,10 +65,10 @@ remote_parallel_map(
 )
 ```
 
-The **`func_cpu`** and **`func_ram`** arguments can be used to assign more resources to each individual function call, up to 32 CPUs and 128G of RAM per function call.
+The **`func_cpu`** and **`func_ram`** arguments can be used to assign more resources to each individual function call, up to max amount your machine type supports.
 
 **`max_parallelism`** can be used to limit the number of function calls running at the same time.\
-By default, the cluster will execute as many parallel functions as possible given the resources it has. Our free public Burla cluster is configured to run 256 CPUs, allowing up to 256 function calls at the same time, however this can be increased if self-hosting.
+By default, the cluster will execute as many parallel functions as possible given the resources it has.
 
 **`background`** makes `remote_parallel_map` exit after having uploaded the function and inputs. After which the job will continue to run independantly on the cluster in the background.
 

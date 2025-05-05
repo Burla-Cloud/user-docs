@@ -35,7 +35,7 @@ remote_parallel_map(
 )
 ```
 
-Run provided `function_` on each item in `inputs` at the same time, each on a separate CPU, up to 256 CPUs (as of 1/3/25). If more than 256 inputs are provided, inputs are queued and processed sequentially on each worker.
+Run provided `function_` on each item in `inputs` at the same time, each on a separate CPU. If more inputs are provided than there are CPU's, they are queued and processed sequentially on each worker.
 
 If the provided `function_` raises an exception, the exception, including stack trace is reraised on the client machine.
 
@@ -44,8 +44,8 @@ If the provided `function_` raises an exception, the exception, including stack 
 | **Name**          | **Description**                                                                                                                                                                                                   |
 | `function_`       | <p><code>Callable</code></p><p>Python function. <strong>Must have single input argument</strong>, eg: <code>function_(inputs[0])</code> does not raise an exception.</p>                                          |
 | `inputs`          | <p><code>List[Any]</code></p><p>Iterable of elements passable to <code>function_</code>.</p>                                                                                                                      |
-| `func_cpu`        | <p><code>int</code></p><p>(Optional) Number of CPU's made available to every instance of <code>function_</code>. The maximum possible value is <code>80</code> (depending on cluster settings).</p>               |
-| `func_ram`        | <p><code>int</code></p><p>(Optional) Amount of RAM (GB) made available to every instance of <code>function_</code>. The maximum possible value is <code>320</code> (depending on cluster settings).</p>           |
+| `func_cpu`        | <p><code>int</code></p><p>(Optional) Number of CPU's made available to every instance of <code>function_</code>. The maximum possible value is determined by your cluster machine type.</p>                       |
+| `func_ram`        | <p><code>int</code></p><p>(Optional) Amount of RAM (GB) made available to every instance of <code>function_</code>. The maximum possible value is determined by your cluster machine type.</p>                    |
 | `background`      | <p><code>bool</code><br>(Optional) <code>remote_parallel_map</code> will return as soon as your inputs and function have been uploaded. The job will continue to run independently in the background.</p>         |
 | `spinner`         | <p><code>bool</code></p><p>(Optional) Set to <code>False</code> to prevent status indicator/spinner from being displayed.</p>                                                                                     |
 | `generator`       | <p><code>bool</code><br>(Optional) Set to <code>True</code> to return a <code>Generator</code> instead of a <code>List</code>. The generator will yield outputs as they are produced, instead of all at once.</p> |
