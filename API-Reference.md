@@ -27,6 +27,7 @@ remote_parallel_map(
   inputs,
   func_cpu=1,
   func_ram=4,
+  background=False,
   spinner=True,
   generator=False,
   max_parallelism=None,
@@ -45,6 +46,7 @@ If the provided `function_` raises an exception, the exception, including stack 
 | `inputs`          | <p><code>List[Any]</code></p><p>Iterable of elements passable to <code>function_</code>.</p>                                                                                                                      |
 | `func_cpu`        | <p><code>int</code></p><p>(Optional) Number of CPU's made available to every instance of <code>function_</code>. The maximum possible value is <code>80</code> (depending on cluster settings).</p>               |
 | `func_ram`        | <p><code>int</code></p><p>(Optional) Amount of RAM (GB) made available to every instance of <code>function_</code>. The maximum possible value is <code>320</code> (depending on cluster settings).</p>           |
+| `background`      | <p><code>bool</code><br>(Optional) <code>remote_parallel_map</code> will return as soon as your inputs and function have been uploaded. The job will continue to run independently in the background.</p>         |
 | `spinner`         | <p><code>bool</code></p><p>(Optional) Set to <code>False</code> to prevent status indicator/spinner from being displayed.</p>                                                                                     |
 | `generator`       | <p><code>bool</code><br>(Optional) Set to <code>True</code> to return a <code>Generator</code> instead of a <code>List</code>. The generator will yield outputs as they are produced, instead of all at once.</p> |
 | `max_parallelism` | <p><code>int</code></p><p>(Optional) Maximum number of <code>function_</code> instances allowed to be running at the same time. Defaults to #available-cpus divided by <code>func_cpu</code>.</p>                 |
