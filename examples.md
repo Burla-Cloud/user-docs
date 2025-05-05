@@ -2,10 +2,17 @@
 
 ## Quickstart:
 
+{% hint style="info" %}
+Hello! As you may be aware Burla is still a very new project, and we really don't want anyone to have a bad experience. We REALLY recommend you [schedule a quick call with us](http://cal.com/jakez), or [sign up here](https://www.burla.dev/copy-of-demo-1), so we can provice as much help as possible!
+{% endhint %}
+
+_This currently assumes you have a google cloud account and are setup with the `gcloud` CLI_
+
 1. Run `pip install Burla`
-2. Run `burla login`
-3. Start our free demo cluster: [cluster.burla.dev](https://cluster.burla.dev)
-4. Run the following code:
+2. Run `burla install`
+3. Follow the link to your cluster dashboard and start the cluster
+4. Run `burla login`, to authenticate with any google account.
+5. Run the following code, or something similar!
 
 ```python
 from burla import remote_parallel_map
