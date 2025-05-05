@@ -14,7 +14,7 @@ layout:
 
 # Welcome
 
-<figure><img src=".gitbook/assets/random logos and graphics (6).png" alt=""><figcaption></figcaption></figure>
+{% embed url="https://www.youtube.com/watch?v=1HQkTL-7_VY" %}
 
 ### Burla is a python package for running functions on remote computers.
 
@@ -50,10 +50,7 @@ With Burla, **running code on remote computers feels the same as coding locally*
 * Anything you print appears on your local machine, just like it normally does.
 * Responses are pretty quick (you can run a million simple functions in a couple seconds).
 
-For more info on `remote_parallel_map` see our [overview](overview.md#burla.remote_parallel_map) page, or the [API docs](API-Reference.md).\
-To test out the code in the example above, hit the "[Try it now](https://colab.research.google.com/drive/17MWiQFyFKxTmNBaq7POGL0juByWIMA3w?usp=sharing)" button at the top of the page!
-
-
+For more info on `remote_parallel_map` see our [overview](overview.md#burla.remote_parallel_map) page, or the [API docs](API-Reference.md).
 
 
 
