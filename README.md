@@ -22,7 +22,7 @@ With Burla, anyone can scale arbitrary python over thousands of virtual machines
 It's open-source, requires little setup, and is simple enough for even complete beginners.
 
 {% embed url="https://www.burla.dev/signup" %}
-Click here to Sign Up.
+^ Sign up to hear more ^
 {% endembed %}
 
 ### Basic example:
