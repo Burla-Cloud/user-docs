@@ -21,6 +21,10 @@ layout:
 With Burla, anyone can scale arbitrary python over thousands of virtual machines in the cloud.\
 It's open-source, requires little setup, and is simple enough for even complete beginners.
 
+{% embed url="https://www.burla.dev/signup" %}
+Click here to Sign Up.
+{% endembed %}
+
 ### Basic example:
 
 Burla is a python package with only one function: `remote_parallel_map`.
