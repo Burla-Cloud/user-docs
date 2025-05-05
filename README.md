@@ -16,14 +16,12 @@ layout:
 
 {% embed url="https://www.youtube.com/watch?v=1HQkTL-7_VY" %}
 
+{% @formspree/formspree %}
+
 ### Burla is a python package for running functions on remote computers.
 
 With Burla, anyone can scale arbitrary python over thousands of virtual machines in the cloud.\
 It's open-source, requires little setup, and is simple enough for even complete beginners.
-
-### Sign up now:
-
-{% @formspree/formspree %}
 
 ### Basic example:
 
