@@ -16,9 +16,7 @@ layout:
 
 {% embed url="https://www.youtube.com/watch?v=1HQkTL-7_VY" %}
 
-{% embed url="https://www.burla.dev/signup" %}
-^ Sign up to hear more ^
-{% endembed %}
+{% @formspree/formspree %}
 
 ### Burla is a python package for running functions on remote computers.
 
