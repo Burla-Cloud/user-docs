@@ -16,20 +16,18 @@ layout:
 
 {% embed url="https://www.youtube.com/watch?v=1HQkTL-7_VY" %}
 
-#### Sign Up Now:
+#### Sign up now:
 
 {% @formspree/formspree %}
 
 #### Burla is an open-source, batch-processing platform for Python developers.
 
-* It can deploy a simple python function to 10,000VM's in about 2 seconds (see our [demo](https://www.youtube.com/watch?v=1HQkTL-7_VY)).
-* Code can run in any custom docker container, on any machine type, for any length of time.
+* Burla can deploy a simple python function to 10,000VM's in about 2 seconds (see our [demo](https://www.youtube.com/watch?v=1HQkTL-7_VY)).
+* Code runs in any docker container, on any machine type, for any length of time.
 * It comes with a dashboard to monitor long running batch jobs, and view logs.
 * Burla can be installed with [one command](installation.md).
 
-#### Basic example:
-
-Burla is a python package with only [one function](API-Reference.md#burla.remote_parallel_map). Here's an example:
+#### Burla is a python package with only one function:
 
 ```python
 from burla import remote_parallel_map
