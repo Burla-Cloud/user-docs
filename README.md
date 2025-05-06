@@ -41,11 +41,11 @@ remote_parallel_map(my_function, [1, 2, 3])
 
 This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel, each in a separate container, and on a separate cpu, in the cloud.
 
-With Burla, running code in the cloud feels the same as coding locally. This means:
+With Burla, running code in the cloud feels the same as coding locally:
 
-* Errors thrown in your code appear on your local machine.
 * Anything you print appears your local terminal.
-* Responses are pretty quick (you can call a million simple functions in a couple seconds).
+* Exceptions thrown in your code are thrown on your local machine.
+* Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
 For more info on `remote_parallel_map` see our [overview](overview.md#burla.remote_parallel_map) page, or the [API docs](API-Reference.md).
 
