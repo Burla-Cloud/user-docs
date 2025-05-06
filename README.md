@@ -23,8 +23,8 @@ layout:
 ### Burla is an open-source, batch-processing platform for Python developers.
 
 * It can deploy a simple python function to 10,000VM's in about 2 seconds (see our [demo](https://www.youtube.com/watch?v=1HQkTL-7_VY)).
-* Code can run in any custom docker container, and on any machine type.
-* It comes with a dashboard to monitor long running batch jobs, view logs, and manage VM's.
+* Code can run in any custom docker container, on any machine type, for any length of time.
+* It comes with a dashboard to monitor long running batch jobs, and view logs.
 * Burla can be installed with [one command](installation.md).
 
 ### Basic example:
