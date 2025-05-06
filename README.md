@@ -41,8 +41,7 @@ def my_function(my_input):
 remote_parallel_map(my_function, [1, 2, 3])
 ```
 
-This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel.\
-Each in a separate container, on a separate cpu, in the cloud.
+This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel, each in a separate container, on a separate cpu, in the cloud.
 
 With Burla, running code in the cloud feels the same as coding locally. This means:
 
