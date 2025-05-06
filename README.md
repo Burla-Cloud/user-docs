@@ -20,39 +20,35 @@ layout:
 
 {% @formspree/formspree %}
 
-### Burla is a python package for running functions on remote computers.
+### Burla is an open-source, batch-processing platform for Python developers.
 
-With Burla, anyone can scale arbitrary python over thousands of virtual machines in the cloud.\
-It's open-source, requires little setup, and is simple enough for even complete beginners.
+* It can deploy a simple python function to 10,000VM's in about 2 seconds (see our [demo](https://www.youtube.com/watch?v=1HQkTL-7_VY)).
+* Code can run in any custom docker container, and on any machine type.
+* It comes with a dashboard to monitor long running batch jobs, view logs, and manage VM's.
+* Burla can be installed with [one command](installation.md).
 
 ### Basic example:
 
-Burla is a python package with only one function: `remote_parallel_map`.
-
-Given any python function, and a list of inputs, `remote_parallel_map` calls the given function, on every argument in the list, at the same time, each on a separate virtual machine in the cloud.
-
-Here's an example:
+Burla is a python package with only [one function](API-Reference.md#burla.remote_parallel_map). Here's an example:
 
 ```python
 from burla import remote_parallel_map
 
-my_arguments = [1, 2, 3, 4]
 
-def my_function(my_argument: int):
-    print(f"Running on remote computer #{my_argument} in the cloud!")
-    return my_argument * 2
+def my_function(my_input):
+    print("I'm running on remote computer in the cloud!")
     
-results = remote_parallel_map(my_function, my_arguments)
-
-print(f"return values: {list(results)}")
+remote_parallel_map(my_function, [1, 2, 3])
 ```
 
-Each call to `my_function` runs on a separate virtual machine in the cloud, in parallel.\
-With Burla, **running code on remote computers feels the same as coding locally**. This means:
+This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel.\
+Each in a separate container, on a separate cpu, in the cloud.
 
-* Errors thrown in your code will appear on your local machine just like they normally would.&#x20;
-* Anything you print appears on your local machine, just like it normally does.
-* Responses are pretty quick (you can run a million simple functions in a couple seconds).
+With Burla, running code in the cloud feels the same as coding locally. This means:
+
+* Errors thrown in your code appear on your local machine.
+* Anything you print appears your local terminal.
+* Responses are pretty quick (you can call a million simple functions in a couple seconds).
 
 For more info on `remote_parallel_map` see our [overview](overview.md#burla.remote_parallel_map) page, or the [API docs](API-Reference.md).
 
