@@ -47,13 +47,17 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-For more info on `remote_parallel_map` see our [overview](overview.md#burla.remote_parallel_map) page, or the [API docs](API-Reference.md).
+#### Manage long-running jobs in the background:
 
+Simply add:
 
+```python
+remote_parallel_map(my_function, my_inputs, background=True)
+```
 
+Then close your laptop, and monitor progress, or view logs, from the dashboard:
 
-
-
+<figure><img src=".gitbook/assets/MyMovie-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
 
 
 
