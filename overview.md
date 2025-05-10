@@ -61,20 +61,17 @@ remote_parallel_map(
   spinner=True,
   generator=False,
   max_parallelism=None,
-  api_key=None,
 )
 ```
 
 The **`func_cpu`** and **`func_ram`** arguments can be used to assign more resources to each individual function call, up to max amount your machine type supports.
 
-**`max_parallelism`** can be used to limit the number of function calls running at the same time.\
-By default, the cluster will execute as many parallel functions as possible given the resources it has.
-
 **`background`** makes `remote_parallel_map` exit after having uploaded the function and inputs. After which the job will continue to run independantly on the cluster in the background.
 
 **`spinner`** can be used to turn off the spinner, which also displays status messages from the cluster, like the state of the current job.
 
-**`api_key`** exists so users can call `remote_parallel_map` inside deployment environments where `burla login` cannot be run. To get an API key send me an email: [jake@burla.dev](mailto:jake@burla.dev).
+`max_parallelism` can be used to limit the number of function calls running at the same time.\
+By default, the cluster will execute as many parallel functions as possible given the resources it has.
 
 ### Any Questions?
 
