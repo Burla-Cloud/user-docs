@@ -31,7 +31,6 @@ remote_parallel_map(
   spinner=True,
   generator=False,
   max_parallelism=None,
-  api_key=None,
 )
 ```
 
@@ -50,7 +49,6 @@ If the provided `function_` raises an exception, the exception, including stack 
 | `spinner`         | <p><code>bool</code></p><p>(Optional) Set to <code>False</code> to prevent status indicator/spinner from being displayed.</p>                                                                                     |
 | `generator`       | <p><code>bool</code><br>(Optional) Set to <code>True</code> to return a <code>Generator</code> instead of a <code>List</code>. The generator will yield outputs as they are produced, instead of all at once.</p> |
 | `max_parallelism` | <p><code>int</code></p><p>(Optional) Maximum number of <code>function_</code> instances allowed to be running at the same time. Defaults to #available-cpus divided by <code>func_cpu</code>.</p>                 |
-| `api_key`         | <p><code>str</code></p><p>(Optional) API key, for use in deployment environments where <code>burla login</code> cannot be run.</p>                                                                                |
 
 
 
