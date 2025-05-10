@@ -11,8 +11,7 @@ _This currently assumes you have a google cloud account and are setup with the `
 1. Run `pip install Burla`
 2. Run `burla install`
 3. Follow the link to your cluster dashboard and start the cluster
-4. Run `burla login`, to authenticate with any google account.
-5. Run the following code, or something similar!
+4. Run the following code, or something similar!
 
 ```python
 from burla import remote_parallel_map

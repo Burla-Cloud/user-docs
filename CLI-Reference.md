@@ -31,7 +31,7 @@ The global arg `--help` can be placed after any command or command group to see 
 
 ### `burla login`
 
-Required. Ensures only authorized users can run commands on your cluster.
+Ensures only authorized users can run commands on your cluster.
 
 **Description**
 
