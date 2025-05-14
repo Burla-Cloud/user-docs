@@ -4,7 +4,7 @@ description: Instructions to install Burla inside your private cloud.
 
 # Installation
 
-#### TLDR:
+#### Quickstart:
 
 * Simply run `pip install burla` then run `burla install`&#x20;
 * If you're missing anything the command will tell you what to do!
