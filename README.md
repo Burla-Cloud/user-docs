@@ -16,7 +16,7 @@ layout:
 
 {% embed url="https://www.youtube.com/watch?v=1HQkTL-7_VY" %}
 
-#### Sign up now:
+#### Join our mailing list:
 
 {% @formspree/formspree %}
 
