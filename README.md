@@ -51,8 +51,15 @@ With Burla, running code in the cloud feels the same as coding locally:
 
 
 
+
+
+
+
 ***
 
 Questions?\
-[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
+[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.\
+Click [here](https://docs.burla.dev/privacy-policy) to view our privacy policy.
+
+
 
