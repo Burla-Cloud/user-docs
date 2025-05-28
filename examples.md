@@ -4,7 +4,7 @@
 
 {% hint style="info" %}
 This currently assumes you have a Google Cloud account and have setup the `gcloud` CLI.\
-For more information, see our installation guides in the right-hand sidebar.
+For more information, see our installation guides in the sidebar on the left.
 {% endhint %}
 
 1. Run `pip install Burla`
