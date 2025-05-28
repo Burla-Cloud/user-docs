@@ -3,7 +3,7 @@
 ## Quickstart:
 
 {% hint style="info" %}
-Hello! As you may be aware Burla is still a very new project, and we really don't want anyone to have a bad experience. We REALLY recommend you [schedule a quick call with us](http://cal.com/jakez), or [sign up here](https://www.burla.dev/copy-of-demo-1), so we can provice as much help as possible!
+Hello! As you may be aware Burla is still a very new project, and we really don't want anyone to have a bad experience. We recommend you [schedule a quick call with us](http://cal.com/jakez), or [sign up here](https://www.burla.dev/copy-of-demo-1), so we can provice as much help as possible!
 {% endhint %}
 
 _This currently assumes you have a google cloud account and are setup with the `gcloud` CLI_

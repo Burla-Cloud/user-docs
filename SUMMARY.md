@@ -5,7 +5,6 @@
 * [API-Reference](API-Reference.md)
 * [CLI-Reference](CLI-Reference.md)
 * [Installation](installation.md)
-* [Architecture](architecture.md)
 * [Examples](examples.md)
 * [About](about.md)
 * [auth-success](auth-success.md)
