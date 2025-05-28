@@ -3,28 +3,23 @@
 ## Quickstart:
 
 {% hint style="info" %}
-Hello! As you may be aware Burla is still a very new project, and we really don't want anyone to have a bad experience. We recommend you [schedule a quick call with us](http://cal.com/jakez), or [sign up here](https://www.burla.dev/copy-of-demo-1), so we can provice as much help as possible!
+This currently assumes you have a Google Cloud account and have setup the `gcloud` CLI.\
+For more information, see our installation guides in the right-hand sidebar.
 {% endhint %}
 
-_This currently assumes you have a google cloud account and are setup with the `gcloud` CLI_
-
 1. Run `pip install Burla`
-2. Run `burla install`
-3. Follow the link to your cluster dashboard and start the cluster
-4. Run the following code, or something similar!
+2. Run `burla install` (GCP only)
+3. Run `burla dashboard` to login to your new cluster dashboard.
+4. Hit the **⏻ Start** button in your dashboard to turn the cluster on.
+5. Run the code below!
 
 ```python
 from burla import remote_parallel_map
 
-my_arguments = [1, 2, 3, 4]
-
-def my_function(my_argument: int):
-    print(f"Running on remote computer #{my_argument} in the cloud!")
-    return my_argument * 2
+def my_function(my_input):
+    print("I'm running on remote computer in the cloud!")
     
-results = remote_parallel_map(my_function, my_arguments)
-
-print(f"return values: {list(results)}")
+remote_parallel_map(my_function, [1, 2, 3])
 ```
 
 ## Other Examples:
