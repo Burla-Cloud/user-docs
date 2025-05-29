@@ -47,22 +47,6 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-#### Burla scales quickly up to 10,000 CPU's
-
-<figure><img src=".gitbook/assets/10krun8xspeedforgif-ezgif.com-optimize.gif" alt=""><figcaption></figcaption></figure>
-
-#### Monitor long-running jobs from the dashboard:
-
-<figure><img src=".gitbook/assets/job-progress.gif" alt=""><figcaption></figcaption></figure>
-
-#### Run python in any docker container, on any type of machine:
-
-<figure><img src=".gitbook/assets/settings-clip.gif" alt=""><figcaption></figcaption></figure>
-
-#### Install with one command:
-
-<figure><img src=".gitbook/assets/install-clip.gif" alt=""><figcaption></figcaption></figure>
-
 
 
 
