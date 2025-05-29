@@ -45,7 +45,7 @@ To change your current project run: `gcloud config set project <desired-project-
 * Be logged in to the [gcloud CLI](https://cloud.google.com/sdk/gcloud) ([how do I log in?](https://cloud.google.com/sdk/docs/authorizing#user-account))\
   (`gcloud auth login`, `gcloud auth application-default login`)
 * Have a Google Cloud user account with at least the minimum required permissions to install Burla.\
-  (Just run `burla install`, if you're missing any it will tell you which ones!)
+  Or: Just run `burla install`, if you're missing any permissions it will tell you which ones!
 
 Here are three sets of permissions, each of which would authorize somebody to run `burla install`:
 
