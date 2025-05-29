@@ -70,13 +70,16 @@ The **`func_cpu`** and **`func_ram`** arguments can be used to assign more resou
 
 **`spinner`** can be used to turn off the spinner, which also displays status messages from the cluster, like the state of the current job.
 
-`max_parallelism` can be used to limit the number of function calls running at the same time.\
-By default, the cluster will execute as many parallel functions as possible given the resources it has.
+**`generator`** makes `remote_parallel_map` return a python `generator` object instead of a `list` containing return values. This generator yields return values as they are produced instead of all at once.
 
-### Any Questions?
-
-[Schedule a call with us!](http://cal.com/jakez/burla)\
-We're always happy to talk face to face.
+**`max_parallelism`** can be used to limit the number of function calls running at the same time.\
+By default, the cluster will execute as many parallel functions as possible given available resources.
 
 
 
+
+
+***
+
+Questions?\
+[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk!

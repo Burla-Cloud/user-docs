@@ -21,15 +21,13 @@ For now, simply email us!
 **Security:**
 
 Managed Burla deployments are created in separate projects each in a separate VPC.\
-By default Burla deployments only allow access to those in the authorized-user list in the settings tab, which means we can't actually observe your instance without explicitly manually modifying your database.
+By default Burla deployments allow access only to those in the authorized-user list in your settings tab, which means we can't actually observe your instance without explicitly manually modifying your database.
 
-**How do pay?**
+**How do I pay?**
 
-We use Stripe Billing to facilitate Payments.\
-By default Burla tracks the number compute hours used on a per-user basis.
+We piggyback off of existing Google Cloud billing infrastructure to track costs coming from your instance (Google Cloud project) and simply foreward you the bill through Stripe Billing.
 
-**How much does compute cost?**
+**How much does it cost?**
 
-We simply charge 2x what Google Cloud charges us for your instance.\
-Or about $0.05 per cpu-hour.
+We charge a simple 2x multiple whatever charges originate from your instance according to Google Cloud billing, this equates to about $0.08 per cpu-hour.
 
