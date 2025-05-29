@@ -16,31 +16,15 @@ layout:
 
 ## CLI-Reference
 
-Burla's CLI provides the ability to:
+Burla's CLI contains the following commands:
 
-* Install a self-hosted Burla instance in Google Cloud: `burla install`&#x20;
-* Authenticate your machine: `burla login`
-* Open your private dashboard: `burla dashboard`
+* [`burla install`](CLI-Reference.md#burla-install) Install a self-hosted Burla instance in your Google Cloud project.
+* [`burla login`](CLI-Reference.md#burla-login) Authenticate your machine.
+* [`burla dashboard`](CLI-Reference.md#burla-dashboard) Open your private dashboard.
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 
 ***
-
-### `burla login`
-
-Ensures only authorized users can run interact with your Burla instance.
-
-#### **Description**
-
-Launches the "sign in with google" page in your default web browser.\
-This gives **our** backend access to **only your email and name** according to your google account.\
-See our [privacy-policy](privacy-policy.md) to learn how we protect this information.
-
-This is used to ensure that only people you have explicitly authorized have access to your Burla instance.
-
-Once signed-in successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
-
-This token is refreshed each time the `burla login` or `burla dashboard` authorization flow is completed.
 
 ### `burla install`
 
@@ -181,9 +165,41 @@ We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burl
 `burla install` prints the following:
 
 <pre><code>Success! To view your new dashboard run `burla dashboard`
+Quickstart:
 <strong>  1. Start your cluster by hitting "⏻ Start" in the dashboard.
 </strong>  2. Import and call `remote_parallel_map`!
 </code></pre>
+
+### `burla login`
+
+Ensures only authorized users can run interact with your Burla instance.
+
+#### **Description**
+
+Launches the "sign in with google" page in your default web browser.\
+This gives **our** backend access to **only your email and name** according to your google account.\
+See our [privacy-policy](privacy-policy.md) to learn how we protect this information.
+
+This is used to ensure that only people you have explicitly authorized have access to your Burla instance.
+
+Once signed-in successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
+
+This token is refreshed each time the `burla login` or `burla dashboard` authorization flow is completed.
+
+### `burla dashboard`&#x20;
+
+Launch and login to the burla dashboard associated with the current Google Cloud project.
+
+#### **Description**
+
+Runs the same OAuth authorization flow used in the `burla login` command, but redirects the user to their current project's Burla dashboard, instead of the [login success](https://docs.burla.dev/auth-success) page.
+
+The current project's Burla dashboard URL is discovered using the following command:\
+`gcloud run services describe burla-main-service ...`&#x20;
+
+When redirecting to this dashboard the client attaches an authentication cookie identifying the user to the dashboard. Only explicitly authorized users are allowed to view the dashboard.
+
+Like the `burla login` command, this command also updates local authorization credentials stored in `burla_credentials.json`, see the [login command](CLI-Reference.md#burla-login) documentation for more info on these credentials.
 
 
 
