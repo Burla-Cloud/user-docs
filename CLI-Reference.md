@@ -123,7 +123,7 @@ Burla can be installed by users having the following generic roles:
 
 <summary>Simplest possible permissions</summary>
 
-The easiest way to ensure you have all these permissions is to have one of these roles:
+Burla can be installed with either of the following roles:
 
 * Project Owner (`roles/owner`)
 * Project Editor (`roles/editor`)
