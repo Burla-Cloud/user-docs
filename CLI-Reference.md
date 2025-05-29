@@ -173,7 +173,8 @@ Quickstart:
 
 ### `burla login`
 
-Ensures only authorized users can run interact with your Burla instance.
+Authenticates the current machine through a Google OAuth consent screen.\
+Allows you to call `remote_parallel_map` on Burla deployments where you're authorized to do so.
 
 #### **Description**
 
@@ -189,7 +190,9 @@ This token is refreshed each time the `burla login` or `burla dashboard` authori
 
 ### `burla dashboard`&#x20;
 
-Launch and login to the burla dashboard associated with the current Google Cloud project.
+Launch and login to the burla dashboard associated with the current Google Cloud project.\
+Allows you to call `remote_parallel_map` on Burla deployments where you're authorized to do so.\
+Allows you to access the Burla dashboard on Burla deployments where you're authorized to do so.
 
 #### **Description**
 
