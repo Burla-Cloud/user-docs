@@ -16,14 +16,11 @@ layout:
 
 ## CLI-Reference
 
-#### Burla CLI Reference
-
-**Description**
-
 Burla's CLI provides the ability to:
 
-* Authenticate using the command: `burla login`.
-* Install Burla in inside your Google Cloud project using the command: `burla install`
+* Install a self-hosted Burla instance in Google Cloud: `burla install`&#x20;
+* Authenticate your machine: `burla login`
+* Open your private dashboard: `burla dashboard`
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 

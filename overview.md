@@ -1,9 +1,9 @@
 # Overview
 
-### `burla.remote_parallel_map`:
+### `burla.remote_parallel_map`
 
-Run an arbitrary python function on many remote computers at the same time.\
-[Click here for API-Documentation.](API-Reference.md)
+Run any python function on many remote computers at the same time.\
+See the [API-Documentation](API-Reference.md)
 
 #### Basic use:
 
@@ -73,7 +73,8 @@ The **`func_cpu`** and **`func_ram`** arguments can be used to assign more resou
 **`generator`** makes `remote_parallel_map` return a python `generator` object instead of a `list` containing return values. This generator yields return values as they are produced instead of all at once.
 
 **`max_parallelism`** can be used to limit the number of function calls running at the same time.\
-By default, the cluster will execute as many parallel functions as possible given available resources.
+By default, the cluster will execute as many parallel functions as possible given available resources.\
+This can be useful to avoid overloading external systems like databases or other web services.
 
 
 
