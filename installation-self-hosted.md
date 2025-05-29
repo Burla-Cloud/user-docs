@@ -34,13 +34,14 @@ Also, ensure `gcloud` is pointing at the project you wish to install Burla insid
 
 Burla install requires that your user account have permission to run the following commands:
 
-* gcloud run deploy ...
-* gcloud firestore databases create ...
-* gcloud compute firewall-rules create ...
-* gcloud services enable ...
-* gcloud secrets create ...
+* `gcloud services enable ...`
+* `gcloud compute firewall-rules create ...`
+* `gcloud secrets create ...`
+* `gcloud firestore databases create ...`
+* `gcloud run deploy ...`
 
-If you're missing any permissions, `burla install` will tell you which ones you still need.
+If you're missing any permissions, `burla install` will tell you which ones you need.\
+For exact permissions including a custom IAM role, see the [CLI documentation](CLI-Reference.md#burla-install) for `burla install`.
 
 **Next steps:**
 

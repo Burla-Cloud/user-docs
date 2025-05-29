@@ -1,8 +1,4 @@
----
-hidden: true
----
-
-# Buy a brick. Get 10% off for life.
+# Brick.
 
 ### Why are you selling bricks?
 
