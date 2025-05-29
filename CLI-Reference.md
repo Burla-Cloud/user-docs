@@ -191,8 +191,7 @@ This token is refreshed each time the `burla login` or `burla dashboard` authori
 ### `burla dashboard`&#x20;
 
 Launch and login to the burla dashboard associated with the current Google Cloud project.\
-Allows you to call `remote_parallel_map` on Burla deployments where you're authorized to do so.\
-Allows you to access the Burla dashboard on Burla deployments where you're authorized to do so.
+Allows you to call `remote_parallel_map` and access the Burla dashboard on Burla deployments where you're authorized to do so.
 
 #### **Description**
 
