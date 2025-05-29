@@ -20,7 +20,7 @@ Burla's CLI contains the following commands:
 
 * [`burla install`](CLI-Reference.md#burla-install) Install a self-hosted Burla instance in your Google Cloud project.
 * [`burla login`](CLI-Reference.md#burla-login) Authenticate your machine.
-* [`burla dashboard`](CLI-Reference.md#burla-dashboard) Open your private dashboard.
+* [`burla dashboard`](CLI-Reference.md#burla-dashboard) Open / login to the Burla dashboard in your default browser.
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 
