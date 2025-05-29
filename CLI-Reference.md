@@ -145,13 +145,14 @@ We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burl
      * `firestore.googleapis.com`
      * `cloudresourcemanager.googleapis.com`
      * `secretmanager.googleapis.com`
-2. Port 8080 is opened on any GCE VM having the tag "burla-cluster-node":
+2. Port `8080` is opened on any GCE VM having the tag `burla-cluster-node`:
    * `gcloud compute firewall-rules create burla-cluster-node-firewall \`\
      `--action=ALLOW --rules=tcp:8080 --target-tags=burla-cluster-node ...`
-3. &#x20;A secret is created that's used to encrypt auth cookies in the dashboard and identify this instance.
+3. &#x20;A secret is created that's used to encrypt auth cookies in the dashboard:
    * `gcloud secrets describe burla-cluster-id-token`&#x20;
    * `gcloud secrets create burla-cluster-id-token ...`&#x20;
-4. A Google Cloud Firestore database is created (stores information displayed in the dashboard)
+4. A Google Cloud Firestore database is created:\
+   (manages information displayed in the dashboard)
    * `gcloud firestore databases create --database=burla ...`
 5. &#x20;The main-service (dashboard) is deployed on Google Cloud Run:
    * `gcloud run deploy burla-main-service \` \
