@@ -22,8 +22,8 @@ We offer [fully-managed Burla deployments](installation-fully-managed.md) for th
 If you haven't, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).\
 Also, ensure `gcloud` is pointing at the project you wish to install Burla inside:
 
-* To view your current project run: `gcloud config get project`
-* To change your current project run: `gcloud config set project <desired-project-id>`
+* To view your current gcloud project run: `gcloud config get project`
+* To change your current gcloud project run: `gcloud config set project <NEW-PROJECT-ID>`
 
 **Then install Burla with:**
 

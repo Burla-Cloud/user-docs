@@ -36,14 +36,14 @@ Running `burla install` multiple times will update the existing installation wit
 Installs Burla inside the Google Cloud project that your [gcloud CLI](https://cloud.google.com/sdk/gcloud) is currently pointing to.\
 For a more user-friendly installation guide see: [Installation: Self-Hosted](installation-self-hosted.md)
 
-To view your current project run: `gcloud config get project`\
-To change your current project run: `gcloud config set project <desired-project-id>`&#x20;
+To view your current gcloud project run: `gcloud config get project`\
+To change your current gcloud project run: `gcloud config set project <desired-project-id>`&#x20;
 
 #### **Prerequisites:**
 
 * Have the [gcloud CLI](https://cloud.google.com/sdk/gcloud) installed ([how do I install the gcloud CLI?](https://cloud.google.com/sdk/docs/install)).
 * Be logged in to the [gcloud CLI](https://cloud.google.com/sdk/gcloud) ([how do I log in?](https://cloud.google.com/sdk/docs/authorizing#user-account))\
-  (`gcloud auth login`, `gcloud auth application-default login`)
+  (`gcloud auth login` & `gcloud auth application-default login`)
 * Have a Google Cloud user account with at least the minimum required permissions to install Burla.\
   Or: Just run `burla install`, if you're missing any permissions it will tell you which ones!
 
@@ -153,11 +153,16 @@ We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burl
    * `gcloud secrets create burla-cluster-id-token ...`&#x20;
 4. A Google Cloud Firestore database is created:\
    (manages information displayed in the dashboard)
-   * `gcloud firestore databases create --database=burla ...`
-5. &#x20;The main-service (dashboard) is deployed on Google Cloud Run:
+   * `gcloud firestore databases create --database=burla ...`&#x20;
+5. Your Google account (that you are currently logged in to `gcloud` with) is set as the only user authorized to access this new Burla deployment.
+   * This account is discovered using the following command:\
+     `gcloud auth list --filter=status:ACTIVE --format="value(account)"`
+   * Once set, this cannot be changed by other users running `burla install` again.
+6. &#x20;The main-service (dashboard) is deployed on Google Cloud Run:
    * `gcloud run deploy burla-main-service \` \
      `--image=burlacloud/main-service:latest ...`
    * `gcloud run services update-traffic burla-main-service --to-latest ...`
+7. Thats it!
 
 </details>
 
@@ -165,11 +170,12 @@ We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burl
 
 `burla install` prints the following:
 
-<pre><code>Success! To view your new dashboard run `burla dashboard`
+```
+Success! To view your new dashboard run `burla dashboard`
 Quickstart:
-<strong>  1. Start your cluster by hitting "⏻ Start" in the dashboard.
-</strong>  2. Import and call `remote_parallel_map`!
-</code></pre>
+  1. Start your cluster by hitting "⏻ Start" in the dashboard.
+  2. Import and call `remote_parallel_map`!
+```
 
 ### `burla login`
 
@@ -190,8 +196,8 @@ This token is refreshed each time the `burla login` or `burla dashboard` authori
 
 ### `burla dashboard`&#x20;
 
-Launch and login to the burla dashboard associated with the current Google Cloud project.\
-Allows you to call `remote_parallel_map` and access the Burla dashboard on Burla deployments where you're authorized to do so.
+Launch and login to the Burla dashboard associated with your current Google Cloud project.\
+Allows you to call `remote_parallel_map` and access the Burla dashboard in Burla deployments where you're authorized to do so.
 
 #### **Description**
 
@@ -200,7 +206,7 @@ Runs the same OAuth authorization flow used in the `burla login` command, but re
 The current project's Burla dashboard URL is discovered using the following command:\
 `gcloud run services describe burla-main-service ...`&#x20;
 
-When redirecting to this dashboard the client attaches an authentication cookie identifying the user to the dashboard. Only explicitly authorized users are allowed to view the dashboard.
+When redirecting to this dashboard the client attaches an authentication cookie identifying the user to the dashboard. Only explicitly authorized users are allowed to view a Burla dashboard.
 
 Like the `burla login` command, this command also updates local authorization credentials stored in `burla_credentials.json`, see the [login command](CLI-Reference.md#burla-login) documentation for more info on these credentials.
 
