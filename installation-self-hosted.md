@@ -40,8 +40,8 @@ Burla install requires that your user account have permission to run the followi
 * `gcloud firestore databases create ...`
 * `gcloud run deploy ...`
 
-If you're missing any permissions, `burla install` will tell you which ones you need.\
-For exact permissions including a custom IAM role, see the [CLI documentation](CLI-Reference.md#burla-install) for `burla install`.
+If you're missing any permissions, `burla install` will tell you which ones you need!\
+To see the exact required IAM permissions, check out the [CLI documentation](CLI-Reference.md#burla-install) for `burla install`.
 
 **Next steps:**
 
