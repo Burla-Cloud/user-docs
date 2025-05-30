@@ -132,7 +132,11 @@ Burla can be installed with either of the following roles:
 
 **Here is exactly what happens when `burla install` is run:**
 
-We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burla/blob/main/client/src/burla/_install.py) in the client for even more specific details.
+{% hint style="info" %}
+On install, your Google account (the one you are currently logged in to `gcloud` with) is set as the only account authorized to access this new Burla deployment.
+
+To access the deployment you will need prove your identity by signing in to this same Google account through a Google sign-in page. Burla follows the standard Google OAuth 2.0 authorization flow.
+{% endhint %}
 
 <details>
 
@@ -154,7 +158,7 @@ We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burl
 4. A Google Cloud Firestore database is created:\
    (manages information displayed in the dashboard)
    * `gcloud firestore databases create --database=burla ...`&#x20;
-5. Your Google account (that you are currently logged in to `gcloud` with) is set as the only user authorized to access this new Burla deployment.
+5. Your Google account (that you are currently logged in to `gcloud` with) is set as the only account authorized to access this new Burla deployment.
    * This account is discovered using the following command:\
      `gcloud auth list --filter=status:ACTIVE --format="value(account)"`
    * Once set, this cannot be changed by other users running `burla install` again.
@@ -165,6 +169,8 @@ We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burl
 7. Thats it!
 
 </details>
+
+We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burla/blob/main/client/src/burla/_install.py) in the client for even more specific installation details.
 
 #### **After Installing:**
 
