@@ -25,10 +25,16 @@ Also, ensure `gcloud` is pointing at the project you wish to install Burla insid
 * To view your current gcloud project run: `gcloud config get project`
 * To change your current gcloud project run: `gcloud config set project <NEW-PROJECT-ID>`
 
+{% hint style="info" %}
+On install, your Google account (the one you are currently logged in to `gcloud` with) is set as the only account authorized to access this new Burla deployment.
+
+To access the deployment you will need prove your identity by signing in to this same Google account through a Google sign-in page. Burla follows the standard Google OAuth 2.0 authorization flow.
+{% endhint %}
+
 **Then install Burla with:**
 
 1. `pip install burla`
-2. `burla install`
+2. `burla install`&#x20;
 
 **That's it!**
 
