@@ -21,7 +21,13 @@ We're three lifelong friends with some experience (and frustrations) working on 
 
 ### Burla is backed by:
 
-<div><figure><img src=".gitbook/assets/Untitled-3.png" alt="pioneer.app"><figcaption><p>Pioneer.app</p></figcaption></figure> <figure><img src=".gitbook/assets/Untitled-4.png" alt=""><figcaption><p>Boost.vc</p></figcaption></figure> <figure><img src=".gitbook/assets/CloudforStartups.webp.png" alt="" width="200"><figcaption><p>cloud.google.com/startup</p></figcaption></figure></div>
+<div><figure><img src=".gitbook/assets/Untitled-3.png" alt="pioneer.app"><figcaption><p>Pioneer.app</p></figcaption></figure> <figure><img src=".gitbook/assets/Untitled-4.png" alt=""><figcaption><p>Boost.vc</p></figcaption></figure> <figure><img src=".gitbook/assets/bessemer beam-3.png" alt=""><figcaption><p>bvp.com/bessemer-beam</p></figcaption></figure></div>
+
+<figure><img src=".gitbook/assets/google cloud.png" alt=""><figcaption><p>cloud.google.com/startup</p></figcaption></figure>
+
+
+
+
 
 
 
