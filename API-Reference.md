@@ -34,7 +34,7 @@ remote_parallel_map(
 )
 ```
 
-Run provided `function_` on each item in `inputs` at the same time, each on a separate CPU. If more inputs are provided than there are available CPU's, they are queued and processed sequentially on each worker. `remote_parallel_map` can reliable queue millions of inputs.
+Run provided `function_` on each item in `inputs` at the same time, each on a separate CPU. If more inputs are provided than there are available CPU's, they are queued and processed sequentially on each worker. `remote_parallel_map` can reliably queue millions of inputs.
 
 While running:
 
