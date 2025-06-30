@@ -45,7 +45,7 @@ To see the exact required IAM permissions, check out the [CLI documentation](CLI
 
 **Next steps:**
 
-1. Run `burla dashboard` to login to your new cluster dashboard.\
+1. Run `burla login` to login to your new cluster dashboard.\
    You will need to login using the same email you used to authenticate `gcloud`. This ensures that only you the installer are allowed to access your new self-hosted Burla instance. To add other users, simpy add their email to the list of authorized users in the settings tab.
 2. Hit the **⏻ Start** button in your dashboard to turn the cluster on.\
    By default this will start one 4-CPU node. If inactive for >5 minutes this node will shut itself off.
