@@ -20,7 +20,6 @@ Burla's CLI contains the following commands:
 
 * [`burla install`](CLI-Reference.md#burla-install) Install a self-hosted Burla instance in your Google Cloud project.
 * [`burla login`](CLI-Reference.md#burla-login) Authenticate your machine.
-* [`burla dashboard`](CLI-Reference.md#burla-dashboard) Open / login to the Burla dashboard in your default browser.
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 
@@ -198,23 +197,7 @@ This is used to ensure that only people you have explicitly authorized have acce
 
 Once signed-in successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
 
-This token is refreshed each time the `burla login` or `burla dashboard` authorization flow is completed.
-
-### `burla dashboard`&#x20;
-
-Launch and login to the Burla dashboard associated with your current Google Cloud project.\
-Allows you to call `remote_parallel_map` and access the Burla dashboard in Burla deployments where you're authorized to do so.
-
-#### **Description**
-
-Runs the same OAuth authorization flow used in the `burla login` command, but redirects the user to their current project's Burla dashboard, instead of the [login success](https://docs.burla.dev/auth-success) page.
-
-The current project's Burla dashboard URL is discovered using the following command:\
-`gcloud run services describe burla-main-service ...`&#x20;
-
-When redirecting to this dashboard the client attaches an authentication cookie identifying the user to the dashboard. Only explicitly authorized users are allowed to view a Burla dashboard.
-
-Like the `burla login` command, this command also updates local authorization credentials stored in `burla_credentials.json`, see the [login command](CLI-Reference.md#burla-login) documentation for more info on these credentials.
+This token is refreshed each time the `burla login`authorization flow is completed.
 
 
 
