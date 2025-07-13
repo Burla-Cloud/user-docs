@@ -2,8 +2,7 @@
 
 * [Welcome](README.md)
 * [Use Cases](use-cases.md)
-* [Quickstart](quickstart.md)
-* [Installation](installation.md)
+* [Getting Started](getting-started.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
 * [auth-success](auth-success.md)
