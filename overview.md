@@ -1,6 +1,6 @@
 # Overview
 
-### Burla is the simplest way to orchestrate parallel python
+### Burla is the simplest way to orchestrate parallel python.
 
 * Deploy a simple function to 1000 computers in 1 second (see our [demo](https://www.youtube.com/watch?v=1HQkTL-7_VY)).
 * Code runs in any docker container, on any machine type, for any length of time.
