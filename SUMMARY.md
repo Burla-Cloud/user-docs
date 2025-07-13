@@ -2,10 +2,9 @@
 
 * [Welcome](README.md)
 * [Overview](overview.md)
-* [API/CLI Reference](API-Reference.md)
-* [Installation: Self-Hosted](installation-self-hosted.md)
-* [Installation: Fully-Managed](installation-fully-managed.md)
 * [Examples](examples.md)
+* [Installation](installation.md)
+* [API/CLI Reference](API-Reference.md)
 * [About](about.md)
 * [auth-success](auth-success.md)
 * [Privacy-Policy](privacy-policy.md)
