@@ -44,7 +44,7 @@ We're three lifelong friends with some experience (and frustrations) working on 
 
 
 
-## Buy a Burla Brick!
+## Buy our Brick!
 
 Buy a Brick, get 10% off for life.
 
