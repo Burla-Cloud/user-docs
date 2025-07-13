@@ -1,8 +1,8 @@
 # Table of contents
 
 * [Welcome](README.md)
-* [Overview](overview.md)
-* [Examples](examples.md)
+* [Use Cases](use-cases.md)
+* [Quickstart](quickstart.md)
 * [Installation](installation.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
