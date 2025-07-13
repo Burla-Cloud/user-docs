@@ -1,51 +1,24 @@
 # Overview
 
-### `burla.remote_parallel_map`
+### Burla is a python package with only one function:
 
-Run any python function on many remote computers at the same time.\
-See the [API-Documentation](API-Reference.md)
+* Anything you print appears your local terminal.
+* Exceptions thrown in your code are thrown on your local machine.
+* Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-#### Basic use:
+With Burla, running code in the cloud feels the same as coding locally:
 
-`remote_parallel_map` requires two arguments:
-
-```python
-# Arg 1: Any python function.
-def my_function(my_input):
-    print(my_input)
-    return my_input * 2
-
-# Arg 2: List of inputs for `my_function`.
-my_inputs = [1, 2, 3]
-```
-
-Then `remote_parallel_map` can be called like:
+This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel, each in a separate container, and on a separate cpu, in the cloud.
 
 ```python
 from burla import remote_parallel_map
 
-outputs = remote_parallel_map(my_function, my_inputs)
 
-print(list(outputs))
+def my_function(my_input):
+    print("I'm running on remote computer in the cloud!")
+    
+remote_parallel_map(my_function, [1, 2, 3])
 ```
-
-When run, `remote_parallel_map` will call `my_function`, on every object in `my_inputs`, at the same time, each on a separate CPU in the cloud (the max #CPUs depends on your cluster settings).
-
-In under 1 second, the three function calls are made, all at the same time:\
-`my_function(1)` , `my_function(2)`, `my_function(3)`
-
-Stdout produced on the remote machines is streamed back to the client (your machine).\
-The return values of each function are also collected and sent back to the client.\
-The following displays in the client's terminal:
-
-```bash
-1
-2
-3
-[2, 4, 6]
-```
-
-In the above example, each function call would have been made inside a separate container, each with their own isolated filesystem.
 
 #### Other arguments:
 

@@ -13,26 +13,6 @@ With any hardware, in any docker container, self-hosted in your cloud.
 * It comes with a dashboard to monitor long running jobs, and view logs.
 * Burla can be installed with [one command](installation-self-hosted.md).
 
-#### Burla is a python package with only one function:
-
-```python
-from burla import remote_parallel_map
-
-
-def my_function(my_input):
-    print("I'm running on remote computer in the cloud!")
-    
-remote_parallel_map(my_function, [1, 2, 3])
-```
-
-This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel, each in a separate container, and on a separate cpu, in the cloud.
-
-With Burla, running code in the cloud feels the same as coding locally:
-
-* Anything you print appears your local terminal.
-* Exceptions thrown in your code are thrown on your local machine.
-* Responses are pretty quick, you can call a million simple functions in a couple seconds.
-
 #### Join our mailing list:
 
 {% @formspree/formspree %}
