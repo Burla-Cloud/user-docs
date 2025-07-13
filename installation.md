@@ -1,5 +1,5 @@
 ---
-description: Burla can be self-hosted, or used as a managed service running in our cloud.
+description: Burla can be self-hosted, or used as a managed service.
 ---
 
 # Installation
