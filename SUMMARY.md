@@ -2,8 +2,7 @@
 
 * [Welcome](README.md)
 * [Overview](overview.md)
-* [API-Reference](API-Reference.md)
-* [CLI-Reference](CLI-Reference.md)
+* [API/CLI Reference](API-Reference.md)
 * [Installation: Self-Hosted](installation-self-hosted.md)
 * [Installation: Fully-Managed](installation-fully-managed.md)
 * [Examples](examples.md)

@@ -41,7 +41,7 @@ Burla install requires that your user account have permission to run the followi
 * `gcloud run deploy ...`
 
 If you're missing any permissions, `burla install` will tell you which ones you need!\
-To see the exact required IAM permissions, check out the [CLI documentation](CLI-Reference.md#burla-install) for `burla install`.
+To see the exact required IAM permissions, check out the [CLI documentation](broken-reference) for `burla install`.
 
 **Next steps:**
 
