@@ -1,24 +1,10 @@
----
-layout:
-  title:
-    visible: false
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: false
-  pagination:
-    visible: true
----
-
 # Welcome
 
+## Run any Python script on 1000 Computers in 1 second.
+
+With any hardware, in any docker container, self-hosted in your cloud.
+
 {% embed url="https://www.youtube.com/watch?v=1HQkTL-7_VY" %}
-
-#### Join our mailing list:
-
-{% @formspree/formspree %}
 
 #### Burla is an open-source, batch-processing platform for Python developers.
 
@@ -46,6 +32,10 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Anything you print appears your local terminal.
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
+
+#### Join our mailing list:
+
+{% @formspree/formspree %}
 
 
 
