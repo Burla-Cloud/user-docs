@@ -14,7 +14,6 @@ Burla is a python package with only one function:
 ```python
 from burla import remote_parallel_map
 
-
 def my_function(my_input):
     print("I'm running on remote computer in the cloud!")
     
