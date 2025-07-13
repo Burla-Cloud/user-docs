@@ -1,6 +1,15 @@
 # Overview
 
-### Burla is a python package with only one function:
+### Burla is the simplest way to orchestrate parallel python
+
+* is can deploy a simple python function to 10,000 containers in about 2 seconds (see our [demo](https://www.youtube.com/watch?v=1HQkTL-7_VY)).
+* Code runs in any docker container, on any machine type, for any length of time.
+* It comes with a dashboard to monitor long running jobs, and view logs.
+* Burla can be installed with [one command](installation-self-hosted.md).
+
+#### How it works:
+
+Burla is a python package with only one function:
 
 * Anything you print appears your local terminal.
 * Exceptions thrown in your code are thrown on your local machine.
