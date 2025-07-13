@@ -2,7 +2,7 @@
 layout:
   width: default
   title:
-    visible: false
+    visible: true
   description:
     visible: true
   tableOfContents:
@@ -14,8 +14,6 @@ layout:
 ---
 
 # About
-
-## About
 
 ### Why does the world need Burla?
 
