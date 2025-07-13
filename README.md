@@ -1,6 +1,6 @@
 # Welcome
 
-### Run any Python script on 1000 Computers in 1 second.
+### Run any Python script on 10,000 CPUs in 2 seconds.
 
 With any hardware, in any docker container, self-hosted in your cloud.
 
