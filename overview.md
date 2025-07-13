@@ -2,7 +2,7 @@
 
 #### Burla is the simplest way to orchestrate parallel python
 
-* it can deploy a simple python function to 10,000 containers in 2 seconds (see our [demo](https://www.youtube.com/watch?v=1HQkTL-7_VY)).
+* Deploy a simple function to 1000 computers in 1 second (see our [demo](https://www.youtube.com/watch?v=1HQkTL-7_VY)).
 * Code runs in any docker container, on any machine type, for any length of time.
 * It comes with a dashboard to monitor long running jobs, and view logs.
 * Burla can be installed with [one command](installation.md).
@@ -10,14 +10,6 @@
 #### How it works:
 
 Burla is a python package with only one function:
-
-* Anything you print appears your local terminal.
-* Exceptions thrown in your code are thrown on your local machine.
-* Responses are pretty quick, you can call a million simple functions in a couple seconds.
-
-With Burla, running code in the cloud feels the same as coding locally:
-
-This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel, each in a separate container, and on a separate cpu, in the cloud.
 
 ```python
 from burla import remote_parallel_map
@@ -28,6 +20,14 @@ def my_function(my_input):
     
 remote_parallel_map(my_function, [1, 2, 3])
 ```
+
+With Burla, running code in the cloud feels the same as coding locally:
+
+* Anything you print appears your local terminal.
+* Exceptions thrown in your code are thrown on your local machine.
+* Responses are pretty quick, you can call a million simple functions in a couple seconds.
+
+This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel, each in a separate container, and on a separate cpu, in the cloud.
 
 #### Other arguments:
 
