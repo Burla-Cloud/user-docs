@@ -26,7 +26,9 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-This code runs: `my_function(1)`, `my_function(2)`, `my_function(3)` in parallel, each in a separate container, and on a separate cpu, in the cloud.
+The example above calls:\
+&#x20;`my_function(1)`, `my_function(2)`, `my_function(3)` \
+In parallel, each in a separate docker container, and on a separate cpu, in the cloud.
 
 #### Other arguments:
 
