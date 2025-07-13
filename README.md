@@ -1,10 +1,14 @@
 # Welcome
 
-### Run any Python script on 10,000 CPUs in 2 seconds.
+### Run any Python script on 1000 computers in 1 second.
 
 With any hardware, in any docker container, self-hosted in your cloud.
 
 {% embed url="https://www.youtube.com/watch?v=1HQkTL-7_VY" %}
+
+#### Use Cases:
+
+<table data-view="cards"><thead><tr><th align="center"></th></tr></thead><tbody><tr><td align="center">Batch AI Inference</td></tr><tr><td align="center">Data Prep</td></tr><tr><td align="center">Computational Bio</td></tr></tbody></table>
 
 #### Join our mailing list:
 
