@@ -8,7 +8,7 @@ With any hardware, in any docker container, self-hosted in your cloud.
 
 #### Use Cases:
 
-<table data-view="cards"><thead><tr><th align="center"></th></tr></thead><tbody><tr><td align="center">Batch AI Inference</td></tr><tr><td align="center">Data Prep</td></tr><tr><td align="center">Computational Bio</td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th align="center"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td align="center">Batch AI Inference</td><td><a href=".gitbook/assets/ChatGPT Image Jul 13, 2025, 04_46_19 PM.png">ChatGPT Image Jul 13, 2025, 04_46_19 PM.png</a></td></tr><tr><td align="center">Data Prep</td><td><a href=".gitbook/assets/ChatGPT Image Jul 13, 2025, 04_47_07 PM.png">ChatGPT Image Jul 13, 2025, 04_47_07 PM.png</a></td></tr><tr><td align="center">Computational Bio</td><td><a href=".gitbook/assets/ChatGPT Image Jul 13, 2025, 04_46_05 PM.png">ChatGPT Image Jul 13, 2025, 04_46_05 PM.png</a></td></tr></tbody></table>
 
 #### Join our mailing list:
 

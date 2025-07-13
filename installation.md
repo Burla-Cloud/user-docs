@@ -4,7 +4,7 @@ description: Burla can be self-hosted, or used as a managed service.
 
 # Installation
 
-## How to Self-Host Burla:
+## How to self-host Burla:
 
 Install a self-hosted Burla instance inside your private cloud.
 
