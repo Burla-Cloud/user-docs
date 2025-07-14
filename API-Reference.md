@@ -4,8 +4,7 @@
 
 ### `burla.remote_parallel_map`
 
-Run any python function on many remote computers at the same time.\
-See our [overview](broken-reference) for a more user friendly description of how to use `remote_parallel_map.`
+Run any python function on many remote computers at the same time.
 
 ```python
 remote_parallel_map(

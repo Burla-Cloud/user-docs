@@ -1,19 +1,16 @@
----
-description: Burla can be self-hosted, or used as a managed service.
----
-
 # Getting Started
 
 ## Quickstart:
 
 {% hint style="info" %}
-This currently assumes you have a Google Cloud account and have setup the `gcloud` CLI.\
-For more information, see our installation guides in the sidebar on the left.
+Burla is currently exclusive to Google Cloud !
+
+This quickstart assumes you have installed and setup the [Google Cloud (gcloud) CLI](https://cloud.google.com/sdk/docs/install).
 {% endhint %}
 
 1. Run `pip install Burla`
-2. Run `burla install` (Google Cloud only !)
-3. Run `burla dashboard` to login to your new cluster dashboard.
+2. Run `burla install`
+3. Run `burla login` to login to your new cluster dashboard.
 4. Hit the **⏻ Start** button in your dashboard to turn the cluster on.
 5. Run the code below!
 
@@ -26,23 +23,18 @@ def my_function(my_input):
 remote_parallel_map(my_function, [1, 2, 3])
 ```
 
-## Install Burla in your cloud (self-host)
 
-Install a self-hosted Burla instance inside your private cloud.
+
+
+
+## Installation (self-hosted)
 
 {% hint style="info" %}
 Self-Hosted Burla is currently exclusive to Google Cloud.
 
 We fully intend to support AWS, Azure, and on-prem deployments, but don't yet.\
-We offer [fully-managed Burla deployments](broken-reference) for those not on GCP.
+We offer [fully-managed Burla deployments](getting-started.md#use-burla-running-in-our-cloud-fully-managed) for those not on GCP.
 {% endhint %}
-
-### Quick version:
-
-* Simply run `pip install burla` then run `burla install`&#x20;
-* If you're missing anything the command will tell you what to do!
-
-### Instructions:
 
 **Ensure `gcloud` is setup and installed:**\
 If you haven't, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).\
@@ -67,7 +59,7 @@ Burla install requires that your user account have permission to run the followi
 * `gcloud run deploy ...`
 
 If you're missing any permissions, `burla install` will tell you which ones you need!\
-To see the exact required IAM permissions, check out the [CLI documentation](broken-reference) for `burla install`.
+To see the exact required IAM permissions, see out the [CLI documentation](API-Reference.md#burla-install) for `burla install`.
 
 **Next steps:**
 
@@ -88,7 +80,7 @@ remote_parallel_map(my_function, [1, 2, 3])
 
 
 
-## Use Burla running in our cloud (fully-managed)
+## Installation (fully-managed)
 
 How to use Burla without a Google Cloud account.
 
