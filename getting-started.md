@@ -36,21 +36,28 @@ We fully intend to support AWS, Azure, and on-prem deployments, but don't yet.\
 We offer [fully-managed Burla deployments](getting-started.md#use-burla-running-in-our-cloud-fully-managed) for those not on GCP.
 {% endhint %}
 
-**Ensure `gcloud` is setup and installed:**\
-If you haven't, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).\
-Also, ensure `gcloud` is pointing at the project you wish to install Burla inside:
+### 1. Ensure `gcloud` is setup and installed:
+
+If you haven't, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).
+
+Ensure `gcloud` is pointing at the project you wish to install Burla inside:
 
 * To view your current gcloud project run: `gcloud config get project`
 * To change your current gcloud project run: `gcloud config set project <NEW-PROJECT-ID>`
 
-**Then install Burla with:**
+### 2. Run the `burla install` command:
 
-1. `pip install burla`
-2. `burla install`&#x20;
+Run `pip install burla` then run `burla install`.
 
-**That's it!**
+<details>
 
-Burla install requires that your user account have permission to run the following commands:
+<summary>What permissions does my Google Cloud account need to run <code>burla install</code> ?</summary>
+
+{% hint style="info" %}
+If you don't have permissions, run the command anyway, and it will tell you which ones you need!
+{% endhint %}
+
+To run `burla install` you'll need permission to run these `gcloud` commands:
 
 * `gcloud services enable ...`
 * `gcloud compute firewall-rules create ...`
@@ -58,15 +65,17 @@ Burla install requires that your user account have permission to run the followi
 * `gcloud firestore databases create ...`
 * `gcloud run deploy ...`
 
-If you're missing any permissions, `burla install` will tell you which ones you need!\
-To see the exact required IAM permissions, see out the [CLI documentation](API-Reference.md#burla-install) for `burla install`.
+I've listed the **exact required permissions** for the `burla install` command [in it's CLI doc](API-Reference.md#prerequisites).
 
-**Next steps:**
+</details>
 
-1. Run `burla login` to login to your new cluster dashboard.\
-   You will need to login using the same email you used to authenticate `gcloud`. This ensures that only you the installer are allowed to access your new self-hosted Burla instance. To add other users, simpy add their email to the list of authorized users in the settings tab.
-2. Hit the **⏻ Start** button in your dashboard to turn the cluster on.\
-   By default this will start one 4-CPU node. If inactive for >5 minutes this node will shut itself off.
+### 3. Start a machine and run the quickstart!
+
+1. Open your new cluster dashboard!
+   * Run the command: [`burla login`](API-Reference.md#burla-login) \
+     This command will open your dashboard in the default browser. Please login using the same account you used to authenticate `gcloud`, this restriction ensures only you the installer can access your new dashboard.
+2. Hit the **⏻ Start** button in the dashboard to turn the cluster on.\
+   By default this starts one 4-CPU node. If inactive for >5 minutes this node will shut itself off.
 3. Run the example!
 
 ```python

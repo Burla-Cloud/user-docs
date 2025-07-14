@@ -5,6 +5,5 @@
 * [Getting Started](getting-started.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
-* [auth-success](auth-success.md)
 * [Privacy-Policy](privacy-policy.md)
 * [Exclusive Brick Discount](exclusive-brick-discount.md)
