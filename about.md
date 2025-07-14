@@ -63,7 +63,7 @@ By purchasing a brick, you support our mission and become part of a community. A
 * Bricks are customized (on the back) with your name or company name, and a sequential serial number to identify it.
 * Bricks grant you direct support from [us](about.md) in our private slack, or by phone 24/7.
 * Every brick comes with a handwritten note from [us](about.md), the founders.
-* Most importantly Bricks really do grant you 10% off any current or future Burla products **for life** which is a really really good deal!
+* Most importantly Bricks really do grant you 10% off any current or future Burla products **for life** which is a really good deal!
 
 
 
