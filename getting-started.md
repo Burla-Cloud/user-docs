@@ -10,8 +10,8 @@ This quickstart assumes you have installed and setup the [Google Cloud (gcloud) 
 
 1. Run `pip install Burla`
 2. Run `burla install`
-3. Run `burla login` to login to your new cluster dashboard.
-4. Hit the **⏻ Start** button in your dashboard to turn the cluster on.
+3. Run `burla login` to open your new cluster dashboard.
+4. Hit the **⏻ Start** button to turn the cluster on.
 5. Run the code below!
 
 ```python
