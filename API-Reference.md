@@ -47,11 +47,11 @@ When finished `remote_parallel_map` returns a list of values returned by each `f
 | **Type**              | **Description**                                                                                                                                                                 |
 | `List` or `Generator` | List of objects returned by `function_` in no particular order. If `Generator=True`, returns generator yielding objects returned by `function_` in the order they are produced. |
 
-
-
-
-
 ***
+
+&#x20;
+
+&#x20;
 
 ## CLI-Reference
 
@@ -64,12 +64,14 @@ The global arg `--help` can be placed after any command or command group to see 
 
 ***
 
+&#x20;
+
 ### `burla install`
 
 Install a self-hosted Burla instance in your Google Cloud project.\
 Running `burla install` multiple times will update the existing installation with the latest version.
 
-#### **Description**
+**Description:**
 
 Installs Burla inside the Google Cloud project that your [gcloud CLI](https://cloud.google.com/sdk/gcloud) is currently pointing to.\
 For a more user-friendly installation guide see: [Installation: Self-Hosted](getting-started.md)
@@ -77,7 +79,7 @@ For a more user-friendly installation guide see: [Installation: Self-Hosted](get
 To view your current gcloud project run: `gcloud config get project`\
 To change your current gcloud project run: `gcloud config set project <desired-project-id>`&#x20;
 
-#### **Prerequisites:**
+**Prerequisites:**
 
 * Have the [gcloud CLI](https://cloud.google.com/sdk/gcloud) installed ([how do I install the gcloud CLI?](https://cloud.google.com/sdk/docs/install)).
 * Be logged in to the [gcloud CLI](https://cloud.google.com/sdk/gcloud) ([how do I log in?](https://cloud.google.com/sdk/docs/authorizing#user-account))\
@@ -210,7 +212,7 @@ To access the deployment you will need prove your identity by signing in to this
 
 We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burla/blob/main/client/src/burla/_install.py) in the client for even more specific installation details.
 
-#### **After Installing:**
+**After Installing:**
 
 `burla install` prints the following:
 
@@ -221,16 +223,16 @@ Quickstart:
   2. Import and call `remote_parallel_map`!
 ```
 
-
-
 ***
+
+&#x20;
 
 ### `burla login`
 
 Authenticates the current machine through a Google OAuth consent screen.\
 Allows you to call `remote_parallel_map` on Burla deployments where you're authorized to do so.
 
-#### **Description**
+**Description:**
 
 Launches the "sign in with google" page in your default web browser.\
 This gives **our** backend access to **only your email and name** according to your google account.\
@@ -242,11 +244,9 @@ Once signed-in successfully, an auth-token is saved in the text file `burla_cred
 
 This token is refreshed each time the `burla login`authorization flow is completed.
 
+&#x20;
 
-
-
-
-
+&#x20;
 
 ***
 
