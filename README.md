@@ -29,11 +29,9 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-See our [API-Reference](API-Reference.md) for a list of additional arguments.
-
-#### Join our mailing list:
-
-{% @formspree/formspree %}
+{% content-ref url="getting-started.md" %}
+[getting-started.md](getting-started.md)
+{% endcontent-ref %}
 
 
 
@@ -41,7 +39,13 @@ See our [API-Reference](API-Reference.md) for a list of additional arguments.
 
 ***
 
-Questions?\
+#### Join our mailing list:
+
+{% @formspree/formspree %}
+
+
+
+**Questions?**\
 [Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.\
 Click [here](https://docs.burla.dev/privacy-policy) to view our privacy policy.
 
