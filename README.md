@@ -29,23 +29,15 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-&#x20;
-
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
 &#x20;
 
-***
-
-Join our mailing list:
+Stay up to date:
 
 {% @formspree/formspree %}
 
-&#x20;
+***
 
 Questions?\
-[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.\
-Click [here](https://docs.burla.dev/privacy-policy) to view our privacy policy.
-
-
-
+[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
