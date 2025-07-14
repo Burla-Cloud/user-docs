@@ -31,11 +31,13 @@ With Burla, running code in the cloud feels the same as coding locally:
 
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
-&#x20;
-
-Stay up to date:
+#### Stay up to date:
 
 {% @formspree/formspree %}
+
+&#x20;
+
+&#x20;
 
 ***
 
