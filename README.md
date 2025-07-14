@@ -31,15 +31,15 @@ With Burla, running code in the cloud feels the same as coding locally:
 
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
+&#x20;
+
 #### Stay up to date:
 
 {% @formspree/formspree %}
 
 &#x20;
 
-&#x20;
-
 ***
 
 Questions?\
-[Schedule a call with us](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
+[Schedule a call](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
