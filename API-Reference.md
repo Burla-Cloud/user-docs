@@ -49,6 +49,10 @@ When finished `remote_parallel_map` returns a list of values returned by each `f
 
 
 
+
+
+***
+
 ## CLI-Reference
 
 Burla's CLI contains the following commands:
@@ -217,6 +221,10 @@ Quickstart:
   2. Import and call `remote_parallel_map`!
 ```
 
+
+
+***
+
 ### `burla login`
 
 Authenticates the current machine through a Google OAuth consent screen.\
@@ -233,6 +241,10 @@ This is used to ensure that only people you have explicitly authorized have acce
 Once signed-in successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
 
 This token is refreshed each time the `burla login`authorization flow is completed.
+
+
+
+
 
 
 
