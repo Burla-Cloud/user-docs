@@ -25,7 +25,7 @@ remote_parallel_map(my_function, [1, 2, 3])
 
 
 
-
+***
 
 ## Installation (self-hosted)
 
@@ -89,6 +89,8 @@ remote_parallel_map(my_function, [1, 2, 3])
 
 
 
+***
+
 ## Installation (fully-managed)
 
 How to use Burla without a Google Cloud account.
@@ -119,6 +121,10 @@ We piggyback off of existing Google Cloud billing infrastructure to track costs 
 **How much does it cost?**
 
 We charge a simple 2x multiple whatever charges originate from your instance according to Google Cloud billing, this equates to about $0.08 per cpu-hour.
+
+
+
+
 
 ***
 

@@ -15,20 +15,19 @@ layout:
 
 # About
 
-### Why does the world need Burla?
+### Why?
 
-Cloud infrastructure isn’t always as straightforward as it should be.\
-More importantly, it often pretty frustrating to work on!
+Developers have the most fun, and are most productive, when they get into a "flow state".
 
-Developers have the most fun, and are most productive when they get into a "flow state". If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, unclear, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and a lot less productive.
+If you’ve spent any time working with modern cloud infrastructure, you’ll know it can often be slow, unclear, and difficult to debug. These are all things that make it difficult to enter or stay inside a flow state. These things make work both less fun, and a lot less productive.
 
 We’ve created Burla with the goal of making cloud infrastructure fun.\
-This means Burla will need to be simple, fast, and easy to debug, even if you’re building something really complex. Whether you're coding locally, or on a cluster of 1000 machines, infrastructure should update and react quickly, like under-a-second quickly. We should be able to iterate at the speed of thought, not at the speed my lambda function, batch workload, ETL-pipeline, or Kubernetes service takes to redeploy!\
+This means Burla will need to be simple, really fast, and very easy to debug, even if you’re building something complicated. We believe that whether you're coding locally, or on a cluster of 1000 machines, infrastructure should update and react quickly, like under-a-second quickly. We should be able to iterate at the speed of thought, not at the speed my lambda function, batch workload, ETL-pipeline, or Kubernetes service takes to redeploy!\
 
 
 ### About Us:
 
-We're three lifelong friends with some experience (and frustrations) working on cloud-infrastructure at startups.
+We're three lifelong friends with some experience working on cloud-infrastructure at startups.
 
 <figure><img src=".gitbook/assets/PXL_20250215_005828604.jpg" alt="" width="563"><figcaption><p>Joe Perry, Jack Rzucidlo, and Jake Zuliani (in order) at the BoostVC office in San Mateo.</p></figcaption></figure>
 
@@ -49,10 +48,11 @@ Buy a Brick, get 10% off for life.
 ### Why are you selling bricks?
 
 At Burla.dev, our mission is to make cloud infrastructure fun.\
-We enable rapid progress using very simple primitives, like `remote_parallel_map`.\
+We enable rapid progress using a single primitive:  `remote_parallel_map`\
 What's more fun than rapid progress?\
 \
-To symbolize this, we're offering bricks—the fundamental building blocks of construction. By purchasing a brick, you support our mission and become part of a community. A community that together, is building the future of cloud computing, one brick at a time.​
+To symbolize this, we're offering bricks—the fundamental primitive of construction.\
+By purchasing a brick, you support our mission and become part of a community. A community that together, is building the future of cloud computing, one brick at a time.​
 
 <div align="center" data-full-width="false"><figure><img src=".gitbook/assets/PXL_20250311_184440369.jpg" alt="" width="375"><figcaption></figcaption></figure></div>
 
@@ -64,8 +64,6 @@ To symbolize this, we're offering bricks—the fundamental building blocks of co
 * Bricks grant you direct support from [us](about.md) in our private slack, or by phone 24/7.
 * Every brick comes with a handwritten note from [us](about.md), the founders.
 * Most importantly Bricks really do grant you 10% off any current or future Burla products **for life** which is a really really good deal!
-
-Brick discounts cannot be transferred!
 
 
 
