@@ -12,7 +12,8 @@ With any hardware, in any docker container, self-hosted in your cloud.
 
 #### How it works:
 
-Burla is a python package with only one function:
+Burla is an open-source platform for orchestrating parallel Python in the cloud.\
+Our package only has one function:
 
 ```python
 from burla import remote_parallel_map
@@ -29,9 +30,15 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
+#### Deploy in two commands:
+
+Run `pip install burla` then run `burla install` and that's it! (**Currently Google Cloud only!**)
+
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
-#### &#x20;Any Hardware, Any Docker Container:
+#### &#x20;Any Hardware, Any Container:
+
+Run Python inside any Docker image, just paste a public (or private) URI.
 
 <figure><img src=".gitbook/assets/ScreenRecording2025-07-16at3.46.31PM-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
 
