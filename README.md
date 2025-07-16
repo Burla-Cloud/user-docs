@@ -12,8 +12,8 @@ With any hardware, in any docker container, self-hosted in your cloud.
 
 #### How it works:
 
-Burla is an open-source platform for orchestrating parallel Python in the cloud.\
-Our package only has one function:
+Burla is an open-source platform for orchestrating Python in the cloud.\
+The package only has one function:
 
 ```python
 from burla import remote_parallel_map
@@ -38,9 +38,12 @@ Run `pip install burla` then run `burla install` and that's it! (**Currently Goo
 
 #### &#x20;Any Hardware, Any Container:
 
-Run Python inside any Docker image, just paste a public (or private) URI.
+Run code in any Docker image with a public (or private) URI.\
+Scale across 10,000 CPU's, 100 H100's, use terabytes of RAM, or all the above.
 
 <figure><img src=".gitbook/assets/ScreenRecording2025-07-16at3.46.31PM-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
+
+
 
 &#x20;
 
