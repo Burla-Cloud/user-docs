@@ -31,6 +31,10 @@ With Burla, running code in the cloud feels the same as coding locally:
 
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
+#### &#x20;Any Hardware, Any Docker Container:
+
+<figure><img src=".gitbook/assets/ScreenRecording2025-07-16at3.46.31PM-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
+
 &#x20;
 
 #### Stay up to date:
