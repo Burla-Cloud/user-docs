@@ -20,8 +20,9 @@ from burla import remote_parallel_map
 
 def my_function(my_input):
     print("I'm running on my own separate computer in the cloud!")
+    return my_input
     
-remote_parallel_map(my_function, [1, 2, 3])
+return_values = remote_parallel_map(my_function, [1, 2, 3])
 ```
 
 With Burla, running code in the cloud feels the same as coding locally:
@@ -41,11 +42,14 @@ Run `pip install burla` then run `burla install` and that's it! (**Currently Goo
 Run code in any Docker image with a public (or private) URI.\
 Scale across 10,000 CPU's, 100 H100's, use terabytes of RAM, or all the above.
 
-<figure><img src=".gitbook/assets/ScreenRecording2025-07-16at3.46.31PM-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
+#### A Fast, Flexible, and Scalable task queue:
 
+Queue up 10 Million small inputs, or 1000 giant inputs.\
+Our distributed task queue is incredibly fast, keeping hardware utilization high.
 
-&#x20;
+<figure><img src=".gitbook/assets/output.gif" alt=""><figcaption></figcaption></figure>
 
 #### Stay up to date:
 
