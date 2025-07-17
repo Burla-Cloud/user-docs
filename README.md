@@ -49,7 +49,7 @@ Scale across 10,000 CPU's, 100 H100's, use terabytes of RAM, or all the above.
 Queue up 10 Million small inputs, or 1000 giant inputs.\
 Our distributed task queue is incredibly fast, keeping hardware utilization high.
 
-<figure><img src=".gitbook/assets/output.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/queue_demo_2.gif" alt=""><figcaption></figcaption></figure>
 
 #### Stay up to date:
 
