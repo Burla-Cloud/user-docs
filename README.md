@@ -45,7 +45,7 @@ def train_model(hyper_parameters):
 remote_parallel_map(train_model, parameter_grid, func_cpu=64, func_ram=256)
 ```
 
-#### Run Code in Any Docker Image, on Any Hardware:
+#### Run Code in any Docker Image, on any Hardware:
 
 Public or private, just paste a link to your image and hit start.\
 Scale it across 10,000 CPU's, or 1,000 H100's, everything stays secure in your cloud.
@@ -89,7 +89,7 @@ remote_parallel_map(process_files, [files], background=True)
 1. `pip install burla`
 2. `burla install`
 
-That's it! See our Getting Started guide for more info:
+See our Getting Started guide for more info:
 
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
