@@ -2,7 +2,8 @@
 
 ### Run any Python function on 1000 computers in 1 second.
 
-With any hardware, in any docker container, self-hosted in your cloud.
+We should iterate at the speed of thought.\
+Not at the speed your lambda function, ETL-pipeline, or Kubernetes service takes to redeploy!
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
