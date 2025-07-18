@@ -14,7 +14,7 @@ Burla is open-source, runs in your cloud, and can be installed with just two com
 
 #### How It Works:
 
-Burla is an open-source platform for orchestrating Python in the cloud.\
+Burla is a platform for orchestrating parallel Python in the cloud.\
 It only has one function:
 
 ```python
