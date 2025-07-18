@@ -51,8 +51,6 @@ When finished `remote_parallel_map` returns a list of values returned by each `f
 
 &#x20;
 
-&#x20;
-
 ## CLI-Reference
 
 Burla's CLI contains the following commands:
@@ -63,8 +61,6 @@ Burla's CLI contains the following commands:
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 
 ***
-
-&#x20;
 
 ### `burla install`
 
@@ -217,7 +213,7 @@ We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burl
 `burla install` prints the following:
 
 ```
-Success! To view your new dashboard run `burla dashboard`
+Success! To view your new dashboard run `burla login`
 Quickstart:
   1. Start your cluster by hitting "⏻ Start" in the dashboard.
   2. Import and call `remote_parallel_map`!
