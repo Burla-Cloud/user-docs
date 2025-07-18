@@ -3,7 +3,7 @@
 ### Run any Python function on 1000 computers in 1 second.
 
 Iterate at the speed of thought.\
-Not at the speed your lambda function, ETL-pipeline, or Kubernetes service takes to redeploy!\
+Not at the speed your lambda function, ETL-pipeline, or Kubernetes service takes to redeploy.\
 Burla is open-source, runs in your cloud, and can be installed with just two commands.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
