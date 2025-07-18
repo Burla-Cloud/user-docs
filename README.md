@@ -4,7 +4,7 @@
 
 With any hardware, in any docker container, self-hosted in your cloud.
 
-<figure><img src=".gitbook/assets/WebsiteDemo-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
 
 #### One Function, Endless Possibility:
 
@@ -57,7 +57,7 @@ Scale it across 10,000 CPU's, or 1,000 H100's, everything stays in your cloud.
 Queue up 10 Million function calls, and run them with thousands of containers.\
 Our custom distributed task queue is incredibly fast, keeping hardware utilization high.
 
-<figure><img src=".gitbook/assets/4.gif" alt=""><figcaption><p>This demo is in realtime!</p></figcaption></figure>
+<figure><img src=".gitbook/assets/queue_demo.gif" alt=""><figcaption><p>This demo is in realtime!</p></figcaption></figure>
 
 #### Simple, Flexible Pipelines:
 
