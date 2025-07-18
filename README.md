@@ -84,7 +84,10 @@ remote_parallel_map(process_files, [files], background=True)
 
 #### Deploy now with just two commands:
 
-Run `pip install burla` then run `burla install` and that's it! (**Currently Google Cloud only!**)
+(**Currently Google Cloud only!**)
+
+1. `pip install burla`
+2. `burla install`
 
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
