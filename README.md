@@ -81,11 +81,9 @@ Scale it across 10,000 CPU's, or 1,000 H100's, everything stays in your cloud.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
-&#x20;
-
 #### Deploy Now with Just Two Commands:
 
-(**Currently Google Cloud only!**)
+(**Burla is currently Google Cloud only!**)
 
 1. `pip install burla`
 2. `burla install`
