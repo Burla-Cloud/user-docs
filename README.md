@@ -4,7 +4,7 @@
 
 With any hardware, in any docker container, self-hosted in your cloud.
 
-<figure><img src=".gitbook/assets/WebsiteDemo-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
 #### One Function, Endless Possibility:
 
