@@ -61,7 +61,7 @@ Our custom distributed task queue is incredibly fast, keeping hardware utilizati
 
 #### Simple, Flexible, Pipelines:
 
-Nest `remote_parallel_map` calls to build simple flexible pipelines.\
+Nest `remote_parallel_map` calls to build simple, massively parallel, pipelines.\
 Use `background=True` to fire and forget code, then monitor progress from the dashboard.
 
 ```python
