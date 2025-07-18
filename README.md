@@ -13,7 +13,7 @@ With any hardware, in any docker container, self-hosted in your cloud.
 #### How it works:
 
 Burla is an open-source platform for orchestrating Python in the cloud.\
-Our package only has one function:
+It only has one function:
 
 ```python
 from burla import remote_parallel_map
