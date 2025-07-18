@@ -31,13 +31,6 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-#### &#x20;Any Hardware, Any Container:
-
-Run code in any image, public or private.\
-Scale across 10,000 CPU's, 100 H100's, use terabytes of RAM, or all the above.
-
-<figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
-
 #### Define Hardware in your Code:
 
 Assign more resources to the functions that need it.\
@@ -53,12 +46,42 @@ def train_model(hyper_parameters):
 remote_parallel_map(train_model, parameter_grid, func_cpu=64, func_ram=256)
 ```
 
+#### Run Code in any Docker Image, on any Hardware:
+
+Public or private, just past a link to your image and hit start.\
+Scale it across 10,000 CPU's, 1,000 H100's, terabytes of RAM, or all the above.
+
+<figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
+
 #### A Fast, Scalable Task Queue:
 
 Queue up 10 Million function calls, and run them with thousand of containers.\
 Our custom distributed task queue is incredibly fast, keeping hardware utilization high.
 
 <figure><img src=".gitbook/assets/4.gif" alt=""><figcaption><p>This demo is in realtime!</p></figcaption></figure>
+
+#### Simple, Flexible Pipelines:
+
+Nest `remote_parallel_map` calls to build simple flexible pipelines.\
+Use `background=True` to fire and forget code, then monitor progress from the dashboard.
+
+```python
+from burla import remote_parallel_map
+
+def process_record(record):
+    return result
+
+def process_file(file):
+    results = remote_parallel_map(process_record, load_file(file))
+    upload_results(results)
+
+def process_files(files):
+    remote_parallel_map(process_file, files, func_ram=16)
+    
+
+remote_parallel_map(process_files, [files], func_ram=64, background=True)
+
+```
 
 #### Deploy now with just two commands:
 
