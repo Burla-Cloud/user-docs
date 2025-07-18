@@ -6,9 +6,9 @@ With any hardware, in any docker container, self-hosted in your cloud.
 
 <figure><img src=".gitbook/assets/WebsiteDemo-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
 
-#### One function, endless possibilities:
+#### One function, endless possibility:
 
-<table data-view="cards"><thead><tr><th align="center"></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td align="center">Batch AI Inference</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.42.56 PM.png">Screenshot 2025-07-13 at 5.42.56 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Data Pipelines</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 11.41.14 AM.png">Screenshot 2025-07-16 at 11.41.14 AM.png</a></td><td></td></tr><tr><td align="center">Computational Bio</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.42.46 PM.png">Screenshot 2025-07-13 at 5.42.46 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Remote Dev Environments</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 12.27.14 PM.png">Screenshot 2025-07-16 at 12.27.14 PM.png</a></td><td></td></tr><tr><td align="center">Data Prep</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.40.15 PM.png">Screenshot 2025-07-13 at 5.40.15 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Background Task Queue</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 11.48.03 AM.png">Screenshot 2025-07-16 at 11.48.03 AM.png</a></td><td></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th align="center"></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td align="center">Scale Batch AI Inference</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.42.56 PM.png">Screenshot 2025-07-13 at 5.42.56 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Orchestrate Data Pipelines</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 11.41.14 AM.png">Screenshot 2025-07-16 at 11.41.14 AM.png</a></td><td></td></tr><tr><td align="center">Scale Computational Bio</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.42.46 PM.png">Screenshot 2025-07-13 at 5.42.46 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Remote Dev Environments</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 12.27.14 PM.png">Screenshot 2025-07-16 at 12.27.14 PM.png</a></td><td></td></tr><tr><td align="center">Data Prep</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.40.15 PM.png">Screenshot 2025-07-13 at 5.40.15 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Background Task Queue</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 11.48.03 AM.png">Screenshot 2025-07-16 at 11.48.03 AM.png</a></td><td></td></tr></tbody></table>
 
 #### How it works:
 
@@ -31,15 +31,9 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-#### Deploy in two commands:
-
-Run `pip install burla` then run `burla install` and that's it! (**Currently Google Cloud only!**)
-
-{% embed url="https://docs.burla.dev/getting-started#quickstart" %}
-
 #### &#x20;Any Hardware, Any Container:
 
-Run code in any Docker image with a public (or private) URI.\
+Run code in any image, public or private.\
 Scale across 10,000 CPU's, 100 H100's, use terabytes of RAM, or all the above.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
@@ -50,6 +44,12 @@ Queue up 10 Million small inputs, or 10,000 giant ones.\
 Our distributed task queue is incredibly fast, keeping hardware utilization high.
 
 <figure><img src=".gitbook/assets/4.gif" alt=""><figcaption></figcaption></figure>
+
+#### Deploy now with just two commands:
+
+Run `pip install burla` then run `burla install` and that's it! (**Currently Google Cloud only!**)
+
+{% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
 &#x20;&#x20;
 
