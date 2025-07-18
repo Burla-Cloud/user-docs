@@ -1,6 +1,6 @@
 # Welcome
 
-### Run any Python script on 1000 computers in 1 second.
+### Run any Python function on 1000 computers in 1 second.
 
 With any hardware, in any docker container, self-hosted in your cloud.
 
@@ -13,7 +13,7 @@ With any hardware, in any docker container, self-hosted in your cloud.
 #### How it works:
 
 Burla is an open-source platform for orchestrating Python in the cloud.\
-The package only has one function:
+Our package only has one function:
 
 ```python
 from burla import remote_parallel_map
@@ -38,12 +38,27 @@ Scale across 10,000 CPU's, 100 H100's, use terabytes of RAM, or all the above.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
+#### Define Hardware in your Code:
+
+Assign more resources to the functions that need it.\
+Then scale them across thousands of machines.
+
+```python
+from xgboost import XGBClassifier
+
+def train_model(hyper_parameters):
+    model = XGBClassifier(n_jobs=64, **hyper_parameters)
+    model.fit(training_inputs, training_targets)
+    
+remote_parallel_map(train_model, parameter_grid, func_cpu=64, func_ram=256)
+```
+
 #### A Fast, Scalable Task Queue:
 
-Queue up 10 Million small inputs, or 10,000 giant ones.\
-Our distributed task queue is incredibly fast, keeping hardware utilization high.
+Queue up 10 Million function calls, and run them with thousand of containers.\
+Our custom distributed task queue is incredibly fast, keeping hardware utilization high.
 
-<figure><img src=".gitbook/assets/4.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/4.gif" alt=""><figcaption><p>This demo is in realtime!</p></figcaption></figure>
 
 #### Deploy now with just two commands:
 
@@ -51,7 +66,7 @@ Run `pip install burla` then run `burla install` and that's it! (**Currently Goo
 
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
-&#x20;&#x20;
+&#x20;
 
 #### Stay up to date:
 
