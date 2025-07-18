@@ -31,9 +31,9 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-#### Per-Function Hardware Configuration:
+#### Attach Big Hardware to Functions That Need It:
 
-Assign more resources to the functions that need it using simple arguments.
+Zero config files, just simple arguments like `func_cpu` & `func_ram`.
 
 ```python
 from xgboost import XGBClassifier
@@ -48,7 +48,7 @@ remote_parallel_map(train_model, parameter_grid, func_cpu=64, func_ram=256)
 #### Run Code in any Docker Image, on any Hardware:
 
 Public or private, just paste a link to your image and hit start.\
-Scale it across 10,000 CPU's, or 1,000 H100's, everything stays secure in your cloud.
+Scale it across 10,000 CPU's, or 1,000 H100's, everything stays in your cloud.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
