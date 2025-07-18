@@ -44,14 +44,14 @@ Scale across 10,000 CPU's, 100 H100's, use terabytes of RAM, or all the above.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
-#### A Fast, Flexible, and Scalable task queue:
+#### A Fast, Scalable Task Queue:
 
-Queue up 10 Million small inputs, or 1000 giant inputs.\
+Queue up 10 Million small inputs, or 10,000 giant ones.\
 Our distributed task queue is incredibly fast, keeping hardware utilization high.
 
 <figure><img src=".gitbook/assets/4.gif" alt=""><figcaption></figcaption></figure>
 
-&#x20;
+&#x20;&#x20;
 
 #### Stay up to date:
 
