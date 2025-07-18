@@ -31,7 +31,7 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-#### Per-Function Hardware Configuration:
+#### Per-function hardware configuration:
 
 Assign more resources to the functions that need it using simple arguments.
 
@@ -52,14 +52,14 @@ Scale it across 10,000 CPU's, 1,000 H100's, terabytes of RAM, or all the above.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
-#### A Fast, Scalable Task Queue:
+#### A fast, scalable task queue:
 
 Queue up 10 Million function calls, and run them with thousands of containers.\
 Our custom distributed task queue is incredibly fast, keeping hardware utilization high.
 
 <figure><img src=".gitbook/assets/4.gif" alt=""><figcaption><p>This demo is in realtime!</p></figcaption></figure>
 
-#### Simple, Flexible Pipelines:
+#### Simple, flexible pipelines:
 
 Nest `remote_parallel_map` calls to build simple flexible pipelines.\
 Use `background=True` to fire and forget code, then monitor progress from the dashboard.
