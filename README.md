@@ -52,16 +52,16 @@ Scale it across 10,000 CPU's, or 1,000 H100's, everything stays secure in your c
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
-#### A Fast, Scalable, Task Queue:
+#### A Fast, Scalable Task Queue:
 
 Queue up 10 Million function calls, and run them with thousands of containers.\
 Our custom distributed task queue is incredibly fast, keeping hardware utilization high.
 
 <figure><img src=".gitbook/assets/4.gif" alt=""><figcaption><p>This demo is in realtime!</p></figcaption></figure>
 
-#### Simple, Flexible, Pipelines:
+#### Simple, Flexible Pipelines:
 
-Nest `remote_parallel_map` calls to build simple, massively parallel, pipelines.\
+Nest `remote_parallel_map` calls to build simple, massively parallel pipelines.\
 Use `background=True` to fire and forget code, then monitor progress from the dashboard.
 
 ```python
