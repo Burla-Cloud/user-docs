@@ -1,16 +1,16 @@
 # Welcome
 
-### Run any Python function on 1000 computers in 1 second.
+## Run Any Python Function On 1000 Computers In 1 second.
 
 With any hardware, in any docker container, self-hosted in your cloud.
 
 <figure><img src=".gitbook/assets/WebsiteDemo-ezgif.com-video-to-gif-converter.gif" alt=""><figcaption></figcaption></figure>
 
-#### One function, endless possibility:
+#### One Function, Endless Possibility:
 
-<table data-view="cards"><thead><tr><th align="center"></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td align="center">Save Big on Batch AI Inference</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.42.56 PM.png">Screenshot 2025-07-13 at 5.42.56 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Orchestrate Data Pipelines</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 11.41.14 AM.png">Screenshot 2025-07-16 at 11.41.14 AM.png</a></td><td></td></tr><tr><td align="center">Scale Computational Bio</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.42.46 PM.png">Screenshot 2025-07-13 at 5.42.46 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Develop in Remote Environments</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 12.27.14 PM.png">Screenshot 2025-07-16 at 12.27.14 PM.png</a></td><td></td></tr><tr><td align="center">Prepare Terabytes of Data</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.40.15 PM.png">Screenshot 2025-07-13 at 5.40.15 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Queue Background Tasks from Web Services</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 11.48.03 AM.png">Screenshot 2025-07-16 at 11.48.03 AM.png</a></td><td></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th align="center"></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td align="center">Save Big on Batch AI Inference</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.42.56 PM.png">Screenshot 2025-07-13 at 5.42.56 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Orchestrate Data Pipelines</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 11.41.14 AM.png">Screenshot 2025-07-16 at 11.41.14 AM.png</a></td><td></td></tr><tr><td align="center">Scale Computational Bio</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.42.46 PM.png">Screenshot 2025-07-13 at 5.42.46 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Develop in Remote Environments</td><td><a href=".gitbook/assets/Screenshot 2025-07-16 at 12.27.14 PM.png">Screenshot 2025-07-16 at 12.27.14 PM.png</a></td><td></td></tr><tr><td align="center">Prepare Terabytes of Data</td><td><a href=".gitbook/assets/Screenshot 2025-07-13 at 5.40.15 PM.png">Screenshot 2025-07-13 at 5.40.15 PM.png</a></td><td><a href="use-cases/">use-cases</a></td></tr><tr><td align="center">Simplify AI Agent Development</td><td><a href=".gitbook/assets/Screenshot 2025-07-18 at 1.02.22 AM.png">Screenshot 2025-07-18 at 1.02.22 AM.png</a></td><td></td></tr></tbody></table>
 
-#### How it works:
+#### How It Works:
 
 Burla is an open-source platform for orchestrating Python in the cloud.\
 It only has one function:
@@ -31,7 +31,7 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-#### Per-function hardware configuration:
+#### Per-Function Hardware Configuration:
 
 Assign more resources to the functions that need it using simple arguments.
 
@@ -45,21 +45,21 @@ def train_model(hyper_parameters):
 remote_parallel_map(train_model, parameter_grid, func_cpu=64, func_ram=256)
 ```
 
-#### Run code in any Docker image, on any hardware:
+#### Run Code in Any Docker Image, on Any Hardware:
 
 Public or private, just paste a link to your image and hit start.\
-Scale it across 10,000 CPU's, 1,000 H100's, terabytes of RAM, or all the above.
+Scale it across 10,000 CPU's, or 1,000 H100's, everything stays secure in your cloud.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
-#### A fast, scalable task queue:
+#### A Fast, Scalable, Task Queue:
 
 Queue up 10 Million function calls, and run them with thousands of containers.\
 Our custom distributed task queue is incredibly fast, keeping hardware utilization high.
 
 <figure><img src=".gitbook/assets/4.gif" alt=""><figcaption><p>This demo is in realtime!</p></figcaption></figure>
 
-#### Simple, flexible pipelines:
+#### Simple, Flexible, Pipelines:
 
 Nest `remote_parallel_map` calls to build simple flexible pipelines.\
 Use `background=True` to fire and forget code, then monitor progress from the dashboard.
@@ -82,18 +82,20 @@ remote_parallel_map(process_files, [files], background=True)
 
 ```
 
-#### Deploy now with just two commands:
+#### Deploy Now with Just Two Commands:
 
 (**Currently Google Cloud only!**)
 
 1. `pip install burla`
 2. `burla install`
 
+That's it! See our Getting Started guide for more info:
+
 {% embed url="https://docs.burla.dev/getting-started#quickstart" %}
 
 &#x20;
 
-#### Stay up to date:
+#### Stay Up to Date:
 
 {% @formspree/formspree %}
 
