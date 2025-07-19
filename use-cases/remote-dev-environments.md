@@ -10,14 +10,14 @@ layout:
   outline:
     visible: true
   pagination:
-    visible: false
+    visible: true
   metadata:
     visible: false
 ---
 
 # Remote Dev Environments
 
-## Develop in a Container, on a Big VM, in the Cloud
+## Develop on a Powerful Machine, in Docker, in the Cloud
 
 &#x20;
 

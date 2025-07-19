@@ -10,14 +10,14 @@ layout:
   outline:
     visible: true
   pagination:
-    visible: false
+    visible: true
   metadata:
     visible: false
 ---
 
 # Data Prep
 
-## Prepate Terabytes of Data
+## Prepare Terabytes of Data
 
 &#x20;
 
