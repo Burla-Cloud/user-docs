@@ -79,6 +79,7 @@ Use `background=True` to fire and forget code, then monitor progress from the da
 from burla import remote_parallel_map
 
 def process_record(record):
+    # Pretend this does some math per-record!
     return result
 
 def process_file(file):
