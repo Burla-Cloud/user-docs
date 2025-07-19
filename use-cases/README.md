@@ -33,7 +33,10 @@ def my_function(my_input):
 return_values = remote_parallel_map(my_function, my_inputs)
 ```
 
-This means we can simplify and accelerate almost any solution that scales across lots of machines.
+It's lightweight, scaleable, and very fast.\
+This means we can horizontally scale work we wouldn't normally bother to run on many computers.
+
+Here are some examples:
 
 <table data-view="cards"><thead><tr><th align="center"></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td align="center">Save Big on Batch AI Inference</td><td><a href="../.gitbook/assets/Screenshot 2025-07-13 at 5.42.56 PM.png">Screenshot 2025-07-13 at 5.42.56 PM.png</a></td><td><a href="./">.</a></td></tr><tr><td align="center">Orchestrate Data Pipelines</td><td><a href="../.gitbook/assets/Screenshot 2025-07-16 at 11.41.14 AM.png">Screenshot 2025-07-16 at 11.41.14 AM.png</a></td><td></td></tr><tr><td align="center">Scale Computational Bio</td><td><a href="../.gitbook/assets/Screenshot 2025-07-13 at 5.42.46 PM.png">Screenshot 2025-07-13 at 5.42.46 PM.png</a></td><td><a href="./">.</a></td></tr><tr><td align="center">Develop in Remote Environments</td><td><a href="../.gitbook/assets/Screenshot 2025-07-16 at 12.27.14 PM.png">Screenshot 2025-07-16 at 12.27.14 PM.png</a></td><td></td></tr><tr><td align="center">Prepare Terabytes of Data</td><td><a href="../.gitbook/assets/Screenshot 2025-07-13 at 5.40.15 PM.png">Screenshot 2025-07-13 at 5.40.15 PM.png</a></td><td><a href="./">.</a></td></tr><tr><td align="center">Simplify AI Agent Development</td><td><a href="../.gitbook/assets/Screenshot 2025-07-18 at 1.06.55 AM.png">Screenshot 2025-07-18 at 1.06.55 AM.png</a></td><td></td></tr></tbody></table>
 
