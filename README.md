@@ -1,10 +1,26 @@
+---
+layout:
+  width: default
+  title:
+    visible: false
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+---
+
 # Welcome
 
 ### Run any Python function on 1000 computers in 1 second.
 
 Iterate at the speed of thought.\
-Not at the speed your lambda function, ETL-pipeline, or Kubernetes service takes to redeploy.\
-Burla is open-source, runs in your cloud, and can be installed with just two commands.
+Not at the speed your lambda function, ETL-pipeline, or Kubernetes service takes to redeploy.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
@@ -14,7 +30,7 @@ Burla is open-source, runs in your cloud, and can be installed with just two com
 
 #### How It Works:
 
-Burla is a platform for orchestrating parallel Python in the cloud.\
+Burla is an open-source platform for orchestrating Python in your cloud.\
 It only has one function:
 
 ```python

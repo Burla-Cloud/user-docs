@@ -15,9 +15,9 @@ layout:
     visible: false
 ---
 
-# Batch AI Inference
+# AI Agent Development
 
-## Save Big on Batch AI Inference
+## Simplify AI Agent Development
 
 &#x20;
 

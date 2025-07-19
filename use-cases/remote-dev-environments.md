@@ -15,9 +15,9 @@ layout:
     visible: false
 ---
 
-# Batch AI Inference
+# Remote Dev Environments
 
-## Save Big on Batch AI Inference
+## Develop in a Container, on a Big VM, in the Cloud
 
 &#x20;
 

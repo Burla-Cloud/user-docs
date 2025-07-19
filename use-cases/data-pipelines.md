@@ -10,14 +10,14 @@ layout:
   outline:
     visible: true
   pagination:
-    visible: false
+    visible: true
   metadata:
-    visible: false
+    visible: true
 ---
 
-# Batch AI Inference
+# Data Pipelines
 
-## Save Big on Batch AI Inference
+## Orchestrate Data Pipelines
 
 &#x20;
 
