@@ -1,3 +1,20 @@
+---
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: false
+  metadata:
+    visible: false
+---
+
 # Getting Started
 
 ## Quickstart:
@@ -23,7 +40,7 @@ def my_function(my_input):
 remote_parallel_map(my_function, [1, 2, 3])
 ```
 
-
+&#x20;
 
 ***
 
@@ -87,7 +104,7 @@ def my_function(my_input):
 remote_parallel_map(my_function, [1, 2, 3])
 ```
 
-
+&#x20;
 
 ***
 
@@ -122,9 +139,9 @@ We piggyback off of existing Google Cloud billing infrastructure to track costs 
 
 We charge a simple 2x multiple whatever charges originate from your instance according to Google Cloud billing, this equates to about $0.08 per cpu-hour.
 
+&#x20;
 
-
-
+&#x20;
 
 ***
 

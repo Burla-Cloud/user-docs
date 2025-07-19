@@ -39,7 +39,8 @@ We enable rapid progress using a single primitive:  `remote_parallel_map`\
 What's more fun than rapid progress?\
 \
 To symbolize this, we're offering bricks—a fundamental primitive of construction.\
-By purchasing a brick, you support our mission and become part of a community. A community that together, is building the future of cloud computing, one brick at a time.​
+By purchasing a brick, you support our mission and become part of a community.\
+A community that together, is build the future of cloud computing, one brick at a time!
 
 <div align="center" data-full-width="false"><figure><img src=".gitbook/assets/PXL_20250311_184440369.jpg" alt="" width="375"><figcaption></figcaption></figure></div>
 

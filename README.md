@@ -10,9 +10,9 @@ layout:
   outline:
     visible: true
   pagination:
-    visible: true
+    visible: false
   metadata:
-    visible: true
+    visible: false
 ---
 
 # Welcome
@@ -115,6 +115,8 @@ See our Getting Started guide for more info:
 #### Stay Up to Date:
 
 {% @formspree/formspree %}
+
+&#x20;
 
 &#x20;
 
