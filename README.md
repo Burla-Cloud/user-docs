@@ -36,11 +36,13 @@ It only has one function:
 ```python
 from burla import remote_parallel_map
 
+my_inputs = [1, 2, 3]
+
 def my_function(my_input):
     print("I'm running on my own separate computer in the cloud!")
     return my_input
     
-return_values = remote_parallel_map(my_function, [1, 2, 3])
+return_values = remote_parallel_map(my_function, my_inputs)
 ```
 
 With Burla, running code in the cloud feels the same as coding locally:
