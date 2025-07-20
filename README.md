@@ -22,7 +22,7 @@ layout:
 Iterate at the speed of thought.\
 Not at the speed your lambda function, ETL-pipeline, or Kubernetes service take to redeploy.
 
-<figure><img src=".gitbook/assets/main_demo (1).gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
 #### One Function, Endless Possibility:
 
