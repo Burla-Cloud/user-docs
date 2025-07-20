@@ -30,7 +30,7 @@ Not at the speed your lambda function, ETL-pipeline, or Kubernetes service take 
 
 #### How It Works:
 
-Burla is a platform for orchestrating parallel Python in the cloud.\
+Burla is an open-source platform for orchestrating parallel Python in the cloud.\
 It only has one function:
 
 ```python
@@ -47,7 +47,7 @@ return_values = remote_parallel_map(my_function, my_inputs)
 
 With Burla, running code in the cloud feels the same as coding locally:
 
-* Anything you print appears your local terminal.
+* Anything you print appears in your local terminal.
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
