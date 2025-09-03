@@ -1,13 +1,6 @@
 # Table of contents
 
 * [Welcome](README.md)
-* [Use Cases](use-cases/README.md)
-  * [Batch AI Inference](use-cases/batch-ai-inference.md)
-  * [Data Pipelines](use-cases/data-pipelines.md)
-  * [Computational Bio](use-cases/computational-bio.md)
-  * [Remote Dev Environments](use-cases/remote-dev-environments.md)
-  * [Data Prep](use-cases/data-prep.md)
-  * [AI Agent Development](use-cases/ai-agent-development.md)
 * [Getting Started](getting-started.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
