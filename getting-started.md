@@ -20,8 +20,7 @@ layout:
 ## Quickstart (Managed Burla instance)
 
 {% hint style="info" %}
-Don't have a managed instance? Send me an email and we'll get you one today! (jake@burla.dev)\
-We recommend you try this out before self-hosting, compute is on us!
+Don't have a managed instance? Send me an email and we'll get you one today! (jake@burla.dev)
 
 You should have received an email with a link to your custom deployment.\
 Something like: `https://<yourname>.burla.dev`&#x20;
