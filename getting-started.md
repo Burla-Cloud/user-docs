@@ -17,30 +17,41 @@ layout:
 
 # Getting Started
 
-## Quickstart:
+## Quickstart (Managed Burla instance)
 
 {% hint style="info" %}
-Burla is currently exclusive to Google Cloud !
+Don't have a managed instance? Send me an email and we'll get you one today! (jake@burla.dev)
 
-This quickstart assumes you have installed and setup the [Google Cloud (gcloud) CLI](https://cloud.google.com/sdk/docs/install).
+You should have received an email with a link to your custom deployment: `https://<yourname>.burla.dev`&#x20;
 {% endhint %}
 
-1. Run `pip install Burla`
-2. Run `burla install`
-3. Run `burla login` to open your new cluster dashboard.
-4. Hit the **⏻ Start** button to turn the cluster on.
-5. Run the code below!
+1. Navigate to your custom link in the browser, and sign in using the email we've authorized.
+2. Hit the **⏻ Start** button to boot 1000 CPUs! (should take 1-2 min)
+3. While booting, run the following in your local terminal:
+   1. `pip install Burla`
+   2. `burla login`  (connects your computer to the cluster)
+4. Once booted, run some code!
 
 ```python
+# Each call to `compute_square` runs in parallel in it's own separate contianer.
+# That's why it finishes quickly even though each function call takes ~1 second.
+
+from time import sleep
 from burla import remote_parallel_map
 
-def my_function(my_input):
-    print("I'm running on remote computer in the cloud!")
-    
-remote_parallel_map(my_function, [1, 2, 3])
+def compute_square(x):
+
+    sleep(1)  # <- pretend this is some intense math!
+
+    print(f"Squaring {x} on a separate computer in the cloud!")
+    return x * x
+
+squared_numbers = remote_parallel_map(compute_square, list(range(1000)))
 ```
 
-&#x20;
+5. Celebrate 🎉🎉🎉🎉\
+   You just ran Python code on 1000 CPU's in 1000 separate containers.\
+   That's not something many people know how to do!
 
 ***
 
@@ -113,10 +124,9 @@ remote_parallel_map(my_function, [1, 2, 3])
 How to use Burla without a Google Cloud account.
 
 {% hint style="info" %}
-Currently, Fully-Managed deployments are manually created on an individual basis.
+Fully-Managed deployments are manually created on an individual basis.
 
-We fully intend to make this process 100% self-serve, but haven't yet.\
-For now, simply email us!
+Email us (jake@burla.dev)&#x20;
 {% endhint %}
 
 ### Instructions:
