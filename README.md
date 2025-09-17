@@ -24,7 +24,7 @@ It's open-source, works with any hardware, and any docker container.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
-### A full fledged data-platform any team can learn in minutes:
+### A fully fledged data-platform any team can learn in minutes:
 
 Schedule jobs, create pipelines, scale your machine learning system, or your research.\
 Burla is simple enough to learn in minutes, and can be installed with a single command.
