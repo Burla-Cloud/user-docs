@@ -17,21 +17,21 @@ layout:
 
 # Welcome
 
-### Run any Python function on 1000 computers in 1 second.
+## Run any Python function on 1000 computers in 1 second.
 
 Burla is the world's simplest cluster compute software.\
 It's open-source, works with any hardware, and any docker container.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
-#### A full fledged data-platform any team can learn in minutes:
+### A full fledged data-platform any team can learn in minutes:
 
 Schedule jobs, create pipelines, scale your machine learning system, or your research.\
-Burla is simple enough to learn in minutes, and can be installed in Google Cloud with one command.
+Burla is simple enough to learn in minutes, and can be installed with a single command.
 
 <figure><img src=".gitbook/assets/FINAL.gif" alt=""><figcaption></figcaption></figure>
 
-**How it works:**
+### **How it works:**
 
 Burla only has one function:
 
@@ -53,7 +53,7 @@ With Burla, running code in the cloud feels the same as coding locally:
 * Exceptions thrown in your code are thrown on your local machine.
 * Responses are pretty quick, you can call a million simple functions in a couple seconds.
 
-#### Attach Big Hardware to Functions That Need It:
+### Attach big hardware to functions that need it:
 
 Zero config files, just simple arguments like `func_cpu` & `func_ram`.
 
@@ -67,14 +67,7 @@ def train_model(hyper_parameters):
 remote_parallel_map(train_model, parameter_grid, func_cpu=64, func_ram=256)
 ```
 
-#### A Fast, Scalable Task Queue:
-
-Queue up 10 Million function calls, and run them with thousands of containers.\
-Our custom distributed task queue is incredibly fast, keeping hardware utilization high.
-
-<figure><img src=".gitbook/assets/queue_demo.gif" alt=""><figcaption><p>This demo is in realtime!</p></figcaption></figure>
-
-#### Simple, Flexible Pipelines:
+### Simple, flexible pipelines:
 
 Nest `remote_parallel_map` calls to build simple, massively parallel pipelines.\
 Use `background=True` to fire and forget code, then monitor progress from the dashboard.
@@ -97,7 +90,7 @@ def process_files(files):
 remote_parallel_map(process_files, [files], background=True)
 ```
 
-#### Run Code in any Docker Image, on any Hardware:
+### Run code in any docker image, on any hardware:
 
 Public or private, just paste a link to your image and hit start.\
 Scale to 10,000 CPU's, terabytes of RAM, or 1,000 H100's, everything stays in your cloud.
