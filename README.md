@@ -26,7 +26,7 @@ It's open-source, built from scratch, and scales up to 10,000 CPU's in a single 
 
 ### A fully fledged data-platform any team can learn in minutes:
 
-Burla comes with a simple web-platform so your entire team can schedule jobs, create pipelines, scale machine learning systems, or other research efforts with less complexity.
+Burla comes with a simple web-platform so your entire team can schedule jobs, create pipelines, scale machine learning systems, or other research efforts without weeks of onboarding or setup.
 
 <figure><img src=".gitbook/assets/FINAL-lowfr.gif" alt=""><figcaption></figcaption></figure>
 
