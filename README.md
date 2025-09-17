@@ -17,7 +17,7 @@ layout:
 
 # Welcome
 
-## Run any Python function on 1000 computers in 1 second.
+### Run any Python function on 1000 computers in 1 second.
 
 Burla is the world's simplest cluster compute software.\
 It's open-source, works with any hardware, and any docker container.
