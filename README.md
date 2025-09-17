@@ -20,7 +20,7 @@ layout:
 ### Run any Python function on 1000 computers in 1 second.
 
 Burla is the world's simplest cluster compute software.\
-It's open-source, built from scratch, and scales up to 10,000 CPU's in a single cluster.
+It's open-source, works with GPU's, custom containers, and scales to 10,000 CPU's in a single cluster.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
