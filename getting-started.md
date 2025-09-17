@@ -17,7 +17,7 @@ layout:
 
 # Getting Started
 
-## Quickstart (Managed Instance)
+## Quickstart (managed-instance)
 
 {% hint style="info" %}
 Don't have a managed instance? Send me an email and we'll get you one today! (jake@burla.dev)
