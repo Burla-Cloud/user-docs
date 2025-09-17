@@ -19,15 +19,21 @@ layout:
 
 ### Run any Python function on 1000 computers in 1 second.
 
-Iterate at the speed of thought.\
-Not at the speed your lambda function, ETL-pipeline, or Kubernetes service take to redeploy.
+Burla is the world's simplest cluster compute software.\
+It's open-source, works with any hardware, and any docker container.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
-#### How It Works:
+#### A full fledged data-platform any team can learn in minutes:
 
-Burla is an open-source platform for orchestrating parallel Python in the cloud.\
-It only has one function:
+Schedule jobs, create pipelines, scale your machine learning system, or your research.\
+Burla is simple enough to learn in minutes, and can be installed in Google Cloud with one command.
+
+<figure><img src=".gitbook/assets/FINAL.gif" alt=""><figcaption></figcaption></figure>
+
+**How it works:**
+
+Burla only has one function:
 
 ```python
 from burla import remote_parallel_map
