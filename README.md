@@ -20,14 +20,13 @@ layout:
 ### Run any Python function on 1000 computers in 1 second.
 
 Burla is the world's simplest cluster compute software.\
-It's open-source, works with any hardware or container, and scales to 10,000 CPU's in a single cluster.
+It's open-source, built from scratch, and scales up to 10,000 CPU's in a single cluster.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
 ### A fully fledged data-platform any team can learn in minutes:
 
-Schedule jobs, create pipelines, scale your machine learning system, or your research.\
-Burla is simple enough to learn in minutes, and can be installed with a single command.
+Burla comes with a simple web-platform so your entire team can schedule jobs, create pipelines, scale machine learning systems, or other research efforts with less complexity.
 
 <figure><img src=".gitbook/assets/FINAL-lowfr.gif" alt=""><figcaption></figcaption></figure>
 
@@ -71,7 +70,7 @@ remote_parallel_map(train_model, parameter_grid, func_cpu=64, func_ram=256)
 ### Simple, flexible pipelines:
 
 Nest `remote_parallel_map` calls to build simple, massively parallel pipelines.\
-Use `background=True` to fire and forget code, then monitor progress from the dashboard.
+Use `background=True` to schedule function calls that keep running after you close your laptop.
 
 ```python
 from burla import remote_parallel_map
@@ -91,17 +90,17 @@ def process_files(files):
 remote_parallel_map(process_files, [files], background=True)
 ```
 
-### Run code in any docker image, on any hardware:
+### Run code in any Docker image, using the latest GPU's:
 
 Public or private, just paste a link to your image and hit start.\
-Any packages you're using that are not in the container are quickly synchronized at runtime.
+Burla automatically replicates your python environment, allowing you to quickly develop on top of images like VLLM or PyTorch.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
-### Get started now:
+### Try it now:
 
 Enter your email below and we'll reply same day with a free managed instance!\
-Compute is on us, if you like it we'll help you get the OSS installed in your private cloud.
+Compute is on us, if you like it we'll install the OSS in your private cloud for you!
 
 {% @formspree/formspree fullWidth="false" %}
 
