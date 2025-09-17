@@ -51,7 +51,8 @@ With Burla, running code in the cloud feels the same as coding locally:
 
 * Anything you print appears in your local terminal.
 * Exceptions thrown in your code are thrown on your local machine.
-* Responses are pretty quick, you can call a million simple functions in a couple seconds.
+* Your local python packages are automatically synchronized with the cluster.
+* Responses are pretty quick, you can call a million simple functions in a couple seconds!
 
 ### Attach big hardware to functions that need it:
 
@@ -92,26 +93,17 @@ remote_parallel_map(process_files, [files], background=True)
 
 ### Run code in any docker image, on any hardware:
 
-Public or private, just paste a link to your image and hit start.
+Public or private, just paste a link to your image and hit start.\
+Any packages you're using that are not in the container are quickly synchronized at runtime.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
 ### Get started now:
 
-(**Burla is currently Google Cloud only!**)
+Enter your email below and we'll reply same day with a free managed instance!\
+Compute is on us, if you like it we'll help you get Burla installed in your private cloud.
 
-1. `pip install burla`
-2. `burla install`
-
-See our Getting Started guide for more info:
-
-{% embed url="https://docs.burla.dev/getting-started#quickstart" %}
-
-&#x20;
-
-#### Stay Up to Date:
-
-{% @formspree/formspree %}
+{% @formspree/formspree fullWidth="false" %}
 
 &#x20;
 
