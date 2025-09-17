@@ -29,7 +29,7 @@ It's open-source, works with any hardware, and any docker container.
 Schedule jobs, create pipelines, scale your machine learning system, or your research.\
 Burla is simple enough to learn in minutes, and can be installed with a single command.
 
-<figure><img src=".gitbook/assets/FINAL.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/FINAL-lowfr.gif" alt=""><figcaption></figcaption></figure>
 
 ### **How it works:**
 
@@ -92,12 +92,11 @@ remote_parallel_map(process_files, [files], background=True)
 
 ### Run code in any docker image, on any hardware:
 
-Public or private, just paste a link to your image and hit start.\
-Scale to 10,000 CPU's, terabytes of RAM, or 1,000 H100's, everything stays in your cloud.
+Public or private, just paste a link to your image and hit start.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
-#### Deploy Now with Just Two Commands:
+### Get started now:
 
 (**Burla is currently Google Cloud only!**)
 
