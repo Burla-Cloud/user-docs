@@ -20,7 +20,7 @@ layout:
 ## Quickstart (managed-instance)
 
 {% hint style="info" %}
-Don't have a managed instance? Send me an email and we'll get you one today! (jake@burla.dev)
+Don't have a managed instance? Send me an email and we'll get you ASAP! (jake@burla.dev)
 
 You should have received an email with a link to your custom deployment.\
 Something like: `https://<yourname>.burla.dev`&#x20;
@@ -131,14 +131,14 @@ Email us (jake@burla.dev)&#x20;
 
 ### Instructions:
 
-1. E-Mail [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or fill out the form on the front page of our website.
-2. You'll get an email with your custom Burla instance (\<yourname>.burla.dev) within the same day.
+1. E-Mail [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or fill out the form on the front page of this website.
+2. You'll get an email with your custom Burla instance (\<yourname>.burla.dev) within a day.
 
 ### FAQ:
 
 **Security:**
 
-Managed Burla deployments are created in separate projects each in a separate VPC.\
+Each managed Burla deployment is created in completely separate Google Cloud Project (VPC).\
 By default Burla deployments allow access only to those in the authorized-user list in your settings tab.
 
 **How do I pay?**
