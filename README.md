@@ -93,14 +93,14 @@ remote_parallel_map(process_files, [files], background=True)
 ### Run code in any Docker image, using the latest GPU's:
 
 Public or private, just paste a URI to your image and hit start.\
-When you call `remote_parallel_map` your code runs inside this docker image.
+Burla works with any linux based Docker image.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
 ### Try it now:
 
-Enter your email below and we'll reply same day with a free managed instance!\
-Compute is on us, if you like it we'll install the OSS in your private cloud for you!
+Enter your email below and we'll reply within a day with a free managed instance!\
+Compute is on us. If you like it, try self-hosting! Self-hosted Burla can be deployed with [one command](getting-started.md#installation-self-hosted).
 
 {% @formspree/formspree fullWidth="false" %}
 
