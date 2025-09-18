@@ -100,12 +100,11 @@ I've listed the **exact required permissions** for the `burla install` command [
 
 ### 3. Start a machine and run the quickstart!
 
-1. Open your new cluster dashboard!
-   * Run the command: [`burla login`](API-Reference.md#burla-login) \
-     This command will open your dashboard in the default browser. Please login using the same account you used to authenticate `gcloud`, this restriction ensures only you the installer can access your new dashboard.
+1. Open your new cluster dashboard at the link provided by the `burla install` command.
 2. Hit the **⏻ Start** button in the dashboard to turn the cluster on.\
    By default this starts one 4-CPU node. If inactive for >5 minutes this node will shut itself off.
-3. Run the example!
+3. While booting run `burla login`, this will connect your local machine to your cluster.
+4. Run the example!
 
 ```python
 from burla import remote_parallel_map
@@ -132,19 +131,19 @@ Email us (jake@burla.dev)&#x20;
 
 ### Instructions:
 
-1. E-Mail [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or schedule a meeting here: [cal.com/jakez](https://cal.com/jakez)
-2. I'll reply as quickly as possible with further instructions!
+1. E-Mail [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or fill out the form on the front page of our website.
+2. You'll get an email with your custom Burla instance (\<yourname>.burla.dev) within the same day.
 
 ### FAQ:
 
 **Security:**
 
 Managed Burla deployments are created in separate projects each in a separate VPC.\
-By default Burla deployments allow access only to those in the authorized-user list in your settings tab, which means we can't actually observe your instance without explicitly manually modifying your database.
+By default Burla deployments allow access only to those in the authorized-user list in your settings tab.
 
 **How do I pay?**
 
-We piggyback off of existing Google Cloud billing infrastructure to track costs coming from your instance (Google Cloud project) and simply foreward you the bill through Stripe Billing.
+We piggyback off of existing Google Cloud billing infrastructure to track costs coming from your instance (Google Cloud Project) and simply forward you the bill with Stripe.
 
 **How much does it cost?**
 

@@ -92,8 +92,8 @@ remote_parallel_map(process_files, [files], background=True)
 
 ### Run code in any Docker image, using the latest GPU's:
 
-Public or private, just paste a link to your image and hit start.\
-Burla automatically replicates your python environment, allowing you to quickly develop on top of images like VLLM or PyTorch.
+Public or private, just paste a URI to your image and hit start.\
+When you call `remote_parallel_map` your code runs inside this docker image.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
