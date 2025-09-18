@@ -225,37 +225,26 @@ To access the deployment you will need prove your identity by signing in to this
 
 We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burla/blob/main/client/src/burla/_install.py) in the client for even more specific installation details.
 
-**After Installing:**
-
-`burla install` prints the following:
-
-```
-Success! To view your new dashboard run `burla login`
-Quickstart:
-  1. Start your cluster by hitting "⏻ Start" in the dashboard.
-  2. Import and call `remote_parallel_map`!
-```
-
 ***
 
 &#x20;
 
 ### `burla login`
 
-Authenticates the current machine through a Google OAuth consent screen.\
-Allows you to call `remote_parallel_map` on Burla deployments where you're authorized to do so.
+Connects your computer to the Burla cluster you most recently logged into in your browser.\
+Authorizes your machine to call `remote_parallel_map` on this cluster.
 
 **Description:**
 
-Launches the "sign in with google" page in your default web browser.\
-This gives **our** backend access to **only your email and name** according to your google account.\
-See our [privacy-policy](privacy-policy.md) to learn how we protect this information.
+Launches the "Authorize this Machine" page in your default web browser.
 
-This is used to ensure that only people you have explicitly authorized have access to your Burla instance.
+If there is no auth-cookie (you have not yet logged into the dashboard), throws simple error requesting you login to your dashboard first.
 
-Once signed-in successfully, an auth-token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
+When the "Authorize" button is hit, a new auth token is created and sent to your machine.&#x20;
 
-This token is refreshed each time the `burla login`authorization flow is completed.
+This token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
+
+This token is refreshed each time the `burla login` is run, or specific amount of time passes.
 
 &#x20;
 
