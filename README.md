@@ -97,14 +97,16 @@ Burla works with any linux based Docker image.
 
 <figure><img src=".gitbook/assets/settings_demo.gif" alt=""><figcaption></figcaption></figure>
 
-### Try it now:
+
+
+## Try it now:
 
 Enter your email below and we'll send you a free managed instance! Compute is on us.\
 If you decide you like it, try self-hosting! Self-hosted Burla can be deployed with [one command](getting-started.md#installation-self-hosted).
 
 {% @formspree/formspree fullWidth="false" %}
 
-&#x20;
+{% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
 &#x20;
 
