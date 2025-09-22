@@ -124,26 +124,25 @@ remote_parallel_map(my_function, [1, 2, 3])
 How to use Burla without a Google Cloud account.
 
 {% hint style="info" %}
-Fully-Managed deployments are manually created on an individual basis.
-
-Email us (jake@burla.dev)&#x20;
+Fully-Managed deployments are manually created by us on an individual basis.
 {% endhint %}
 
 ### Instructions:
 
-1. E-Mail [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or fill out the form on the front page of this website.
-2. You'll get an email with your custom Burla instance (\<yourname>.burla.dev) within a day.
+1. E-Mail [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or fill out [the form on the front page](./#try-it-now) of this website.
+2. You'll get an email with your custom Burla instance (**\<yourname>.burla.dev**) within a day.
 
 ### FAQ:
 
 **Security:**
 
 Each managed Burla deployment is created in completely separate Google Cloud Project (VPC).\
-By default Burla deployments allow access only to those in the authorized-user list in your settings tab.
+Burla deployments allow access only to those in the authorized-user list in your settings tab.
 
 **How do I pay?**
 
-We piggyback off of existing Google Cloud billing infrastructure to track costs coming from your instance (Google Cloud Project) and simply forward you the bill with Stripe.
+We piggyback off of existing Google Cloud billing infrastructure to track costs coming from your instance (Google Cloud Project) and simply forward you the bill using Stripe.\
+We're happy to give you direct access to view google cloud billing within your project.
 
 **How much does it cost?**
 
