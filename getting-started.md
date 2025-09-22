@@ -130,7 +130,7 @@ Fully-Managed deployments are manually created by us on an individual basis.
 ### Instructions:
 
 1. E-Mail [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or fill out [the form on the front page](./#try-it-now) of this website.
-2. You'll get an email with your custom Burla instance (**\<yourname>.burla.dev**) within a day.
+2. You'll get an email with your custom Burla instance (`https://<yourname>.burla.dev`) within a day.
 
 ### FAQ:
 
