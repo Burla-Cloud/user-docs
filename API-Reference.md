@@ -72,8 +72,8 @@ When finished `remote_parallel_map` returns a list of values returned by each `f
 
 Burla's CLI contains the following commands:
 
-* [`burla install`](API-Reference.md#burla-install) Install a self-hosted Burla instance in your Google Cloud project.
-* [`burla login`](API-Reference.md#burla-login) Authenticate your machine.
+* [`burla install`](API-Reference.md#burla-install)  Deploy self-hosted Burla in your Google Cloud project.
+* [`burla login`](API-Reference.md#burla-login)  Connect your computer to the cluster you last logged into in the browser.
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 
@@ -81,7 +81,7 @@ The global arg `--help` can be placed after any command or command group to see 
 
 ### `burla install`
 
-Install a self-hosted Burla instance in your Google Cloud project.\
+Deploy a self-hosted Burla instance in your current Google Cloud Project.\
 Running `burla install` multiple times will update the existing installation with the latest version.
 
 **Description:**
@@ -100,11 +100,37 @@ To change your current gcloud project run: `gcloud config set project <desired-p
 * Have a Google Cloud user account with at least the minimum required permissions to install Burla.\
   Or: Just run `burla install`, if you're missing any permissions it will tell you which ones!
 
-Here are three sets of permissions, each of which would authorize somebody to run `burla install`:
+Here is the set of permissions you'll need to run `burla install`:\
+Any of these three permission set's will work.
 
 <details>
 
-<summary>Exact minimum required permissions</summary>
+<summary>Simplest possible permissions</summary>
+
+Burla can be installed with either of the following roles:
+
+* Project Owner (`roles/owner`)
+* Project Editor (`roles/editor`)
+
+</details>
+
+<details>
+
+<summary>Service admin based permissions (more specific)</summary>
+
+Burla can be installed by users having the following generic roles:
+
+1. Service Usage Admin (`roles/serviceusage.serviceUsageAdmin`)
+2. Cloud Run Admin (`roles/run.admin`)
+3. Compute Network Admin (`roles/compute.networkAdmin`)
+4. Secret Manager Admin (`roles/secretmanager.admin`)
+5. Firestore Database Admin (`roles/datastore.owner`)
+
+</details>
+
+<details>
+
+<summary>Exact minimum required permissions (very specific)</summary>
 
 1. Service Usage API (`serviceusage.googleapis.com`):
    * `serviceusage.services.enable` for enabling:
@@ -155,31 +181,6 @@ includedPermissions:
 - run.services.get
 - run.services.setIamPolicy
 ```
-
-</details>
-
-<details>
-
-<summary>Generic role based permissions (less complicated)</summary>
-
-Burla can be installed by users having the following generic roles:
-
-1. Service Usage Admin (`roles/serviceusage.serviceUsageAdmin`)
-2. Cloud Run Admin (`roles/run.admin`)
-3. Compute Network Admin (`roles/compute.networkAdmin`)
-4. Secret Manager Admin (`roles/secretmanager.admin`)
-5. Firestore Database Admin (`roles/datastore.owner`)
-
-</details>
-
-<details>
-
-<summary>Simplest possible permissions</summary>
-
-Burla can be installed with either of the following roles:
-
-* Project Owner (`roles/owner`)
-* Project Editor (`roles/editor`)
 
 </details>
 
@@ -238,13 +239,13 @@ Authorizes your machine to call `remote_parallel_map` on this cluster.
 
 Launches the "Authorize this Machine" page in your default web browser.
 
-If there is no auth-cookie (you have not yet logged into the dashboard), throws simple error requesting you login to your dashboard first.
+If there is no auth-cookie (you have not yet logged into the dashboard), throws simple error requesting you login to your cluster dashboard first.
 
 When the "Authorize" button is hit, a new auth token is created and sent to your machine.&#x20;
 
 This token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
 
-This token is refreshed each time the `burla login` is run, or specific amount of time passes.
+This token is refreshed each time the `burla login` is run, or certain amount of time passes.
 
 &#x20;
 
