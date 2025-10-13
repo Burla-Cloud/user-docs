@@ -99,7 +99,7 @@ Burla works with any linux based Docker image.
 
 
 
-## Try it now:
+## Sign up now:
 
 Enter your email below and we'll send you a free managed instance! Compute is on us.\
 If you decide you like it, try self-hosting! Self-hosted Burla can be deployed with [one command](getting-started.md#installation-self-hosted).
