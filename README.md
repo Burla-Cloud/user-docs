@@ -29,7 +29,7 @@ It's open-source, works with GPU's, custom docker containers, and up to 10,000 C
 Scale machine learning systems, or other research efforts without weeks of onboarding or setup.\
 Burla is open-source and can be depoloyed in your cloud with [a single command](getting-started.md#quickstart-self-hosted).
 
-<figure><img src=".gitbook/assets/FINAL-lowfr.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
 ### **How it works:**
 
