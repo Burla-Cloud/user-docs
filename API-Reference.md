@@ -43,7 +43,7 @@ While running:
 * If the provided `function_` raises an exception, the exception, including stack trace, is re-raised on the client machine in a way that looks like it was running locally.
 * Your print statements (anything written to stdout/stderr) are streamed back to your local machine, appearing like they would have if running the same code locally.
 
-When finished `remote_parallel_map` returns a list of values returned by each `function_` call.
+When finished `remote_parallel_map` returns a list of objects returned by each `function_` call.
 
 | **Parameters**    |                                                                                                                                                                                                                   |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

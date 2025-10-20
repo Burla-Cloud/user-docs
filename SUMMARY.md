@@ -6,3 +6,4 @@
 * [About](about.md)
 * [Privacy-Policy](privacy-policy.md)
 * [Exclusive Brick Discount](exclusive-brick-discount.md)
+* [signup](signup.md)
