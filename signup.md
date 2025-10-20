@@ -18,8 +18,6 @@ layout:
 
 # Signup
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
-
 ## Sign up now:
 
 Enter your email below and we'll send you a free managed instance! Compute is on us.\
