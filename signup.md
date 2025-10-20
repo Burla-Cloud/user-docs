@@ -16,7 +16,9 @@ layout:
     visible: false
 ---
 
-# signup
+# Signup
+
+<figure><img src=".gitbook/assets/GitHub banner.png" alt=""><figcaption></figcaption></figure>
 
 ## Sign up now:
 
