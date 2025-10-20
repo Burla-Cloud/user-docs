@@ -52,7 +52,6 @@ squared_numbers = remote_parallel_map(compute_square, list(range(1000)))
 5. Celebrate 🎉🎉🎉🎉\
    You just ran Python code on 1000 CPU's in 1000 separate containers.\
    That's not something many people know how to do!
-6. Experiment!
 
 ***
 
