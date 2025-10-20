@@ -32,7 +32,7 @@ Expect a reply within 12-hours containing a link to your private managed Burla i
 
 ### FAQ:
 
-**How much free compute ?**
+**How much free compute do I get ?**
 
 This is determined on a case by case basis depending on the kind of work you're doing and how much feedback you're willing to share. It usually ranges from a few hundred to a few thousand dollars.
 

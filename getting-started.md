@@ -20,13 +20,12 @@ layout:
 ## Quickstart (managed-instance)
 
 {% hint style="info" %}
-Don't have a managed instance? Send me an email and we'll get you ASAP! (jake@burla.dev)
+Don't have a managed instance? [Click here to get one!](signup.md)
 
-You should have received an email with a link to your custom deployment.\
-Something like: `https://<yourname>.burla.dev`&#x20;
+You should have received a response from us (within 12-hours) that your instance is ready.
 {% endhint %}
 
-1. Navigate to your custom link in the browser, and sign in using the email we've authorized.
+1. [Log in](https://backend.burla.dev/v3/login/dashboard) using the email you submitted in the signup form.
 2. Hit the **⏻ Start** button to boot 1000 CPUs! (should take 1-2 min)
 3. While booting, run the following in your local terminal:
    1. `pip install Burla`
@@ -53,16 +52,17 @@ squared_numbers = remote_parallel_map(compute_square, list(range(1000)))
 5. Celebrate 🎉🎉🎉🎉\
    You just ran Python code on 1000 CPU's in 1000 separate containers.\
    That's not something many people know how to do!
+6. Experiment!
 
 ***
 
-## Installation (self-hosted)
+## Quickstart (self-hosted)
 
 {% hint style="info" %}
-Self-Hosted Burla is currently exclusive to Google Cloud.
+Self-Hosted Burla is currently exclusive to Google Cloud.\
+We fully intend to support AWS, Azure, and on-prem deployments, but don't yet.
 
-We fully intend to support AWS, Azure, and on-prem deployments, but don't yet.\
-We offer [fully-managed Burla deployments](getting-started.md#use-burla-running-in-our-cloud-fully-managed) for those not on GCP.
+Please reach out anytime if you get stuck! ([jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82))
 {% endhint %}
 
 ### 1. Ensure `gcloud` is setup and installed:
@@ -98,13 +98,15 @@ I've listed the **exact required permissions** for the `burla install` command [
 
 </details>
 
-### 3. Start a machine and run the quickstart!
+See the [install docs](API-Reference.md#burla-install) for more info regarding permissions.
 
-1. Open your new cluster dashboard at the link provided by the `burla install` command.
+### 3. Start a machine and run some code!
+
+1. Use the **Login** button on this website to get to your new cluster dashboard.
 2. Hit the **⏻ Start** button in the dashboard to turn the cluster on.\
    By default this starts one 4-CPU node. If inactive for >5 minutes this node will shut itself off.
-3. While booting run `burla login`, this will connect your local machine to your cluster.
-4. Run the example!
+3. While booting, run `burla login` to connect your local machine to your cluster.
+4. Run the example below!
 
 ```python
 from burla import remote_parallel_map
@@ -112,43 +114,8 @@ from burla import remote_parallel_map
 def my_function(my_input):
     print("I'm running on remote computer in the cloud!")
     
-remote_parallel_map(my_function, [1, 2, 3])
+remote_parallel_map(my_function, [1, 2, 3]) 
 ```
-
-&#x20;
-
-***
-
-## Installation (fully-managed)
-
-How to use Burla without a Google Cloud account.
-
-{% hint style="info" %}
-Fully-Managed deployments are manually created by us on an individual basis.
-{% endhint %}
-
-### Instructions:
-
-1. E-Mail [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82) or fill out [the form on the front page](./#try-it-now) of this website.
-2. You'll get an email with your custom Burla instance (`https://<yourname>.burla.dev`) within a day.
-
-### FAQ:
-
-**Security:**
-
-Each managed Burla deployment is created in completely separate Google Cloud Project (VPC).\
-Burla deployments allow access only to those in the authorized-user list in your settings tab.
-
-**How do I pay?**
-
-We piggyback off of existing Google Cloud billing infrastructure to track costs coming from your instance (Google Cloud Project) and simply forward you the bill using Stripe.\
-We're happy to give you direct access to view google cloud billing within your project.
-
-**How much does it cost?**
-
-We charge a simple 2x multiple whatever charges originate from your instance according to Google Cloud billing, this equates to about $0.08 per cpu-hour.
-
-&#x20;
 
 &#x20;
 

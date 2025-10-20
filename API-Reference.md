@@ -184,45 +184,9 @@ includedPermissions:
 
 </details>
 
-**Here is exactly what happens when `burla install` is run:**
-
 {% hint style="info" %}
 On install, your Google account (the one you are currently logged in to `gcloud` with) is set as the only account authorized to access this new Burla deployment.
-
-To access the deployment you will need prove your identity by signing in to this same Google account through a Google sign-in page. Burla follows the standard Google OAuth 2.0 authorization flow.
 {% endhint %}
-
-<details>
-
-<summary>Exact installation operations</summary>
-
-1. &#x20;Required services are enabled (if they are not already enabled):
-   * `gcloud services enable` is called on:
-     * `compute.googleapis.com`
-     * `run.googleapis.com`
-     * `firestore.googleapis.com`
-     * `cloudresourcemanager.googleapis.com`
-     * `secretmanager.googleapis.com`
-2. Port `8080` is opened on any GCE VM having the tag `burla-cluster-node`:
-   * `gcloud compute firewall-rules create burla-cluster-node-firewall \`\
-     `--action=ALLOW --rules=tcp:8080 --target-tags=burla-cluster-node ...`
-3. &#x20;A secret is created that's used to encrypt auth cookies in the dashboard:
-   * `gcloud secrets describe burla-cluster-id-token`&#x20;
-   * `gcloud secrets create burla-cluster-id-token ...`&#x20;
-4. A Google Cloud Firestore database is created:\
-   (manages information displayed in the dashboard)
-   * `gcloud firestore databases create --database=burla ...`&#x20;
-5. Your Google account (that you are currently logged in to `gcloud` with) is set as the only account authorized to access this new Burla deployment.
-   * This account is discovered using the following command:\
-     `gcloud auth list --filter=status:ACTIVE --format="value(account)"`
-   * Once set, this cannot be changed by other users running `burla install` again.
-6. &#x20;The main-service (dashboard) is deployed on Google Cloud Run:
-   * `gcloud run deploy burla-main-service \` \
-     `--image=burlacloud/main-service:latest ...`
-   * `gcloud run services update-traffic burla-main-service --to-latest ...`
-7. Thats it!
-
-</details>
 
 We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burla/blob/main/client/src/burla/_install.py) in the client for even more specific installation details.
 
