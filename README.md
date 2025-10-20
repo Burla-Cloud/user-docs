@@ -101,7 +101,15 @@ Burla works with any linux based Docker image.
 
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
-&#x20;
+### &#x20;Get started now:
+
+{% embed url="https://docs.burla.dev/signup" %}
+
+
+
+
+
+
 
 ***
 
