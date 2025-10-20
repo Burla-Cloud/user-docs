@@ -17,7 +17,7 @@ layout:
 
 # Welcome
 
-### Run any Python function on 1000 computers in 1 second.
+### is Run any Python function on 1000 computers in 1 second.
 
 Burla is the simplest way to scale python, it has one function: `remote_parallel_map`\
 It's open-source, works with GPU's, custom docker containers, and up to 10,000 CPU's at once.
@@ -27,7 +27,7 @@ It's open-source, works with GPU's, custom docker containers, and up to 10,000 C
 ### A data-platform any team can learn in minutes:
 
 Scale machine learning systems, or other research efforts without weeks of onboarding or setup.\
-Burla can be depoloyed in your cloud with [a single command](getting-started.md#quickstart-self-hosted).
+Burla is open-source and can be depoloyed in your cloud with [a single command](getting-started.md#quickstart-self-hosted).
 
 <figure><img src=".gitbook/assets/FINAL-lowfr.gif" alt=""><figcaption></figcaption></figure>
 
