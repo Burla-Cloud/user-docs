@@ -22,7 +22,8 @@ layout:
 {% hint style="info" %}
 Don't have a managed instance? [Click here to get one!](signup.md)
 
-You should have received a response from us (within 12-hours) that your instance is ready.
+Before continuing, you should have received a response from us that your instance is ready.\
+(usually within a few hours or depending on your timezone)
 {% endhint %}
 
 1. [Log in](https://backend.burla.dev/v3/login/dashboard) using the email you submitted in the signup form.
