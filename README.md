@@ -19,14 +19,14 @@ layout:
 
 ### Run any Python function on 1000 computers in 1 second.
 
-Burla is the world's simplest cluster compute software.\
-It's open-source, works with GPU's, custom containers, and up to 10,000 CPU's at once.
+Burla is the world's simplest cluster compute software, it only has one function: `remote_parallel_map`\
+It's open-source, works with custom containers, GPU's, and up to 10,000 CPU's at once.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
-### A fully fledged data-platform any team can learn in minutes:
+### A data-platform any team can learn in minutes:
 
-Burla comes with a simple web-platform so your entire team can schedule jobs, create pipelines, scale machine learning systems, or other research efforts without weeks of onboarding or setup.
+With Burla your entire team can scale machine learning systems, or other research efforts without weeks of onboarding or setup. Our web platform is extremely simple to use.
 
 <figure><img src=".gitbook/assets/FINAL-lowfr.gif" alt=""><figcaption></figcaption></figure>
 
