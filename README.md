@@ -26,7 +26,8 @@ It's open-source, works with GPU's, custom docker containers, and up to 10,000 C
 
 ### A data-platform any team can learn in minutes:
 
-With Burla your entire team can scale machine learning systems, or other research efforts without weeks of onboarding or setup. Our web platform is extremely simple to use.
+Scale machine learning systems, or other research efforts without weeks of onboarding or setup.\
+Burla can be depoloyed in your cloud with [a single command](getting-started.md#quickstart-self-hosted).
 
 <figure><img src=".gitbook/assets/FINAL-lowfr.gif" alt=""><figcaption></figcaption></figure>
 
