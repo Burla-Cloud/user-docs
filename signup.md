@@ -51,7 +51,7 @@ Because we don't really want you to use our managed service! (not forever at lea
 
 Burla is open-source, and designed to be self-hosted.\
 We created the managed-service to make Burla as easy as possible to try.\
-If you try it and like it, we're happy to help install the self-hosted version, it only takes [one command](API-Reference.md#burla-install).
+If you try it and like it, we're happy to help deploy the self-hosted version in your cloud.
 
 **Any other questions?**
 
