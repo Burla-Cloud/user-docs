@@ -27,7 +27,7 @@ It's open-source, works with GPU's, custom docker containers, and up to 10,000 C
 ### A data-platform any team can learn in minutes:
 
 Scale machine learning systems, or other research efforts without weeks of onboarding or setup.\
-Burla is open-source and can be depoloyed in your cloud with [a single command](getting-started.md#quickstart-self-hosted).
+Burla's open-source web platform makes it simple to monitor long running pipelines or training runs.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
