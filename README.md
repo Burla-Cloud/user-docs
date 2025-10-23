@@ -78,9 +78,9 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 {% endcolumn %}
 {% endcolumns %}
 
-### Create pipelines without DAGs or special syntax.
+### Easily create pipelines without special syntax.
 
-Nest `remote_parallel_map` calls to create pipelines that fan in/out over thousands of machines!\
+Nest `remote_parallel_map` calls fan code in/out over thousands of machines.\
 Example: Process every record of many files in parallel, then combine results on one big machine.
 
 ```python
