@@ -51,8 +51,7 @@ With Burla, running code in the cloud feels the same as coding locally:
 
 * Anything you print appears in your local terminal.
 * Exceptions thrown in your code are thrown on your local machine.
-* Your local python packages are automatically synchronized with the cluster.
-* Responses are pretty quick, you can call a million simple functions in a couple seconds!
+* Responses are pretty quick, you run a million function calls in a couple seconds!
 
 ### Features:
 
