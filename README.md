@@ -69,7 +69,7 @@ Easily run code in any linux-based Docker container. Public or private, just pas
 {% column width="50%" %}
 #### 📂 Network Filesystem
 
-Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to your working directory.
+Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to `./shared` in every container.
 
 #### ⚙️ Variable Hardware Per-Function
 
