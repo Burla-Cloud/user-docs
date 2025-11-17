@@ -101,7 +101,7 @@ result_filepaths = remote_parallel_map(process_file, filepaths)
 remote_parallel_map(combine_results, [result_filepaths], func_ram=256)
 ```
 
-### Watch our Demo:
+### Short Demo: Parallel hyper-parameter tuning with 1000 CPU's
 
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
