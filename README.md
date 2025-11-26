@@ -79,7 +79,7 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 
 ### Create massive data-pipelines with plain python:
 
-Create pipelines that fan out to thousands of machines, then aggregate data in one big machine.\
+Build pipelines that fan in/out over thousands of machines, then aggregate data in one big machine.\
 The network filesystem mounted at \`./shared\` makes it easy to pass big data between steps.
 
 ```python
