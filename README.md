@@ -92,7 +92,7 @@ results = remote_parallel_map(process_file, files)
 result = remote_parallel_map(combine_results, [results], func_ram=256)
 ```
 
-### Quick Demo: Hyper-parameter tuning XGBoost with 1,000 CPUs.
+### Quick Demo: Hyper-parameter tuning XGBoost with 1,000 CPUs
 
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
