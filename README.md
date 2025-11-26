@@ -79,26 +79,17 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 
 ### Easily create pipelines without special syntax.
 
-Nest `remote_parallel_map` calls to fan code in/out over thousands of machines.\
-Example: Process every record of many files in parallel, then combine results on one big machine.
+Create pipelines that fan out to thousands of machines, then aggregate data in one big machine.\
+The network filesystem mounted to \`./shared\` folder makes it easy to pass big data between steps.
 
 ```python
 from burla import remote_parallel_map
 
-def process_record(record):
-    # Pretend this does some math per-record!
-    return result
+# Run `process_file` on many smaller machines
+results = remote_parallel_map(process_file, files)
 
-def process_file(filepath):
-    # load records from disk (network storage)
-    results = remote_parallel_map(process_record, records)
-    # save results back to disk (network storage)
-
-def combine_results(result_filepaths):
-    # load results from disk (network storage), then combine!
-    
-result_filepaths = remote_parallel_map(process_file, filepaths)
-remote_parallel_map(combine_results, [result_filepaths], func_ram=256)
+# Combine results on one large machine
+result = remote_parallel_map(combine_results, [results], func_ram=256)
 ```
 
 ### Quick Demo: Parallel hyper-parameter tuning with 1000 CPU's
