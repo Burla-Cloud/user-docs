@@ -77,10 +77,10 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 {% endcolumn %}
 {% endcolumns %}
 
-### Easily create pipelines without special syntax.
+### Create massive data-pipelines with plain python:
 
 Create pipelines that fan out to thousands of machines, then aggregate data in one big machine.\
-The network filesystem mounted to \`./shared\` folder makes it easy to pass big data between steps.
+The network filesystem mounted at \`./shared\` makes it easy to pass big data between steps.
 
 ```python
 from burla import remote_parallel_map
@@ -92,7 +92,7 @@ results = remote_parallel_map(process_file, files)
 result = remote_parallel_map(combine_results, [results], func_ram=256)
 ```
 
-### Quick Demo: Parallel hyper-parameter tuning with 1000 CPU's
+### Demo: Hyper-parameter tuning XGBoost with 1,000 CPUs.
 
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
