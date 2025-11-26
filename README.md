@@ -33,7 +33,8 @@ Burla's open-source web platform makes it simple to monitor long running pipelin
 
 ### **How it works:**
 
-Burla only has one function:
+Burla is fully fledged, open-source, cluster-compute software that only has a single function.\
+Here's how it works:
 
 ```python
 from burla import remote_parallel_map

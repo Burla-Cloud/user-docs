@@ -1,5 +1,5 @@
 ---
-description: With <30 lines of simple Python.
+description: With <30 lines of Python.
 ---
 
 # Process 2.4TB in Parquet Files in 48s
@@ -35,8 +35,6 @@ Once generated, parquet files are written to the \`./shared\` folder. Anything p
 Below, each call to `generate_parquet` is done in a `python:3.12` docker container (see settings ↑), this can be any docker container as long as your VM's service account is authorized to pull it.\
 Python packages your code uses that aren't in the container are detected and installed quickly at runtime. The code below took 3s to install pandas, numpy, and pyarrow in every container.
 
-The following code completed in 6m 39s, and the final dataset is 2.4TB.
-
 ```python
 import pyarrow
 import numpy as np
@@ -67,6 +65,11 @@ def generate_parquet(file_num: int):
 
 remote_parallel_map(generate_parquet, file_nums, func_ram=64)
 ```
+
+This code completed in 6m 39s, and the final dataset is 2.4TB.\
+After running files appear under the "Filesystem" tab (underneath this is a GCS Bucket).
+
+<figure><img src="../.gitbook/assets/CleanShot 2025-11-26 at 16.08.20.png" alt=""><figcaption></figcaption></figure>
 
 ### Running the challenge!
 
@@ -146,7 +149,7 @@ At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost ab
 
 ### Can this be faster? What's the point?
 
-48s is a respectable time, but the real question i'm trying to answer is:\
+48s is a respectable time, but the real question I'm trying to answer is:\
 **If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
 **How long would it take? and how expensive would it be?**
 
