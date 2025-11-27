@@ -24,7 +24,7 @@ It's open-source, works with GPU's, any docker image, and scales up to 10,000 CP
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
-### Enable <mark style="color:yellow;">anyone</mark> to process terabytes of data in <mark style="color:yellow;">seconds</mark>.
+### Enable <mark style="color:red;">anyone</mark> to process terabytes of data in <mark style="color:red;">seconds</mark>.
 
 Burla is extremely scalable, extremely flexible, and extremely easy to learn.
 
