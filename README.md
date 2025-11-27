@@ -29,7 +29,7 @@ It's open-source, works with GPU's, any docker image, and scales up to 10,000 CP
 Burla is extremely scalable, extremely flexible, and extremely easy to learn.
 
 * Over 10,000 CPUs in a single function call.\
-  See our demo where we process 2.4TB of parquet files in just 48s, using <30 lines of code.
+  [See our demo](examples/process-2.4tb-in-parquet-files-in-48s.md) where we process 2.4TB of parquet files in just 48s, using <30 lines of code!
 * One function, two required arguments.\
   This makes Burla simple enough for anyone to fully comprehend in minutes.
 * Any hardware. Any docker image.\
@@ -60,7 +60,7 @@ Running code in the cloud with Burla feels the same as coding locally:
 
 * Anything you print appears in your local terminal.
 * Exceptions thrown in your code are thrown on your local machine.
-* Responses are pretty quick, you run a million function calls in a couple seconds!
+* Responses are quick, you run a million function calls in a couple seconds!
 
 ### Features:
 
@@ -86,7 +86,7 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 {% endcolumn %}
 {% endcolumns %}
 
-### Create massive data-pipelines with plain Python:
+### Create massive pipelines with plain Python:
 
 Build pipelines that fan in/out over thousands of machines, then aggregate data in one big machine.\
 The network filesystem mounted at \`./shared\` makes it easy to pass big data between steps.
@@ -105,7 +105,7 @@ result = remote_parallel_map(combine_results, [results], func_ram=256)
 
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
-### &#x20;Get started now:
+### &#x20;Get started now!
 
 {% embed url="https://docs.burla.dev/signup" %}
 
