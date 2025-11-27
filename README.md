@@ -17,24 +17,32 @@ layout:
 
 # Welcome
 
-### Run any Python function on 1000 computers in 1 second.
+### Run any Python function on 1,000 computers in 1 second.
 
-Burla is the simplest way to scale python, it only has one function: `remote_parallel_map`\
-It's open-source, works with GPU's, custom docker containers, and up to 10,000 CPU's at once.
+Burla is the simplest way to scale Python. It only has one function: [`remote_parallel_map`](API-Reference.md#burla.remote_parallel_map)\
+It's open-source, works with GPU's, any docker image, and scales up to 10,000 CPU's in a single call.
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
-### A data-platform any team can learn in minutes:
+### Enable <mark style="color:yellow;">anyone</mark> to process terabytes of data in <mark style="color:yellow;">seconds</mark>.
 
-Scale machine learning systems, or other research efforts without weeks of onboarding or setup.\
-Burla's open-source web platform makes it simple to monitor long running pipelines or training runs.
+Burla is extremely scalable, extremely flexible, and extremely easy to learn.
+
+* Over 10,000 CPUs in a single function call.\
+  See our demo where we process 2.4TB of parquet files in just 48s, using <30 lines of code.
+* One function, two required arguments.\
+  This makes Burla simple enough for anyone to fully comprehend in minutes.
+* Any hardware. Any docker image.\
+  Burla can run any linux-compatible program, on any hardware, in parallel.
+
+Our open-source web platform makes it easy to manage data, and monitor long-running pipelines.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
 ### **How it works:**
 
-Burla is fully fledged, open-source, cluster-compute software that only has a single function.\
-Here's how it works:
+Burla only has one function: `remote_parallel_map`  \
+When called, it runs the given function, on every input in the given list, each on a separate computer.
 
 ```python
 from burla import remote_parallel_map
@@ -48,7 +56,7 @@ def my_function(my_input):
 return_values = remote_parallel_map(my_function, my_inputs)
 ```
 
-With Burla, running code in the cloud feels the same as coding locally:
+Running code in the cloud with Burla feels the same as coding locally:
 
 * Anything you print appears in your local terminal.
 * Exceptions thrown in your code are thrown on your local machine.
