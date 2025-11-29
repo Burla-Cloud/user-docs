@@ -153,8 +153,7 @@ At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost ab
 **If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
 **How long would it take? and how expensive would it be?**
 
-Let's be honest, this isn't the most compute-efficient solution in the world. Most of the time is spent downloading data, GCSFuse is easy to use, but it isn't maxing out the network capacity of the VM.
-
+Let's be honest, this isn't the most compute-efficient solution in the world. Most of the time is spent downloading data, GCSFuse is easy to use, but it isn't maxing out the network capacity of the VM.\
 \
 But if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer for you probably <5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
 
