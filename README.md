@@ -30,10 +30,10 @@ Burla is extremely scalable, flexible, and easy to learn:
 
 * **Scalable:** Over 10,000 CPUs in a single function call.\
   [See our demo](examples/process-2.4tb-in-parquet-files-in-48s.md) where we process 2.4TB of parquet files in just 48s, using <30 lines of code!
-* **Easy to learn:** One function, two required arguments.\
-  This makes Burla simple enough for anyone to fully comprehend in minutes.
 * **Flexible:** Any hardware. Any docker image.\
   Burla can run any linux-compatible program, on any hardware, in parallel.
+* **Easy to learn:** One function, two required arguments.\
+  This makes Burla simple enough for anyone to fully comprehend in minutes.
 
 Our open-source web platform makes it easy to manage data, and monitor long-running pipelines.
 
