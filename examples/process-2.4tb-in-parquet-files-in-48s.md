@@ -21,8 +21,9 @@ An extension of the [billion row challenge](https://github.com/gunnarmorling/1br
 For this challenge we use used a 125 node cluster with 80 cpus and 320G ram per node.\
 Underneath these are N4-standard-80 machines. The cluster settings look like this:
 
-<figure><img src="../.gitbook/assets/CleanShot 2025-11-25 at 16.55.00.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/CleanShot 2025-12-01 at 13.30.56.png" alt=""><figcaption></figcaption></figure>
 
+After changing the settings we just hit "**⏻ Start**" on the front page.\
 This cluster took 1min 37s to boot.
 
 ### Generating the dataset:
@@ -66,10 +67,10 @@ def generate_parquet(file_num: int):
 remote_parallel_map(generate_parquet, file_nums, func_ram=64)
 ```
 
-This code completed in 6m 39s, and the final dataset is 2.4TB.\
-After running files appear under the "Filesystem" tab (underneath this is a GCS Bucket).
+This code completed in 5m 48s! The final dataset is 2.4TB.\
+After running, files appear under the "Filesystem" tab (underneath this is a GCS Bucket).
 
-<figure><img src="../.gitbook/assets/CleanShot 2025-11-26 at 16.08.20.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/CleanShot 2025-12-01 at 13.38.21.png" alt=""><figcaption></figcaption></figure>
 
 ### Running the challenge!
 
@@ -84,6 +85,7 @@ To avoid using any cached files/data the cluster was rebooted before running the
 ```python
 import duckdb
 import pandas as pd
+from time import time
 from burla import remote_parallel_map
 
 TOTAL_ROWS = 1_000_000_000_000
@@ -105,6 +107,7 @@ def station_stats(file_num: int):
     con.execute("PRAGMA threads=10")
     return con.execute(query, (f"shared/1TRC/{file_num}.parquet",)).df()
 
+start = time()
 dataframes = remote_parallel_map(station_stats, file_nums, func_cpu=10)
 df = pd.concat(dataframes).groupby("station").agg(
     min_value=("min_temp", "min"),
@@ -112,11 +115,12 @@ df = pd.concat(dataframes).groupby("station").agg(
     max_value=("max_temp", "max"),
 )
 print(df)
+print(f"Done after {start-time()}s!")
 ```
 
 This only took 48s to finish, which I believe is technically a new record!\
-However, as I talk more about below, I don't actually think runtime is what really matters most.\
-I also believe there's a clear path to a <5s runtime using this same hardware, which would be fun to explore :)
+However, as I talk more about below, I don't actually think runtime is what really matters most here.\
+I also think, with the right optimization, this could be done in <5s! If anyone is brave enough :)
 
 Output:
 
@@ -140,7 +144,7 @@ Output:
 
 ### How expensive was this?
 
-For this demo we used spot instances. These are extra machines rented at a discount that might be taken back ("preempted") at anytime when Google needs them. This isn't an issue for us because Burla jobs continue working even if some nodes are preempted while in the middle of a job.
+For this demo we used spot instances. These are extra machines rented at a discount that might be deleted ("preempted") at any time when Google needs them. This isn't an issue for us because Burla jobs continue working even if some nodes are preempted while in the middle of a job.
 
 Our cluster used 125 N4-standard-80 machines, took 1m37s to boot, and was shut down 1min later.\
 To be safe let's assume the billable runtime per node was 3min, with 125 nodes this is 6.25 hours.
@@ -153,19 +157,16 @@ At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost ab
 **If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
 **How long would it take? and how expensive would it be?**
 
-Let's be honest, this isn't the most compute-efficient solution in the world. Most of the time is spent downloading data, GCSFuse is easy to use, but it isn't maxing out the network capacity of the VM.\
-\
-But if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer for you probably <5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
+Let's be honest, this isn't the most compute-efficient solution in the world. Most of the time is spent downloading data, and while GCSFuse is easy to use, it isn't maxing out the network capacity of the VM.
 
-### Bonus: I think this is possible in <5s (without cheating)
+But, if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer for you probably <5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
 
-Using a cluster this size, I think a time of <5s is possible (including data-download from GCS).
+The real takeaway here is that, without any hyper-optimization, Burla can process massive amounts of data in a very short period of time. \
+...
 
-Here's how I would do this in <5s:
+### Bonus: I think a time of <5s is possible 👀
 
-Definitely! But I think hyperoptimizing violates the spirit of&#x20;
-
-
+As I mentioned earlier,&#x20;
 
 
 
