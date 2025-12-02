@@ -169,21 +169,25 @@ Not to mention, I'd do it all using an interface a beginner can understand!
 
 
 
-#### Bonus: I think a time of <5s is possible 👀
+### Bonus: I think a time of <5s is possible 👀
 
 As I mentioned earlier, I think the real result that matters is how quickly you could do this in a real world setting, without hyper-optimizing, including the time you spent writing code.
 
-But hyper-optimizing is fun! So how fast could it be?
+But hyper-optimizing is fun! So how fast could it be?\
+Well, [Databricks was able to achieve a time of 64s](https://medium.com/dbsql-sme-engineering/1-trillion-row-challenge-on-databricks-sql-41a82fac5bed) using better compression that shrunk the dataset to 1.2TB. I think this is totally fair game given that's just how their system decided to store the data.
 
-Well, [Databricks was able to achieve a time of 64s](https://medium.com/dbsql-sme-engineering/1-trillion-row-challenge-on-databricks-sql-41a82fac5bed) using better compression that shrunk the dataset to 1.2TB. I think this is totally fair game given that's just how their system decided to store the data.\
-But what if we used the same compression format they did? AND 10,000 CPUs?
-
+But what if we used the same compression format they did? AND 10,000 CPUs?\
 Well we tested this, **and it took just 39s to complete!** (code coming soon, keep an eye on our [GitHub](https://github.com/Burla-Cloud/burla)).
 
-Could it be even faster? Let's get theoretical.\
-N4-standard-80 machines have a max download speed of about 50Gbps from cloud storage in the same region, and each machine here needs to download eight 1.17G files, or 9.36G of total data.
+Unfortunately, 1T rows in 39s is _SLOW_, how can we single digits?
+
+#### Faster downloads:
+
+N4-standard-80 machines have a max download speed of about 50Gbps from cloud storage in the same region, and each machine (with improved compression) needs to download eight 1.17G files, or 9.36G of total data.
 
 In practice, it can be hard to hit the max download speed of 50Gbps (I think?) so let's assume that, using the right parallel connection logic (not GCSFuse), you can consistently achieve 40Gbps. This would mean you could get the entire compressed dataset into memory in just 1.9 seconds.
+
+#### Parallelize the 1-Billion challenge winning code?
 
 The best solution to the original 1-billion row challenge finishes in 1.5s using 8cpus and 32G of ram.\
 Could we just run the 1BRC winning code on 1,000 machines in parallel? Then aggregate results?\
