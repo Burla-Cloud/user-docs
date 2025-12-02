@@ -25,7 +25,7 @@ If you decide you like it, try self-hosting. Self-hosted Burla can be deployed w
 
 {% hint style="info" %}
 At this time, Fully-Managed deployments are manually created by us on an individual basis!\
-Expect a reply within the day containing a link to your private managed Burla instance.
+Expect a reply within the day containing a link to your managed instance.
 {% endhint %}
 
 {% @formspree/formspree fullWidth="false" %}
