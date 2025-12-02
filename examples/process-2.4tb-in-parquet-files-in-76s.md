@@ -1,5 +1,19 @@
 ---
 description: With <30 lines of Python.
+layout:
+  width: default
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: false
+  metadata:
+    visible: false
 ---
 
 # Process 2.4TB in Parquet Files in 76s
