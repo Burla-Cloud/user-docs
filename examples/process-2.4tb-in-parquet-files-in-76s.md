@@ -183,6 +183,8 @@ Not to mention, I'd do it all using an interface a beginner can understand!
 
 
 
+***
+
 ### Bonus: I think a time of <5s is possible 👀
 
 As I mentioned earlier, I think the real result that matters is how quickly you could do this in a real world setting, without hyper-optimizing, including the time you spent writing code.
