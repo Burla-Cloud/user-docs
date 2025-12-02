@@ -26,6 +26,8 @@ There are two ways to run Burla:
    Burla is free to try out, [sign-up here](signup.md), and we'll send you a link to your private Burla instance.\
    [Click here](get-started.md#quickstart-managed) to get started with managed Burla (once you've heard back from us).
 
+***
+
 ## Quickstart (managed)
 
 {% hint style="info" %}
