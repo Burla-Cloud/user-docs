@@ -2,7 +2,7 @@
 description: With <30 lines of Python.
 ---
 
-# Process 2.4TB in Parquet Files in 48s
+# Process 2.4TB in Parquet Files in 76s
 
 In this example we:
 
@@ -12,7 +12,7 @@ In this example we:
 
 ### What is the Trillion row Challenge?
 
-An extension of the [billion row challenge](https://github.com/gunnarmorling/1brc), the goal of the trillion row challenge is to compute the min, max, and mean temperature per location, for 413 unique locations, from data stored as a collection of parquet files in blob storage. Data looks like this (but with 1,000,000,000,000 rows):
+An extension of the [billion row challenge](https://github.com/gunnarmorling/1brc), the goal of the trillion row challenge is to compute the min, max, and mean temperature per weather station, for 413 unique stations, from data stored as a collection of parquet files in blob storage. Data looks like this (but with 1,000,000,000,000 rows):
 
 <figure><img src="../.gitbook/assets/CleanShot 2025-11-25 at 12.59.38.png" alt=""><figcaption></figcaption></figure>
 
@@ -23,15 +23,15 @@ Underneath these are N4-standard-80 machines. The cluster settings look like thi
 
 <figure><img src="../.gitbook/assets/CleanShot 2025-12-01 at 13.30.56.png" alt=""><figcaption></figcaption></figure>
 
-After changing the settings we just hit "**⏻ Start**" on the front page.\
-This cluster took 1min 37s to boot.
+Once the settings look good we just hit "**⏻ Start**" on the front page.\
+This cluster took 1min 47s to boot.
 
 ### Generating the dataset:
 
 We chose to split the 1T row dataset into 1,000 parquet files.\
 With 10k cpus, this means we only need to download one file per 10-cpu worker.
 
-Once generated, parquet files are written to the \`./shared\` folder. Anything placed in this folder is synchronized with a Google Cloud Storage bucket using GCSFuse. The dashboard has a built in file manager where you can monitor, upload, and download files from the cluster.
+Once generated, parquet files are written to the \`./shared\` folder. Anything placed in this folder is synchronized with a Google Cloud Storage bucket using GCSFuse. The dashboard has a built in file manager where you can monitor, upload, and download files from the cluster (screenshot below).
 
 Below, each call to `generate_parquet` is done in a `python:3.12` docker container (see settings ↑), this can be any docker container as long as your VM's service account is authorized to pull it.\
 Python packages your code uses that aren't in the container are detected and installed quickly at runtime. The code below took 3s to install pandas, numpy, and pyarrow in every container.
@@ -104,7 +104,7 @@ def station_stats(file_num: int):
     ORDER BY station
     """
     con = duckdb.connect(database=":memory:")
-    con.execute("PRAGMA threads=10")
+    con.execute("PRAGMA threads=7")
     return con.execute(query, (f"shared/1TRC/{file_num}.parquet",)).df()
 
 start = time()
@@ -118,7 +118,7 @@ print(df)
 print(f"Done after {start-time()}s!")
 ```
 
-This only took 48s to finish, which I believe is technically a new record!\
+This only took 75s to finish, which I believe is technically a new record! (on the full 2.4TB dataset).\
 However, as I talk more about below, I don't actually think runtime is what really matters most here.\
 I also think, with the right optimization, this could be done in <5s! If anyone is brave enough :)
 
@@ -146,14 +146,14 @@ Output:
 
 For this demo we used spot instances. These are extra machines rented at a discount that might be deleted ("preempted") at any time when Google needs them. This isn't an issue for us because Burla jobs continue working even if some nodes are preempted while in the middle of a job.
 
-Our cluster used 125 N4-standard-80 machines, took 1m37s to boot, and was shut down 1min later.\
-To be safe let's assume the billable runtime per node was 3min, with 125 nodes this is 6.25 hours.
+Our cluster used 125 N4-standard-80 machines, took 1m47s to boot, and was shut down 1.5min later.\
+To be safe let's assume the billable runtime per node was 3.5min, with 125 nodes this is 7.3 hours.
 
-At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost about $7.63.
+At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost about $8.91.
 
 ### Can this be faster? What's the point?
 
-48s is a respectable time, but the real question I'm trying to answer is:\
+75s is a respectable time, but the real question I'm trying to answer is:\
 **If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
 **How long would it take? and how expensive would it be?**
 
@@ -161,12 +161,11 @@ Let's be honest, this isn't the most compute-efficient solution in the world. Mo
 
 But, if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer for you probably <5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
 
-The real takeaway here is that, without any hyper-optimization, Burla can process massive amounts of data in a very short period of time. \
-...
+Not to mention, I'd do it all using an interface a total beginner can understand!
 
 ### Bonus: I think a time of <5s is possible 👀
 
-As I mentioned earlier,&#x20;
+As I mentioned earlier, I think the real result is&#x20;
 
 
 
