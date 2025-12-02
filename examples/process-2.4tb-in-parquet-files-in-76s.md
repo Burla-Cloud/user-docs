@@ -181,7 +181,7 @@ But, if I were in the office, and you asked me to get you the min/mean/max per s
 
 Not to mention, I'd do it all using an interface a beginner can understand!
 
-
+&#x20;
 
 ***
 
@@ -211,7 +211,7 @@ Definitely! Stuff like this is exactly what Burla is designed to accomplish.
 
 The only issue is we have a compressed parquet file in memory, and the 1-billion row challenge code expects a CSV file on disk. If somebody modified the 1BRC winning code to operate on a compressed parquet file instead of a CSV file. Then deployed 1,000 in parallel, I think it's likely a <5s time is possible.
 
-If anyone decides to give this a try, or has a good reason they don't think this would work, let me know!
+If anyone decides to give this a try, or has a good reason they don't think this would work, let me know! My email is jake@burla.dev
 
 
 
