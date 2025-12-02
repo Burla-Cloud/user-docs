@@ -195,9 +195,9 @@ But hyper-optimizing is fun! So how fast could it be?\
 Well, [Databricks was able to achieve a time of 64s](https://medium.com/dbsql-sme-engineering/1-trillion-row-challenge-on-databricks-sql-41a82fac5bed) using better compression that shrunk the dataset to 1.2TB. I think this is totally fair game given that's just how their system decided to store the data.
 
 What if we used the same compression format they did? AND 10,000 CPUs?\
-Well, we tested this, **and it took just 39s to complete!** (code coming soon, keep an eye on [GitHub](https://github.com/Burla-Cloud/burla)).
+Well, we tested this, **and it took just 39s to complete!** (this code will be on our [GitHub](https://github.com/Burla-Cloud/burla) soon).
 
-Unfortunately, 1T rows in 39s is _TOO SLOW_, how could we hit single digits?
+Unfortunately, 1T rows in 39s is _SLOW_, how could we hit single digits?
 
 #### Faster downloads:
 
