@@ -169,7 +169,7 @@ To be safe let's assume the billable runtime per node was 3.5min, with 125 nodes
 
 At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost about $8.91.
 
-### Can this be faster? What's the point?
+### What really matters.
 
 76s is a respectable time, but the real question I'm trying to answer is:\
 **If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
