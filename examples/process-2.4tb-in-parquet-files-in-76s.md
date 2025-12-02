@@ -10,6 +10,10 @@ In this example we:
 * Run a DuckDB query on each file in parallel using a cluster with 10,000 CPUs.
 * Combine resulting data locally.
 
+### Demo Video:
+
+{% embed url="https://www.youtube.com/watch?v=YKz8mzt9iK4" %}
+
 ### What is the Trillion row Challenge?
 
 An extension of the [billion row challenge](https://github.com/gunnarmorling/1brc), the goal of the trillion row challenge is to compute the min, max, and mean temperature per weather station, for 413 unique stations, from data stored as a collection of parquet files in blob storage. Data looks like this (but with 1,000,000,000,000 rows):
@@ -104,7 +108,7 @@ def station_stats(file_num: int):
     ORDER BY station
     """
     con = duckdb.connect(database=":memory:")
-    con.execute("PRAGMA threads=7")
+    con.execute("PRAGMA threads=8")
     return con.execute(query, (f"shared/1TRC/{file_num}.parquet",)).df()
 
 start = time()
@@ -118,8 +122,8 @@ print(df)
 print(f"Done after {start-time()}s!")
 ```
 
-This only took 75s to finish, which I believe is technically a new record! (on the full 2.4TB dataset).\
-However, as I talk more about below, I don't actually think runtime is what really matters most here.\
+This only took 76s to finish, which I believe is technically a new record! (on the full 2.4TB dataset).\
+However, as I talk more about below, I don't actually think pure runtime is what really matters most.\
 I also think, with the right optimization, this could be done in <5s! If anyone is brave enough :)
 
 Output:
@@ -153,19 +157,43 @@ At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost ab
 
 ### Can this be faster? What's the point?
 
-75s is a respectable time, but the real question I'm trying to answer is:\
+76s is a respectable time, but the real question I'm trying to answer is:\
 **If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
 **How long would it take? and how expensive would it be?**
 
 Let's be honest, this isn't the most compute-efficient solution in the world. Most of the time is spent downloading data, and while GCSFuse is easy to use, it isn't maxing out the network capacity of the VM.
 
-But, if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer for you probably <5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
+But, if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer for you around 5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
 
-Not to mention, I'd do it all using an interface a total beginner can understand!
+Not to mention, I'd do it all using an interface a beginner can understand!
 
-### Bonus: I think a time of <5s is possible 👀
 
-As I mentioned earlier, I think the real result is&#x20;
+
+#### Bonus: I think a time of <5s is possible 👀
+
+As I mentioned earlier, I think the real result that matters is how quickly you could do this in a real world setting, without hyper-optimizing, including the time you spent writing code.
+
+But hyper-optimizing is fun! So how fast could it be?
+
+Well, [Databricks was able to achieve a time of 64s](https://medium.com/dbsql-sme-engineering/1-trillion-row-challenge-on-databricks-sql-41a82fac5bed) using better compression that shrunk the dataset to 1.2TB. I think this is totally fair game given that's just how their system decided to store the data.\
+But what if we used the same compression format they did? AND 10,000 CPUs?
+
+Well we tested this, **and it took just 39s to complete!** (code coming soon, keep an eye on our [GitHub](https://github.com/Burla-Cloud/burla)).
+
+Could it be even faster? Let's get theoretical.\
+N4-standard-80 machines have a max download speed of about 50Gbps from cloud storage in the same region, and each machine here needs to download eight 1.17G files, or 9.36G of total data.
+
+In practice, it can be hard to hit the max download speed of 50Gbps (I think?) so let's assume that, using the right parallel connection logic (not GCSFuse), you can consistently achieve 40Gbps. This would mean you could get the entire compressed dataset into memory in just 1.9 seconds.
+
+The best solution to the original 1-billion row challenge finishes in 1.5s using 8cpus and 32G of ram.\
+Could we just run the 1BRC winning code on 1,000 machines in parallel? Then aggregate results?\
+Definitely! Stuff like this is exactly what Burla is designed to accomplish.
+
+The only issue is we have a compressed parquet file in memory, and the 1-billion row challenge code expects a CSV file on disk. If somebody modified the 1BRC winning code to operate on a compressed parquet file instead of a CSV file. Then deployed 1,000 in parallel, I think it's likely a <5s time is possible.
+
+If anyone decides to give this a try, or has a good reason they don't think this would work, let me know!
+
+
 
 
 
