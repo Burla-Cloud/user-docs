@@ -197,11 +197,11 @@ Well, [Databricks was able to achieve a time of 64s](https://medium.com/dbsql-sm
 What if we used the same compression format they did? AND 10,000 CPUs?\
 Well, we tested this, **and it took just 39s to complete!** (code coming soon, keep an eye on [GitHub](https://github.com/Burla-Cloud/burla)).
 
-Unfortunately, 1T rows in 39s is _SLOW_, how can we hit single digits?
+Unfortunately, 1T rows in 39s is _TOO SLOW_, how could we hit single digits?
 
 #### Faster downloads:
 
-N4-standard-80 machines have a max download speed of about 50Gbps from cloud storage in the same region, and each machine (with improved compression) needs to download eight 1.17G files, or 9.36G of total data.
+N4-standard-80 machines have a max download speed of about 50Gbps from cloud storage in the same region, and each machine (using the improved compression) needs to download eight 1.17G files, or 9.36G of total data.
 
 In practice, it can be hard to hit the max download speed of 50Gbps (I think?) so let's assume that, using the right parallel connection logic (not GCSFuse), you can consistently achieve 40Gbps. This would mean you could get the entire compressed dataset into memory in just 1.9 seconds.
 
@@ -209,9 +209,9 @@ In practice, it can be hard to hit the max download speed of 50Gbps (I think?) s
 
 The best solution to the original 1-billion row challenge finishes in 1.5s using 8cpus and 32G of ram.\
 Could we just run the 1BRC winning code on 1,000 machines in parallel? Then aggregate results?\
-Definitely! Stuff like this is exactly what Burla is designed to accomplish.
+Definitely! Stuff like this is exactly what Burla is designed to do.
 
-The only issue is we have a compressed parquet file in memory, and the 1-billion row challenge code expects a CSV file on disk. If somebody modified the 1BRC winning code to operate on a compressed parquet file instead of a CSV file. Then deployed 1,000 in parallel, I think it's likely a <5s time is possible.
+The only issue is we have a compressed parquet file in memory, and the 1-billion row challenge code expects a CSV file on disk. If somebody modified the 1BRC winning code to operate on an extra-compressed parquet file instead of a CSV file. Then deployed 1,000 in parallel, I think it's likely a <5s time is possible.
 
 If anyone decides to give this a try, or has a good reason they don't think this would work, let me know! My email is jake@burla.dev
 
