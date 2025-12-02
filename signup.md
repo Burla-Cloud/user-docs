@@ -20,7 +20,7 @@ layout:
 
 ## Sign up now:
 
-Enter your email below and we'll send you a free managed instance! Compute is on us.\
+Enter your email below and we'll send you a managed instance, your first $500 in compute is on us.\
 If you decide you like it, try self-hosting. Self-hosted Burla can be deployed with [one command](API-Reference.md#burla-install).
 
 {% hint style="info" %}
@@ -32,10 +32,6 @@ Expect a reply within 12-hours containing a link to your private managed Burla i
 
 ### FAQ:
 
-**How much free compute do I get ?**
-
-This is determined on a case by case basis depending on the kind of work you're doing and how much feedback you're willing to share. It usually ranges from a few hundred to a few thousand dollars.
-
 **Security ?**
 
 Each managed Burla deployment is created in completely separate Google Cloud Project (VPC).\
@@ -43,15 +39,7 @@ Compute resources are never shared between users.
 
 **How much does it cost ?**
 
-We charge a simple 2x multiple whatever charges originate from your instance according to Google Cloud Billing, this equates to about $0.08 per cpu-hour.
-
-**Why so expensive ?**
-
-Because we don't really want you to use our managed service! (not forever at least)
-
-Burla is open-source, and designed to be self-hosted.\
-We created the managed-service to make Burla as easy as possible to try.\
-If you try it and like it, we're happy to help deploy the self-hosted version in your cloud.
+If you run out of credits, we charge a simple 2x multiple whatever charges originate from your instance according to Google Cloud Billing, this equates to about $0.08 per cpu-hour.
 
 **Any other questions?**
 
