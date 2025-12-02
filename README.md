@@ -26,14 +26,9 @@ It's open-source, works with GPU's, any docker image, and scales up to 10,000 CP
 
 ### Enable <mark style="color:red;">anyone</mark> to process terabytes of data in <mark style="color:red;">seconds</mark>.
 
-Burla is extremely scalable, flexible, and easy to learn:
-
-* **Scalable:** Over 10,000 CPUs in a single function call.\
-  [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in just 76s, using <30 lines of code!
-* **Flexible:** Any hardware. Any docker image.\
-  Run any linux-compatible program, on any hardware, in parallel.
-* **Easy to learn:** One function, two required arguments.\
-  Even beginners can fully comprehend and apply `remote_parallel_map` in minutes.
+* **Scalable:** [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in just 76s, using 10,000 CPUs.
+* **Flexible:** Run any Python code, in any Docker container, on any hardware, in parallel.
+* **Easy to learn:** One function, two required arguments. Even beginners can apply Burla in minutes.
 
 Our open-source web platform makes it easy to manage data, and monitor long-running pipelines.
 
