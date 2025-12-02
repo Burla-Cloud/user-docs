@@ -175,7 +175,7 @@ At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost ab
 **If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
 **How long would it take? and how expensive would it be?**
 
-Let's be honest, this isn't the most compute-efficient solution in the world. Most of the time is spent downloading data, and while GCSFuse is easy to use, it isn't maxing out the network capacity of the VM.
+Let's be honest, this isn't the most efficient solution in the world. Most of the time is spent downloading data, and while GCSFuse is easy to use, it isn't maxing out the network capacity of the VM.
 
 But, if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer for you around 5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
 
@@ -190,10 +190,10 @@ As I mentioned earlier, I think the real result that matters is how quickly you 
 But hyper-optimizing is fun! So how fast could it be?\
 Well, [Databricks was able to achieve a time of 64s](https://medium.com/dbsql-sme-engineering/1-trillion-row-challenge-on-databricks-sql-41a82fac5bed) using better compression that shrunk the dataset to 1.2TB. I think this is totally fair game given that's just how their system decided to store the data.
 
-But what if we used the same compression format they did? AND 10,000 CPUs?\
-Well we tested this, **and it took just 39s to complete!** (code coming soon, keep an eye on our [GitHub](https://github.com/Burla-Cloud/burla)).
+What if we used the same compression format they did? AND 10,000 CPUs?\
+Well, we tested this, **and it took just 39s to complete!** (code coming soon, keep an eye on [GitHub](https://github.com/Burla-Cloud/burla)).
 
-Unfortunately, 1T rows in 39s is _SLOW_, how can we single digits?
+Unfortunately, 1T rows in 39s is _SLOW_, how can we hit single digits?
 
 #### Faster downloads:
 
