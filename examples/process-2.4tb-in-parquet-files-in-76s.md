@@ -143,21 +143,23 @@ I also think, with the right optimization, this could be done in <5s! If anyone 
 Output:
 
 ```bash
-✔ Done! Ran 1000 inputs through `station_stats` (1000/1000 completed)         
-              name  min_value  mean_value  max_value
-0             Abha      -46.9   18.000151       84.2
-1          Abidjan      -34.1   26.000040       89.9
-2           Abéché      -30.9   29.400059       91.5
-3            Accra      -36.1   26.399808       88.7
-4      Addis Ababa      -46.5   15.999770       81.7
-..             ...        ...         ...        ...
-407       Yinchuan      -54.2    9.000354       75.5
-408         Zagreb      -52.6   10.700003       75.1
-409  Zanzibar City      -36.0   25.999645       91.1
-410         Ürümqi      -53.8    7.399437       69.3
-411          İzmir      -40.8   17.900016       80.9
+✔ Done! Ran 1000 inputs through `station_stats` (1000/1000 completed)            
+               min_value  mean_value  max_value
+station                                        
+Abha               -41.5   17.999545       80.0
+Abidjan            -38.8   26.000086       87.2
+Abéché             -33.9   29.400108       95.1
+Accra              -34.8   26.399952       88.1
+Addis Ababa        -46.4   15.999768       76.7
+...                  ...         ...        ...
+Yinchuan           -52.4    9.000244       76.1
+Zagreb             -51.6   10.699851       73.4
+Zanzibar City      -37.2   26.000230       86.7
+Ürümqi             -56.8    7.400382       69.0
+İzmir              -41.2   17.899965       79.7
 
-[412 rows x 4 columns]
+[412 rows x 3 columns]
+Done after 76.51459288597107s
 ```
 
 ### How expensive was this?
