@@ -20,7 +20,7 @@ layout:
 
 ## Sign up now:
 
-Enter your email below and we'll send you a managed instance, your first $500 in compute is on us.\
+Enter your email below and we'll send you a managed instance. First $500 in compute is on us.\
 If you decide you like it, try self-hosting. Self-hosted Burla can be deployed with [one command](API-Reference.md#burla-install).
 
 {% hint style="info" %}
