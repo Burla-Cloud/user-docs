@@ -88,7 +88,7 @@ Running `burla install` multiple times will update the existing installation wit
 **Description:**
 
 Installs Burla inside the Google Cloud project that your [gcloud CLI](https://cloud.google.com/sdk/gcloud) is currently pointing to.\
-For a more user-friendly installation guide see: [Installation: Self-Hosted](getting-started.md)
+For a more user-friendly installation guide see: [Installation: Self-Hosted](get-started.md)
 
 To view your current gcloud project run: `gcloud config get project`\
 To change your current gcloud project run: `gcloud config set project <desired-project-id>`&#x20;

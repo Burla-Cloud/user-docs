@@ -49,7 +49,7 @@ This cluster took 1min 47s to boot.
 We chose to split the 1T row dataset into 1,000 parquet files.\
 With 10k cpus, this means we only need to download one file per 10-cpu worker.
 
-Once generated, parquet files are written to the \`./shared\` folder. Anything placed in this folder is synchronized with a Google Cloud Storage bucket using GCSFuse. The dashboard has a built in file manager where you can monitor, upload, and download files from the cluster (screenshot below).
+Once generated, parquet files are written to the `./shared` folder. Anything placed in this folder is synchronized with a Google Cloud Storage bucket using GCSFuse. The dashboard has a built in file manager where you can monitor, upload, and download files from the cluster (screenshot below).
 
 Below, each call to `generate_parquet` is done in a `python:3.12` docker container (see settings ↑), this can be any docker container as long as your VM's service account is authorized to pull it.\
 Python packages your code uses that aren't in the container are detected and installed quickly at runtime. The code below took 3s to install pandas, numpy, and pyarrow in every container.
@@ -96,7 +96,7 @@ This code runs a simple DuckDB query on all 1,000 Parquet files at the same time
 Each query returns a pandas dataframe with the min/mean/max per station within that file.\
 DataFrames are concatenated, and aggregated locally to produce a final min/mean/max temperature per weather station.
 
-Like the data generation code above, every call to `station_stats` runs in a `python:3.12` docker container, and any missing python packages are quickly installed at runtime. Parquet files pulled from the \`./shared\` folder are actually being downloaded from Google Cloud Storage using GCSFuse.
+Like the data generation code above, every call to `station_stats` runs in a `python:3.12` docker container, and any missing python packages are quickly installed at runtime. Parquet files pulled from the `./shared` folder are actually being downloaded from Google Cloud Storage using GCSFuse.
 
 To avoid using any cached files/data the cluster was rebooted before running the code below.
 
