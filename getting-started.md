@@ -17,7 +17,7 @@ layout:
 
 # Getting Started
 
-## Quickstart (managed-instance)
+## Quickstart (managed)
 
 {% hint style="info" %}
 Don't have a managed instance? [Click here to get one!](signup.md)
