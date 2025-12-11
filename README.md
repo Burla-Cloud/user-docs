@@ -27,10 +27,10 @@ It's open-source, works with GPU's, any docker image, and scales up to 10,000 CP
 ### Enable <mark style="color:red;">anyone</mark> to process terabytes of data in <mark style="color:red;">minutes</mark>.
 
 * **Scalable:** [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
-* **Flexible:** Run any Python code, in any Docker container, on any hardware, in parallel.
+* **Flexible:** Run any Python code, in any Docker container, on any hardware.
 * **Easy to learn:** One function, two required arguments. Even beginners can apply Burla in minutes.
 
-Our open-source web platform makes it easy to manage data, and monitor long-running pipelines.
+Our open-source web platform makes it easy to monitor long-running pipelines or other workloads.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
