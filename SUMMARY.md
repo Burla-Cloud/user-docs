@@ -11,7 +11,7 @@
 ## Examples
 
 * [Process 2.4TB in Parquet Files in 76s](examples/process-2.4tb-in-parquet-files-in-76s.md)
-* [Hyperparameter Tune XGBoost with 1,000 CPUs](examples/hyperparameter-tune-xgboost-with-1-000-cpus.md)
+* [Hyperparameter Tune XGBoost with 1,000 CPUs](examples/parallel-hyperparameter-tuning.md)
 * [Analyze 275k Spotify Songs (110GB)](examples/analyze-275k-spotify-songs-110gb.md)
 * [Multi-Stage Illumina Biotech Pipeline](examples/multi-stage-illumina-biotech-pipeline.md)
 * [Analyze 2.5TB of Kaggle Notebooks](examples/analyze-2.5tb-of-kaggle-notebooks.md)
