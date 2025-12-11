@@ -28,7 +28,7 @@ It's open-source, works with GPU's, any docker image, and scales up to 10,000 CP
 
 * **Scalable:** [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
 * **Flexible:** Run any Python code, in any Docker container, on any hardware.
-* **Easy to learn:** One function, two required arguments. Even beginners can apply Burla in minutes.
+* **Easy to learn:** Burla is just one function, with two required arguments.
 
 Our open-source web platform makes it easy to monitor long-running pipelines or other workloads.
 

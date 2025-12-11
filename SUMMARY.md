@@ -11,7 +11,7 @@
 ## Examples
 
 * [Process 2.4TB in Parquet Files in 76s](examples/process-2.4tb-in-parquet-files-in-76s.md)
-* [Hyperparameter Tune w/ 1,000 CPUs](examples/hyperparameter-tune-w-1-000-cpus.md)
+* [Parallel Hyperparameter Tuning](examples/parallel-hyperparameter-tuning.md)
 * [Analyze 275k Spotify Songs (110GB)](examples/analyze-275k-spotify-songs-110gb.md)
 * [Simple Analysis of a 50G Parquet File](examples/simple-analysis-of-a-50g-parquet-file.md)
 * [Multi-Stage Illumina Biotech Pipeline](examples/multi-stage-illumina-biotech-pipeline.md)
