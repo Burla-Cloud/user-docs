@@ -17,7 +17,7 @@ layout:
 
 # Get Started
 
-There are two ways to run Burla:
+There are two ways to host Burla:
 
 1. **In your cloud.**\
    Burla is open-source, and can be deployed with one command (currently Google-Cloud only).\
@@ -25,6 +25,8 @@ There are two ways to run Burla:
 2. **In our cloud.**\
    Burla is free to try out, [sign-up here](signup.md), and we'll send you a link to your private Burla instance.\
    [Click here](get-started.md#quickstart-managed) to get started with managed Burla (once you've heard back from us).
+
+&#x20;
 
 ***
 
