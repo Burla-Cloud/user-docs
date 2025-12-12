@@ -24,10 +24,6 @@ In this example we:
 * Run a DuckDB query on each file in parallel using a cluster with 10,000 CPUs.
 * Combine resulting data locally.
 
-### Demo Video:
-
-{% embed url="https://www.youtube.com/watch?v=YKz8mzt9iK4" %}
-
 ### What is the Trillion row Challenge?
 
 An extension of the [billion row challenge](https://github.com/gunnarmorling/1brc), the goal of the trillion row challenge is to compute the min, max, and mean temperature per weather station, for 413 unique stations, from data stored as a collection of parquet files in blob storage. Data looks like this (but with 1,000,000,000,000 rows):
@@ -162,6 +158,10 @@ Zanzibar City      -37.2   26.000230       86.7
 Done after 76.51459288597107s
 ```
 
+### Demo Video:
+
+{% embed url="https://www.youtube.com/watch?v=YKz8mzt9iK4" %}
+
 ### How expensive was this?
 
 For this demo we used spot instances. These are extra machines rented at a discount that might be deleted ("preempted") at any time when Google needs them. This isn't an issue for us because Burla jobs continue working even if some nodes are preempted while in the middle of a job.
@@ -171,7 +171,7 @@ To be safe let's assume the billable runtime per node was 3.5min, with 125 nodes
 
 At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost about $8.91.
 
-### What really matters.
+### What's the point?
 
 76s is a respectable time, but the real question I'm trying to answer is:\
 **If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
@@ -183,11 +183,11 @@ But, if I were in the office, and you asked me to get you the min/mean/max per s
 
 Not to mention, I'd do it all using an interface a beginner can understand!
 
-&#x20;
 
-***
 
-### Bonus: I think a time of <5s is possible 👀
+<details>
+
+<summary>Bonus: I think a time of &#x3C;5s is possible 👀</summary>
 
 As I mentioned earlier, I think the real result that matters is how quickly you could do this in a real world setting, without hyper-optimizing, including the time you spent writing code.
 
@@ -214,6 +214,10 @@ Definitely! Stuff like this is exactly what Burla is designed to do.
 The only issue is we have a compressed parquet file in memory, and the 1-billion row challenge code expects a CSV file on disk. If somebody modified the 1BRC winning code to operate on an extra-compressed parquet file instead of a CSV file. Then deployed 1,000 in parallel, I think it's likely a <5s time is possible.
 
 If anyone decides to give this a try, or has a good reason they don't think this would work, let me know! My email is jake@burla.dev
+
+
+
+</details>
 
 
 
