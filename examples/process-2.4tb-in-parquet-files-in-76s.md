@@ -30,7 +30,7 @@ An extension of the [billion row challenge](https://github.com/gunnarmorling/1br
 
 <figure><img src="../.gitbook/assets/CleanShot 2025-11-25 at 12.59.38.png" alt=""><figcaption></figcaption></figure>
 
-### Cluster settings:
+### Step 1: Booting the cluster
 
 For this challenge we use used a 125 node cluster with 80 cpus and 320G ram per node.\
 Underneath these are N4-standard-80 machines. The cluster settings look like this:
@@ -40,7 +40,7 @@ Underneath these are N4-standard-80 machines. The cluster settings look like thi
 Once the settings look good we just hit "**⏻ Start**" on the front page.\
 This cluster took 1min 47s to boot.
 
-### Generating the dataset:
+### Step 2: Generating the dataset
 
 We chose to split the 1T row dataset into 1,000 parquet files.\
 With 10k cpus, this means we only need to download one file per 10-cpu worker.
@@ -86,7 +86,7 @@ After running, files appear under the "Filesystem" tab (underneath this is a GCS
 
 <figure><img src="../.gitbook/assets/CleanShot 2025-12-01 at 13.38.21.png" alt=""><figcaption></figcaption></figure>
 
-### Running the challenge!
+### Step 3: Running the challenge!
 
 This code runs a simple DuckDB query on all 1,000 Parquet files at the same time.\
 Each query returns a pandas dataframe with the min/mean/max per station within that file.\
