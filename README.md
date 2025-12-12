@@ -28,7 +28,7 @@ It's a Python package that only has **one function**:
 
 ### Burla is simple, flexible, and scalable:
 
-* **Scalable:** [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
+* **Scalable:** [See our demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
 * **Flexible:** Runs any Python function, inside any Docker container, on any hardware.
 * **Easy to learn:** Burla is just one function, with two required arguments.
 
