@@ -17,20 +17,20 @@ layout:
 
 # Welcome
 
-### Run any Python function on 1,000 computers in 1 second.
-
-Burla is the simplest way to scale Python. It only has one function: [`remote_parallel_map`](API-Reference.md#burla.remote_parallel_map)\
-It's open-source, works with GPU's, any docker image, and scales up to 10,000 CPU's in a single call.
-
-<figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
-
 ### Enable <mark style="color:red;">anyone</mark> to process terabytes of data in <mark style="color:red;">minutes</mark>.
 
+Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
+It's a Python package that only has **one function**:
+
+<figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption><p>This realtime example runs `my_function` on 1,000 computers in one second!</p></figcaption></figure>
+
+### Burla is simple, flexible, and scalable:
+
 * **Scalable:** [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
-* **Flexible:** Run any Python code, in any Docker container, on any hardware.
+* **Flexible:** Runs any Python function, inside any Docker container, on any hardware (including GPUs).
 * **Easy to learn:** Burla is just one function, with two required arguments.
 
-Our open-source web platform makes it easy to monitor long-running pipelines or other workloads.
+Our open-source web platform makes it easy to monitor long-running workloads.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
@@ -67,7 +67,7 @@ Burla clusters automatically (and very quickly) install any missing python packa
 
 #### 🐋 Custom Containers
 
-Easily run code in any linux-based Docker container. Public or private, just paste an image URI in the settings, then hit start!
+Easily run code in any Docker container. Public or private, just paste an image URI in the settings, then hit start!
 {% endcolumn %}
 
 {% column width="50%" %}
