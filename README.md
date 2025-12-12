@@ -22,7 +22,9 @@ layout:
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
 It's a Python package that only has **one function**:
 
-<figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption><p>This realtime example runs `my_function` on 1,000 computers in one second!</p></figcaption></figure>
+<figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
+
+<p align="center">This realtime example runs <code>my_function</code> on 1,000 computers in one second!</p>
 
 ### Burla is simple, flexible, and scalable:
 
