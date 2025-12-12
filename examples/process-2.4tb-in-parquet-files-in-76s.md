@@ -30,7 +30,7 @@ An extension of the [billion row challenge](https://github.com/gunnarmorling/1br
 
 <figure><img src="../.gitbook/assets/CleanShot 2025-11-25 at 12.59.38.png" alt=""><figcaption></figcaption></figure>
 
-### Step 1: Booting the cluster
+### Step 1: Boot some VMs
 
 For this challenge we use used a 125 node cluster with 80 cpus and 320G ram per node.\
 Underneath these are N4-standard-80 machines. The cluster settings look like this:
@@ -40,7 +40,7 @@ Underneath these are N4-standard-80 machines. The cluster settings look like thi
 Once the settings look good we just hit "**⏻ Start**" on the front page.\
 This cluster took 1min 47s to boot.
 
-### Step 2: Generating the dataset
+### Step 2: Generate the dataset
 
 We chose to split the 1T row dataset into 1,000 parquet files.\
 With 10k cpus, this means we only need to download one file per 10-cpu worker.
@@ -86,7 +86,7 @@ After running, files appear under the "Filesystem" tab (underneath this is a GCS
 
 <figure><img src="../.gitbook/assets/CleanShot 2025-12-01 at 13.38.21.png" alt=""><figcaption></figcaption></figure>
 
-### Step 3: Running the challenge!
+### Step 3: Run the challenge!
 
 This code runs a simple DuckDB query on all 1,000 Parquet files at the same time.\
 Each query returns a pandas dataframe with the min/mean/max per station within that file.\
@@ -122,7 +122,10 @@ def station_stats(file_num: int):
     return con.execute(query, (f"shared/1TRC/{file_num}.parquet",)).df()
 
 start = time()
+
+# RPM call here 
 dataframes = remote_parallel_map(station_stats, file_nums, func_cpu=10)
+
 df = pd.concat(dataframes).groupby("station").agg(
     min_value=("min_temp", "min"),
     mean_value=("mean_temp", "mean"),
@@ -134,7 +137,7 @@ print(f"Done after {start-time()}s!")
 
 This only took 76s to finish, which I believe is technically a new record! (on the full 2.4TB dataset).\
 However, as I talk more about below, I don't actually think pure runtime is what really matters most.\
-I also think, with the right optimization, this could be done in <5s! If anyone is brave enough :)
+I also think, with the right optimization, this could be done in <5s!
 
 Output:
 
