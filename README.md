@@ -17,7 +17,7 @@ layout:
 
 # Welcome
 
-### Enable <mark style="color:red;">anyone</mark> to process terabytes of data in <mark style="color:red;">minutes</mark>.
+### Enable <mark style="color:red;">anyone</mark> to process terabytes of data in <mark style="color:red;">seconds</mark>.
 
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
 It's a Python package that only has **one function**:
