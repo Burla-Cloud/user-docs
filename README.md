@@ -26,13 +26,13 @@ It's a Python package that only has **one function**:
 
 <p align="center">This realtime example runs <code>my_function</code> on 1,000 separate computers in one second!</p>
 
-### Burla is simple, flexible, very scalable, and entirely open-source:
+### Burla is simple, flexible, and scalable:
 
 * **Scalable:** [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
 * **Flexible:** Runs any Python function, inside any Docker container, on any hardware.
 * **Easy to learn:** Burla is just one function, with two required arguments.
-* **Open-Source:** Burla can be deployed in your cloud using just [one command](get-started.md#quickstart-self-hosted).
 
+In addition Burla is Open-Source, and can be deployed in your cloud using just [one command](get-started.md#quickstart-self-hosted).\
 Our self-hostable web platform makes it easy to monitor long-running workloads or pipelines.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
@@ -104,6 +104,14 @@ result = remote_parallel_map(combine_results, [results], func_ram=256)
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
 ### &#x20;Get started now!
+
+There are two ways to host Burla:
+
+1. **In your cloud.**\
+   Burla is open-source, and can be deployed with one command (currently Google-Cloud only).\
+   [Click here](./#quickstart-self-hosted) to get started with self-hosted Burla.
+2. **In our cloud.**\
+   Your first $500 in compute spend is free, try it here 👇
 
 {% embed url="https://docs.burla.dev/signup" %}
 
