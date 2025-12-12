@@ -91,10 +91,10 @@ The network filesystem mounted at \`./shared\` makes it easy to pass big data be
 ```python
 from burla import remote_parallel_map
 
-# Run `process_file` on many smaller machines
+# Run `process_file` on many small machines
 results = remote_parallel_map(process_file, files)
 
-# Combine results on one large machine
+# Combine results on one big machine
 result = remote_parallel_map(combine_results, [results], func_ram=256)
 ```
 
