@@ -24,9 +24,9 @@ It's a Python package that only has **one function**:
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
-<p align="center">This realtime example runs <code>my_function</code> on 1,000 computers in one second!</p>
+<p align="center">This realtime example runs <code>my_function</code> on 1,000 separate computers in one second!</p>
 
-### Burla is simple, flexible, very scalable, and open-source!
+### Burla is simple, flexible, very scalable, and entirely open-source:
 
 * **Scalable:** [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
 * **Flexible:** Runs any Python function, inside any Docker container, on any hardware.
@@ -84,9 +84,9 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 {% endcolumn %}
 {% endcolumns %}
 
-### Create massive pipelines with plain Python:
+### Build massive pipelines with plain Python:
 
-Build pipelines that fan in/out over thousands of machines, then aggregate data in one big machine.\
+Create pipelines that fan in/out over thousands of machines, then aggregate data in one big machine.\
 The network filesystem mounted at \`./shared\` makes it easy to pass big data between steps.
 
 ```python
