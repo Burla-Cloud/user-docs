@@ -24,7 +24,7 @@ In this example we:
 * Run a DuckDB query on each file in parallel using a cluster with 10,000 CPUs.
 * Combine resulting data locally.
 
-### What is the Trillion row Challenge?
+### What is the Trillion row challenge?
 
 An extension of the [billion row challenge](https://github.com/gunnarmorling/1brc), the goal of the trillion row challenge is to compute the min, max, and mean temperature per weather station, for 413 unique stations, from data stored as a collection of parquet files in blob storage. Data looks like this (but with 1,000,000,000,000 rows):
 
