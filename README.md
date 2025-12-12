@@ -32,8 +32,8 @@ It's a Python package that only has **one function**:
 * **Flexible:** Runs any Python function, inside any Docker container, on any hardware.
 * **Easy to learn:** Burla is just one function, with two required arguments.
 
-In addition Burla is Open-Source, and can be deployed in your cloud using just [one command](get-started.md#quickstart-self-hosted).\
-Our self-hostable web platform makes it easy to monitor long-running workloads or pipelines.
+In addition Burla is open-source, and can be deployed in your cloud using just [one command](get-started.md#quickstart-self-hosted).\
+The included web platform makes it easy to monitor long-running workloads or data-pipelines.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
