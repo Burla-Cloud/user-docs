@@ -20,19 +20,20 @@ layout:
 ### Enable <mark style="color:red;">anyone</mark> to process terabytes of data in <mark style="color:red;">seconds</mark>.
 
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
-It's an open-source Python package that only has **one function**:
+It's a Python package that only has **one function**:
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
 <p align="center">This realtime example runs <code>my_function</code> on 1,000 computers in one second!</p>
 
-### Burla is simple, flexible, and scalable:
+### Burla is simple, flexible, very scalable, and open-source!
 
 * **Scalable:** [See our demo](examples/process-2.4tb-in-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
 * **Flexible:** Runs any Python function, inside any Docker container, on any hardware.
 * **Easy to learn:** Burla is just one function, with two required arguments.
+* **Open-Source:** Burla can be deployed in your cloud using just [one command](get-started.md#quickstart-self-hosted).
 
-Our open-source web platform makes it easy to monitor long-running workloads.
+Our self-hostable web platform makes it easy to monitor long-running workloads or pipelines.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
