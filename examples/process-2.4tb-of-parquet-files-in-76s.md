@@ -16,13 +16,13 @@ layout:
     visible: false
 ---
 
-# Process 2.4TB in Parquet Files in 76s
+# Process 2.4TB of Parquet Files in 76s
 
 In this example we:
 
 * Generate 1,000 billion-row Parquet files (2.4TB) and store them in Google Cloud Storage.
 * Run a DuckDB query on each file in parallel using a cluster with 10,000 CPUs.
-* Combine resulting data locally.
+* Combine resulting dataframes to produce the final result!
 
 ### What is the trillion row challenge?
 
