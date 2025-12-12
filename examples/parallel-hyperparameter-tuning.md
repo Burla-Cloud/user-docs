@@ -95,7 +95,7 @@ We'll need this since we're passing `n_jobs=80` to XGBoost inside the `train_mod
 ### Step 4: Call the function in parallel, on 13 separate VMs!
 
 Here we pass 36 sets of parameters to `train_model`.\
-Because each function call requires 80 CPUs, and we have 13, 80CPU machines, this will immediately start 13 function calls, and queue the remaining 26. Burla can reliably queue up to 10 million of inputs.
+Because each function call requires 80 CPUs, and we have 13, 80CPU machines, this will immediately start 13 function calls, and queue the remaining 26. Burla can reliably queue up to 10 million inputs.
 
 ```python
 parameter_grid = [
