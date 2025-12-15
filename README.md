@@ -99,13 +99,13 @@ results = remote_parallel_map(process_file, files)
 result = remote_parallel_map(combine_results, [results], func_ram=256)
 ```
 
-### Demo:
+### Short Demo:
 
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
-### Want a custom, functional, proof of concept?
+### We build proof of concepts for free!
 
-[Schedule a call](https://cal.com/jakez/burla?user=jakez\&duration=30) and we will build you a working poc specific to your workload.\
+[Schedule a call](https://cal.com/jakez/burla?user=jakez\&duration=30) and we'll build a working proof of concept specific to your workload.\
 We've built functional, plug and play examples for companies working on:
 
 * DNA analysis / genomic pipelining
