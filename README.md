@@ -114,7 +114,7 @@ We've built functional, plug and play examples for companies working on:
 * Reinforcement learning simulations
 * Industrial CT-scan analysis
 
-### Try Burla today:
+### Give Burla a try today:
 
 There are two ways to host Burla:
 
