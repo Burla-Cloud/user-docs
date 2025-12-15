@@ -18,17 +18,17 @@ layout:
 
 # Signup
 
-## Sign up:
+## Try Burla today:
 
-Enter your email below and we'll send you a managed instance. First $500 in compute is on us.\
-If you decide you like it, try self-hosting. Self-hosted Burla can be deployed with [one command](API-Reference.md#burla-install).
-
-{% hint style="info" %}
-At this time, Fully-Managed deployments are manually created by us on an individual basis!\
-Expect a reply within the day containing a link to your managed instance.
-{% endhint %}
+With $500 in free compute on us!\
+If you want to run Burla in your cloud (not our cloud) [click here](get-started.md#quickstart-self-hosted).
 
 {% @formspree/formspree fullWidth="false" %}
+
+{% hint style="info" %}
+Currently, managed deployments are manually created by us on an individual basis.\
+Expect a reply within the same day containing a link to your trial instance.
+{% endhint %}
 
 ### FAQ:
 
@@ -39,7 +39,7 @@ Compute resources are never shared between users.
 
 **How much does it cost ?**
 
-If you run out of credits, we charge a simple 2x multiple whatever charges originate from your instance according to Google Cloud Billing, this equates to about $0.08 per cpu-hour.
+If you run out of credits, and want to keep using Burla without [self-hosting](get-started.md#quickstart-self-hosted), we charge a simple 2x multiple of any charges that originate from your instance according to Google Cloud Billing.
 
 **Any other questions?**
 
