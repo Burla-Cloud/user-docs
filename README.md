@@ -99,11 +99,22 @@ results = remote_parallel_map(process_file, files)
 result = remote_parallel_map(combine_results, [results], func_ram=256)
 ```
 
-### Short Demo:
+### Demo:
 
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
-### &#x20;Get started now!
+### Want a custom, functional, proof of concept?
+
+[Schedule a call](https://cal.com/jakez/burla?user=jakez\&duration=30) and we will build you a working poc specific to your workload.\
+We've built functional, plug and play examples for companies working on:
+
+* DNA analysis / genomic pipelining
+* Medical image processing for ML
+* Video game replay analysis
+* Reinforcement learning simulations
+* Industrial CT-scan analysis
+
+### Try Burla today:
 
 There are two ways to host Burla:
 
@@ -114,8 +125,6 @@ There are two ways to host Burla:
    First $500 in compute spend is free, try it now 👇
 
 {% embed url="https://docs.burla.dev/signup" %}
-
-
 
 
 
