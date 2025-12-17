@@ -115,10 +115,10 @@ There are two ways to host Burla:
 
 {% embed url="https://docs.burla.dev/signup" %}
 
-### We build proof of concepts for free!
+### We build proof of concepts & production-ready systems:
 
 [Schedule a call](https://cal.com/jakez) and we'll build a working proof of concept specific to your workload.\
-We've built functional, plug and play examples for companies working on:
+We've built functional, plug and play systems for companies working on:
 
 * DNA analysis / genomic pipelining
 * Medical image processing for ML
