@@ -126,9 +126,7 @@ We've delivered plug and play, production-ready systems for companies working on
 * Reinforcement learning simulations
 * Industrial CT-scan analysis
 
-{% embed url="https://docs.burla.dev/proof-of-concept-inquiry" %}
-
-
+{% embed url="https://docs.burla.dev/we-build-first.-you-decide-later." %}
 
 
 
