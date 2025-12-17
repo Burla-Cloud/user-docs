@@ -47,7 +47,7 @@ If you run out of credits, and want to keep using Burla without [self-hosting](g
 
 [Book a call with us directly](https://cal.com/jakez/burla?user=jakez\&duration=30) or send me an email: [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82)
 
-### We build proof of concepts & production-ready systems:
+### Get a free proof of concept:  We build first. You decide later.
 
 [Schedule a call](https://cal.com/jakez/burla?user=jakez\&duration=30) and we'll build a working proof of concept specific to your problem.\
 We've built functional, plug and play systems for companies working on:

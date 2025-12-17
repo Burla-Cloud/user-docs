@@ -115,7 +115,7 @@ There are two ways to host Burla:
 
 {% embed url="https://docs.burla.dev/signup" %}
 
-### We build proof of concepts & production-ready systems:
+### Get a free proof of concept:  We build first. You decide later.
 
 [Schedule a call](https://cal.com/jakez) and we'll build a working proof of concept specific to your workload.\
 We've built functional, plug and play systems for companies working on:
