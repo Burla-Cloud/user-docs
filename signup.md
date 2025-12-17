@@ -30,7 +30,7 @@ Currently, managed service deployments are manually created by us on an individu
 Expect a reply in the same day containing a link to your trial instance!
 {% endhint %}
 
-### We build free custom examples!
+### We build custom examples!
 
 [Schedule a call](https://cal.com/jakez/burla?user=jakez\&duration=30) and we will build you a working proof of concept specific to your workload.\
 We've built functional, plug and play examples for companies working on:
@@ -41,7 +41,7 @@ We've built functional, plug and play examples for companies working on:
 * Reinforcement learning simulations
 * Industrial CT-scan analysis
 
-
+{% embed url="https://docs.burla.dev/proof-of-concept-inquiry" %}
 
 ### FAQ:
 
