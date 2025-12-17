@@ -103,7 +103,7 @@ result = remote_parallel_map(combine_results, [results], func_ram=256)
 
 {% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
-### Give Burla a try today:
+### Try it out today:
 
 There are two ways to host Burla:
 
@@ -118,7 +118,7 @@ There are two ways to host Burla:
 ### Get a free proof of concept:  We build first. You decide later.
 
 [Schedule a call](https://cal.com/jakez) and we'll build a working proof of concept specific to your workload.\
-We've built functional, plug and play systems for companies working on:
+We've built plug and play production-ready systems for companies working on:
 
 * DNA analysis / genomic pipelining
 * Medical image processing for ML
