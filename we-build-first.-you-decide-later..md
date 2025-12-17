@@ -16,9 +16,9 @@ layout:
     visible: false
 ---
 
-# Get free proof of concept!
+# We build first. You decide later.
 
-### We build first. You decide later.
+### Get a free proof of concept:
 
 Schedule a call and we'll build a functional proof of concept specific to your problem.\
 We've delivered plug and play, production-ready systems for companies working on:
