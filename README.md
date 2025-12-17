@@ -111,7 +111,7 @@ There are two ways to host Burla:
    Burla is open-source, and can be deployed with one command (currently Google-Cloud only).\
    [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to get started with self-hosted Burla.
 2. **In our cloud.**\
-   First $500 in compute spend is free, try it now 👇
+   First $1,000 in compute spend is free, try it now 👇
 
 {% embed url="https://docs.burla.dev/signup" %}
 
