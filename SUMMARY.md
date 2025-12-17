@@ -3,7 +3,7 @@
 * [Welcome](README.md)
 * [Get Started](get-started.md)
 * [API/CLI Reference](API-Reference.md)
-* [Get free proof of concept!](get-free-proof-of-concept.md)
+* [Get free proof of concept:](get-free-proof-of-concept.md)
 * [About](about.md)
 * [Privacy-Policy](privacy-policy.md)
 * [Signup](signup.md)
