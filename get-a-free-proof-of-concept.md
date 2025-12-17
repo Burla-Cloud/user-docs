@@ -1,4 +1,5 @@
 ---
+hidden: true
 layout:
   width: default
   title:
@@ -15,7 +16,7 @@ layout:
     visible: false
 ---
 
-# Get a free proof of concept
+# Get a Free Proof of Concept
 
 ### We build first. You decide later.
 
