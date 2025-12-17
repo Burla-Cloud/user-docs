@@ -5,6 +5,7 @@
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
 * [Privacy-Policy](privacy-policy.md)
+* [Proof of Concept Inquiry](proof-of-concept-inquiry.md)
 * [Signup](signup.md)
 
 ## Examples
