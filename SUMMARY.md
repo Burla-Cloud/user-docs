@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Enable any](README.md)
+* [Welcome](README.md)
 * [Get Started](get-started.md)
 * [API/CLI Reference](API-Reference.md)
 * [We build first. You decide later.](get-free-proof-of-concept.md)
