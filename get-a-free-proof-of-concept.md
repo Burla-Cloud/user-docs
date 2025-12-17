@@ -16,12 +16,12 @@ layout:
     visible: false
 ---
 
-# Proof of Concept Inquiry
+# Get a free proof of concept
 
 ### We build first. You decide later.
 
-Schedule a call and we'll build a working proof of concept specific to your workload.\
-We've delivered functional, plug and play examples for companies working on:
+Schedule a call and we'll build a functional proof of concept specific to your problem.\
+We've delivered plug and play, production-ready systems for companies working on:
 
 * DNA analysis / genomic pipelining
 * Medical image processing for ML

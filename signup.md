@@ -49,8 +49,8 @@ If you run out of credits, and want to keep using Burla without [self-hosting](g
 
 ### Get a free proof of concept:  We build first. You decide later.
 
-[Schedule a call](https://cal.com/jakez/burla?user=jakez\&duration=30) and we'll build a working proof of concept specific to your problem.\
-We've built functional, plug and play systems for companies working on:
+[Schedule a call](https://cal.com/jakez/burla?user=jakez\&duration=30) and we'll build a functional proof of concept specific to your problem.\
+We've delivered plug and play, production-ready systems for companies working on:
 
 * DNA analysis / genomic pipelining
 * Medical image processing for ML
