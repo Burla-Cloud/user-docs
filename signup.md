@@ -40,8 +40,7 @@ This fully isolates all cloud resources between separate users.
 
 **How much does it cost ?**
 
-Burla's managed service is $100/month per user (after your free trial credits have run out).
-
+Burla's managed service is $100/month per user (after your free trial credits have run out).\
 All underlying cloud compute costs are forwarded at current GCP prices.
 
 **Any other questions?**
