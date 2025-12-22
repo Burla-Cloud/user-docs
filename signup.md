@@ -1,5 +1,4 @@
 ---
-hidden: true
 layout:
   width: default
   title:
@@ -36,12 +35,14 @@ Expect a reply within the same day containing a link to your trial instance!
 
 **What are the security measures ?**
 
-Each managed Burla deployment is provisioned within its own dedicated virtual private cloud (VPC).\
-This fully isolates all resources are between customers, which are never shared.
+Each managed Burla deployment is provisioned within its own virtual private cloud (VPC).\
+This fully isolates all cloud resources between separate users.
 
 **How much does it cost ?**
 
-If you run out of credits, and want to keep using Burla without [self-hosting](get-started.md#quickstart-self-hosted) (recommended) we charge a simple 2x multiple of any fees that originate from your instance according to Google Cloud Billing. We regularly give customers full access to the underlying google cloud project running their Burla instance.
+Burla's managed service is $100/month per user (after your free trial credits have run out).
+
+All underlying cloud compute costs are forwarded at current GCP prices.
 
 **Any other questions?**
 
