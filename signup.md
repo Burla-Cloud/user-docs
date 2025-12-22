@@ -35,8 +35,8 @@ Expect a reply within the same day containing a link to your trial instance!
 
 **What are the security measures ?**
 
-Each managed Burla deployment is provisioned within its own virtual private cloud (VPC).\
-This fully isolates all cloud resources between separate users.
+Each managed Burla deployment is provisioned within its own separate virtual private cloud (VPC).\
+This fully isolates all cloud resources between customers (single-tenant deployment).
 
 **How much does it cost ?**
 
