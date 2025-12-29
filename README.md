@@ -15,7 +15,7 @@ layout:
     visible: false
 ---
 
-# Enable any
+# Welcome
 
 ### Enable anyone to process terabytes of data in minutes.
 
@@ -115,16 +115,19 @@ There are two ways to host Burla:
 
 {% embed url="https://docs.burla.dev/signup" %}
 
-### Get a free proof of concept:  We build first. You decide later.
+### Let us create a custom example for you!
 
-[Schedule a call](https://cal.com/jakez/burla?user=jakez\&duration=30) and we'll build a functional proof of concept specific to your problem.\
-We've delivered plug and play, production-ready systems for companies working on:
+Have a workload in mind?\
+Let us build a custom demo showing how Burla can speed up and simplify your specific workload.\
+We've delivered plug and play examples for companies working on:
 
 * DNA analysis / genomic pipelining
 * Medical image processing for ML
 * Video game replay analysis
 * Reinforcement learning simulations
 * Industrial CT-scan analysis
+
+Click the link below to learn more 👇
 
 {% embed url="https://docs.burla.dev/we-build-first.-you-decide-later." %}
 
