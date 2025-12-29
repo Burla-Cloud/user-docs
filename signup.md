@@ -62,8 +62,6 @@ We've delivered plug and play examples for companies working on:
 * Reinforcement learning simulations
 * Industrial CT-scan analysis
 
-#### Book a discovery call now:
-
 {% embed url="https://cal.com/jakez/burla-discovery-call" %}
 
 &#x20;
