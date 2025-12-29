@@ -48,12 +48,11 @@ All underlying cloud costs (compute, storage) are forwarded at current GCP price
 
 [Book a call with us directly](https://cal.com/jakez/burla?user=jakez\&duration=30) or send me an email: [jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82)
 
-***
+&#x20;
 
 ### Have a workload in mind?  ->  Get a free proof of concept!
 
-We build custom demos to show how Burla can speed up and simplify your specific workload.
-
+We build custom demos to show how Burla can speed up and simplify your specific workload.\
 We've delivered plug and play examples for companies working on:
 
 * DNA analysis / genomic pipelining
@@ -62,9 +61,7 @@ We've delivered plug and play examples for companies working on:
 * Reinforcement learning simulations
 * Industrial CT-scan analysis
 
-{% embed url="https://cal.com/jakez/burla-discovery-call" %}
-
-&#x20;
+Book your discovery call here: [cal.com/jakez/burla-discovery-call](https://cal.com/jakez/burla-discovery-call)&#x20;
 
 &#x20;
 
