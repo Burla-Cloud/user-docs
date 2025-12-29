@@ -32,7 +32,7 @@ Burla enables anyone, even total beginners, to harness the full power of the clo
 
 * **Scalability:** [See our demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
 * **Flexibility:** Runs any Python function, inside any Docker container, on any hardware.
-* **Simplcity:** Burla is just one function, with two required arguments.
+* **Simplicity:** Burla is just one function, with two required arguments.
 
 Easily monitor workloads and manage infrastructure from our open-source web platform.\
 Self-hosted Burla can be deployed in your cloud using a [single command](get-started.md#quickstart-self-hosted):
