@@ -86,10 +86,10 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 {% endcolumn %}
 {% endcolumns %}
 
-### Build massive pipelines with plain Python:
+### Build scalable data-pipelines using plain Python:
 
-Create pipelines that fan in/out over thousands of machines, then aggregate data in one big machine.\
-The network filesystem mounted at \`./shared\` makes it easy to pass big data between steps.
+Fan Python functions out across thousands of machines, then aggregate data on one big machine.\
+The network filesystem mounted at `./shared` makes it easy to pass big data between steps.
 
 ```python
 from burla import remote_parallel_map
@@ -100,6 +100,8 @@ results = remote_parallel_map(process_file, files)
 # Combine results on one big machine
 result = remote_parallel_map(combine_results, [results], func_ram=256)
 ```
+
+<p align="center">The above example demonstrates a basic map-reduce operation.</p>
 
 ### Demo:
 
