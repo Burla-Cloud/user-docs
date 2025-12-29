@@ -115,23 +115,6 @@ There are two ways to host Burla:
 
 {% embed url="https://docs.burla.dev/signup" %}
 
-### Have a workload in mind?  ->  Get a free proof of concept!
-
-We build custom POC's to show how Burla can speed up and simplify your specific workload.\
-We've delivered plug and play examples for companies working on:
-
-* DNA analysis / genomic pipelining
-* Medical image processing for ML
-* Video game replay analysis
-* Reinforcement learning simulations
-* Industrial CT-scan analysis
-
-Click the link below to learn more 👇
-
-{% embed url="https://docs.burla.dev/we-build-first.-you-decide-later." %}
-
-
-
 ***
 
 Questions?\
