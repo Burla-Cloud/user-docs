@@ -34,8 +34,7 @@ Burla enables anyone, even total beginners, to harness the full power of the clo
 * **Flexibility:** Runs any Python function, inside any Docker container, on any hardware.
 * **Simplicity:** Burla is just one function, with two required arguments.
 
-Easily monitor workloads and manage infrastructure from our open-source web platform.\
-Self-hosted Burla can be deployed in your cloud using a [single command](get-started.md#quickstart-self-hosted):
+Easily monitor workloads, and manage infrastructure from our open-source web dashboard:
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
