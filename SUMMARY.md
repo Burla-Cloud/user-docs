@@ -4,7 +4,6 @@
 * [Get Started](get-started.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
-* [We build first. You decide later.](get-free-proof-of-concept.md)
 * [Signup](signup.md)
 * [Privacy-Policy](privacy-policy.md)
 

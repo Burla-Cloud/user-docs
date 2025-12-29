@@ -29,7 +29,7 @@ To try Burla in your cloud (not our cloud) see our [Getting-Started (Self-Hosted
 Currently, managed service deployments are manually created on an individual basis.\
 Expect a reply within the same day containing a link to your trial instance!
 
-\*Free trial credits only available to companies based in the USA.
+\*Free trial credits only available to qualified companies based in the USA.
 {% endhint %}
 
 ### FAQ:
@@ -52,7 +52,8 @@ All underlying cloud costs (compute, storage) are forwarded at current GCP price
 
 ### Have a workload in mind?  ->  Get a free proof of concept!
 
-We build custom demos to show how Burla can speed up and simplify your specific workload.\
+We build custom demos to show how Burla can speed up and simplify your specific workload.
+
 We've delivered plug and play examples for companies working on:
 
 * DNA analysis / genomic pipelining
@@ -61,6 +62,15 @@ We've delivered plug and play examples for companies working on:
 * Reinforcement learning simulations
 * Industrial CT-scan analysis
 
-Click the link below to learn more 👇
+#### Book a discovery call now:
 
-{% embed url="https://docs.burla.dev/we-build-first.-you-decide-later." %}
+{% embed url="https://cal.com/jakez/burla-discovery-call" %}
+
+&#x20;
+
+&#x20;
+
+***
+
+Questions?\
+[Schedule a call](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
