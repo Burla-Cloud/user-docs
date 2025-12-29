@@ -24,7 +24,7 @@ In this example we:
 * Run a DuckDB query on each file in parallel using a cluster with 10,000 CPUs.
 * Combine resulting dataframes to produce the final result!
 
-### What is the trillion row challenge?
+### Dataset: The trillion row challenge
 
 An extension of the [billion row challenge](https://github.com/gunnarmorling/1brc), the goal of the trillion row challenge is to compute the min, max, and mean temperature per weather station, for 413 unique stations, from data stored as a collection of parquet files in blob storage. Data looks like this (but with 1,000,000,000,000 rows):
 
@@ -176,13 +176,13 @@ At spot pricing N4-standard-80 machines cost $1.22/hour meaning this job cost ab
 
 ### What's the point?
 
-76s is a respectable time, but the real question I'm trying to answer is:\
-**If I were in the office on a busy day, and needed to process a bunch of stuff, what would I do?**\
-**How long would it take? and how expensive would it be?**
+76s is a solid time, but the real question I'm trying to answer is:\
+If I were in the office on a busy day, and needed to process a bunch of data, how long would it take?\
+and how expensive would it be? This includes time spent writing the code!
 
-Let's be honest, this isn't the most perfectly efficient solution in the world. Most of the time is spent downloading data, and while GCSFuse is convenient, it probably isn't maxing out the VM's network capacity.
+Let's be honest, most of the time in this demo is spent loading data, rather than crunching numbers.
 
-But, if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer for you around 5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
+However, if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer around 5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
 
 Not to mention, I'd do it all using an interface a beginner can understand!
 
@@ -192,13 +192,13 @@ Not to mention, I'd do it all using an interface a beginner can understand!
 
 <summary>Bonus: I think a time of &#x3C;5s is possible 👀</summary>
 
-As I mentioned earlier, I think the real result that matters is how quickly you could do this in a real world setting, without hyper-optimizing, including the time you spent writing code.
+I think the real result that matters is how quickly you could do this in a real world setting, without hyper-optimizing, including the time you spent writing code.
 
 But hyper-optimizing is fun! So how fast could it be?\
 Well, [Databricks was able to achieve a time of 64s](https://medium.com/dbsql-sme-engineering/1-trillion-row-challenge-on-databricks-sql-41a82fac5bed) using better compression that shrunk the dataset to 1.2TB. I think this is totally fair game given that's just how their system decided to store the data.
 
-What if we used the same compression format they did? AND 10,000 CPUs?\
-Well, we tested this, **and it took just 39s to complete!** (this code will be on our [GitHub](https://github.com/Burla-Cloud/burla) soon).
+What if we used the same compression format they did?\
+Well, we tested this, **and it took just 39s to complete!**
 
 Unfortunately, 1T rows in 39s is _SLOW_, how could we hit single digits?
 
