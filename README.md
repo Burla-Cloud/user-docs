@@ -26,14 +26,16 @@ It's a Python package that only has **one function**:
 
 <p align="center">This realtime example runs <code>my_function</code> on 1,000 separate computers in one second!</p>
 
-### Burla is simple, flexible, and scalable:
+### The full power of the cloud, in an easy to use, open platform:
+
+Burla is simple, flexible, and extremely scalable.
 
 * **Scalable:** [See our demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
 * **Flexible:** Runs any Python function, inside any Docker container, on any hardware.
 * **Easy to learn:** Burla is just one function, with two required arguments.
 
-In addition Burla is open-source, and can be deployed in your cloud using just [one command](get-started.md#quickstart-self-hosted).\
-The included web platform makes it easy to monitor long-running workloads or data-pipelines.
+In addition Burla is open-source, and can be deployed using just [one command](get-started.md#quickstart-self-hosted).\
+The included web platform makes it easy to monitor workloads and manage infrastructure.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
@@ -114,6 +116,10 @@ There are two ways to host Burla:
    First $1,000 in compute spend is free, try it now 👇
 
 {% embed url="https://docs.burla.dev/signup" %}
+
+&#x20;
+
+&#x20;
 
 ***
 
