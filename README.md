@@ -28,14 +28,14 @@ It's a Python package that only has **one function**:
 
 ### The full power of the cloud, in an easy to use, open platform:
 
-Burla is simple, flexible, and extremely scalable.
+Burla enables anyone, even total beginners, to harness the full power of the cloud:
 
-* **Scalable:** [See our demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
-* **Flexible:** Runs any Python function, inside any Docker container, on any hardware.
-* **Easy to learn:** Burla is just one function, with two required arguments.
+* **Scalability:** [See our demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB of parquet files in 76s using 10,000 CPUs.
+* **Flexibility:** Runs any Python function, inside any Docker container, on any hardware.
+* **Simplcity:** Burla is just one function, with two required arguments.
 
-In addition Burla is open-source, and can be deployed using just [one command](get-started.md#quickstart-self-hosted).\
-The included web platform makes it easy to monitor workloads and manage infrastructure.
+Easily monitor workloads and manage infrastructure from our open-source web platform.\
+Self-hosted Burla can be deployed in your cloud using a [single command](get-started.md#quickstart-self-hosted):
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
