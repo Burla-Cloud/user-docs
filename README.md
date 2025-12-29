@@ -115,9 +115,9 @@ There are two ways to host Burla:
 
 {% embed url="https://docs.burla.dev/signup" %}
 
-### Have a workload in mind?  ->  Let us create a custom example!
+### Have a workload in mind?  ->  Get a free proof of concept!
 
-We build custom demos to show how Burla can speed up and simplify your specific workload.\
+We build custom POC's to show how Burla can speed up and simplify your specific workload.\
 We've delivered plug and play examples for companies working on:
 
 * DNA analysis / genomic pipelining

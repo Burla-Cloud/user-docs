@@ -20,8 +20,8 @@ layout:
 
 ### Get a free proof of concept:
 
-Schedule a call and we'll build a functional proof of concept specific to your problem.\
-We've delivered plug and play, production-ready systems for companies working on:
+Let us show how Burla can speed up and simplify your specific workload.\
+We've delivered plug and play examples for companies working on:
 
 * DNA analysis / genomic pipelining
 * Medical image processing for ML
