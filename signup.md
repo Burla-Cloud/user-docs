@@ -56,7 +56,6 @@ We've delivered plug and play examples for companies working on:
 * DNA analysis / genomic pipelining
 * Medical image processing for ML
 * Video game replay analysis
-* Reinforcement learning simulations
 * Industrial CT-scan analysis
 
 Book a discovery call here: [cal.com/jakez/burla-discovery-call](https://cal.com/jakez/burla-discovery-call)&#x20;
