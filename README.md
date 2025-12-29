@@ -20,7 +20,7 @@ layout:
 ### Enable anyone to process terabytes of data in minutes.
 
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
-It's a Python package that only has **one function**:
+It's a package that only has **one function**:
 
 <figure><img src=".gitbook/assets/main_demo.gif" alt=""><figcaption></figcaption></figure>
 
