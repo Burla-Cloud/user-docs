@@ -71,7 +71,8 @@ Burla clusters automatically (and very quickly) install any missing python packa
 
 #### 🐋 Custom Containers
 
-Easily run code in any Docker container. Public or private, just paste an image URI in the settings, then hit start!
+Easily run code in any Docker container.\
+Public or private, just paste an image URI in the settings, then hit start!
 {% endcolumn %}
 
 {% column width="50%" %}
