@@ -58,7 +58,7 @@ We've delivered plug and play examples for companies working on:
 * Video game replay analysis
 * Industrial CT-scan analysis
 
-Book a discovery call here: [cal.com/jakez/burla-discovery-call](https://cal.com/jakez/burla-discovery-call)&#x20;
+Book a discovery call here: [https://cal.com/jakez/burla](https://cal.com/jakez/burla)
 
 &#x20;
 
