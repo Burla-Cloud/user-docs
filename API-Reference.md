@@ -121,11 +121,14 @@ Burla can be installed with either of the following roles:
 
 Burla can be installed by users having the following generic roles:
 
-1. Service Usage Admin (`roles/serviceusage.serviceUsageAdmin`)
-2. Cloud Run Admin (`roles/run.admin`)
-3. Compute Network Admin (`roles/compute.networkAdmin`)
-4. Secret Manager Admin (`roles/secretmanager.admin`)
-5. Firestore Database Admin (`roles/datastore.owner`)
+1. Service Usage Admin (roles/serviceusage.serviceUsageAdmin)
+2. Cloud Run Admin (roles/run.admin)
+3. Compute Network Admin (roles/compute.networkAdmin)
+4. Secret Manager Admin (roles/secretmanager.admin)
+5. Service Account Admin (roles/iam.serviceAccountAdmin)
+6. Service Account Key Admin (roles/iam.serviceAccountKeyAdmin)
+7. Project IAM Admin (roles/resourcemanager.projectIamAdmin)
+8. Firestore / Datastore Owner (roles/datastore.owner)
 
 </details>
 
