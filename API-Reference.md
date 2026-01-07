@@ -108,10 +108,7 @@ Any of these three permission set's will work.
 
 <summary>Simplest possible permissions</summary>
 
-Burla can be installed with either of the following roles:
-
-* Project Owner (`roles/owner`)
-* Project Editor (`roles/editor`)
+Burla can be installed by users having the project editor (`roles/editor`) role.
 
 </details>
 
@@ -134,9 +131,21 @@ Burla can be installed by users having the following generic roles:
 
 <details>
 
-<summary>Exact minimum required permissions (very specific)</summary>
+<summary>Exact minimum required permissions (very specific) (IAM role definition)</summary>
 
-Here is an IAM role definition for this permission set:
+Below is an IAM role definition for this minimum installer permission set.
+
+To create this IAM role, put the lower text in a file called `burla-installer-role.yaml`.\
+Then run the following command:
+
+```bash
+PROJECT_ID="$(gcloud config get-value project)"
+gcloud iam roles create burlaInstaller \
+  --project "$PROJECT_ID" \
+  --file burla-installer-role.yaml
+```
+
+Contents of `burla-installer-role.yaml`:
 
 ```yaml
 title: "Burla Installer"
@@ -201,6 +210,9 @@ includedPermissions:
 ```
 
 </details>
+
+These permissions are only required to **install** Burla, they are **not** granted to the Burla service itself.\
+Upon install Burla creates a service account for itself having [this minimum set of permissions](https://github.com/Burla-Cloud/burla/blob/2e027b57c9e9309587b89a1024c84851998304db/client/src/burla/_install.py#L427-L453).
 
 {% hint style="info" %}
 On install, your Google account (the one you are currently logged in to `gcloud` with) is set as the only account authorized to access this new Burla deployment.
