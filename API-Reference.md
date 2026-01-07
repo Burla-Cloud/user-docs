@@ -133,54 +133,68 @@ Burla can be installed by users having the following generic roles:
 
 <summary>Exact minimum required permissions (very specific)</summary>
 
-1. Service Usage API (`serviceusage.googleapis.com`):
-   * `serviceusage.services.enable` for enabling:
-     * `compute.googleapis.com`
-     * `run.googleapis.com`
-     * `firestore.googleapis.com`
-     * `cloudresourcemanager.googleapis.com`
-     * `secretmanager.googleapis.com`
-2. Compute Engine API (`compute.googleapis.com`):
-   * `compute.firewalls.create`
-   * `compute.firewalls.get` (to check if firewall rule exists)
-   * `compute.networks.updatePolicy`
-3. Secret Manager API (`secretmanager.googleapis.com`):
-   * `secretmanager.secrets.create`
-   * `secretmanager.secrets.get`
-   * `secretmanager.versions.add`
-4. Firestore API (`firestore.googleapis.com`):
-   * `datastore.databases.create`
-   * `datastore.databases.get`
-   * `datastore.documents.create`
-   * `datastore.documents.write`
-5. Cloud Run API (`run.googleapis.com`):
-   * `run.services.create`
-   * `run.services.update`
-   * `run.services.get`
-   * `run.services.setIamPolicy` (for --allow-unauthenticated flag)
-
 Here is an IAM role definition for this permission set:
 
 ```yaml
-title: "Burla Installation Role"
-description: "Minimum permissions needed to install Burla"
+title: "Burla Installer"
+description: "Minimum permissions required to install Burla"
 stage: "GA"
 includedPermissions:
-- serviceusage.services.enable
-- compute.firewalls.create
-- compute.firewalls.get
-- compute.networks.updatePolicy
-- secretmanager.secrets.create
-- secretmanager.secrets.get
-- secretmanager.versions.add
-- datastore.databases.create
-- datastore.databases.get
-- datastore.documents.create
-- datastore.documents.write
-- run.services.create
-- run.services.update
-- run.services.get
-- run.services.setIamPolicy
+  # Enable required APIs
+  - serviceusage.services.enable
+  - serviceusage.services.get
+  - serviceusage.services.list
+
+  # Read project number + set project IAM bindings
+  - resourcemanager.projects.get
+  - resourcemanager.projects.getIamPolicy
+  - resourcemanager.projects.setIamPolicy
+
+  # Firewall rule for cluster nodes
+  - compute.firewalls.create
+  - compute.firewalls.get
+  - compute.firewalls.list
+
+  # Create bucket + set CORS
+  - storage.buckets.create
+  - storage.buckets.get
+  - storage.buckets.list
+  - storage.buckets.update
+
+  # Secret for cluster token + IAM bindings + versions
+  - secretmanager.secrets.create
+  - secretmanager.secrets.get
+  - secretmanager.secrets.list
+  - secretmanager.secrets.getIamPolicy
+  - secretmanager.secrets.setIamPolicy
+  - secretmanager.versions.add
+  - secretmanager.versions.access
+
+  # Create service accounts, grant them roles, rotate keys, and use them for Cloud Run deploy
+  - iam.serviceAccounts.create
+  - iam.serviceAccounts.get
+  - iam.serviceAccounts.list
+  - iam.serviceAccounts.getIamPolicy
+  - iam.serviceAccounts.setIamPolicy
+  - iam.serviceAccounts.actAs
+  - iam.serviceAccountKeys.create
+  - iam.serviceAccountKeys.list
+  - iam.serviceAccountKeys.delete
+
+  # Create Firestore database + write initial config doc via Firestore client
+  - datastore.databases.create
+  - datastore.databases.get
+  - datastore.entities.create
+  - datastore.entities.update
+  - datastore.entities.get
+
+  # Deploy and configure Cloud Run service (incl --allow-unauthenticated + describe/update-traffic)
+  - run.services.create
+  - run.services.get
+  - run.services.list
+  - run.services.update
+  - run.services.getIamPolicy
+  - run.services.setIamPolicy
 ```
 
 </details>
