@@ -155,7 +155,7 @@ includedPermissions:
   - compute.firewalls.get
   - compute.firewalls.list
 
-  # Create bucket + set CORS
+  # Create + manage bucket
   - storage.buckets.create
   - storage.buckets.get
   - storage.buckets.list
@@ -188,7 +188,7 @@ includedPermissions:
   - datastore.entities.update
   - datastore.entities.get
 
-  # Deploy and configure Cloud Run service (incl --allow-unauthenticated + describe/update-traffic)
+  # Deploy and configure Cloud Run service
   - run.services.create
   - run.services.get
   - run.services.list
