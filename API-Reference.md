@@ -131,7 +131,7 @@ Burla can be installed by users having the following generic roles:
 
 <details>
 
-<summary>Exact minimum required permissions (very specific) (IAM role definition)</summary>
+<summary>Exact minimum required permissions (very specific) (IAM role)</summary>
 
 Below is an IAM role definition for this minimum installer permission set.
 
