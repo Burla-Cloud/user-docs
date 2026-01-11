@@ -27,7 +27,8 @@ Once our machines are have booted, we can call `remote_parallel_map` !
 
 ### Step 2: download prerequisite data
 
-This code downloads the reference genome, BPM / EGT files, and sample info, then saves it all to `./shared` which is sync'd with the file explorer in the dashboard and Google Cloud Storage.
+This code downloads the reference genome, and BPM / EGT files then saves it all to `./shared`.\
+This directory is network linked to a Google Cloud Storage bucket using GCSFuse.
 
 <details>
 
@@ -60,23 +61,25 @@ illumina_base_url = "https://webdata.illumina.com/downloads/productfiles/global-
 BPM_URL = f"{illumina_base_url}/infinium-global-screening-array-v1-0-c1-manifest-file-bpm-build37.zip"
 CLUSTER_URL = f"{illumina_base_url}/infinium-global-screening-array-v1-0-c1-cluster-file.zip"
 # filepaths
-REF_PATH = Path("shared/idat_to_pgen_demo/human_g1k_v37.fasta")
+REF_PATH = Path("shared/idat_to_pgen_pipeline/human_g1k_v37.fasta")
 REF_GZ_PATH = REF_PATH.with_suffix(".fasta.gz")
 REF_FAI_PATH = REF_PATH.with_suffix(".fasta.fai")
-BPM_PATH = Path("shared/idat_to_pgen_demo/GSA-24v1-0_C1.bpm")
-EGT_PATH = Path("shared/idat_to_pgen_demo/GSA-24v1-0_C1_ClusterFile.egt")
+BPM_PATH = Path("shared/idat_to_pgen_pipeline/GSA-24v1-0_C1.bpm")
+EGT_PATH = Path("shared/idat_to_pgen_pipeline/GSA-24v1-0_C1_ClusterFile.egt")
 ```
 
 </details>
 
 ```python
 def download_prerequisite_data(_):
+    Path("shared/idat_to_pgen_pipeline").mkdir(parents=True, exist_ok=True)
+    
     # download bpm / cluster files:
     if not BPM_PATH.exists():
         bpm_zip = zipfile.ZipFile(io.BytesIO(requests.get(BPM_URL).content))
         cluster_zip = zipfile.ZipFile(io.BytesIO(requests.get(CLUSTER_URL).content))
-        bpm_zip.extractall("shared/idat_to_pgen_demo")
-        cluster_zip.extractall("shared/idat_to_pgen_demo")
+        bpm_zip.extractall("shared/idat_to_pgen_pipeline")
+        cluster_zip.extractall("shared/idat_to_pgen_pipeline")
 
     # download / unzip reference genome:
     if not REF_PATH.with_suffix(".fasta.gz").exists():
@@ -96,43 +99,48 @@ def download_prerequisite_data(_):
 sample_info = remote_parallel_map(download_prerequisite_data, [None])[0]
 ```
 
-After downloading this data we can see it in the Filesystem tab in the dashboard:
+After downloading this data, it appears in the Filesystem tab in the dashboard: (GCS)
 
-\~screenshot\~
+<figure><img src="../.gitbook/assets/CleanShot 2026-01-11 at 12.40.39.png" alt=""><figcaption></figcaption></figure>
 
 ### Step 3: Download IDAT files for all 360 samples in parallel
 
-This code uses 720 parallel 1-CPU containers to download the red/green IDAT for each sample.
+This code uses 720 parallel 1-CPU containers to download the red & green IDAT file for each sample.
 
-```python
-def download_single_idat_file(_id, cell_line, replicate, color):
-    idat_path = Path(f"shared/idat_to_pgen_demo/{_id}/{cell_line}_{replicate}_{color}.idat")
+<pre class="language-python"><code class="lang-python">def download_single_idat_file(_id, cell_line, replicate, color):
+    idat_path = Path(f"shared/idat_to_pgen_pipeline/{_id}/{cell_line}_{replicate}_{color}.idat")
     idat_path.parent.mkdir(parents=True, exist_ok=True)
-    if not idat_path.exists():
-        url = f"https://www.ncbi.nlm.nih.gov/geo/download/?acc={_id}"
-        url += f"&format=file&file={_id}%5F{cell_line}%5F{replicate}%5F{color}%2Eidat%2Egz"
+<strong>    if not idat_path.exists():
+</strong>        url = f"https://www.ncbi.nlm.nih.gov/geo/download/?acc={_id}"
+        url += f"&#x26;format=file&#x26;file={_id}%5F{cell_line}%5F{replicate}%5F{color}%2Eidat%2Egz"
         with gzip.open(io.BytesIO(requests.get(url).content)) as f_in, idat_path.open("wb") as f_out:
             f_out.write(f_in.read())
 
 sample_info_colored = [(*a, color) for a in sample_info for color in ("Grn", "Red")]
 remote_parallel_map(download_single_idat_file, sample_info_colored)
-```
+</code></pre>
 
-Folders with Red/Green IDAT's for each sample are now visible in the Filesystem UI:
+Folders with Red/Green IDAT's for each sample are now visible in the Filesystem tab:
 
-\~screenshot\~
+<figure><img src="../.gitbook/assets/result2 (1).gif" alt=""><figcaption></figcaption></figure>
 
 ### Step 4: Call and align all samples in parallel
 
-This code uses 360 parallel containers each with 8 CPUs and 32G of RAM.
+This code uses 360 parallel containers each with 8 CPUs and 32G of RAM.\
+For each pair of IDAT files this code:
+
+* Performs base calling and genotype clustering with `bcftools +idat2gtc`&#x20;
+* Aligns to a reference genome with `bcftools +gtc2vcf`&#x20;
+* Filters to retain only biallelic variants with `bcftools view -m2 -M2`&#x20;
+* Converts the VCF into PLINK BED, BIM, and FAM files using `plink`
 
 ```python
 def convert_idats_to_plink_bed_format(_id, cell_line, replicate):
-    gtc_path = Path(f"shared/idat_to_pgen_demo/{_id}/{cell_line}_{replicate}.gtc")
+    gtc_path = Path(f"shared/idat_to_pgen_pipeline/{_id}/{cell_line}_{replicate}.gtc")
     vcf_path = gtc_path.with_suffix(".vcf")
 
     # Convert green & red IDAT to single GTC
-    _run_cmd(f"bcftools +idat2gtc --bpm {BPM_PATH} --egt {EGT_PATH} --idats shared/idat_to_pgen_demo/{_id}", print_output=True)
+    _run_cmd(f"bcftools +idat2gtc --bpm {BPM_PATH} --egt {EGT_PATH} --idats shared/idat_to_pgen_pipeline/{_id}", print_output=True)
     move(f"{cell_line}_{replicate}.gtc", gtc_path)
 
     # Convert GTC to VCF
@@ -149,16 +157,20 @@ def convert_idats_to_plink_bed_format(_id, cell_line, replicate):
 remote_parallel_map(convert_idats_to_plink_bed_format, sample_info, func_cpu=8)
 ```
 
+Each sample's folder now contains output from the above commands:
+
+<figure><img src="../.gitbook/assets/CleanShot 2026-01-11 at 13.00.49.png" alt=""><figcaption></figcaption></figure>
+
 ### Step 5: Merge samples into a single PGEN/PVAR/PSAM file.
 
 This code uses a single container with 80 CPUs and 320G of RAM.
 
 ```python
-MERGED_PATH = "shared/idat_to_pgen_demo/merged"
+MERGED_PATH = "shared/idat_to_pgen_pipeline/merged"
 
 def combine_bed_files_into_pgen_file(sample_info):
     # Merge bed files into one big bed file
-    mergelist = [f"shared/idat_to_pgen_demo/{_id}/{cl}_{r}" for _id, cl, r in sample_info]
+    mergelist = [f"shared/idat_to_pgen_pipeline/{_id}/{cl}_{r}" for _id, cl, r in sample_info]
     mergelist_path = Path("merge_list.txt")
     mergelist_path.write_text("\n".join(mergelist))
     cmd = f"plink --bfile {mergelist[0]} --merge-list {mergelist_path} --out {MERGED_PATH} --allow-extra-chr --biallelic-only strict"
@@ -169,7 +181,20 @@ def combine_bed_files_into_pgen_file(sample_info):
 _ = remote_parallel_map(combine_bed_files_into_pgen_file, [sample_info], func_cpu=80, func_ram=320)
 ```
 
-After running the PGEN/PVAR/PSAM files are available for download in the Filesystem UI.<br>
+After running the PGEN/PVAR/PSAM files are available for download in the Filesystem tab! (GCS)
 
+<figure><img src="../.gitbook/assets/CleanShot 2026-01-11 at 13.09.29.png" alt=""><figcaption></figcaption></figure>
 
+### Want to modify or run this code?
 
+This demo is available as a Google Colab notebook here:\
+[https://colab.research.google.com/drive/1lEbeGOoowZ9FKA9yctziWyhH6TvLuxTi?usp=sharing](https://colab.research.google.com/drive/1lEbeGOoowZ9FKA9yctziWyhH6TvLuxTi?usp=sharing)
+
+The notebook contains instructions to get Burla up and running as well as run the demo.\
+Don't hesitate to email me (jake@burla.dev) if you get stuck! Thank you for trying Burla!
+
+&#x20;
+
+&#x20;
+
+&#x20;
