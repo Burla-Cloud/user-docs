@@ -107,18 +107,19 @@ After downloading this data, it appears in the Filesystem tab in the dashboard: 
 
 This code uses 720 parallel 1-CPU containers to download the red & green IDAT file for each sample.
 
-<pre class="language-python"><code class="lang-python">def download_single_idat_file(_id, cell_line, replicate, color):
+```python
+def download_single_idat_file(_id, cell_line, replicate, color):
     idat_path = Path(f"shared/idat_to_pgen_pipeline/{_id}/{cell_line}_{replicate}_{color}.idat")
     idat_path.parent.mkdir(parents=True, exist_ok=True)
-<strong>    if not idat_path.exists():
-</strong>        url = f"https://www.ncbi.nlm.nih.gov/geo/download/?acc={_id}"
-        url += f"&#x26;format=file&#x26;file={_id}%5F{cell_line}%5F{replicate}%5F{color}%2Eidat%2Egz"
+    if not idat_path.exists():
+        url = f"https://www.ncbi.nlm.nih.gov/geo/download/?acc={_id}"
+        url += f"&format=file&file={_id}%5F{cell_line}%5F{replicate}%5F{color}%2Eidat%2Egz"
         with gzip.open(io.BytesIO(requests.get(url).content)) as f_in, idat_path.open("wb") as f_out:
             f_out.write(f_in.read())
 
 sample_info_colored = [(*a, color) for a in sample_info for color in ("Grn", "Red")]
 remote_parallel_map(download_single_idat_file, sample_info_colored)
-</code></pre>
+```
 
 Folders with Red/Green IDAT's for each sample are now visible in the Filesystem tab:
 
@@ -185,7 +186,7 @@ After running the PGEN/PVAR/PSAM files are available for download in the Filesys
 
 <figure><img src="../.gitbook/assets/CleanShot 2026-01-11 at 13.09.29.png" alt=""><figcaption></figcaption></figure>
 
-### Want to modify or run this code?
+### Want to run this code yourself?
 
 This demo is available as a Google Colab notebook here:\
 [https://colab.research.google.com/drive/1lEbeGOoowZ9FKA9yctziWyhH6TvLuxTi?usp=sharing](https://colab.research.google.com/drive/1lEbeGOoowZ9FKA9yctziWyhH6TvLuxTi?usp=sharing)
