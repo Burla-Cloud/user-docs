@@ -84,7 +84,9 @@ Each party agrees to keep confidential any non-public business, technical, or op
 
 #### 9. Termination, Cancellation, and Data Deletion
 
-Customer may cancel any subscription at any time. Cancellation will be effective at the end of the then-current billing period, provided that cancellation occurs at least **seven (7) days prior to the start of the next billing period**. Customer will not be charged for subsequent billing periods. Fees paid for the current billing period are non-refundable.
+Subscriptions **renew automatically** on a monthly basis unless cancelled in accordance with this Section. For purposes of this Agreement, a “subscription” means Customer’s ongoing, recurring access to the Service billed on a monthly basis.
+
+Customer may cancel any subscription at any time. Cancellation will be effective at the end of the then-current billing period, provided that cancellation occurs **at least seven (7) days** prior to the start of the next billing period. Customer will not be charged for subsequent billing periods. Fees paid for the current billing period are non-refundable.
 
 Burla may suspend or terminate access to the Service for non-payment, misuse, or security risk.
 
