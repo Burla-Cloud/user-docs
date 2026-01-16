@@ -6,7 +6,7 @@
 * [About](about.md)
 * [Signup](signup.md)
 * [Privacy-Policy](privacy-policy.md)
-* [Burla Terms of Service](burla-terms-of-service.md)
+* [Software as a Service Agreement](software-as-a-service-agreement.md)
 
 ## Examples
 
