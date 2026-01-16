@@ -9,7 +9,7 @@ This Software as a Service Agreement (“Agreement”) governs access to and use
 
 #### Acceptance
 
-This Agreement is accepted electronically by Customer upon any of the following:\
+This Agreement is accepted by Customer upon any of the following:\
 (a) approval of a quote issued by Burla,\
 (b) completion of payment through Burla’s Stripe-hosted payment portal,\
 (c) payment of an invoice issued by Burla through Stripe, or\
