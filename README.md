@@ -28,15 +28,15 @@ It's a package that only has **one function**: \`remote\_parallel\_map\`
 
 <p align="center">This realtime example runs <code>my_function</code> on 1,000 separate computers in one second!</p>
 
-### The full power of the cloud, in an easy to use, open platform:
+### The full power of the cloud. In a simple, open-source platform:
 
 Burla enables anyone, even total beginners, to harness the full power of the cloud:
 
-* **Scalable:** See our [demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB in 76s using 10,000 CPUs.
-* **Flexible:** Runs any Python function, inside any Docker container, on any hardware.
+* **Scalable:** See our [demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB in 76s using 10,000 CPUs!
+* **Flexible:** Run any code, inside any Docker container, on any hardware.
 * **Simple:** Burla is just one function, with two required arguments.
 
-Easily monitor workloads, and manage infrastructure from our open-source web dashboard:
+Easily monitor workloads, infrastructure, and manage data from our self-hostable dashboard:
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
