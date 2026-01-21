@@ -24,7 +24,7 @@ It's a package that only has **one function**: \`remote\_parallel\_map\`
 
 <figure><img src=".gitbook/assets/CleanShot 2026-01-18 at 15.07.24.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/terminal_rounded.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/final_terminal_with_header_rounded.gif" alt=""><figcaption></figcaption></figure>
 
 <p align="center">This realtime example runs <code>my_function</code> on 1,000 separate computers in one second!</p>
 
