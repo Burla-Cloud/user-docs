@@ -41,6 +41,7 @@ Make sure you have already:
 3. started your cluster in the Burla dashboard
 
 If you’re new to `/workspace/shared`, start with [Read and Write GCS Files](read-and-write-gcs-files.md).
+If you’re new to `func_cpu` and `func_ram`, start with [Run code on one big cloud machine.](run-code-on-one-big-cloud-machine.md)
 
 ## Step 1 (Map): Write one file per input
 
@@ -65,6 +66,8 @@ This creates 5 files in `/workspace/shared/map-reduce-demo/parts/`.
 
 ## Step 2 (Reduce): Combine all files into one file
 
+The reduce step runs once, so it is a common place to use a bigger machine (more CPU / RAM).
+
 ```python
 from pathlib import Path
 from burla import remote_parallel_map
@@ -81,7 +84,12 @@ def combine_part_files(part_paths):
     return output_file_path
 
 
-output_file_paths = remote_parallel_map(combine_part_files, [part_file_paths])
+output_file_paths = remote_parallel_map(
+    combine_part_files,
+    [part_file_paths],
+    func_cpu=8,
+    func_ram=32,
+)
 print(output_file_paths[0])
 ```
 
