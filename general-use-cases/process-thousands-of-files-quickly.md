@@ -1,5 +1,5 @@
 ---
-description: A beginner-friendly pattern for processing many files in parallel.
+description: A pattern for processing many files in parallel.
 layout:
   width: default
   title:
@@ -34,7 +34,7 @@ Make sure you have already:
 2. connected your machine: `burla login`
 3. started your cluster in the Burla dashboard
 
-If you are new to the shared filesystem, read [Read and Write GCS Files](../common-patterns/read-and-write-gcs-files.md).
+For shared filesystem details, read [Read and Write GCS Files](../common-patterns/read-and-write-gcs-files.md).
 
 ## Step 1: Build a list of file paths
 

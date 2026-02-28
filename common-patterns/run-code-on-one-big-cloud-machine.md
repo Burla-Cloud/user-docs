@@ -1,5 +1,5 @@
 ---
-description: A beginner-friendly example for running one function call on a bigger machine with func_cpu and func_ram.
+description: An example for running one function call on a bigger machine with func_cpu and func_ram.
 layout:
   width: default
   title:

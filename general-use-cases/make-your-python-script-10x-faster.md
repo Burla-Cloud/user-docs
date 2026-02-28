@@ -1,5 +1,5 @@
 ---
-description: A beginner-friendly guide for turning slow Python loops into fast parallel cloud jobs.
+description: A guide for turning slow Python loops into fast parallel cloud jobs.
 layout:
   width: default
   title:

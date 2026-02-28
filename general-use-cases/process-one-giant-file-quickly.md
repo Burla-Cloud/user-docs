@@ -1,5 +1,5 @@
 ---
-description: A beginner-friendly guide for splitting one large file into chunks and processing chunks in parallel.
+description: A guide for splitting one large file into chunks and processing chunks in parallel.
 layout:
   width: default
   title:

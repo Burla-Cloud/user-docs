@@ -1,5 +1,5 @@
 ---
-description: A beginner-friendly way to process database rows in parallel by splitting work into ID ranges.
+description: A way to process database rows in parallel by splitting work into ID ranges.
 layout:
   width: default
   title:

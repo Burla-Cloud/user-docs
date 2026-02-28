@@ -1,5 +1,5 @@
 ---
-description: A beginner-friendly map-reduce pattern for combining many outputs into one file.
+description: A map-reduce pattern for combining many outputs into one file.
 layout:
   width: default
   title:
@@ -40,8 +40,8 @@ Make sure you have already:
 2. connected your machine: `burla login`
 3. started your cluster in the Burla dashboard
 
-If you’re new to `/workspace/shared`, start with [Read and Write GCS Files](read-and-write-gcs-files.md).
-If you’re new to `func_cpu` and `func_ram`, start with [Run code on one big cloud machine.](run-code-on-one-big-cloud-machine.md)
+For `/workspace/shared` details, start with [Read and Write GCS Files](read-and-write-gcs-files.md).
+For `func_cpu` and `func_ram`, start with [Run code on one big cloud machine.](run-code-on-one-big-cloud-machine.md)
 
 ## Step 1 (Map): Write one file per input
 
