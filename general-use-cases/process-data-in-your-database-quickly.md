@@ -46,20 +46,13 @@ Start with ranges that do not overlap.
 
 ```python
 def build_id_ranges(start_id, end_id, rows_per_range):
-    id_ranges = []
-    range_start_id = start_id
-
-    while range_start_id <= end_id:
-        range_end_id = min(range_start_id + rows_per_range - 1, end_id)
-        id_ranges.append((range_start_id, range_end_id))
-        range_start_id = range_end_id + 1
-
-    return id_ranges
+    return [
+        (range_start_id, min(range_start_id + rows_per_range - 1, end_id))
+        for range_start_id in range(start_id, end_id + 1, rows_per_range)
+    ]
 
 
-id_ranges = build_id_ranges(start_id=1, end_id=1_000_000, rows_per_range=25_000)
-print(f"Created {len(id_ranges)} ranges")
-print(id_ranges[:3])
+id_ranges = build_id_ranges(start_id=1, end_id=100_000, rows_per_range=10_000)
 ```
 
 ## Step 2: Write one function that processes one range
@@ -73,36 +66,20 @@ import psycopg2
 def process_id_range(id_range):
     start_id, end_id = id_range
 
-    connection = psycopg2.connect(
-        host="YOUR_DB_HOST",
-        port=5432,
-        dbname="YOUR_DB_NAME",
-        user="YOUR_DB_USER",
-        password="YOUR_DB_PASSWORD",
-    )
-    cursor = connection.cursor()
+    with psycopg2.connect(
+        host="localhost",
+        dbname="app",
+        user="app",
+        password="app",
+    ) as connection:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT amount FROM orders WHERE id BETWEEN %s AND %s",
+                (start_id, end_id),
+            )
+            amounts = [row[0] for row in cursor.fetchall()]
 
-    cursor.execute(
-        """
-        SELECT id, amount
-        FROM orders
-        WHERE id BETWEEN %s AND %s
-        """,
-        (start_id, end_id),
-    )
-    rows = cursor.fetchall()
-
-    total_amount = sum(row[1] for row in rows)
-
-    cursor.close()
-    connection.close()
-
-    return {
-        "start_id": start_id,
-        "end_id": end_id,
-        "row_count": len(rows),
-        "total_amount": float(total_amount),
-    }
+    return {"row_count": len(amounts), "total_amount": float(sum(amounts))}
 ```
 
 ## Step 3: Run all ranges in parallel
@@ -113,8 +90,6 @@ Pass the list of ranges to `remote_parallel_map`.
 from burla import remote_parallel_map
 
 range_results = remote_parallel_map(process_id_range, id_ranges)
-print(f"Finished {len(range_results)} ranges")
-print(range_results[:2])
 ```
 
 ## Step 4: Combine the range results
@@ -122,12 +97,8 @@ print(range_results[:2])
 Now compute one final total from all range outputs.
 
 ```python
-total_rows = 0
-total_amount = 0.0
-
-for range_result in range_results:
-    total_rows += range_result["row_count"]
-    total_amount += range_result["total_amount"]
+total_rows = sum(range_result["row_count"] for range_result in range_results)
+total_amount = sum(range_result["total_amount"] for range_result in range_results)
 
 print(f"Total rows processed: {total_rows}")
 print(f"Total amount: {total_amount}")
@@ -138,9 +109,10 @@ print(f"Total amount: {total_amount}")
 Always test first with a small ID window.
 
 ```python
-small_test_ranges = build_id_ranges(start_id=1, end_id=50_000, rows_per_range=10_000)
-small_test_results = remote_parallel_map(process_id_range, small_test_ranges)
-print(small_test_results)
+from burla import remote_parallel_map
+
+small_test_ranges = build_id_ranges(start_id=1, end_id=5_000, rows_per_range=1_000)
+remote_parallel_map(process_id_range, small_test_ranges)
 ```
 
 After small tests succeed, run your full range list.

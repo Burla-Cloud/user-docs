@@ -43,11 +43,7 @@ Start with a list of input files.
 ```python
 from pathlib import Path
 
-input_directory = Path("/workspace/shared/logs/raw")
-input_file_paths = sorted(str(path) for path in input_directory.glob("*.txt"))
-
-print(f"Found {len(input_file_paths)} files")
-print(input_file_paths[:3])
+input_file_paths = [str(path) for path in Path("/workspace/shared/logs/raw").glob("*.txt")]
 ```
 
 Each path in the list becomes one parallel function call.
@@ -62,17 +58,10 @@ from pathlib import Path
 
 def count_error_lines(input_file_path):
     input_path = Path(input_file_path)
-    output_directory = Path("/workspace/shared/logs/processed")
-    output_directory.mkdir(parents=True, exist_ok=True)
-
-    output_path = output_directory / f"{input_path.stem}-summary.txt"
-    error_count = 0
-
-    for line in input_path.read_text().splitlines():
-        if "ERROR" in line:
-            error_count += 1
-
-    output_path.write_text(f"error_count={error_count}\n")
+    output_path = Path("/workspace/shared/logs/processed") / f"{input_path.stem}.txt"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    error_count = sum("ERROR" in line for line in input_path.read_text().splitlines())
+    output_path.write_text(f"{error_count}\n")
     return str(output_path)
 ```
 
@@ -84,8 +73,6 @@ Use `remote_parallel_map` with your function and file path list.
 from burla import remote_parallel_map
 
 processed_file_paths = remote_parallel_map(count_error_lines, input_file_paths)
-print(f"Created {len(processed_file_paths)} output files")
-print(processed_file_paths[:3])
 ```
 
 ## Step 4: Combine the per-file outputs into one report
@@ -98,9 +85,7 @@ from pathlib import Path
 total_error_count = 0
 
 for processed_file_path in processed_file_paths:
-    line = Path(processed_file_path).read_text().strip()
-    error_count = int(line.split("=")[1])
-    total_error_count += error_count
+    total_error_count += int(Path(processed_file_path).read_text().strip())
 
 final_report_path = Path("/workspace/shared/logs/final/error-report.txt")
 final_report_path.parent.mkdir(parents=True, exist_ok=True)
@@ -114,9 +99,9 @@ print(final_report_path)
 Before you run thousands of files, test with a small subset first.
 
 ```python
-small_test_paths = input_file_paths[:20]
-test_outputs = remote_parallel_map(count_error_lines, small_test_paths)
-print(f"Test outputs: {len(test_outputs)}")
+from burla import remote_parallel_map
+
+remote_parallel_map(count_error_lines, input_file_paths[:20])
 ```
 
 When the small test works, run the full list.

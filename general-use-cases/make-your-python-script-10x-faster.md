@@ -37,7 +37,7 @@ A good first target is work that looks like this:
 ```python
 from time import sleep
 
-items = list(range(20))
+items = [1, 2, 3]
 results = []
 
 for item in items:
@@ -76,7 +76,7 @@ def square_number(number):
     return number * number
 
 
-numbers = list(range(20))
+numbers = [1, 2, 3]
 results = remote_parallel_map(square_number, numbers)
 print(results)
 ```
@@ -124,7 +124,7 @@ def square_number(number):
     return number * number
 
 
-numbers = list(range(20))
+numbers = [1, 2, 3]
 
 start_time = perf_counter()
 local_results = [square_number(number) for number in numbers]
@@ -134,8 +134,8 @@ start_time = perf_counter()
 remote_results = remote_parallel_map(square_number, numbers)
 remote_elapsed_seconds = perf_counter() - start_time
 
-print(f"Local time: {local_elapsed_seconds:.2f}s")
-print(f"Burla time: {remote_elapsed_seconds:.2f}s")
+print(local_elapsed_seconds)
+print(remote_elapsed_seconds)
 print(local_results == remote_results)
 ```
 
