@@ -13,7 +13,7 @@ It's a package that only has **one function**: \`remote\_parallel\_map\`
 
 ### The full power of the cloud. In a simple, open-source platform:
 
-Burla enables teams to harness the full power of the cloud:
+Burla enables anyone, even total beginners, to harness the full power of the cloud:
 
 * **Scalable:** See our [demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB in 76s using 10,000 CPUs!
 * **Flexible:** Run any code, inside any Docker container, on any hardware.

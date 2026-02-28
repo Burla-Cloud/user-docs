@@ -170,7 +170,7 @@ Let's be honest, most of the time in this demo is spent loading data, rather tha
 
 However, if I were in the office, and you asked me to get you the min/mean/max per station, assuming I'd never heard of this challenge before, I'd have an answer around 5 minutes later, and for less than $10. In my opinion this is the real result, and I think it's an impressive one!
 
-Not to mention, I'd do it all using an interface that stays simple under pressure!
+Not to mention, I'd do it all using an interface a beginner can understand!
 
 
 
