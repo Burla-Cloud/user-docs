@@ -1,20 +1,3 @@
----
-layout:
-  width: default
-  title:
-    visible: false
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: false
-  pagination:
-    visible: false
-  metadata:
-    visible: false
----
-
 # Welcome
 
 ### Enable anyone to process terabytes of data in minutes.

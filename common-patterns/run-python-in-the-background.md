@@ -1,5 +1,5 @@
 ---
-description: A beginner-friendly detached job example.
+description: Detached job example.
 layout:
   width: default
   title:
@@ -14,9 +14,11 @@ layout:
     visible: false
   metadata:
     visible: false
+  tags:
+    visible: true
 ---
 
-# Run Python in the background for days.
+# Run Python in the background.
 
 In this example we:
 

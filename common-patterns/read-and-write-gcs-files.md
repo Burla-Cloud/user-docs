@@ -1,5 +1,4 @@
 ---
-
 description: Write and read files in GCS through /workspace/shared.
 layout:
   width: default
@@ -15,15 +14,16 @@ layout:
     visible: false
   metadata:
     visible: false
-
+  tags:
+    visible: true
 ---
 
 # Read and Write GCS Files
 
 In Burla, `/workspace/shared` is like a shared folder that is connected to your Google Cloud Storage bucket.
 
-- Save a file to `/workspace/shared/...` and it shows up in your bucket.
-- Read a file from `/workspace/shared/...` and it is read from your bucket.
+* Save a file to `/workspace/shared/...` and it shows up in your bucket.
+* Read a file from `/workspace/shared/...` and it is read from your bucket.
 
 ## Before you run this
 
@@ -55,12 +55,10 @@ remote_parallel_map(write_text_file, files_to_write)
 
 In the Burla dashboard → **Filesystem**, you should see:
 
-- `/workspace/shared/hello.txt`
-- `/workspace/shared/goodbye.txt`
+* `/workspace/shared/hello.txt`
+* `/workspace/shared/goodbye.txt`
 
 Put your screenshot here:
-
-![Filesystem shows the new files](<PUT_YOUR_FILESYSTEM_SCREENSHOT_PATH_HERE>)
 
 ## Step 2: Read files back (comes from GCS)
 
@@ -86,5 +84,3 @@ print(results)
 You should see a list with the file paths and their text (the words `hello` and `goodbye`).
 
 Put your screenshot of the printed output here:
-
-![Printed output after reading](<PUT_YOUR_OUTPUT_SCREENSHOT_PATH_HERE>)
