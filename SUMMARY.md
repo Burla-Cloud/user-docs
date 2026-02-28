@@ -21,3 +21,10 @@
 * [Run code on one big cloud machine.](common-patterns/run-code-on-one-big-cloud-machine.md)
 * [Read and Write GCS Files](common-patterns/read-and-write-gcs-files.md)
 * [Combine many results/files into one (Map-Reduce).](common-patterns/combine-many-results-files-into-one-map-reduce.md)
+
+## General Use Cases
+
+* [Make your Python script 10x faster.](general-use-cases/make-your-python-script-10x-faster.md)
+* [Process thousands of files quickly.](general-use-cases/process-thousands-of-files-quickly.md)
+* [Process one giant file quickly.](general-use-cases/process-one-giant-file-quickly.md)
+* [Process data in your database quickly.](general-use-cases/process-data-in-your-database-quickly.md)
