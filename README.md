@@ -1,6 +1,25 @@
+---
+layout:
+  width: default
+  title:
+    visible: false
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
+---
+
 # Welcome
 
-### Enable anyone to process terabytes of data in minutes.
+## Process terabytes of data in minutes, not days.
 
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
 It's a package that only has **one function**: \`remote\_parallel\_map\`
@@ -25,7 +44,7 @@ Easily monitor workloads, infrastructure, and manage data from our self-hostable
 
 ### **How it works:**
 
-Burla only has one function: `remote_parallel_map`  \
+Burla only has one function: `remote_parallel_map`\
 When called, it runs the given function, on every input in the given list, each on a separate computer.
 
 ```python
@@ -50,22 +69,22 @@ Running code in the cloud with Burla feels the same as coding locally:
 
 {% columns %}
 {% column width="50%" %}
-#### 📦 Automatic Package Sync
+**📦 Automatic Package Sync**
 
 Burla clusters automatically (and very quickly) install any missing python packages into all containers in the cluster.
 
-#### 🐋 Custom Containers
+**🐋 Custom Containers**
 
 Easily run code in any Docker container.\
 Public or private, just paste an image URI in the settings, then hit start!
 {% endcolumn %}
 
 {% column width="50%" %}
-#### 📂 Network Filesystem
+**📂 Network Filesystem**
 
 Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to `./shared` in every container.
 
-#### ⚙️ Variable Hardware Per-Function
+**⚙️ Variable Hardware Per-Function**
 
 The `func_cpu` and `func_ram` args make it possible to assign more hardware to some functions, and less to others, unlocking new ways to simplify pipelines and architecture.
 {% endcolumn %}
@@ -103,10 +122,6 @@ There are two ways to host Burla:
    First $1,000 in compute spend is free, try it now 👇
 
 {% embed url="https://docs.burla.dev/signup" %}
-
-&#x20;
-
-&#x20;
 
 ***
 
