@@ -18,4 +18,5 @@
 ## Common Patterns
 
 * [Run Python in the background for days.](common-patterns/run-python-in-the-background-for-days.md)
-* [Load files from Google Cloud Storage.](common-patterns/load-files-from-google-cloud-storage.md)
+* [Read and Write GCS Files](common-patterns/read-and-write-gcs-files.md)
+* [Combine many results/files into one (Map-Reduce).](common-patterns/combine-many-results-files-into-one-map-reduce.md)

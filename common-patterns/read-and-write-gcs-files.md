@@ -1,6 +1,6 @@
 ---
 
-description: Load data from GCS through /workspace/shared.
+description: Write and read files in GCS through /workspace/shared.
 layout:
   width: default
   title:
@@ -18,7 +18,7 @@ layout:
 
 ---
 
-# Read and write files in Google Cloud Storage (GCS)
+# Read and Write GCS Files
 
 In Burla, `/workspace/shared` is like a shared folder that is connected to your Google Cloud Storage bucket.
 
