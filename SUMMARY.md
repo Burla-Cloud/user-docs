@@ -17,5 +17,5 @@
 
 ## Common Patterns
 
-* [Run Python in the background for days.](Common Patterns/run-python-in-the-background-for-days.md)
-* [Load files from Google Cloud Storage.](Common Patterns/load-files-from-google-cloud-storage.md)
+* [Run Python in the background for days.](common-patterns/run-python-in-the-background-for-days.md)
+* [Load files from Google Cloud Storage.](common-patterns/load-files-from-google-cloud-storage.md)
