@@ -14,6 +14,8 @@ layout:
     visible: false
   metadata:
     visible: false
+  tags:
+    visible: true
 ---
 
 # Process thousands of files quickly.
@@ -34,7 +36,7 @@ Make sure you have already:
 2. connected your machine: `burla login`
 3. started your cluster in the Burla dashboard
 
-For shared filesystem details, read [Read and Write GCS Files](../common-patterns/read-and-write-gcs-files.md).
+For shared filesystem details, read [Read and Write GCS Files](../how-to/read-and-write-gcs-files.md).
 
 ## Step 1: Build a list of file paths
 
