@@ -22,7 +22,7 @@ layout:
 ### Enable anyone to process terabytes of data in minutes.
 
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
-It's a package that only has **one function**: \`remote\_parallel\_map\`
+It's a package that only has **one function**: \`remote\_parallel\_map\`. Here's an example:
 
 <figure><img src=".gitbook/assets/CleanShot 2026-01-18 at 15.07.24.png" alt=""><figcaption></figcaption></figure>
 
