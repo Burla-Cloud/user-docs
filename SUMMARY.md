@@ -17,14 +17,14 @@
 
 ## Use Cases
 
-* [Make your Python script 10x faster.](use-cases/make-your-python-script-10x-faster.md)
-* [Process thousands of files quickly.](use-cases/process-thousands-of-files-quickly.md)
-* [Process one giant file quickly.](use-cases/process-one-giant-file-quickly.md)
-* [Process data in your database quickly.](use-cases/process-data-in-your-database-quickly.md)
+* [Make your Python script 10x faster.](general-use-cases/make-your-python-script-10x-faster.md)
+* [Process thousands of files quickly.](general-use-cases/process-thousands-of-files-quickly.md)
+* [Process one giant file quickly.](general-use-cases/process-one-giant-file-quickly.md)
+* [Process data in your database quickly.](general-use-cases/process-data-in-your-database-quickly.md)
 
 ## How To
 
-* [Run Python in the background.](how-to/run-python-in-the-background.md)
-* [Run code on one big cloud machine.](how-to/run-code-on-one-big-cloud-machine.md)
-* [Read/Write Files to Cloud Storage.](how-to/read-and-write-gcs-files.md)
-* [Combine many results/files into one. (Map-Reduce)](how-to/combine-many-results-files-into-one-map-reduce.md)
+* [Run Python in the background.](common-patterns/run-python-in-the-background.md)
+* [Run code on one big cloud machine.](common-patterns/run-code-on-one-big-cloud-machine.md)
+* [Read/Write Files to Cloud Storage.](common-patterns/read-and-write-gcs-files.md)
+* [Combine many results/files into one. (Map-Reduce)](common-patterns/combine-many-results-files-into-one-map-reduce.md)

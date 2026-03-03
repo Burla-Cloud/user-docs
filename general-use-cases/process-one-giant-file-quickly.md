@@ -1,5 +1,7 @@
 ---
-description: A guide for splitting one large file into chunks and processing chunks in parallel.
+description: >-
+  A guide for splitting one large file into chunks and processing chunks in
+  parallel.
 layout:
   width: default
   title:
@@ -14,6 +16,8 @@ layout:
     visible: false
   metadata:
     visible: false
+  tags:
+    visible: true
 ---
 
 # Process one giant file quickly.

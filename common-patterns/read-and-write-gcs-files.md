@@ -18,7 +18,7 @@ layout:
     visible: true
 ---
 
-# Read and Write GCS Files
+# Read/Write Files to Cloud Storage.
 
 In Burla, `/workspace/shared` is like a shared folder that is connected to your Google Cloud Storage bucket.
 

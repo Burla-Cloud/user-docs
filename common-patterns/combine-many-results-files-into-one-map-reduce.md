@@ -1,5 +1,7 @@
 ---
-description: A beginner-friendly map-reduce pattern for combining many outputs into one file.
+description: >-
+  A beginner-friendly map-reduce pattern for combining many outputs into one
+  file.
 layout:
   width: default
   title:
@@ -14,21 +16,23 @@ layout:
     visible: false
   metadata:
     visible: false
+  tags:
+    visible: true
 ---
 
-# Combine many results/files into one (Map-Reduce).
+# Combine many results/files into one. (Map-Reduce)
 
 Map-reduce means:
 
-- **map**: run many function calls in parallel
-- **reduce**: combine their outputs into one result
+* **map**: run many function calls in parallel
+* **reduce**: combine their outputs into one result
 
 ## Why you might need this
 
 Use this when you want to do lots of work in parallel, but end with one final output.
 
-- **Many files → one report**
-- **Many small results → one total** (this example)
+* **Many files → one report**
+* **Many small results → one total** (this example)
 
 Map writes outputs to `/workspace/shared`. Reduce reads them back and combines them.
 
@@ -40,8 +44,7 @@ Make sure you have already:
 2. connected your machine: `burla login`
 3. started your cluster in the Burla dashboard
 
-If you’re new to `/workspace/shared`, start with [Read and Write GCS Files](read-and-write-gcs-files.md).
-If you’re new to `func_cpu` and `func_ram`, start with [Run code on one big cloud machine.](run-code-on-one-big-cloud-machine.md)
+If you’re new to `/workspace/shared`, start with [Read and Write GCS Files](read-and-write-gcs-files.md). If you’re new to `func_cpu` and `func_ram`, start with [Run code on one big cloud machine.](run-code-on-one-big-cloud-machine.md)
 
 ## Step 1 (Map): Write one file per input
 
@@ -95,5 +98,4 @@ print(output_file_paths[0])
 
 The final combined file path is:
 
-- `/workspace/shared/map-reduce-demo/final/total.txt`
-
+* `/workspace/shared/map-reduce-demo/final/total.txt`

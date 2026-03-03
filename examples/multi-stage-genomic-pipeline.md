@@ -1,8 +1,4 @@
----
-description: Using 1,300 CPUs and <100 lines of code.
----
-
-# Multi-Stage Genomic Pipeline
+# Genomic Pipeline on 1,000 CPUs
 
 In this example we:
 

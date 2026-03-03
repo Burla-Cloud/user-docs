@@ -14,6 +14,8 @@ layout:
     visible: false
   metadata:
     visible: false
+  tags:
+    visible: true
 ---
 
 # Process data in your database quickly.

@@ -1,5 +1,7 @@
 ---
-description: An example for running one function call on a bigger machine with func_cpu and func_ram.
+description: >-
+  An example for running one function call on a bigger machine with func_cpu and
+  func_ram.
 layout:
   width: default
   title:
@@ -14,12 +16,13 @@ layout:
     visible: false
   metadata:
     visible: false
+  tags:
+    visible: true
 ---
 
 # Run code on one big cloud machine.
 
-Sometimes you do not want thousands of small machines.
-You want one bigger machine, with more CPUs and more RAM, to run one heavy step.
+Sometimes you do not want thousands of small machines. You want one bigger machine, with more CPUs and more RAM, to run one heavy step.
 
 In this example we run a single function call on a bigger machine by passing `func_cpu` and `func_ram`.
 
@@ -48,8 +51,7 @@ def summarize_text_file(file_path):
 
 ## Step 2: Run it once, but with more CPU and RAM
 
-`remote_parallel_map` always takes a list of inputs.
-To run your function once, pass a list with one item.
+`remote_parallel_map` always takes a list of inputs. To run your function once, pass a list with one item.
 
 `func_cpu` is the number of CPUs, and `func_ram` is RAM in **GB**.
 

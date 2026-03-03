@@ -14,6 +14,8 @@ layout:
     visible: false
   metadata:
     visible: false
+  tags:
+    visible: true
 ---
 
 # Make your Python script 10x faster.
@@ -87,9 +89,9 @@ Burla runs one function call per input on separate cloud machines.
 
 Your function should:
 
-- use only its input to do work
-- return its own result
-- avoid shared local state between calls
+* use only its input to do work
+* return its own result
+* avoid shared local state between calls
 
 This is safe:
 
