@@ -19,7 +19,7 @@ layout:
 
 # Welcome
 
-### Enable anyone to process terabytes of data in minutes.
+### Scale up any Python program using one line of code.
 
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
 It's a package with only **one function**: \`remote\_parallel\_map\`. Here's an example:
