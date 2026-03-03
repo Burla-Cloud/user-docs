@@ -19,7 +19,7 @@ layout:
 
 # Welcome
 
-### Scale up any Python program using one line of code.
+### Scale Python across 1,000's of computers using one line of code.
 
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
 It's a package with only **one function**: \`remote\_parallel\_map\`. Here's an example:
