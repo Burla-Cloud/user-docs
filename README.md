@@ -19,7 +19,7 @@ layout:
 
 # Welcome
 
-## Process terabytes of data in minutes, not days.
+### Enable anyone to process terabytes of data in minutes.
 
 Burla makes it trivial to run Python functions on thousands of computers in the cloud.\
 It's a package that only has **one function**: \`remote\_parallel\_map\`
