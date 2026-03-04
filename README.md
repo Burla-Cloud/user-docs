@@ -29,14 +29,14 @@ Burla is an open-source package with **one function**: \`remote\_parallel\_map\`
 
 <p align="center">This realtime example runs <code>my_function</code> on 1,000 separate computers in one second!</p>
 
-### Run any Python function on thousands of CPU's or GPU's.
+### Enable anyone to process terabytes of data in minutes.
 
-Burla is simple enough for anyone to learn, incredibly scalable, and flexible enough to build anything.
+Burla is simple enough for anyone to learn, yet extremely scalable, and flexible:
 
 * **Scalable:** See our [demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB in 76s using 10,000 CPUs!
-* **Flexible:** Run any code, inside any Docker container, on any hardware.
+* **Flexible:** Runs any code, inside any Docker container, on any hardware like GPU's or TPU's.
 
-Easily monitor workloads, infrastructure, and manage data from our self-hostable dashboard:
+Our self-hostable dashboard makes it easy to monitor long-running workloads, or access data.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
