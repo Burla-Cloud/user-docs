@@ -21,7 +21,7 @@ layout:
 
 ### Scale Python across 1,000's of computers using one line of code.
 
-Burla is an open-source package with **one function**: \`remote\_parallel\_map\`. Here's an example:
+Burla is an open-source package with **one function**: `remote_parallel_map`. Here's an example:
 
 <figure><img src=".gitbook/assets/CleanShot 2026-01-18 at 15.07.24.png" alt=""><figcaption></figcaption></figure>
 
@@ -40,24 +40,15 @@ Easily monitor long-running workloads, or manage compute resources in the dashbo
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
-### **How it works:**
+### How it works:
 
-Burla only has one function: `remote_parallel_map`\
-When called, it runs the given function, on every input in the given list, each on a separate computer.
+With Burla, **running code in the cloud feels the same as coding on your laptop:**
 
 ```python
-from burla import remote_parallel_map
-
-my_inputs = [1, 2, 3]
-
-def my_function(my_input):
-    print("I'm running on my own separate computer in the cloud!")
-    return my_input
-    
 return_values = remote_parallel_map(my_function, my_inputs)
 ```
 
-Running code in the cloud with Burla feels the same as coding locally:
+When functions are run using `remote_parallel_map`:
 
 * Anything you print appears in your local terminal.
 * Exceptions thrown in your code are thrown on your local machine.
@@ -104,10 +95,6 @@ result = remote_parallel_map(combine_results, [results], func_ram=256)
 ```
 
 <p align="center">The above example demonstrates a basic map-reduce operation.</p>
-
-### Demo:
-
-{% embed url="https://www.youtube.com/watch?v=9d22y_kWjyE" %}
 
 ### Try it out today:
 
