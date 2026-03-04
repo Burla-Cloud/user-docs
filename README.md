@@ -36,7 +36,7 @@ Burla is simple enough for anyone to learn, yet extremely scalable, and flexible
 * **Scalable:** See our [demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB in 76s using 10,000 CPUs!
 * **Flexible:** Runs any code, inside any Docker container, on any hardware like GPU's or TPU's.
 
-Our self-hostable dashboard makes it easy to monitor long-running workloads, or manage data.
+Easily monitor long-running workloads, or manage compute resources from our simple dashboard.
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
