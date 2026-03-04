@@ -101,17 +101,15 @@ result = remote_parallel_map(combine_results, [results], func_cpu=64)
 
 <p align="center">The above example demonstrates a basic map-reduce operation.</p>
 
-### Get started in 2 minutes, with $50 in free compute.
+### Try Burla now. It only takes 2 minutes to try!
 
-There are two ways to host Burla:
+<a href="https://login.burla.dev/signup" class="button primary">Sign Up / Log In</a>
 
-1. **In your cloud.**\
-   Burla is open-source, and can be deployed with one command (currently Google-Cloud only).\
-   [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to get started with self-hosted Burla.
-2. **In our cloud.**\
-   First $1,000 in compute spend is free, try it now 👇
+1. ☝️ Sign up using your Google or Microsoft account.
+2. Click the **`⏻ Start`** button to boot some computers.
+3. Run the example in [this Google Colab notebook](https://colab.research.google.com/drive/1bR8Gpa85gqJi7_9uKdcJDX9_WG0tuVmG?usp=sharing) using 1,000 CPU's!
 
-{% embed url="https://docs.burla.dev/signup" %}
+Quick reminder: Burla is open-source and easy to self-host. [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to get started self-hosting.
 
 ***
 
