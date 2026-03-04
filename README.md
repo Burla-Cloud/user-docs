@@ -81,14 +81,13 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 {% endcolumn %}
 {% endcolumns %}
 
-### Turn any script into a scalable data-pipeline:
+### Convert any workload into a fast, scalable data-pipeline:
 
 Have a workload that takes forever to run?
 
-Our enterprise users have&#x20;
+By injecting many `remote_parallel_map` calls into your code, data-science teams have created programs that handle more data, and finish running in minutes instead of days.
 
-Fan code across thousands of machines, then combine results on one big machine.\
-The network filesystem mounted at `./shared` makes it easy to pass big data between steps.
+The network filesystem at `./shared` makes it trivial to process your data stored in cloud storage.
 
 ```python
 from burla import remote_parallel_map
@@ -97,12 +96,12 @@ from burla import remote_parallel_map
 results = remote_parallel_map(process_file, files)
 
 # Combine results on one big machine
-result = remote_parallel_map(combine_results, [results], func_ram=256)
+result = remote_parallel_map(combine_results, [results], func_cpu=64)
 ```
 
 <p align="center">The above example demonstrates a basic map-reduce operation.</p>
 
-### Try it out today:
+### Try It Now!
 
 There are two ways to host Burla:
 
