@@ -6,53 +6,27 @@ There are two ways to host Burla:
    Burla is open-source, and can be deployed with one command (currently Google-Cloud only).\
    [Click here](get-started.md#quickstart-self-hosted) to get started with self-hosted Burla.
 2. **In our cloud.**\
-   Burla is free to try out, [sign-up here](/broken/pages/zCjSvlLx6V7IPfrE5dvf), and we'll send you a link to your private Burla instance.\
-   [Click here](get-started.md#quickstart-managed) to get started with managed Burla (once you've heard back from us).
+   We recommend everyone try Burla in our cloud before self-hosting to make sure it's right for you.\
+   [Click here](get-started.md#quickstart-managed-runs-in-our-cloud) to get started with managed Burla. It's free to try out, and only takes 2 minutes!
 
 &#x20;
 
 ***
 
-## Quickstart (managed)
+## Quickstart: (Managed) (Runs in our Cloud)
 
-{% hint style="info" %}
-Don't have a managed instance? [Click here to get one!](/broken/pages/zCjSvlLx6V7IPfrE5dvf)
+We recommend everyone try Burla in our cloud before self-hosting to make sure it's right for you.\
+Burla is free to try out, and only takes 2 minutes to get started. Here's how:
 
-Before continuing, you should have received a response from us that your instance is ready.\
-(usually < 1 hour depending on your timezone)
-{% endhint %}
+<a href="https://login.burla.dev/signup" class="button primary">Sign Up / Log In</a>
 
-1. [Log in](https://backend.burla.dev/v3/login/dashboard) using the email you submitted in the signup form.
-2. Hit the **⏻ Start** button to boot 1000 CPUs! (should take 1-2 min)
-3. While booting, run the following in your local terminal:
-   1. `pip install Burla`
-   2. `burla login`  (connects your computer to the cluster)
-4. Once booted, run some code!
-
-```python
-# Each call to `compute_square` runs in parallel in it's own separate contianer.
-# That's why it finishes quickly even though each function call takes ~1 second.
-
-from time import sleep
-from burla import remote_parallel_map
-
-def compute_square(x):
-
-    sleep(1)  # <- pretend this is some intense math!
-
-    print(f"Squaring {x} on a separate computer in the cloud!")
-    return x * x
-
-squared_numbers = remote_parallel_map(compute_square, list(range(1000)))
-```
-
-5. Celebrate 🎉🎉🎉🎉\
-   You just ran Python code on 1000 CPU's in 1000 separate containers.\
-   That's not something many people know how to do!
+1. ☝️ Sign up using your Google or Microsoft account.
+2. Click the **`⏻ Start`** button to boot some computers.
+3. Run the example in [this Google Colab notebook](https://colab.research.google.com/drive/1bR8Gpa85gqJi7_9uKdcJDX9_WG0tuVmG?usp=sharing) using 1,000 CPU's!
 
 ***
 
-## Quickstart (self-hosted)
+## Quickstart: (Self-Hosted) (Runs in your Cloud)
 
 {% hint style="info" %}
 Self-Hosted Burla is currently exclusive to Google Cloud.\
