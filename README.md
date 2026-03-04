@@ -50,9 +50,10 @@ return_values = remote_parallel_map(my_function, my_inputs)
 
 When functions are run using `remote_parallel_map`:
 
-* Anything you print appears in your local terminal.
-* Exceptions thrown in your code are thrown on your local machine.
-* Responses are quick, you run a million function calls in a couple seconds!
+* Anything they print appears in your local terminal, and inside Burla's dashboard.
+* Any exceptions in your code are thrown locally.
+* Your local Python environment is quickly cloned on all remote workers.
+* Code begins running in under one second! Even with millions of inputs or thousands of machines.
 
 ### Features:
 
