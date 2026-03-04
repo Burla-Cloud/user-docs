@@ -62,7 +62,7 @@ When functions are run using `remote_parallel_map`:
 {% column width="50%" %}
 **📦 Automatic Package Sync**
 
-Burla clusters automatically (and very quickly) install any missing python packages into all containers in the cluster.
+Burla automatically (and very quickly) clones your Python packages in every remote machine where your code runs.
 
 **🐋 Custom Containers**
 
@@ -77,7 +77,7 @@ Need to get big data into/out of the cluster? Burla automatically mounts a cloud
 
 **⚙️ Variable Hardware Per-Function**
 
-The `func_cpu` and `func_ram` args make it possible to assign more hardware to some functions, and less to others, unlocking new ways to simplify pipelines and architecture.
+The `func_cpu` and `func_ram` args make it possible to assign more hardware to some functions, and less to others.
 {% endcolumn %}
 {% endcolumns %}
 
@@ -101,7 +101,7 @@ result = remote_parallel_map(combine_results, [results], func_cpu=64)
 
 <p align="center">The above example demonstrates a basic map-reduce operation.</p>
 
-### Try It Now!
+### Get started in 2 minutes, with $50 in free compute.
 
 There are two ways to host Burla:
 

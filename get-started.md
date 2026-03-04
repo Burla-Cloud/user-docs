@@ -6,7 +6,7 @@ There are two ways to host Burla:
    Burla is open-source, and can be deployed with one command (currently Google-Cloud only).\
    [Click here](get-started.md#quickstart-self-hosted) to get started with self-hosted Burla.
 2. **In our cloud.**\
-   Burla is free to try out, [sign-up here](signup.md), and we'll send you a link to your private Burla instance.\
+   Burla is free to try out, [sign-up here](/broken/pages/zCjSvlLx6V7IPfrE5dvf), and we'll send you a link to your private Burla instance.\
    [Click here](get-started.md#quickstart-managed) to get started with managed Burla (once you've heard back from us).
 
 &#x20;
@@ -16,7 +16,7 @@ There are two ways to host Burla:
 ## Quickstart (managed)
 
 {% hint style="info" %}
-Don't have a managed instance? [Click here to get one!](signup.md)
+Don't have a managed instance? [Click here to get one!](/broken/pages/zCjSvlLx6V7IPfrE5dvf)
 
 Before continuing, you should have received a response from us that your instance is ready.\
 (usually < 1 hour depending on your timezone)
