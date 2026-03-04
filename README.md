@@ -81,7 +81,7 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 {% endcolumn %}
 {% endcolumns %}
 
-### Convert any workload into a fast, scalable data-pipeline:
+### Convert any workload into a scalable data-pipeline:
 
 Have a workload that takes forever to run?
 
