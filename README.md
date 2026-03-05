@@ -109,7 +109,7 @@ result = remote_parallel_map(combine_results, [results], func_cpu=64)
 2. Click the **`⏻ Start`** button to boot some computers.
 3. Scale Python over 1,000 CPU's in [this Google Colab notebook](https://colab.research.google.com/drive/1bR8Gpa85gqJi7_9uKdcJDX9_WG0tuVmG?usp=sharing)!
 
-Quick reminder: Burla is open-source and easy to self-host. [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to get started self-hosting.
+Quick reminder: Burla is open-source and easy to self-host. [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to deploy Burla in your Cloud.
 
 ***
 
