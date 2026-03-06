@@ -31,7 +31,7 @@ Burla is a Python package with **one function**: `remote_parallel_map`.  Here's 
 
 ### Enable anyone to process terabytes of data in minutes, not days.
 
-Burla is simple enough for anyone to learn, and extremely scalable:
+Burla is simple enough for anyone to learn, yet extremely scalable, and flexible/configurable.
 
 * **Scalable:** See our [demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB in 76s using 10,000 CPUs!
 * **Flexible:** Runs any code, inside any Docker container, on any hardware like GPU's or TPU's.
@@ -48,12 +48,12 @@ With Burla, **running code in the cloud feels the same as coding on your laptop:
 return_values = remote_parallel_map(my_function, my_inputs)
 ```
 
-When functions are run using `remote_parallel_map`:
+When functions are run with `remote_parallel_map`:
 
-* Anything they print appears in your local terminal, and inside Burla's dashboard.
-* Any exceptions in your code are thrown locally.
-* Your local Python environment is quickly cloned on all remote workers.
-* Code begins running in under one second! Even with millions of inputs or thousands of machines.
+* Anything they print appears locally (and inside Burla's dashboard).
+* Any exceptions are thrown locally.
+* Any packages or local modules they use are (very quickly) cloned on remote machines.
+* Code starts running in under one second! Even with millions of inputs or thousands of machines.
 
 ### Features:
 
@@ -76,7 +76,7 @@ Need to get big data into/out of the cluster? Burla automatically mounts a cloud
 
 **⚙️ Variable Hardware Per-Function**
 
-The `func_cpu` and `func_ram` args make it possible to assign more hardware to some functions, and less to others.
+The `func_cpu` and `func_ram` args make it possible to assign big hardware to some functions, and less to others.
 {% endcolumn %}
 {% endcolumns %}
 
@@ -84,9 +84,9 @@ The `func_cpu` and `func_ram` args make it possible to assign more hardware to s
 
 Have a workload that takes forever to run?
 
-By injecting many `remote_parallel_map` calls into your code, data-science teams have created programs that handle more data, and finish running in minutes instead of days.
+By injecting many `remote_parallel_map` calls into their code, Data-Scientists, ML-Engineers, and Analysts have created programs that handle terabytes of data, and finish running in minutes.
 
-The network filesystem at `./shared` makes it trivial to process your data stored in cloud storage.
+The network filesystem at `./shared` makes it trivial to process your data stored in a cloud storage.
 
 ```python
 from burla import remote_parallel_map
