@@ -17,11 +17,11 @@ layout:
     visible: true
 ---
 
-# Welcome
+# Home
 
 ### Scale Python across 1,000's of computers using one line of code.
 
-Burla is an open-source package with only **one function**: `remote_parallel_map`. Here's an example:
+Burla is a Python package with **one function**: `remote_parallel_map`.  Here's an example:
 
 <figure><img src=".gitbook/assets/CleanShot 2026-01-18 at 15.07.24.png" alt=""><figcaption></figcaption></figure>
 

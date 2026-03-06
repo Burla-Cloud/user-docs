@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Welcome](README.md)
+* [Home](README.md)
 * [Get Started](get-started.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
