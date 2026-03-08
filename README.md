@@ -31,7 +31,7 @@ Burla is a Python package with **one function**: `remote_parallel_map`.  Here's 
 
 ### Enable anyone to process terabytes of data in minutes, not days.
 
-Burla is simple enough for anyone to learn, yet extremely scalable, and flexible/configurable.
+Burla is simple enough for anyone to learn, yet extremely scalable, and flexible.
 
 * **Scalable:** See our [demo](examples/process-2.4tb-of-parquet-files-in-76s.md) where we process 2.4TB in 76s using 10,000 CPUs!
 * **Flexible:** Runs any code, inside any Docker container, on any hardware like GPU's or TPU's.
