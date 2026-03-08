@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-### Scale Python across 1,000's of computers using one line of code.
+### Scale Python across 1,000s of computers using one line of code.
 
 Burla is a Python package with **one function**: `remote_parallel_map`.  Here's an example:
 
