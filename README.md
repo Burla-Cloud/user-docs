@@ -38,7 +38,7 @@ remote_parallel_map(my_function, my_inputs)
 
 <figure><img src=".gitbook/assets/final_terminal_with_header_rounded.gif" alt=""><figcaption></figcaption></figure>
 
-<h4 align="center">☝️ <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example now in Google Colab</a> 🔗</h4>
+<h3 align="center"><strong>☝️</strong> <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing"><strong>Run this example now in Google Colab</strong></a> <strong>🔗</strong></h3>
 
 ## Easily build scalable Data-Pipelines.
 
@@ -101,12 +101,16 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 {% endcolumn %}
 {% endcolumns %}
 
-### It only takes 2 minutes to try!
+### Try Burla in less than 2 minutes:
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Follow our 3-step quickstart on the homepage!
 
 Burla is **open-source** and easy to self-host. [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to deploy Burla in your Cloud instead.
+
+
+
+
 
 ***
 
