@@ -61,7 +61,7 @@ Cancel bad runs, filter logs to watch individual inputs, or watch output files a
 
 <figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
 
-## How Burla works:
+## How it works:
 
 With Burla, **running code in the cloud feels the same as coding on your laptop:**
 
