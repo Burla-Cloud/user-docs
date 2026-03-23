@@ -4,6 +4,7 @@
 * [Get Started](get-started.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
+* [Vulnerability Disclosure Program](vulnerability-disclosure-program.md)
 * [Managed Service Privacy Policy](privacy-policy.md)
 * [Software as a Service Agreement](software-as-a-service-agreement.md)
 * [Privacy Policy](website-privacy-policy.md)
