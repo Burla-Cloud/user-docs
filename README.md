@@ -36,7 +36,7 @@ It can deploy code to thousands of vm's in the cloud in under 1 second:
 
 <p align="center">☝️ <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example yourself in Google Colab</a> 🔗</p>
 
-## Build scalable Data-Pipelines without complex tooling.
+## Burla is the simplest way to scale any data pipeline.
 
 Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and custom containers.\
 Load data in parallel from cloud storage, then write results in parallel from thousands of VMs at once.
