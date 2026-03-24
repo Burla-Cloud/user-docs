@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Scale Python across 1000 computers in 1 second.            Using one line of code.
+## Scale Python across 1000 computers in 1 second.          Using one line of code.
 
 Burla is a package with only **one function**.  Here's how it works:
 
@@ -59,7 +59,7 @@ This creates a pipeline like:
 
 Cancel bad runs, filter logs to watch individual inputs, or watch output files appear in the storage UI.
 
-<figure><img src=".gitbook/assets/new_platform_demo.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/area2.gif" alt=""><figcaption></figcaption></figure>
 
 ## How it works:
 
