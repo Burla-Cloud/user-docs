@@ -93,7 +93,7 @@ Public or private, just paste an image URI in the settings, then hit start!
 {% column width="50%" %}
 **📂 Network Filesystem**
 
-Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to every container at `./shared`.
+Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to a folder in every container.
 
 **⚙️ Variable Hardware Per-Function**
 
