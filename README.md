@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Scale Python across 1000 computers in 1 second.          Using one line of code.
+## Scale Python across 1000 computers in 1 second.  Using one line of code.
 
 Burla is a package with only **one function**.  Here's how it works:
 
@@ -93,7 +93,7 @@ Public or private, just paste an image URI in the settings, then hit start!
 {% column width="50%" %}
 **📂 Network Filesystem**
 
-Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to `./shared` in every container.
+Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to every container at `./shared`.
 
 **⚙️ Variable Hardware Per-Function**
 
