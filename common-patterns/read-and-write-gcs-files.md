@@ -37,8 +37,7 @@ In Burla, `/workspace/shared` is a shared folder connected to your Google Cloud 
 from pathlib import Path
 from burla import remote_parallel_map
 
-def write_text_file(path_and_text):
-    file_path, text = path_and_text
+def write_text_file(file_path, text):
     Path(file_path).write_text(text)
     return file_path
 
