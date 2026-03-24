@@ -21,7 +21,7 @@ layout:
 
 ## Scale Python across 1000 computers in 1 second.
 
-Burla is an open-source cloud platform with only one function: `remote_parallel_map`
+Burla is an open-source cloud platform for Python developers. It only has one function:
 
 ```py
 from burla import remote_parallel_map
@@ -38,7 +38,7 @@ remote_parallel_map(my_function, my_inputs)
 
 <figure><img src=".gitbook/assets/final_terminal.gif" alt=""><figcaption></figcaption></figure>
 
-<p align="center">☝️ <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example yourself in Google Colab</a> 🔗</p>
+<p align="center"><a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example yourself in Google Colab</a> 🔗</p>
 
 ## The simplest way to scale any data pipeline.
 
