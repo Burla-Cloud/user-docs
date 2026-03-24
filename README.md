@@ -24,15 +24,13 @@ layout:
 Burla is a package with only **one function:**
 
 ```py
-my_inputs = list(range(1000))
-
 def my_function(x):
     print(f"[#{x}] running on separate computer")
 
-burla.remote_parallel_map(my_function, my_inputs)
+burla.remote_parallel_map(my_function, my_inputs = [1, 2, ... 1000])
 ```
 
-**This runs `my_function` on 1000 vm's in the cloud, in 1 second:**
+It can deploy code to thousands of vm's in the cloud in under 1 second:
 
 <figure><img src=".gitbook/assets/bestithink (2).gif" alt=""><figcaption></figcaption></figure>
 
