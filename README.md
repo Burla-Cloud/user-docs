@@ -46,9 +46,9 @@ Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and cus
 Load data in parallel from cloud storage, then write results in parallel from thousands of VMs at once.
 
 ```python
-remote_parallel_map(process, ...)
-remote_parallel_map(aggregate, ..., func_cpu=64)
-remote_parallel_map(predict, ..., func_gpu="A100")
+remote_parallel_map(process, [...])
+remote_parallel_map(aggregate, [...], func_cpu=64)
+remote_parallel_map(predict, [...], func_gpu="A100")
 ```
 
 This creates a pipeline like:
@@ -57,7 +57,7 @@ This creates a pipeline like:
 
 ### Monitor progress in the dashboard:
 
-Cancel bad runs, filter logs to watch individual inputs, or watch output files appear in the storage UI.
+Cancel bad runs, filter logs to watch individual inputs, or monitor output files in the filesystem UI.
 
 <figure><img src=".gitbook/assets/area2-rounded-white-r60-exact-size.gif" alt=""><figcaption></figcaption></figure>
 
