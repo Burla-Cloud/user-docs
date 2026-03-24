@@ -106,7 +106,7 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Follow the 3-step quickstart on the homepage!
 
-Burla is **open-source** and easy to self-host. [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to deploy Burla in your Cloud instead.
+Burla is **open-source** and easy to self-host. [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to deploy Burla in your cloud instead.
 
 
 
