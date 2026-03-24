@@ -59,7 +59,7 @@ This creates a pipeline like:
 
 Cancel bad runs, filter logs to watch individual inputs, or watch output files appear in the storage UI.
 
-<figure><img src=".gitbook/assets/area2.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/area2-rounded-white-r60-exact-size.gif" alt=""><figcaption></figcaption></figure>
 
 ## How it works:
 
