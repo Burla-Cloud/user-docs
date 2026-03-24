@@ -26,12 +26,12 @@ Burla is a package with only **one function**. Here's how it works:
 ```py
 from burla import remote_parallel_map
 
-my_inputs = [1, 2, ... 1000]
+my_inputs = list(range(1000))
 
 def my_function(x):
     print(f"[#{x}] running on separate computer")
 
-burla.remote_parallel_map(my_function, my_inputs)
+remote_parallel_map(my_function, my_inputs)
 ```
 
 **This runs `my_function` on 1000 vm's in the cloud, in < 1 second:**
