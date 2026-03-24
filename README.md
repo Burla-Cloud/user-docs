@@ -34,7 +34,7 @@ burla.remote_parallel_map(my_function, my_inputs)
 
 It can deploy code to thousands of vm's in the cloud in under 1 second:
 
-<figure><img src=".gitbook/assets/bestithink (2).gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/temp (1).gif" alt=""><figcaption></figcaption></figure>
 
 <p align="center">☝️ <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example yourself in Google Colab</a> 🔗</p>
 
