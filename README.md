@@ -82,7 +82,7 @@ When functions are run with `remote_parallel_map`:
 {% column width="50%" %}
 **📦 Automatic Package Sync**
 
-Burla automatically (and very quickly) clones your Python packages in every remote machine where your code runs.
+Burla automatically (and very quickly) clones your Python packages on every remote machine where code is executed.
 
 **🐋 Custom Containers**
 
