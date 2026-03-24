@@ -19,24 +19,22 @@ layout:
 
 # Home
 
-## Scale Python across 1000 computers in 1 second.  Using one line of code.
+## Scale Python across 1000 computers in 1 second.
 
-Burla is a package with only **one function**.  Here's how it works:
+Burla is a package with only **one function**:
 
 ```py
-from burla import remote_parallel_map
-
 my_inputs = list(range(1000))
 
 def my_function(x):
-    print(f"I'm running on my own separate computer in the cloud! #{x}")
+    print(f"I'm running in my own computer in the cloud! #{x}")
 
-remote_parallel_map(my_function, my_inputs)
+burla.remote_parallel_map(my_function, my_inputs)
 ```
 
 **This runs `my_function` on 1000 vm's in the cloud, in 1 second:**
 
-<figure><img src=".gitbook/assets/final_terminal_with_header_rounded.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/solid2.gif" alt=""><figcaption></figcaption></figure>
 
 <p align="center">☝️ <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example yourself in Google Colab</a> 🔗</p>
 
