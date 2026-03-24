@@ -57,7 +57,7 @@ This creates a pipeline like:
 
 ### Monitor progress in the dashboard:
 
-Cancel bad runs, filter logs to watch individual inputs, or monitor output files in the filesystem UI.
+Cancel bad runs, filter logs to watch individual inputs, or monitor output files in the UI.
 
 <figure><img src=".gitbook/assets/area2-rounded-white-r60-exact-size.gif" alt=""><figcaption></figcaption></figure>
 
