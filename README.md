@@ -38,12 +38,12 @@ remote_parallel_map(my_function, my_inputs)
 
 <figure><img src=".gitbook/assets/final_terminal_with_header_rounded.gif" alt=""><figcaption></figcaption></figure>
 
-<h3 align="center"><strong>☝️</strong> <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing"><strong>Run this example now in Google Colab</strong></a> <strong>🔗</strong></h3>
+<p align="center">☝️ <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example yourself in Google Colab</a> 🔗</p>
 
-## Scale Data-Pipelines without complex frameworks.
+## Scale Data-Pipelines without any complex framework.
 
-Define any hardware at runtime, Burla scales up to 10,000 CPUs in a single function call.\
-Load data in parallel from the cloud storage bucket mounted to every worker: `/workspace/shared`
+Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and custom containers.\
+Load data in parallel from cloud storage, then write results in parallel from thousands of VMs at once.
 
 ```python
 remote_parallel_map(process, ...)
