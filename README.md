@@ -21,6 +21,8 @@ layout:
 
 ## Scale Python across 1000 computers in 1 second.
 
+Burla is an open-source Python package with only one function: `remote_parallel_map`
+
 ```py
 from burla import remote_parallel_map
 
