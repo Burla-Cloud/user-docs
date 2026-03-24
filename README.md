@@ -40,7 +40,7 @@ remote_parallel_map(my_function, my_inputs)
 
 <p align="center">☝️ <a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example yourself in Google Colab</a> 🔗</p>
 
-## Scale Data-Pipelines without any complex framework.
+## Build scalable Data-Pipelines without complex tooling.
 
 Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and custom containers.\
 Load data in parallel from cloud storage, then write results in parallel from thousands of VMs at once.
