@@ -32,7 +32,7 @@ def my_function(x):
 burla.remote_parallel_map(my_function, my_inputs)
 ```
 
-**This runs `my_function` on 1000 vm's in the cloud, in under 1 second:**
+**This runs `my_function` on 1000 vm's in the cloud, in < 1 second:**
 
 <figure><img src=".gitbook/assets/temp (1).gif" alt=""><figcaption></figcaption></figure>
 
