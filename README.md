@@ -34,11 +34,9 @@ def my_function(x):
 remote_parallel_map(my_function, my_inputs)
 ```
 
-**This runs `my_function` on 1000 vm's in the cloud:**
+This runs `my_function` on 1000 vm's in the cloud, in < 1 second:
 
 <figure><img src=".gitbook/assets/final_terminal.gif" alt=""><figcaption></figcaption></figure>
-
-<p align="center"><a href="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing">Try this example yourself in Google Colab</a> 🔗</p>
 
 ## The simplest way to scale any data pipeline.
 
