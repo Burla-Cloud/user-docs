@@ -51,7 +51,7 @@ remote_parallel_map(predict, [...], func_gpu="A100")
 
 This creates a pipeline like:
 
-<figure><img src=".gitbook/assets/output-onlinegiftools (1) (1).gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/data-pipeline-4.gif" alt=""><figcaption></figcaption></figure>
 
 ### Monitor progress in the dashboard:
 
