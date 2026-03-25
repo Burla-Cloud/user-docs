@@ -124,7 +124,7 @@ Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-ru
 
 <figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.10.png" alt=""><figcaption></figcaption></figure>
 
-**Compute**
+**Compute:**
 
 * 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing).
 * First $500 free for commercial users.
