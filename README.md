@@ -36,7 +36,7 @@ remote_parallel_map(my_function, my_inputs)
 
 This runs `my_function` on 1000 vm's in the cloud, in < 1 second:
 
-<figure><img src=".gitbook/assets/final_terminal.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/247-251-252 (1).gif" alt=""><figcaption></figcaption></figure>
 
 ## The fastest way to create scalable data pipelines.
 
@@ -51,7 +51,7 @@ remote_parallel_map(predict, [...], func_gpu="A100")
 
 This creates a pipeline like:
 
-<figure><img src=".gitbook/assets/data-pipeline-4 (2).gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/data-pipeline-4 (1).gif" alt=""><figcaption></figcaption></figure>
 
 ### Monitor progress in the dashboard:
 
