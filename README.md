@@ -109,14 +109,14 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 
 <div align="center"><figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.00.png" alt=""><figcaption></figcaption></figure></div>
 
-Burla can be deployed using one command.\
-Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-runs-in-your-cloud)
-
-**Platform:**
+**Pricing:**
 
 * Free for non-commercial use.
 * $100/mo per commercial user.\
   First month free.
+
+Burla can be deployed using one command.\
+Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-runs-in-your-cloud)
 {% endcolumn %}
 
 {% column width="50%" %}
@@ -124,10 +124,10 @@ Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-ru
 
 <figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.10.png" alt=""><figcaption></figcaption></figure>
 
-**Compute:**
+**Compute**
 
-* First $1000 free for commercial users.
 * 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing).
+* First $1000 free for commercial users.
 
 **Platform:**
 
