@@ -124,16 +124,14 @@ Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-ru
 
 <figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.10.png" alt=""><figcaption></figcaption></figure>
 
-**Platform:**
-
-* Free for non-commercial use.
-* $100/mo per commercial user.\
-  First month free.
-
 **Compute:**
 
 * First $1000 free for commercial users.
 * 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing).
+
+**Platform:**
+
+* $100/mo per user. First month free.
 {% endcolumn %}
 {% endcolumns %}
 
