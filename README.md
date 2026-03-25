@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Scale Python across 1000 computers in 1 second.
+## Scale Python across 1,000 computers in 1 second.
 
 Burla is an open-source cloud platform for Python developers. It only has one function:
 
@@ -34,9 +34,9 @@ def my_function(x):
 remote_parallel_map(my_function, my_inputs)
 ```
 
-This runs `my_function` on 1000 vm's in the cloud, in < 1 second:
+This runs `my_function` on 1,000 vm's in the cloud, in < 1 second:
 
-<figure><img src=".gitbook/assets/hell.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
 ## The simplest way to build scalable data-pipelines.
 
@@ -99,12 +99,52 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 {% endcolumn %}
 {% endcolumns %}
 
-### Try Burla in less than 2 minutes:
+***
+
+## Pricing:
+
+{% columns %}
+{% column width="50%" %}
+### Self-Hosted (in your cloud)
+
+<div align="center"><figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.00.png" alt=""><figcaption></figcaption></figure></div>
+
+**Platform:**
+
+* Free for non-commercial use.
+* $100/mo per commercial user.\
+  First month free.
+
+Burla can be deployed using one command.\
+Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-runs-in-your-cloud)
+{% endcolumn %}
+
+{% column width="50%" %}
+### Managed (in Burla's cloud)
+
+<figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.10.png" alt=""><figcaption></figcaption></figure>
+
+**Platform:**
+
+* Free for non-commercial use.
+* $100/mo per commercial user.\
+  First month free.
+
+**Compute:**
+
+* First $1000 free for commercial users.
+* 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing).
+{% endcolumn %}
+{% endcolumns %}
+
+### Try Burla for Free, using 1,000 CPUs!
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
-2. Follow the 3-step quickstart on the homepage!
+2. Run the quickstart in this Google Colab notebook:  ( Takes less than 2 minutes! )
 
-Burla is **open-source** and easy to self-host. [Click here](https://docs.burla.dev/get-started#quickstart-self-hosted) to deploy Burla in your cloud instead.
+{% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
+
+
 
 
 
