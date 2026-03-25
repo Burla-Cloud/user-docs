@@ -127,7 +127,8 @@ Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-ru
 **Compute**
 
 * 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing).
-* First $1000 free for commercial users.
+* First $500 free for commercial users.
+* First $50 free for non-commercial.
 
 **Platform:**
 
