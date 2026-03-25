@@ -38,7 +38,7 @@ This runs `my_function` on 1000 vm's in the cloud, in < 1 second:
 
 <figure><img src=".gitbook/assets/hell.gif" alt=""><figcaption></figcaption></figure>
 
-## The fastest way to create scalable data pipelines.
+## Build scalable data pipelines without complex tools.
 
 Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and custom containers.\
 Load data in parallel from cloud storage, then write results in parallel from thousands of VMs at once.
