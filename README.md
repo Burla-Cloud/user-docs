@@ -21,7 +21,7 @@ layout:
 
 ## Scale Python across 1,000 computers in 1 second.
 
-Burla is an open-source cloud platform for Python developers. It only has one function:
+Burla is a self-hostable cloud platform for Python developers. It only has one function:
 
 ```py
 from burla import remote_parallel_map
@@ -109,7 +109,7 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 
 <div align="center"><figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.00.png" alt=""><figcaption></figcaption></figure></div>
 
-**Pricing:**
+**Platform:**
 
 * Free for non-commercial use.
 * $100/mo per commercial user.\
