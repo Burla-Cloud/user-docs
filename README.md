@@ -78,22 +78,22 @@ When functions are run with `remote_parallel_map`:
 
 {% columns %}
 {% column width="50%" %}
-**📦 Automatic Package Sync**
+**📦  Automatic Package Sync**
 
 Burla automatically (and very quickly) clones your Python packages on every remote machine where code is executed.
 
-**🐋 Custom Containers**
+**🐋  Custom Containers**
 
 Easily run code in any Docker container.\
 Public or private, just paste an image URI in the settings, then hit start!
 {% endcolumn %}
 
 {% column width="50%" %}
-**📂 Network Filesystem**
+**📂  Network Filesystem**
 
 Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to a folder in every container.
 
-**⚙️ Variable Hardware Per-Function**
+**⚙️  Variable Hardware Per-Function**
 
 The `func_cpu` and `func_ram` args make it possible to assign big hardware to some functions, and less to others.
 {% endcolumn %}
@@ -107,7 +107,7 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 {% column width="50%" %}
 ### Self-Hosted (in your cloud)
 
-<div align="center"><figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.00.png" alt=""><figcaption></figcaption></figure></div>
+<div align="center"><figure><img src=".gitbook/assets/CleanShot 2026-03-30 at 12.58.22.png" alt=""><figcaption></figcaption></figure></div>
 
 **Platform:**
 
@@ -122,7 +122,7 @@ Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-ru
 {% column width="50%" %}
 ### Managed (in Burla's cloud)
 
-<figure><img src=".gitbook/assets/CleanShot 2026-03-25 at 17.02.10.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/CleanShot 2026-03-30 at 12.58.35.png" alt=""><figcaption></figcaption></figure>
 
 **Compute:**
 
