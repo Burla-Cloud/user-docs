@@ -17,6 +17,7 @@ remote_parallel_map(
   spinner=True,
   generator=False,
   max_parallelism=None,
+  grow=False,
 )
 ```
 
@@ -40,6 +41,7 @@ When finished `remote_parallel_map` returns a list of objects returned by each `
 | `spinner`         | <p><code>bool</code></p><p>(Optional) Set to <code>False</code> to hide the status indicator/spinner.</p>                                                                                                                    |
 | `generator`       | <p><code>bool</code><br>(Optional) Set to <code>True</code> to return a <code>Generator</code> instead of a <code>List</code>. The generator will yield outputs as they are produced, instead of all at once at the end.</p> |
 | `max_parallelism` | <p><code>int</code></p><p>(Optional) Maximum number of <code>function_</code> instances allowed to be running at the same time.</p>                                                                                          |
+| `grow`            | <p><code>bool</code><br>(Optional) Adds nodes to the cluster to complete the given work as quickly as possible. Adds up to 2560 cpus.</p>                                                                                    |
 
 
 
