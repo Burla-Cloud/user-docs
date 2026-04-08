@@ -43,14 +43,14 @@ This runs `my_function` on 1000 vms in less than one second:
 
 ## The cleanest way to build scalable data-pipelines.
 
-Zero special syntax. Change containers, hardware, or cluster size automatically mid workload.
+Zero special syntax. Change containers, hardware, or cluster-size automatically mid-workload.
 
-Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and any custom container.\
-Easily load data in parallel from cloud storage, then write results from thousands of VMs at once.
+Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and any Docker container.\
+Pipelines built with Burla are simpler, more maintainable, faster, and more fun to develop!
 
 ```python
-remote_parallel_map(process, [...])
-remote_parallel_map(aggregate, [...], func_cpu=64, container="gs://...")
+remote_parallel_map(process, [...], image_uri="docker.io/...")
+remote_parallel_map(aggregate, [...], func_cpu=64)
 remote_parallel_map(predict, [...], func_gpu="A100")
 ```
 
@@ -74,9 +74,9 @@ return_values = remote_parallel_map(my_function, my_inputs)
 
 When functions are run with `remote_parallel_map`:
 
-* Anything they print appears locally (and inside Burla's dashboard).
+* Anything they print appears locally (and inside the dashboard).
 * Any exceptions are thrown locally.
-* Any packages or local modules they use are (very quickly) cloned on remote machines.
+* Any packages or local modules are (very quickly) cloned on remote machines.
 * Code starts running in under one second! Even with millions of inputs or thousands of machines.
 
 ### Features:
@@ -141,7 +141,7 @@ Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-ru
 {% endcolumn %}
 {% endcolumns %}
 
-### Try Burla for Free, using 1,000 CPUs!
+### Try Burla for Free using 1000 CPUs:
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Run the quickstart in this Google Colab notebook:  ( Takes less than 2 minutes! )
