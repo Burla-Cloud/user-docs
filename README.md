@@ -21,8 +21,8 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla is a high-performance parallel processing library with a fast simple developer experience.\
-Process thousands of files, scale vector embeddings, or create pipelines with a DX that feels local.
+Burla is a high-performance parallel processing library with an extremely fast developer experience.\
+Scale batch processing, vector embeddings, inference, or build pipelines with dynamic hardware.
 
 Burla is open-source and designed to run in your private cloud.  It only has one function:
 
