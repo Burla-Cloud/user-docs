@@ -49,7 +49,7 @@ Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and any
 Pipelines built with Burla are simpler, more maintainable, faster, and more fun to develop!
 
 ```python
-remote_parallel_map(process, [...], image_uri="docker.io/...")
+remote_parallel_map(process, [...], image="osgeo/gdal:latest")
 remote_parallel_map(aggregate, [...], func_cpu=64)
 remote_parallel_map(predict, [...], func_gpu="A100")
 ```
