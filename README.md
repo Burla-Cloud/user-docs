@@ -66,7 +66,7 @@ Cancel bad runs, filter logs to watch individual inputs, or monitor output files
 
 ## How it works:
 
-Develop like your laptop has 1,000 CPUs. Remote development, local feel.
+Develop like your laptop has 1,000 CPUs or GPUs. Remote development, local feel.
 
 ```python
 return_values = remote_parallel_map(my_function, my_inputs)
