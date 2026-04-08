@@ -108,40 +108,30 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 
 ## Pricing:
 
+Free for Hobbyists. Compute prices the same as Google Cloud.
+
 {% columns %}
-{% column width="50%" %}
-### Self-Hosted (in your cloud)
-
-<div align="center"><figure><img src=".gitbook/assets/CleanShot 2026-03-30 at 12.58.22.png" alt=""><figcaption></figcaption></figure></div>
-
-**Platform:**
-
-* Free for non-commercial use.
-* $100/mo per commercial user.\
-  First month free.
-
-Burla can be deployed using one command.\
-Learn more at: [How to Self-Host Burla](get-started.md#quickstart-self-hosted-runs-in-your-cloud)
+{% column %}
+### Self-Hosted: (in your cloud)
 {% endcolumn %}
 
-{% column width="50%" %}
-### Managed (in Burla's cloud)
-
-<figure><img src=".gitbook/assets/CleanShot 2026-03-30 at 12.58.35.png" alt=""><figcaption></figcaption></figure>
-
-**Compute:**
-
-* 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing).
-* First $500 free for commercial users.
-* First $50 free for non-commercial.
-
-**Platform:**
-
-* $100/mo per user. First month free.
+{% column %}
+### Managed: (in Burla's cloud)
 {% endcolumn %}
 {% endcolumns %}
 
-### Try Burla for Free using 1000 CPUs:
+| ✔ $100/month per Enterprise User.  | ✔  $100/month per Enterprise User.                                            |
+| ---------------------------------- | ----------------------------------------------------------------------------- |
+| ✅ Free for all non-commercial use. | ✅ 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing). |
+|                                    | ✅ $500 in free credits for qualified users.                                   |
+
+### Self-Host Burla today:
+
+Burla can be self-hosted with just [one command](API-Reference.md#burla-install). To learn more see our Getting-Started guide:
+
+{% embed url="https://docs.burla.dev/get-started#quickstart-self-hosted-runs-in-your-cloud" %}
+
+### Try our Quickstart: (1000 CPUs)
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Run the quickstart in this Google Colab notebook:  ( Takes less than 2 minutes! )
