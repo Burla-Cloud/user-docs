@@ -19,9 +19,12 @@ layout:
 
 # Home
 
-## Scale Python across 1,000 computers in 1 second.
+## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla is an open-source cloud platform for Python developers. It only has one function:
+Burla is a high-performance parallel processing library with a fast simple developer experience.\
+Process thousands of files, scale vector embeddings, or create pipelines with a DX that feels local.
+
+Burla is open-source and designed to run in your private cloud.  It only has one function:
 
 ```py
 from burla import remote_parallel_map
@@ -34,24 +37,26 @@ def my_function(x):
 remote_parallel_map(my_function, my_inputs)
 ```
 
-This runs `my_function` on 1,000 vm's in the cloud, in < 1 second:
+This runs `my_function` on 1000 vms in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## The simplest way to build scalable data-pipelines.
+## The cleanest way to build scalable data-pipelines.
 
-Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and custom containers.\
-Load data in parallel from cloud storage, then write results in parallel from thousands of VMs at once.
+Zero special syntax. Change containers, hardware, or cluster size automatically mid workload.
+
+Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and any custom container.\
+Easily load data in parallel from cloud storage, then write results from thousands of VMs at once.
 
 ```python
 remote_parallel_map(process, [...])
-remote_parallel_map(aggregate, [...], func_cpu=64)
+remote_parallel_map(aggregate, [...], func_cpu=64, container="gs://...")
 remote_parallel_map(predict, [...], func_gpu="A100")
 ```
 
 This creates a pipeline like:
 
-<figure><img src=".gitbook/assets/data-pipeline-4 (1).gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/data-pipeline-4-high-quality (1).gif" alt=""><figcaption></figcaption></figure>
 
 ### Monitor progress in the dashboard:
 
@@ -61,7 +66,7 @@ Cancel bad runs, filter logs to watch individual inputs, or monitor output files
 
 ## How it works:
 
-With Burla, **running code in the cloud feels the same as coding on your laptop:**
+Develop like your laptop has 1,000 CPUs. Remote development, local feel.
 
 ```python
 return_values = remote_parallel_map(my_function, my_inputs)

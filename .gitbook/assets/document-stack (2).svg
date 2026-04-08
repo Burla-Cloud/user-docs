@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 48 48" fill="#F8FBFC" stroke="#3d5f6e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Document 3 (back, bottom-left) -->
+  <rect x="7" y="9" width="26" height="34" rx="2"/>
+  <!-- Document 2 (middle) -->
+  <rect x="10.5" y="5.5" width="26" height="34" rx="2"/>
+  <!-- Document 1 (front, top-right) — dog-ear -->
+  <path d="M16 2 L32 2 L40 10 L40 34 Q40 36 38 36 L16 36 Q14 36 14 34 L14 4 Q14 2 16 2 Z"/>
+  <!-- Fold line -->
+  <path d="M32 2 L32 10 L40 10" fill="none"/>
+  <!-- Text lines -->
+  <line x1="18" y1="16" x2="29" y2="16"/>
+  <line x1="18" y1="20" x2="35" y2="20"/>
+  <line x1="18" y1="24" x2="33" y2="24"/>
+  <line x1="18" y1="28" x2="26" y2="28"/>
+</svg>
