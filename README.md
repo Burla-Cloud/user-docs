@@ -127,7 +127,7 @@ Free for Hobbyists. Compute prices the same as Google Cloud.
 
 ## Getting Started:
 
-#### Self-Host Burla with one command:
+#### Self-Host with one command:
 
 Run `burla install` to deploy our self-hosted web-service.\
 Learn more about permissions and installation in our getting started guide:
