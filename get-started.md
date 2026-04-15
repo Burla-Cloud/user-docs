@@ -1,41 +1,29 @@
 # Get Started
 
-There are two ways to host Burla:
+There are two ways to host Burla. In your cloud (Self-Hosted) or in our cloud (Managed).
 
-1. **In your cloud.**\
-   Burla is open-source, and can be deployed with one command (currently Google-Cloud only).\
-   [Click here](get-started.md#quickstart-self-hosted) to get started with self-hosted Burla.
-2. **In our cloud.**\
-   We recommend everyone try Burla in our cloud before self-hosting to make sure it's right for you.\
-   [Click here](get-started.md#quickstart-managed-runs-in-our-cloud) to get started with managed Burla. It's free to try out, and only takes 2 minutes!
+### Quickstart:  Managed
 
-&#x20;
+Getting started is simple. Our Google Colab notebook contains additional examples and instructions.
 
-***
+1. [Sign up](https://login.burla.dev) using your Google or Microsoft account.
+2. Run our 1000-CPU Quickstart:
 
-## Quickstart: (Managed) (Runs in our Cloud)
-
-We recommend everyone try Burla in our cloud before self-hosting to make sure it's right for you.\
-Burla is free to try out, and only takes 2 minutes to get started. Here's how:
-
-<a href="https://login.burla.dev/signup" class="button primary">Sign Up / Log In</a>
-
-1. ☝️ Sign up using your Google or Microsoft account.
-2. Click the **`⏻ Start`** button to boot some computers.
-3. Run the example in [this Google Colab notebook](https://colab.research.google.com/drive/1bR8Gpa85gqJi7_9uKdcJDX9_WG0tuVmG?usp=sharing) using 1,000 CPU's!
+{% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
 
 ***
 
-## Quickstart: (Self-Hosted) (Runs in your Cloud)
+### Quickstart: Self-Hosted
+
+We recommend you first give Burla a try inside our cloud to make sure it's right for you.\
+Our quickstart is free and only takes 2 minutes: [Quickstart](https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing)
 
 {% hint style="info" %}
 Self-Hosted Burla is currently exclusive to Google Cloud.\
-We fully intend to support AWS, Azure, and on-prem deployments, but don't yet.
-
-Please reach out anytime if you get stuck! ([jake@burla.dev](https://app.gitbook.com/u/vjhGohhUhsQhYKnFjO0y1B7Ajh82))
+Please reach out and tell us if you want to Self-Host, but aren't on GCP! My email is: jake@burla.dev
 {% endhint %}
 
-### 1. Ensure `gcloud` is setup and installed:
+#### 1. Ensure `gcloud` is setup and installed:
 
 If you haven't, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).
 
@@ -44,7 +32,7 @@ Ensure `gcloud` is pointing at the project you wish to install Burla inside:
 * To view your current gcloud project run: `gcloud config get project`
 * To change your current gcloud project run: `gcloud config set project <NEW-PROJECT-ID>`
 
-### 2. Run the `burla install` command:
+#### 2. Run the `burla install` command:
 
 Run `pip install burla` then run `burla install`.
 
@@ -70,12 +58,13 @@ I've listed the **exact required permissions** for the `burla install` command [
 
 See the [install docs](API-Reference.md#burla-install) for more info regarding permissions.
 
-### 3. Start a machine and run some code!
+#### 3. Start a machine and run some code!
 
-1. Use the **Login** button on this website to get to your new cluster dashboard.
-2. Hit the **⏻ Start** button in the dashboard to turn the cluster on.\
-   By default this starts one 4-CPU node. If inactive for >5 minutes this node will shut itself off.
-3. While booting, run `burla login` to connect your local machine to your cluster.
+1. Use the [**Login**](https://login.burla.dev) button on this website to get to your new cluster dashboard.
+2. Hit the **⏻ Start** button to turn the cluster on.\
+   By default this starts one 4-CPU node. If inactive for >5 minutes this node will shut itself off.\
+   If you pass `grow=True` to `remote_parallel_map` it will start this node by itself.
+3. While booting, run `burla login` to connect your local computer to your cluster.
 4. Run the example below!
 
 ```python
