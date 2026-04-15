@@ -125,23 +125,21 @@ Free for Hobbyists. Compute prices the same as Google Cloud.
 | ✅ Free for all non-commercial use. | ✅ 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing). |
 |                                    | ✅ $500 in free credits for qualified users.                                   |
 
-#### Self-Host with one command:
+## Getting Started:
+
+#### Self-Host Burla with one command:
 
 Run `burla install` to deploy our self-hosted web-service.\
-Learn more about permissions and installation in out getting started guide:
+Learn more about permissions and installation in our getting started guide:
 
 {% embed url="https://docs.burla.dev/get-started#quickstart-self-hosted-runs-in-your-cloud" %}
 
-#### Try our 1000-CPU Quickstart, it's free and takes 2 minutes.
+#### Try the 1000-CPU Quickstart, it's free and takes 2 minutes:
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Run our quickstart in this Google Colab notebook:
 
 {% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
-
-
-
-
 
 
 
