@@ -22,7 +22,7 @@ layout:
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
 Burla is a high-performance parallel processing library for data-teams that iterate quickly.\
-Run vector embeddings, inference, or preprocessing inside your cloud with an instant feedback.
+Run vector embeddings, inference, or preprocessing inside your cloud with instant feedback.
 
 Burla only has one function:
 
@@ -41,7 +41,7 @@ This runs `my_function` on 1000 vms in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## The cleanest way to build scalable data-pipelines.
+## The cleanest way to build data-pipelines that scale.
 
 Zero special syntax. Change containers, hardware, or cluster-size automatically mid-workload.
 
@@ -66,7 +66,7 @@ Cancel bad runs, filter logs to watch individual inputs, or monitor output files
 
 ## How it works:
 
-Develop like your laptop has 1,000 CPUs or GPUs. Remote development, local feel.
+Remote development, local feel. With Burla hardware is defined&#x20;
 
 ```python
 return_values = remote_parallel_map(my_function, my_inputs)
@@ -125,16 +125,17 @@ Free for Hobbyists. Compute prices the same as Google Cloud.
 | ✅ Free for all non-commercial use. | ✅ 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing). |
 |                                    | ✅ $500 in free credits for qualified users.                                   |
 
-### Self-Host Burla today:
+#### Self-Host with one command:
 
-Burla can be self-hosted with just [one command](API-Reference.md#burla-install). To learn more see our Getting-Started guide:
+Run `burla install` to deploy our self-hosted web-service.\
+Learn more about permissions and installation in out getting started guide:
 
 {% embed url="https://docs.burla.dev/get-started#quickstart-self-hosted-runs-in-your-cloud" %}
 
-### Try our 1000-CPU Quickstart:
+#### Try our 1000-CPU Quickstart, it's free and takes 2 minutes.
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
-2. Run the quickstart in this Google Colab notebook:  ( Takes less than 2 minutes! )
+2. Run our quickstart in this Google Colab notebook:
 
 {% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
 
