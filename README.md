@@ -21,8 +21,8 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla is a high-performance parallel processing library with an extremely fast developer experience.\
-Scale batch processing, vector embeddings, inference, or build pipelines with dynamic hardware.
+Burla is a high-performance parallel processing library with a low-latency developer experience.\
+Scale batch processing, vector embeddings, inference, or anything else.
 
 Burla is open-source and designed to run in your private cloud.  It only has one function:
 
@@ -131,7 +131,7 @@ Burla can be self-hosted with just [one command](API-Reference.md#burla-install)
 
 {% embed url="https://docs.burla.dev/get-started#quickstart-self-hosted-runs-in-your-cloud" %}
 
-### Try our Quickstart: (1000 CPUs)
+### Try our 1000-CPU Quickstart:
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Run the quickstart in this Google Colab notebook:  ( Takes less than 2 minutes! )
