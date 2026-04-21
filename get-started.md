@@ -62,7 +62,7 @@ See the [install docs](API-Reference.md#burla-install) for more info regarding p
 
 1. Use the [**Login**](https://login.burla.dev) button on this website to get to your new cluster dashboard.
 2. Hit the **⏻ Start** button to turn the cluster on.\
-   By default this starts one 4-CPU node. If inactive for >5 minutes this node will shut itself off.\
+   By default this starts one 4-CPU node. If inactive for >10 minutes this node will shut itself off.\
    If you pass `grow=True` to `remote_parallel_map` it will start this node by itself.
 3. While booting, run `burla login` to connect your local computer to your cluster.
 4. Run the example below!
