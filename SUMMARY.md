@@ -26,3 +26,7 @@
 * [Read/Write Files to Cloud Storage.](common-patterns/read-and-write-gcs-files.md)
 * [Run jobs in the background.](common-patterns/run-python-in-the-background.md)
 * [Combine many results/files into one. (Map-Reduce)](common-patterns/combine-many-results-files-into-one-map-reduce.md)
+
+## Essays
+
+* [Stop Designing the Cluster](stop-designing-the-cluster.md)
