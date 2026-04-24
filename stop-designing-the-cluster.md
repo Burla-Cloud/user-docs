@@ -1,5 +1,5 @@
 ---
-description: Why cluster-first distributed systems are the wrong abstraction for dynamic pipelines.
+description: Why cluster-first distributed systems are the wrong abstraction, and what work-first tools let teams build instead.
 layout:
   width: default
   title:
@@ -20,191 +20,148 @@ layout:
 
 # Stop Designing the Cluster
 
-Most distributed systems have the same bug: they make you design the cluster before you can describe the work.
+You want to run a pipeline. Before you can write it, you have to design a cluster.
 
-Before you know what the pipeline will discover, you choose node types. Before you know which stages deserve GPUs, you size worker pools. Before you know whether a branch will matter, you decide which Docker image has to carry every dependency you might need and how much capacity to keep warm just in case.
+You pick how many machines it will need, what sizes, which container images, which GPUs, and which scaling rules. Before any code has run, you are being asked to guess the shape of a program you have not written yet.
 
-We have normalized this so thoroughly that it feels inevitable.
+That should be strange. It isn't, because almost every major distributed computing tool works this way.
 
-It isn't. It is an abstraction leak.
-
-## We are still writing two programs
+## You are writing two programs
 
 Most distributed systems make you write two programs.
 
-The first is the one you actually care about: the pipeline, the model, the transformation, the simulation, the scoring job, the business logic.
+The first is the one you actually care about: the pipeline, the transformation, the model, the scoring job, the thing that does the work.
 
-The second is the one no one talks about directly: the infrastructure plan. Which machines exist. Which workers get GPUs. Which images get preloaded. How aggressively the cluster scales. How much idle capacity to keep around. Which kinds of nested work are safe. Which branches are too awkward to express naturally because the cluster will not tolerate them.
+The second is the one nobody explicitly wrote down. It is a guess, made before anything has run, about what infrastructure the first program will need. How many workers. What sizes. Which images. Which kinds of nested work the cluster will tolerate. How much idle capacity to keep warm for branches the code may never take.
 
-This second program is scattered across cluster config, autoscaler settings, image strategy, scheduler hints, and a thousand quiet design decisions people stop noticing after a while.
+The second program is scattered across cluster YAML, autoscaler thresholds, image policy, and a thousand quiet assumptions the team stopped noticing years ago. But it is always there, and it usually ends up deciding whether the first program can be written at all.
 
-That is the real tax.
+That is the bug at the center of modern distributed computing. We have normalized it to the point where it feels like the shape of the problem. It isn't. It is the shape of the tools.
 
-And the problem is not just that this tax is annoying. The problem is that it changes how people write software.
+## The pipeline knows things the cluster doesn't
 
-When infrastructure is awkward, programmers stop writing the system that best matches the problem. They start writing the system the cluster is willing to run.
+Most interesting workloads do not know their own shape at the start.
 
-They flatten workflows that should branch. They avoid nested parallelism. They batch unlike stages together just to stay inside one environment. They keep heterogeneous capacity warm because changing course mid-run is too expensive. They ship giant images with everything baked in because switching environments later is painful.
+A pipeline parses a million documents on cheap CPUs. Three percent of them look suspicious and get routed to a heavier model on H100s. A smaller subset of those needs OCR in a completely different container with a completely different dependency stack. Some of those results explode into per-page work. Others stop there. Later, everything fans back in for aggregation on lightweight boxes.
 
-The software becomes polite to the infrastructure instead of faithful to the problem.
+What exactly is "the cluster" for that program?
 
-That is a bad bargain.
+If you answer that question before the code runs, you are guessing. You are designing infrastructure for branches the program may never take. You are provisioning around worst-case possibilities instead of actual execution. You are pretending the shape of the computation is already known when the computation is the thing that is supposed to tell you.
 
-## Dynamic pipelines expose the leak
+This inversion is so built in that we usually do not name it. We name something else. We say the pipeline is "hard to run at scale." We say the team "needs a platform." We reach for more config.
 
-This becomes obvious the moment the workload is genuinely dynamic.
+But the config is not the problem. The config is a symptom. The problem is that the runtime has asked us to freeze the shape of the work before writing the work.
 
-Imagine a pipeline that starts by parsing millions of documents on cheap CPU workers. Most of them are easy. But 3% look suspicious, so only that subset goes through a heavier model on H100s. That model flags a smaller subset that now needs OCR in a different container with a different dependency stack. Some of those results fan out into per-page work. Others stop there. Later, everything fans back in for aggregation and post-processing on lightweight machines.
+## Bad infrastructure shrinks software
 
-What exactly was the cluster for that program?
+The hidden cost of the second program is not the time it takes to write. It is what it quietly removes from the first one.
 
-If you answer that question up front, you are guessing.
+When infrastructure is awkward, people do not write the system that best matches the problem. They write the system the cluster is willing to run.
 
-You are designing infrastructure for branches the program may never take. You are provisioning around worst-case possibilities instead of actual execution. You are pretending the shape of the computation is known before the computation has happened.
+They flatten branches that should be dynamic, because dynamic branches require heterogeneous capacity they do not want to manage.
 
-That is backwards.
+They ship a single giant image with every dependency for every possible stage, because switching images mid-job is not really supported.
 
-The pipeline is the thing learning about the work. The infrastructure should be allowed to follow it.
+They avoid nested parallelism, because nested parallelism deadlocks in systems that reserve resources pessimistically.
 
-Once the workload becomes truly dynamic, the cluster-first model starts to look brittle. Not because it is impossible to make it work, but because the developer is doing work the runtime should be doing.
+They keep expensive hardware warm just in case, because the cost of the right machine not being there at the right moment is too high.
 
-A remote function should be allowed to discover more work and launch more work.
+They design around the cluster's limits until the pipeline looks like a compromise instead of an answer.
 
-A later stage should be allowed to ask for different hardware.
+You see this almost everywhere real distributed work gets done. The clever, branching, data-dependent system sketched on a whiteboard becomes the flat, pessimistically provisioned one that actually ships. Not because the team lacks ambition. Because the tools tax ambition, and that tax is paid in the design phase, silently, long before anyone writes a line of code.
 
-A different branch should be allowed to run in a different environment.
+That is the quiet version of the problem. The loud version is that the second program slows teams down. The quiet version is that the second program is choosing what kinds of software get built at all.
 
-None of that should feel exotic. That is what dynamic software does.
+## This shift has already happened everywhere else
 
-## The runtime should turn intent into infrastructure
+Go up the stack one level and this fight is already over.
 
-The right abstraction is much simpler.
+You do not plan which network path your HTTP request will take. You make the request.
 
-A distributed program should be able to say:
+You do not tell your language runtime which pages of memory to give you. You allocate.
 
-- run this function over these inputs
-- give each invocation the CPU, RAM, and GPU it needs
-- if the next stage needs a different container, use a different container
-- if a remote step discovers more work, let it fan out again
-- if the amount of parallelism changes, let the runtime adapt
-- when the work is done, tear the infrastructure back down
+You do not tell your database which disk blocks to lay your rows on. You insert.
 
-Everything below that line should happen automatically.
+In each case, a lower-level system that once required manual planning quietly became something the runtime just figures out. The lower layers still exist. Experts still reach down when they have to. But the default moved up, and a much larger population of developers got to build useful software as a result.
 
-The machines should appear because the computation requires them.
+Distributed computing is overdue for the same shift.
 
-The container should be selected because the computation requires it.
+We do not need better cluster YAML. We need fewer reasons to think in cluster YAML at all.
 
-The level of parallelism should change because the computation requires it.
+## Infrastructure as a consequence, not a prerequisite
 
-And when the workload narrows, the infrastructure should narrow with it.
+The fix is not subtle.
 
-This is not the weak version of the idea, where there is an autoscaler somewhere in the background. It is the stronger version: infrastructure is no longer the thing the developer is expected to plan first.
+A distributed program should be able to say: run this function over these inputs, with these resources. If the next stage needs different resources, give it different resources. If a remote step discovers more work, let it launch that work. When the job is done, tear everything down.
 
-That does not mean low-level control disappears. Experts will always want escape hatches. The lower layers still matter, the way memory allocation still matters and routing still matters and storage engines still matter.
+Below that line, the runtime should handle the rest.
 
-But mature abstractions change where people start.
+Machines appear because the computation requires them. Containers are selected because the step requires it. Parallelism rises and falls because the data rises and falls. And when the workload narrows, the infrastructure narrows with it.
 
-Most developers do not think about memory pages when they allocate an object. Most developers do not think about packets when they make an HTTP request. They operate at the level of intent, and the system handles the machinery underneath.
+This is not an autoscaler bolted onto the side of cluster-first tooling. It is a different default. Infrastructure stops being something the developer plans and becomes something the runtime produces on demand.
 
-Distributed computing should move up the stack in the same way.
+<figure><img src=".gitbook/assets/cluster-first-vs-work-first.png" alt="Side-by-side diagram. On the left, a rigid cluster of uniform workers flattens a pipeline as it passes through. On the right, a branching pipeline where each stage declares its own hardware and container, with machines appearing just in time around each stage."><figcaption><p>Cluster-first: the pipeline is reshaped to fit the cluster. Work-first: the cluster is produced to fit the pipeline.</p></figcaption></figure>
 
-We do not need better cluster YAML nearly as much as we need fewer reasons for developers to think in cluster YAML at all.
+Once you see the program as the source of truth and the cluster as a consequence of it, a lot of things snap back into the right place. Pipelines can change hardware mid-run. Stages can switch containers. Remote work can launch more remote work. A step can discover that one input should explode into ten thousand more, and that can just happen, without the developer negotiating with a scheduler.
 
-## What this unlocks
+None of that should feel exotic. That is what dynamic software looks like when the runtime gets out of its way.
 
-Once you stop forcing the pipeline to fit a predesigned cluster, a much larger class of software becomes practical.
+## What this actually unlocks
 
-You can:
+The biggest payoff here is not convenience. It is the software that becomes possible to build.
 
-- change hardware class mid-program, from lots of cheap CPU workers to H100s and back again
-- switch Docker images between stages because the environment belongs to the step, not to a fixed cluster identity
-- let remote functions trigger more remote work, so nested fan-out becomes normal instead of dangerous
-- pay for expensive infrastructure only when the data actually justifies it
-- let the runtime react to the real shape of the workload instead of a guess made before execution
+When every dynamic branch implies infrastructure choreography, teams quietly stop building dynamic systems. When nested fan-out is risky, nobody writes recursive pipelines. When switching images mid-job is not supported, nobody tries.
 
-Bad abstractions do not just waste time. They shrink the set of ideas teams are willing to try.
+Over time, the tools silently shape the ambition. Teams ship the small, flat, safely provisioned version of the system they originally had in mind.
 
-When every dynamic branch implies more infrastructure choreography, people quietly stop building dynamic systems.
+Better abstractions do the opposite. They expand the set of programs people are willing to write. Recursive pipelines stop being research projects. Hardware can change between stages without a platform conversation. Expensive compute shows up only when the data actually justifies it. Teams spend their time on the part that matters: the logic of the work.
 
-Better abstractions do the opposite. They expand the space of programs that are reasonable to write.
-
-That is the real prize.
+That is the real prize. Not lines of YAML saved. A larger universe of software that is reasonable to attempt.
 
 ## The bet behind Burla
 
-This is the bet behind Burla.
+This is the bet behind Burla. We are building the runtime that takes the cluster out of the developer's hands.
 
-Burla is opinionated on purpose. It starts from the work, not the cluster.
-
-The core primitive is [`remote_parallel_map`](API-Reference.md): give it a function, a set of inputs, and the requirements for that stage. CPU. RAM. GPU if needed. A container image if needed. Burla figures out the machines, brings up what it needs, runs the work, and gets out of the way.
-
-A simple version looks like this:
+Its only primitive is `remote_parallel_map`. You hand it a function, a list of inputs, and the resources that step needs. CPU. RAM. GPU. An image if you want one. Burla handles the rest.
 
 ```python
 from burla import remote_parallel_map
 
 chunks = remote_parallel_map(
-    preprocess,
-    raw_files,
-    func_cpu=1,
-    func_ram=2,
-    grow=True,
+    preprocess, raw_files,
+    func_cpu=1, func_ram=2, grow=True,
 )
 
 embeddings = remote_parallel_map(
-    embed,
-    chunks,
+    embed, chunks,
     func_gpu="H100_80G",
     image="gcr.io/acme/pytorch-2.3-cu12",
     grow=True,
 )
 
 remote_parallel_map(
-    write_results,
-    embeddings,
-    func_cpu=1,
-    func_ram=4,
+    write_results, embeddings,
+    func_cpu=1, func_ram=4,
 )
 ```
 
-That code is doing something deeper than saving a few lines of configuration.
+Stage one runs on cheap CPUs. Stage two runs on H100s in a custom container. Stage three goes back to lightweight machines. Nobody designed a cluster that had to hold all three shapes at once. The pipeline decided the infrastructure as it went, and the infrastructure quietly disappears when the work is done.
 
-The first stage is saying: use cheap CPU workers.
+A Burla function can also call `remote_parallel_map` itself. When a remote step discovers that one input should become ten thousand, it launches that work directly. Nested fan-out is not a scheduling hazard to be carefully avoided. It is just more computation.
 
-The second stage is saying: now switch to H100s and a different container.
+That is the whole idea. The program expresses what should happen. The runtime produces the infrastructure that lets it happen. Nothing below that line belongs in the developer's head.
 
-The third stage is saying: now go back to lightweight machines.
+## The cluster was always supposed to be the implementation detail
 
-The developer never had to pre-design a permanent cluster that could satisfy all three stages simultaneously. The pipeline decided the infrastructure as it went.
+Cloud tooling is still stuck halfway up the ladder.
 
-And it gets better from there.
+We went from racks to instances, from instances to containers, from containers to schedulers and managed clusters and autoscalers. All of that was real progress. But the developer experience still assumes you should be thinking about worker pools, warm capacity, node types, placement, and images before you can cleanly express what you want to run.
 
-A Burla function can itself call `remote_parallel_map` again. So if a remote step discovers that one input should branch, recurse, or explode into ten thousand more tasks, it can do that directly. Nested fan-out is not treated like a scheduling hazard. It is just more computation.
+That is better than bare metal. It is not the end state.
 
-That matters because a lot of valuable systems are not static. They branch. They learn. They escalate some paths and skip others. They change environments midstream. They discover that a small subset deserves expensive treatment. They discover more work inside the work.
+The end state is not "infrastructure, but more automated." The end state is that, for a large class of workloads, infrastructure recedes from the foreground. You describe the work. You describe the resources each step needs. The runtime turns that into machines, images, GPUs, parallelism, and teardown.
 
-The infrastructure should be able to follow that.
-
-## The cluster should be an implementation detail
-
-Much of cloud tooling is still stuck halfway up the abstraction ladder.
-
-We replaced racks with instances. Then instances with containers. Then we added schedulers, managed clusters, and autoscalers. All of that was real progress.
-
-But too much of the developer experience still assumes that you should be thinking about worker pools, warm capacity, node types, placement strategy, and image policy before you can cleanly express what the program wants to do.
-
-That is better than bare metal.
-
-It is not the end state.
-
-The end state is not infrastructure, but more automated.
-
-The end state is that, for a large class of workloads, infrastructure recedes from the foreground. The developer describes the work. The developer describes the requirements of each step. The runtime turns that into machines, images, GPUs, parallelism, and teardown.
-
-Not because developers no longer care about performance or control.
-
-Because the abstraction has finally moved high enough.
+Not because developers no longer care about performance or control. Because the abstraction finally moved high enough that they do not have to start there.
 
 The cluster was never supposed to be the thing you were designing.
 
