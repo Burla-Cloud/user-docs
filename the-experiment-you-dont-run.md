@@ -4,7 +4,7 @@ description: Why dynamic hardware should be a normal part of ML and data program
 
 # The Experiment You Don't Run
 
-<figure><img src=".gitbook/assets/experiment-you-dont-run-v3.svg" alt="A dynamic document pipeline fans out to CPU parsing, OCR, vision, GPU embedding, and evaluation."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-hero-experiment.png" alt="The real document search experiment compared with the smaller prototype that often gets shipped."><figcaption></figcaption></figure>
 
 Most ML and data work has a hidden planning step.
 
@@ -21,6 +21,8 @@ The cloud gave us an infinite office building.
 But a lot of our tools still make us pick the room before we know what the work needs.
 
 That is not just annoying. It changes the work.
+
+<figure><img src=".gitbook/assets/blog-veto-power.png" alt="A document search pipeline as a decision tree that routes files through CPU inspection, OCR, parsing, vision, and GPU embeddings."><figcaption></figcaption></figure>
 
 ## Infrastructure has veto power
 
@@ -52,6 +54,8 @@ Instead they sample 500 documents. Skip OCR for now. Use one embedding model. Ha
 
 This is the cost of infrastructure friction: it gives your curiosity a budget before the experiment starts.
 
+<figure><img src=".gitbook/assets/blog-static-hardware.png" alt="Notebook, Spark, GPU VM, and queue rooms showing static hardware choices made before the data teaches what it needs."><figcaption></figcaption></figure>
+
 ## Static hardware makes static questions
 
 A lot of systems still treat hardware as something you choose up front.
@@ -74,9 +78,9 @@ Not "what is the real experiment?"
 
 "What experiment fits in the room I already picked?"
 
-## Hardware should be control flow
+<figure><img src=".gitbook/assets/blog-control-flow.png" alt="A local script branching into CPU, Docker, and GPU paths before fanning in and rerunning winners."><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/hardware-as-control-flow-v3.svg" alt="A local script fans out to CPU, container-specific, and GPU branches before aggregating results."><figcaption></figcaption></figure>
+## Hardware should be control flow
 
 The abstraction I want is simple: hardware should be part of the program's control flow.
 
@@ -108,6 +112,8 @@ That logic belongs in the program.
 
 Today it too often leaks into infrastructure.
 
+<figure><img src=".gitbook/assets/blog-what-becomes-possible.png" alt="A compute cascade that narrows from ten thousand cheap trials to ten final evaluations."><figcaption></figcaption></figure>
+
 ## What becomes possible
 
 The useful new thing is not "faster jobs." Faster jobs are nice. But speed is not the whole story.
@@ -136,6 +142,8 @@ None of this is exotic. That is the point.
 
 These are the obvious programs people would write if infrastructure did not keep interrupting.
 
+<figure><img src=".gitbook/assets/blog-adapter-era.png" alt="Infrastructure adapter layers compared with what the user meant: functions, inputs, outputs, and hardware requirements."><figcaption></figcaption></figure>
+
 ## The adapter era
 
 We have a lot of tools that make the cloud usable by adapting old workflows.
@@ -154,6 +162,8 @@ Functions. Inputs. Outputs. Hardware requirements. Containers where they matter.
 
 That covers a shocking amount of work.
 
+<figure><img src=".gitbook/assets/blog-self-hosting.png" alt="A cloud boundary containing buckets, CPUs and GPUs, and IAM audit controls."><figcaption></figcaption></figure>
+
 ## Self-hosting is not a footnote
 
 There is one more constraint that matters: the data often cannot move.
@@ -169,6 +179,8 @@ The developer gets the magic: run the real experiment, fan out, switch hardware,
 The organization keeps the boring necessary stuff: IAM, buckets, auditability, data locality, cost control, network boundaries.
 
 That combination matters because it makes the powerful thing acceptable.
+
+<figure><img src=".gitbook/assets/blog-still-early.png" alt="The old model of picking and entering a machine contrasted with a dynamic model where code inspects data, routes work, and grabs hardware as needed."><figcaption></figcaption></figure>
 
 ## Why this still feels early
 
@@ -189,6 +201,8 @@ It changes which workflows are worth attempting.
 The next big improvement in cloud compute will not be that machines get bigger. They already got big.
 
 It will be that infrastructure loses its veto over curiosity.
+
+<figure><img src=".gitbook/assets/blog-burla-addendum.png" alt="remote_parallel_map branching to CPUs, A100 GPUs, Docker images, and self-hosted GCP."><figcaption></figcaption></figure>
 
 ## Addendum
 
