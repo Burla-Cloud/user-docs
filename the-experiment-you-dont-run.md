@@ -4,7 +4,7 @@ description: Why dynamic hardware should be a normal part of ML and data program
 
 # The Experiment You Don't Run
 
-<figure><img src=".gitbook/assets/interesting-intro-hallway.png" alt="A data scientist standing in a hallway of cloud infrastructure rooms while the actual research question glows at the end."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-hero-experiment.jpg" alt="A lone scientist works at a small desk under a single lamp, dwarfed by rows of unused supercomputers stretching to the horizon."><figcaption></figcaption></figure>
 
 Most ML and data work has a hidden planning step.
 
@@ -22,7 +22,7 @@ But a lot of our tools still make us pick the room before we know what the work 
 
 That is not just annoying. It changes the work.
 
-<figure><img src=".gitbook/assets/interesting-veto-bouncer.png" alt="A bouncer blocking a large messy experiment while a tiny prototype slips through."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-veto-power.jpg" alt="An oversized REJECTED rubber stamp slamming down onto a curious hand-drawn experiment plan."><figcaption></figcaption></figure>
 
 ## Infrastructure has veto power
 
@@ -54,7 +54,7 @@ Instead they sample 500 documents. Skip OCR for now. Use one embedding model. Ha
 
 This is the cost of infrastructure friction: it gives your curiosity a budget before the experiment starts.
 
-<figure><img src=".gitbook/assets/interesting-static-rails.png" alt="A cargo cart stuck on a locked railroad switch before the right cargo is known."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-static-hardware.jpg" alt="A tiny office cubicle floating in a vast empty void, with a small sign that reads HARDWARE PICKED."><figcaption></figcaption></figure>
 
 ## Static hardware makes static questions
 
@@ -78,7 +78,7 @@ Not "what is the real experiment?"
 
 "What experiment fits in the room I already picked?"
 
-<figure><img src=".gitbook/assets/interesting-control-flow-subway.png" alt="A subway map where a local script can switch onto Docker and GPU lines as the data changes."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-control-flow.jpg" alt="A railway switch operator calmly choosing between three labeled tracks: GPU, CPU, and Docker."><figcaption></figcaption></figure>
 
 ## Hardware should be control flow
 
@@ -112,7 +112,7 @@ That logic belongs in the program.
 
 Today it too often leaks into infrastructure.
 
-<figure><img src=".gitbook/assets/interesting-possibilities-goldpan.png" alt="A scientist panning for gold nuggets and sending only the winners to an expensive machine."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-what-becomes-possible.jpg" alt="Four lab shelves cascading from ten thousand small test tubes down to ten elaborate experimental setups."><figcaption></figcaption></figure>
 
 ## What becomes possible
 
@@ -142,7 +142,7 @@ None of this is exotic. That is the point.
 
 These are the obvious programs people would write if infrastructure did not keep interrupting.
 
-<figure><img src=".gitbook/assets/interesting-adapter-wagon.png" alt="A new cloud engine bolted onto an old workflow wagon."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-adapter-era.jpg" alt="A horse-drawn carriage retrofitted with strapped-on rocket boosters, flying a small CLOUD-NATIVE flag."><figcaption></figcaption></figure>
 
 ## The adapter era
 
@@ -162,7 +162,7 @@ Functions. Inputs. Outputs. Hardware requirements. Containers where they matter.
 
 That covers a shocking amount of work.
 
-<figure><img src=".gitbook/assets/interesting-selfhost-vault.png" alt="A data vault inside a private cloud boundary with workers appearing inside the same boundary."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-self-hosting.jpg" alt="A cozy living room with a glass-walled vault holding data, while small cloud puffs swirl around it but cannot enter."><figcaption></figcaption></figure>
 
 ## Self-hosting is not a footnote
 
@@ -180,7 +180,7 @@ The organization keeps the boring necessary stuff: IAM, buckets, auditability, d
 
 That combination matters because it makes the powerful thing acceptable.
 
-<figure><img src=".gitbook/assets/interesting-still-early-console.png" alt="A giant machine console where only one button is wired."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-still-early.jpg" alt="A sleek race car parked inside a cozy kitchen, draped with a checkered tablecloth and used as a breakfast table."><figcaption></figcaption></figure>
 
 ## Why this still feels early
 
@@ -202,7 +202,7 @@ The next big improvement in cloud compute will not be that machines get bigger. 
 
 It will be that infrastructure loses its veto over curiosity.
 
-<figure><img src=".gitbook/assets/interesting-burla-workers.png" alt="A laptop running remote_parallel_map while small worker machines appear around it."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-burla-addendum.jpg" alt="A friendly Python coiled around a desk lamp, plugging into a giant socket on the side of a server farm."><figcaption></figcaption></figure>
 
 ## Addendum
 
