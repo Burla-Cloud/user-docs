@@ -3,44 +3,34 @@
   <rect x="20" y="20" width="600" height="260" rx="18" fill="#ffffff" stroke="#d9e8ed" stroke-width="2"/>
   <text x="42" y="58" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#264653">Hardware as control flow</text>
   <text x="42" y="84" font-family="Inter, Arial, sans-serif" font-size="14" fill="#3d5f6e">The program routes work to the hardware and container each branch deserves.</text>
-
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#3d7a8a"/>
     </marker>
   </defs>
-
   <g font-family="Inter, Arial, sans-serif">
     <rect x="42" y="143" width="86" height="52" rx="11" fill="#ffffff" stroke="#3d7a8a" stroke-width="2"/>
     <text x="85" y="164" font-size="13" font-weight="700" text-anchor="middle" fill="#264653">Local</text>
     <text x="85" y="182" font-size="11" text-anchor="middle" fill="#3d5f6e">script</text>
-
     <rect x="190" y="108" width="104" height="44" rx="10" fill="#eef7f9" stroke="#3d7a8a" stroke-width="2"/>
     <text x="242" y="126" font-size="12" font-weight="700" text-anchor="middle" fill="#264653">CPU fan-out</text>
     <text x="242" y="142" font-size="10" text-anchor="middle" fill="#3d5f6e">inspect files</text>
-
     <rect x="190" y="163" width="104" height="44" rx="10" fill="#fff7e8" stroke="#c7862a" stroke-width="2"/>
     <text x="242" y="181" font-size="12" font-weight="700" text-anchor="middle" fill="#704600">Container</text>
     <text x="242" y="197" font-size="10" text-anchor="middle" fill="#704600">GDAL / OCR</text>
-
     <rect x="190" y="218" width="104" height="44" rx="10" fill="#eaf3ff" stroke="#4779bd" stroke-width="2"/>
     <text x="242" y="236" font-size="12" font-weight="700" text-anchor="middle" fill="#2b4d78">GPU branch</text>
     <text x="242" y="252" font-size="10" text-anchor="middle" fill="#2b4d78">embed / infer</text>
-
     <path d="M140 169 C160 169 160 130 180 130" stroke="#3d7a8a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
     <path d="M140 169 C162 169 162 185 180 185" stroke="#3d7a8a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
     <path d="M140 169 C160 169 160 240 180 240" stroke="#3d7a8a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
-
     <path d="M304 130 C342 130 342 169 382 169" stroke="#3d7a8a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
     <path d="M304 185 C342 185 342 169 382 169" stroke="#3d7a8a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
     <path d="M304 240 C342 240 342 169 382 169" stroke="#3d7a8a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
-
     <rect x="394" y="143" width="86" height="52" rx="11" fill="#ffffff" stroke="#3d7a8a" stroke-width="2"/>
     <text x="437" y="164" font-size="13" font-weight="700" text-anchor="middle" fill="#264653">Fan in</text>
     <text x="437" y="182" font-size="11" text-anchor="middle" fill="#3d5f6e">aggregate</text>
-
     <path d="M492 169 L534 169" stroke="#3d7a8a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
-
     <rect x="546" y="143" width="68" height="52" rx="11" fill="#f4effa" stroke="#8167b4" stroke-width="2"/>
     <text x="580" y="164" font-size="13" font-weight="700" text-anchor="middle" fill="#4c3b73">Rerun</text>
     <text x="580" y="182" font-size="11" text-anchor="middle" fill="#4c3b73">winners</text>

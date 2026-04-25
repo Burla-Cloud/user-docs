@@ -4,7 +4,7 @@ description: Why dynamic hardware should be a normal part of ML and data program
 
 # The Experiment You Don't Run
 
-<figure><img src=".gitbook/assets/experiment-you-dont-run.svg?v=2" alt="A dynamic document pipeline fans out to CPU parsing, OCR, vision, GPU embedding, and evaluation."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/experiment-you-dont-run-v2.svg" alt="A dynamic document pipeline fans out to CPU parsing, OCR, vision, GPU embedding, and evaluation."><figcaption></figcaption></figure>
 
 Most ML and data work has a hidden planning step.
 
@@ -76,7 +76,7 @@ Not "what is the real experiment?"
 
 ## Hardware should be control flow
 
-<figure><img src=".gitbook/assets/hardware-as-control-flow.svg?v=2" alt="A local script fans out to CPU, container-specific, and GPU branches before aggregating results."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/hardware-as-control-flow-v2.svg" alt="A local script fans out to CPU, container-specific, and GPU branches before aggregating results."><figcaption></figcaption></figure>
 
 The abstraction I want is simple: hardware should be part of the program's control flow.
 
