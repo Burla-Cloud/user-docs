@@ -1,0 +1,49 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="520" rx="32" fill="#f8fbfc"/>
+  <text x="70" y="72" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700" fill="#264653">Hardware as control flow</text>
+  <text x="70" y="112" font-family="Inter, Arial, sans-serif" font-size="21" fill="#3d5f6e">The program routes work to the hardware and container each branch deserves.</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3d7a8a"/>
+    </marker>
+  </defs>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="80" y="215" width="150" height="80" rx="18" fill="#ffffff" stroke="#3d7a8a" stroke-width="3"/>
+    <text x="155" y="249" font-size="20" font-weight="700" text-anchor="middle" fill="#264653">Local script</text>
+    <text x="155" y="275" font-size="15" text-anchor="middle" fill="#3d5f6e">starts here</text>
+
+    <path d="M250 255 L335 255" stroke="#3d7a8a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+    <rect x="360" y="150" width="160" height="70" rx="16" fill="#eef7f9" stroke="#3d7a8a" stroke-width="3"/>
+    <text x="440" y="179" font-size="19" font-weight="700" text-anchor="middle" fill="#264653">CPU fan-out</text>
+    <text x="440" y="203" font-size="14" text-anchor="middle" fill="#3d5f6e">inspect files</text>
+
+    <rect x="360" y="255" width="160" height="70" rx="16" fill="#fff7e8" stroke="#c7862a" stroke-width="3"/>
+    <text x="440" y="284" font-size="19" font-weight="700" text-anchor="middle" fill="#704600">Container</text>
+    <text x="440" y="308" font-size="14" text-anchor="middle" fill="#704600">GDAL / OCR</text>
+
+    <rect x="360" y="360" width="160" height="70" rx="16" fill="#eaf3ff" stroke="#4779bd" stroke-width="3"/>
+    <text x="440" y="389" font-size="19" font-weight="700" text-anchor="middle" fill="#2b4d78">GPU branch</text>
+    <text x="440" y="413" font-size="14" text-anchor="middle" fill="#2b4d78">embed / infer</text>
+
+    <path d="M250 255 C295 255 310 185 335 185" stroke="#3d7a8a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+    <path d="M250 255 C300 255 310 290 335 290" stroke="#3d7a8a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+    <path d="M250 255 C300 255 310 395 335 395" stroke="#3d7a8a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+    <path d="M540 185 C640 185 640 255 720 255" stroke="#3d7a8a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+    <path d="M540 290 C640 290 640 255 720 255" stroke="#3d7a8a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+    <path d="M540 395 C640 395 640 255 720 255" stroke="#3d7a8a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+    <rect x="745" y="215" width="160" height="80" rx="18" fill="#ffffff" stroke="#3d7a8a" stroke-width="3"/>
+    <text x="825" y="249" font-size="20" font-weight="700" text-anchor="middle" fill="#264653">Fan in</text>
+    <text x="825" y="275" font-size="15" text-anchor="middle" fill="#3d5f6e">aggregate</text>
+
+    <path d="M925 255 L1010 255" stroke="#3d7a8a" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+    <rect x="1035" y="215" width="110" height="80" rx="18" fill="#f4effa" stroke="#8167b4" stroke-width="3"/>
+    <text x="1090" y="249" font-size="20" font-weight="700" text-anchor="middle" fill="#4c3b73">Rerun</text>
+    <text x="1090" y="275" font-size="15" text-anchor="middle" fill="#4c3b73">winners</text>
+  </g>
+</svg>

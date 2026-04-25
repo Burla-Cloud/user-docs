@@ -9,6 +9,10 @@
 * [Software as a Service Agreement](software-as-a-service-agreement.md)
 * [Privacy Policy](website-privacy-policy.md)
 
+## Essays
+
+* [The Experiment You Don't Run](the-experiment-you-dont-run.md)
+
 ## Examples
 
 * [Process 2.4TB of Parquet Files in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
