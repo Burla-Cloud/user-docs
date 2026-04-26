@@ -11,7 +11,7 @@
 
 ## Essays
 
-* [The Experiment You Don't Run](the-experiment-you-dont-run.md)
+* [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
 
 ## Examples
 
