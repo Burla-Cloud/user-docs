@@ -6,31 +6,21 @@ description: Why dynamic hardware should be a normal part of ML and data program
 
 <figure><img src=".gitbook/assets/blog-hero-experiment.jpg" alt="A lone scientist works at a small desk under a single lamp, dwarfed by rows of unused supercomputers stretching to the horizon."><figcaption></figcaption></figure>
 
-Most ML and data work has a hidden planning step.
+Most ML and data work starts as a question. Then a different question barges in.
 
-Before you ask the interesting question, you ask the infrastructure question.
+You open a notebook to find out whether something works. A minute later you are choosing an instance type, guessing memory, checking whether the Docker image has CUDA, wondering if Spark is overkill, and asking how painful this will be to rerun.
 
-How many CPUs do I need? Do I need a GPU? Can this fit in my notebook? Should I use Spark? Is this a batch job? Do I need a queue? Which Docker image has the right version of CUDA? Does the GDAL container also have PyTorch? How annoying will this be to rerun?
+This feels normal because we do it all the time.
 
-This sounds normal because we are used to it. But it is pretty strange.
+The cloud gave us more computers than we know how to use. But most tools still ask us to pick one before the work has shown us what it needs.
 
-Imagine if every time you wrote a Python function, you first had to decide which room in an office building the function would be allowed to run in. Some rooms have GPUs. Some rooms have lots of RAM. Some rooms have the right system libraries. Some rooms can see the data. Some rooms are cheap but might disappear. Some rooms are available only if you file the right ticket. You can use any room you want, in theory.
-
-The cloud gave us an infinite office building.
-
-But a lot of our tools still make us pick the room before we know what the work needs.
-
-That is not just annoying. It changes the work.
-
-<figure><img src=".gitbook/assets/blog-veto-power.jpg" alt="An oversized REJECTED rubber stamp slamming down onto a curious hand-drawn experiment plan."><figcaption></figcaption></figure>
+That changes the experiment.
 
 ## Infrastructure has veto power
 
-Here is a very normal example.
+Say you need to build search over company documents: PDFs, contracts, invoices, support exports, customer uploads, and a few old scans nobody wants to touch.
 
-Someone asks you to build search over a pile of company documents. PDFs, contracts, invoices, old support exports, customer-uploaded files, maybe a few scans from 2017 that nobody wants to think about.
-
-The clean version sounds simple:
+The clean plan is boring:
 
 1. Parse documents.
 2. Chunk text.
@@ -38,59 +28,37 @@ The clean version sounds simple:
 4. Build an index.
 5. Run evals.
 
-The real version reveals itself about 15 minutes in.
+The real job appears after the first pass. Some PDFs are scanned. Some have tables that matter. Some are 900 pages. Some are corrupt. Some are in the wrong language. Some need OCR. Some need a vision model. Some should be skipped. Some deserve a slow parser only if a cheap parser thinks they matter.
 
-Some PDFs parse cleanly. Some are scanned and need OCR. Some have tables that matter. Some are 900 pages. Some are corrupt. Some are in the wrong language. Some chunks are obviously garbage. Some documents need a vision model. Some should be skipped. Some should be reprocessed with a slower parser only if a cheap pass says they matter.
+The program you want is a decision tree.
 
-So the actual program you want is not a straight line. It is a decision tree.
+Start cheap and wide. Inspect every file. Send normal PDFs through the fast path. Send scans to OCR. Send table-heavy documents to a different container. Fan chunks out to GPUs for embeddings. Run a broad eval grid. Rerun low-confidence cases. Build the index from what survived.
 
-Start with cheap CPUs and inspect everything. Route normal PDFs through the fast parser. Send scans to OCR. Send table-heavy documents to a different container. Fan chunks out to GPUs for embeddings. Run a broad eval grid. Rerun low-confidence cases. Fan back in to build the index. Maybe run an expensive reranker only on the top candidates.
+That is the obvious experiment.
 
-That is the obvious version of the work.
+But it is often not the experiment people run.
 
-But it is often not the version people run.
-
-Instead they sample 500 documents. Skip OCR for now. Use one embedding model. Hand-pick 20 eval questions. Promise to come back later. The prototype works, sort of, because the prototype has been shaped around what was easy to run.
+They sample 500 documents. Skip OCR for now. Use one embedding model. Hand-pick 20 eval questions. Promise to come back later. The prototype works, sort of, because it was shaped around what was easy to run.
 
 This is the cost of infrastructure friction: it gives your curiosity a budget before the experiment starts.
 
-<figure><img src=".gitbook/assets/blog-static-hardware.jpg" alt="A tiny office cubicle floating in a vast empty void, with a small sign that reads HARDWARE PICKED."><figcaption></figcaption></figure>
+## Hardware should be control flow
 
-## Static hardware makes static questions
+Good experiments escalate: start cheap, keep the interesting cases, spend expensive hardware only where the data earns it.
 
-A lot of systems still treat hardware as something you choose up front.
+This is how good scientists spend attention. Our tools often ask for the spending plan before there is evidence.
 
-Pick a notebook instance. Pick a cluster. Pick a worker pool. Pick a Docker image. Pick a DAG. Pick CPU or GPU. Pick memory. Pick the queue.
-
-Then write the code.
-
-This works when the computation is already understood. But ML and data work often discovers its own shape while running. You do not know which files are weird until you inspect them. You do not know which hyperparameters deserve real training until the cheap sweep finishes. You do not know which rows need expensive validation until the first pass finds anomalies. You do not know whether the eval needs a reranker until retrieval fails in a specific way.
-
-The natural pattern is escalation.
-
-Start cheap and wide. Keep the interesting parts. Spend expensive hardware only where the data earns it.
-
-This is how good scientists spend attention. But our infrastructure often asks for the spending plan before there is evidence.
-
-So the question quietly shrinks.
+So the question shrinks.
 
 Not "what is the real experiment?"
 
-"What experiment fits in the room I already picked?"
+"What experiment fits in the machine I already picked?"
 
-<figure><img src=".gitbook/assets/blog-control-flow.jpg" alt="A railway switch operator calmly choosing between three labeled tracks: GPU, CPU, and Docker."><figcaption></figcaption></figure>
+Hardware should be part of the program's control flow. If a branch needs OCR, run it in an OCR container. If another needs CUDA, run it on GPUs. If the next step is a million independent files, fan out across a thousand machines for a few minutes. When the work becomes aggregation, fan back in.
 
-## Hardware should be control flow
+Not a platform migration. Not queue wiring. Not a YAML ceremony.
 
-The abstraction I want is simple: hardware should be part of the program's control flow.
-
-If a branch needs OCR, it should run in an OCR container. If the next branch needs CUDA, it should run on GPUs. If the next step is a million independent files, it should fan out across a thousand machines for a few minutes. If the next step is aggregation, it should fan back in.
-
-Not as a platform migration. Not as a week of queue wiring. Not as a YAML ceremony.
-
-As code.
-
-Something spiritually like:
+Code.
 
 ```python
 profiles = map(inspect_file, files, cpu=2)
@@ -104,111 +72,63 @@ embeddings = map(embed, chunks, image="pytorch-cuda", gpu="A100")
 scores = map(evaluate, eval_grid, cpu=8)
 ```
 
-The exact API is not the point. The point is where the decision lives.
+I do not care much about the exact syntax. I care where the decision lives.
 
-The person writing the pipeline knows why one step needs GDAL, why another needs a GPU, why the weird files should be isolated, why the broad sweep should be cheap, and why only the winners deserve the expensive pass.
-
-That logic belongs in the program.
-
-Today it too often leaks into infrastructure.
-
-<figure><img src=".gitbook/assets/blog-what-becomes-possible.jpg" alt="Four lab shelves cascading from ten thousand small test tubes down to ten elaborate experimental setups."><figcaption></figcaption></figure>
+The person writing the pipeline knows why one step needs GDAL, why another needs a GPU, why bad files should be isolated, and why only the winners deserve the expensive pass. That logic belongs in the program.
 
 ## What becomes possible
 
-The useful new thing is not "faster jobs." Faster jobs are nice. But speed is not the whole story.
+The useful new thing is writing the ambitious version first.
 
-The useful new thing is that you can write the ambitious version first.
+For model search, do a cascade. Train 10,000 cheap models on small samples. Keep 1,000. Retrain those on more data. Keep 100. Add expensive features. Keep 10. Run calibration and slice analysis. Early stages want cheap CPU parallelism. Later stages may want memory or GPUs. The static-cluster version feels like a pipeline project. The dynamic version feels like a loop.
 
-For model search, the ambitious version is not one grid. It is a cascade.
+For RAG evals, run the full matrix: chunk sizes, embedding models, retrieval depths, rerankers, prompts, model versions, judges, datasets. Cheap filters first. Expensive judges later. Evaluate the actual space, not the tiny version that fits in your patience.
 
-Train 10,000 cheap models on small samples. Keep the best 1,000. Retrain those on more data. Keep the best 100. Add expensive features. Keep the best 10. Run calibration, explainability, robustness checks, and slice analysis.
+For geospatial work, stop building one cursed Docker image with every dependency known to humanity. Tile satellite scenes in an `osgeo/gdal` container. Run segmentation on GPUs. Polygonize on CPUs. Aggregate by region. Rerun cloudy or low-confidence tiles with a slower path.
 
-Every stage wants different compute. Early stages want lots of cheap CPU parallelism. Later stages might want bigger memory machines or GPUs. Evaluation might want a different container. The static-cluster version makes this feel like a pipeline project. The dynamic version feels like a loop.
+These are the programs people would write if infrastructure stopped interrupting.
 
-For data lake cleanup, the ambitious version is not one heroic parser. It is triage.
+## Adapters are not enough
 
-Fan out over every file. Classify schema, size, encoding, compression, corruption, and weirdness. Send normal files down the fast path. Send pathological files to heavier validation. Send huge files to high-memory machines. Keep examples of failures automatically. Produce a report that tells you what kind of mess you actually have.
+Docker makes environments portable. Queues make functions distributable. Spark makes dataframes run across clusters. Workflow engines make scripts schedulable. Hosted notebooks put the laptop somewhere bigger.
 
-For RAG evals, the ambitious version is not a 20-question spreadsheet. It is the full matrix.
+These tools are useful. Some are great. But they still make the user think in infrastructure nouns: clusters, workers, queues, images, DAGs, schedulers, node types.
 
-Chunk sizes, embedding models, retrieval depths, rerankers, prompts, model versions, judging methods, datasets. Cheap filters first. Expensive judges later. You should be able to evaluate the actual space, not the tiny version that fits in your patience.
+That is fine if the job is infrastructure. It is not fine if the job is figuring out which documents need OCR, whether a reranker improves retrieval, why a fraud model fails on one customer segment, or which features are worth computing at all.
 
-For geospatial work, the ambitious version is not one cursed Docker image with every dependency known to humanity. It is a program that changes environment as the work changes.
+Someone still has to build the infrastructure. The next step is letting more ML and data people stay with the problem longer.
 
-Tile satellite scenes in an `osgeo/gdal` container. Run segmentation on GPUs. Polygonize on CPUs. Aggregate by region. Rerun cloudy or low-confidence tiles with a slower path.
+Functions. Inputs. Outputs. Hardware requirements. Containers where they matter. Logs. Exceptions. Fan out. Fan in.
 
-None of this is exotic. That is the point.
-
-These are the obvious programs people would write if infrastructure did not keep interrupting.
-
-<figure><img src=".gitbook/assets/blog-adapter-era.jpg" alt="A horse-drawn carriage retrofitted with strapped-on rocket boosters, flying a small CLOUD-NATIVE flag."><figcaption></figcaption></figure>
-
-## The adapter era
-
-We have a lot of tools that make the cloud usable by adapting old workflows.
-
-Docker makes environments portable. Queues make functions distributable. Spark makes dataframes run across clusters. Workflow engines make scripts schedulable. Hosted notebooks put the laptop in the cloud.
-
-These are all useful. Some are great.
-
-But they still make the user think in infrastructure nouns: clusters, workers, queues, images, DAGs, schedulers, node types.
-
-That is fine if the job is infrastructure. It is not fine if the job is figuring out why the fraud model fails on a specific customer segment, or which documents need OCR, or whether a reranker actually improves retrieval, or which features are worth computing at all.
-
-The next step is not hiding all infrastructure from everyone. Someone still needs to build it. The next step is moving the abstraction boundary high enough that more ML and data people can stay in the problem longer.
-
-Functions. Inputs. Outputs. Hardware requirements. Containers where they matter. Real logs. Real exceptions. Fan out. Fan in.
-
-That covers a shocking amount of work.
-
-<figure><img src=".gitbook/assets/blog-self-hosting.jpg" alt="A cozy living room with a glass-walled vault holding data, while small cloud puffs swirl around it but cannot enter."><figcaption></figcaption></figure>
+That covers a lot of work.
 
 ## Self-hosting is not a footnote
 
-There is one more constraint that matters: the data often cannot move.
+One constraint decides whether any of this matters: the data often cannot move.
 
-The best developer experience in the world is not very useful if the data plane has to leave your cloud account. Healthcare data, financial data, customer documents, internal logs, proprietary datasets, giant buckets already sitting in GCP. These are not edge cases. They are the work.
+Healthcare data, financial data, customer documents, internal logs, proprietary datasets, giant buckets already sitting in GCP. These are not edge cases. This is the work.
 
-So the interesting future is not only "serverless compute."
+The best developer experience in the world is useless if the data has to leave the customer's cloud account. The magic has to happen where the bucket already is.
 
-It is serverless-feeling compute inside your own cloud.
+The interesting thing is cloud compute that feels local while running inside your own cloud. Developers can fan out, switch hardware, switch containers, and stream logs back. The organization keeps IAM, audit logs, cost controls, and network boundaries.
 
-The developer gets the magic: run the real experiment, fan out, switch hardware, switch containers, stream logs back.
-
-The organization keeps the boring necessary stuff: IAM, buckets, auditability, data locality, cost control, network boundaries.
-
-That combination matters because it makes the powerful thing acceptable.
-
-<figure><img src=".gitbook/assets/blog-still-early.jpg" alt="A sleek race car parked inside a cozy kitchen, draped with a checkered tablecloth and used as a breakfast table."><figcaption></figcaption></figure>
-
-## Why this still feels early
+## This is why the cloud still feels early
 
 The cloud already won at the hardware layer. Nobody needs to be convinced that a thousand machines can exist.
 
-The gap is that using them still feels too deliberate.
+The gap is that using them still feels too deliberate. For ML and data work, the cloud often feels like a bigger version of the old machine model. Pick the machine. Enter the machine. Run the code. Hope you picked right.
 
-For ML and data work, the cloud often feels like a bigger version of the old machine model. Pick the machine. Enter the machine. Run the code. Hope you picked right.
+But the work is not static. A script should start on your laptop, inspect the data, route weird cases, grab GPUs, switch containers, fan out, fan in, escalate promising branches, and shut everything down when it is done.
 
-But the shape of the work is dynamic. The compute should be dynamic too.
+That changes which workflows are worth attempting.
 
-A script should start on your laptop, inspect the data, fan out, route weird cases, grab GPUs, switch containers, fan in, escalate promising branches, and shut everything down when it is done.
+The next big improvement in cloud compute will not be bigger machines. The machines already got big.
 
-That is not just a faster way to run the same workflows.
-
-It changes which workflows are worth attempting.
-
-The next big improvement in cloud compute will not be that machines get bigger. They already got big.
-
-It will be that infrastructure loses its veto over curiosity.
-
-<figure><img src=".gitbook/assets/blog-burla-addendum.jpg" alt="A friendly Python coiled around a desk lamp, plugging into a giant socket on the side of a server farm."><figcaption></figcaption></figure>
+It will be infrastructure losing its veto over curiosity.
 
 ## Addendum
 
-This is the direction we are working on with Burla.
-
-Burla has one main function:
+Burla is our attempt at this. The main function is:
 
 ```python
 from burla import remote_parallel_map
@@ -216,7 +136,7 @@ from burla import remote_parallel_map
 results = remote_parallel_map(my_function, inputs)
 ```
 
-The goal is to make cloud hardware feel like something ordinary Python can use. Your function runs across remote machines. Prints come back locally. Exceptions come back locally. You can use different CPUs, GPUs, and Docker containers for different function calls. You can fan out over thousands of inputs, fan back in, and then run the next step on different hardware.
+Your function runs across remote machines. Prints and exceptions come back locally. Different calls can use different CPUs, GPUs, and Docker containers.
 
 A pipeline can look like this:
 
@@ -242,10 +162,8 @@ index_parts = remote_parallel_map(
 )
 ```
 
-Burla can be managed, but the self-hosted version is the part I care about most: install it into your own GCP project, keep data and compute in your cloud, and still get the local-feeling workflow.
+The self-hosted version installs into your own GCP project, so data and compute stay in your cloud.
 
-We have examples like [processing 2.4TB of Parquet files on 10,000 CPUs in 76 seconds](examples/process-2.4tb-of-parquet-files-in-76s.md) and [hyperparameter tuning across 80-CPU machines](examples/parallel-hyperparameter-tuning.md). Those are fun demos.
+We have demos, like [processing 2.4TB of Parquet files on 10,000 CPUs in 76 seconds](examples/process-2.4tb-of-parquet-files-in-76s.md). But the benchmark is not the point.
 
-But the benchmark is not the point.
-
-The point is that when hardware becomes easy to change from inside the program, ML and data people can stop negotiating with infrastructure before they ask the real question.
+The point is the experiment you run when infrastructure stops saying no first.
