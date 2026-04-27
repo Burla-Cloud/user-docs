@@ -4,7 +4,7 @@ description: Why dynamic hardware should be a normal part of ML and data program
 
 # The Question You Asked Is Not the Experiment You Ran
 
-<figure><img src=".gitbook/assets/blog-experiment-hero-intro.png" alt="A scientist tries to write the question in a notebook while a forklift buries the desk in infrastructure paperwork."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-experiment-hero-small.png" alt="A scientist tries to write the question in a notebook while a forklift buries the desk in infrastructure paperwork." width="50%"><figcaption></figcaption></figure>
 
 Suppose someone asks you to build search over all the documents a company has collected over the last ten years.
 
@@ -27,8 +27,6 @@ At the start you wanted to know if search works over the company's documents. By
 Nobody writes that down. But that is often the experiment that runs.
 
 ## The quiet rewrite
-
-<figure><img src=".gitbook/assets/blog-experiment-veto-power.png" alt="A server rack dressed as a judge slams a gavel onto a branching experiment plan."><figcaption></figcaption></figure>
 
 The honest version of the document search job is a decision tree.
 
@@ -61,7 +59,7 @@ This is the real cost of infrastructure friction. It does not merely slow experi
 
 ## Hardware should be control flow
 
-<figure><img src=".gitbook/assets/blog-experiment-control-flow.png" alt="Documents enter a subway-map control flow and split toward CPU, OCR, GPU, expensive eval, and fan-in stations."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-experiment-control-flow-small.png" alt="Documents enter a control-flow map and split toward CPU, OCR, GPU, and fan-in stations." width="50%"><figcaption></figcaption></figure>
 
 Good experiments escalate. They start cheap, keep the interesting cases, and spend expensive hardware only where the data earns it.
 
@@ -101,8 +99,6 @@ The person writing the pipeline knows why one step needs GDAL, why another needs
 
 ## What becomes possible
 
-<figure><img src=".gitbook/assets/blog-experiment-what-becomes-possible.png" alt="Tiny model cards move through a tournament of cheap experiments before winners advance to expensive GPU and slice-analysis tables."><figcaption></figcaption></figure>
-
 The useful thing is not making the small fake version faster. It is making the real version easier to write.
 
 For model search, do a cascade. Train 10,000 cheap models on small samples. Keep 1,000. Retrain those on more data. Keep 100. Add expensive features. Keep 10. Run calibration and slice analysis. Early stages want cheap CPU parallelism. Later stages may want memory or GPUs.
@@ -115,8 +111,6 @@ These are the programs people would write if infrastructure stopped interrupting
 
 ## Why the usual tools don't quite fix it
 
-<figure><img src=".gitbook/assets/blog-experiment-adapters.png" alt="An oversized multi-tool has infrastructure blades labeled cluster, queue, DAG, scheduler, worker, image, notebook, Spark, and YAML beside a note reading the question."><figcaption></figcaption></figure>
-
 Docker answers "can this environment exist somewhere else?" Queues answer "can many copies of this work run?" Spark answers "can this dataframe spread across a cluster?" Workflow engines answer "can this schedule repeat?"
 
 All useful. None answer the question I want: can the experiment choose its own hardware as it learns?
@@ -127,7 +121,7 @@ Someone still has to build the infrastructure. But ML and data people should be 
 
 ## Self-hosting is not a footnote
 
-<figure><img src=".gitbook/assets/blog-experiment-self-hosting.png" alt="A magician pulls tiny compute chips from a hat inside a locked data vault whose sign says data does not leave."><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/blog-experiment-self-hosting-small.png" alt="A worker pulls CPU and GPU chips from a magician's hat inside a vault whose sign says data stays here." width="50%"><figcaption></figcaption></figure>
 
 One constraint decides whether any of this matters: the data often cannot move.
 
@@ -140,8 +134,6 @@ The best developer experience in the world is useless if the data has to leave t
 That is why self-hosting matters here. Developers can fan out, switch hardware, switch containers, and stream logs back from inside the cloud account that already has the data. The organization keeps IAM, audit logs, cost controls, and network boundaries.
 
 ## This is why the cloud still feels early
-
-<figure><img src=".gitbook/assets/blog-experiment-cloud-still-early.png" alt="Developers queue at an old paper ticket booth to pick a machine before boarding futuristic CPU, GPU, and container rockets."><figcaption></figcaption></figure>
 
 The cloud already won at the hardware layer. Nobody needs to be convinced that a thousand machines can exist.
 
@@ -160,8 +152,6 @@ It will be making the real experiment as easy to run as the compromised one.
 The experiment you do not run is often the one that would have taught you the most.
 
 ## Addendum
-
-<figure><img src=".gitbook/assets/blog-experiment-addendum.png" alt="A local Python function unfolds into many tiny workers inside a fenced customer cloud, then returns result cards to the desk."><figcaption></figcaption></figure>
 
 Burla is our attempt at this. The main function is `remote_parallel_map`:
 
