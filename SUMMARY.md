@@ -18,7 +18,7 @@
 * [Process 2.4TB of Parquet Files in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
 * [Parallel Hyperparameter Tuning](examples/parallel-hyperparameter-tuning.md)
 * [Genomic Pipeline on 1,000 CPUs](examples/multi-stage-genomic-pipeline.md)
-* [Demo walkthroughs](demo-walkthroughs.md)
+* [Other Examples](demo-walkthroughs.md)
 
 
 ## Use Cases

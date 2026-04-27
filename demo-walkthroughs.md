@@ -1,44 +1,172 @@
 ---
-description: Walkthroughs of real Burla examples, from public datasets to GPU embedding jobs.
+description: Real Burla examples for ML, data science, and production data work.
 ---
 
-# Demo walkthroughs
+# Other Examples
 
-Most examples get smaller before anyone admits it. The notebook uses the clean files, skips the weird tail, avoids the GPU stage, or samples the corpus until the job fits on one machine. The question stays ambitious in the title, but the experiment quietly changes.
+Use these when you want to see Burla beyond the three main examples: GPU embedding jobs, batch inference, public-data scans, file-parallel ETL, scientific pipelines, and API workloads with real external limits.
 
-These walkthroughs show the larger version. Each one explains what we built, where the work was split, which code runs on workers, how to build a similar pipeline, and what the smaller experiment would miss.
+Each example is built around a production constraint: how inputs are partitioned, which container and hardware profile runs each stage, how results are reduced, and which constraint the toy version would miss.
 
-## discovery projects
+<figure><img src=".gitbook/assets/vector-field-icon (2).svg" alt="A field of arrows representing many independent tasks running in parallel." width="45%"><figcaption></figcaption></figure>
 
-These examples are interesting because the answer is not known before the scan. The result depends on letting the whole corpus vote.
+{% hint style="info" %}
+Start with the workload shape. If the work is one file per task, look at Parquet, GHCN, images, or ETL. If the job changes hardware mid-pipeline, look at Airbnb or GPU embeddings. If the bottleneck is an external system, look at APIs, scraping, or Postgres.
+{% endhint %}
 
-* [Test Airbnb hypotheses at public-data scale](demo-blogs/airbnb-burla.md): listings, photos, CLIP, YOLOv8, reviews, and bootstrap confidence intervals across the public Inside Airbnb corpus.
-* [Distill 571 million reviews with byte ranges, not vibes](demo-blogs/amazon-review-distiller.md): HTTP Range reads over 275 GB of Amazon review JSONL, with deterministic scoring and heap-based reducers.
-* [Map what the world photographed by processing the whole Flickr slice](demo-blogs/world-photo-index.md): reverse-geocode 9.49M public Flickr photos and build country signatures from user-written tags.
-* [Scan NYC taxi history without sampling away the city](demo-blogs/nyc-ghost-neighborhoods.md): process 2.76B taxi and FHV trips to find ghost, emergent, and recovered zones.
-* [Find extinct ideas by embedding the whole arXiv](demo-blogs/arxiv-fossils.md): embed 2.7M abstracts, cluster topics, and find the loneliest paper in the corpus.
-* [Find visual twins in the Met without using museum labels](demo-blogs/met-weirdest-art.md): fetch and embed Met Open Access images, then use FAISS to surface cross-century visual matches.
-* [Find the rainiest station day in NOAA's archive](demo-blogs/ghcn-rainiest-day.md): stream every yearly GHCN-Daily CSV, keep top heaps, and reduce station extremes.
-* [Summarize a million GitHub READMEs without an LLM](demo-blogs/github-repo-summarizer.md): export README Parquet from BigQuery, shard deterministic summarizers, and reduce category stats.
+## ML, embeddings, and search
 
-## build patterns
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>GPU embeddings on A100s</strong></td>
+      <td>Embed 50,000 Wikipedia articles with a CUDA image, CPU download stage, GPU embedding stage, and shared vector artifacts.</td>
+      <td><a href="demo-blogs/gpu-embedding-demo.md">gpu-embedding-demo.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Batch inference without serving</strong></td>
+      <td>Load a Hugging Face model once per worker and score Parquet batches without building an endpoint.</td>
+      <td><a href="demo-blogs/ml-inference-batch.md">ml-inference-batch.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Embed the whole arXiv</strong></td>
+      <td>Cluster 2.7M abstracts and find isolated papers by running the embedding job at corpus scale.</td>
+      <td><a href="demo-blogs/arxiv-fossils.md">arxiv-fossils.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Label-free visual search over the Met</strong></td>
+      <td>Fetch and embed Open Access museum images, then use FAISS to find visual matches without labels.</td>
+      <td><a href="demo-blogs/met-weirdest-art.md">met-weirdest-art.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Multimodal Airbnb analysis</strong></td>
+      <td>Run listings, photos, CLIP, YOLOv8, reviews, and bootstrap confidence intervals across the public corpus.</td>
+      <td><a href="demo-blogs/airbnb-burla.md">airbnb-burla.md</a></td>
+    </tr>
+  </tbody>
+</table>
 
-These are the reusable shapes: one file per worker, one chunk per worker, one API slice per worker, one model batch per worker.
+## Full-corpus analysis
 
-* [Resize millions of images as an S3-in, S3-out job](demo-blogs/image-dataset-resize.md): chunk image keys, resize with Pillow, and stream progress as workers finish.
-* [Run genome alignment without building a scheduler](demo-blogs/bioinformatics-alignment.md): use a custom image with `bwa` and `samtools`, one FASTQ pair per worker.
-* [Scrape URLs with bounded parallelism](demo-blogs/parallel-web-scraping.md): scrape static HTML with retry, backoff, and a global concurrency cap.
-* [Run ETL without making Airflow the center](demo-blogs/python-etl-no-airflow.md): fan out S3 file transforms while protecting Postgres with `max_parallelism`.
-* [Process raster tiles with GDAL on many workers](demo-blogs/gdal-raster-processing.md): compute NDVI one Sentinel tile at a time with `rasterio` and shared outputs.
-* [Run batch inference without turning it into serving](demo-blogs/ml-inference-batch.md): load a Hugging Face model once per worker and score Parquet batches.
-* [Make millions of API calls with a global cap](demo-blogs/rate-limited-api-requests.md): encode provider rate limits in chunk size, per-worker sleep, and `max_parallelism`.
-* [Run pandas apply without rewriting the transform](demo-blogs/pandas-apply-parallel.md): partition a Parquet dataset and run ordinary pandas code on each worker.
-* [Scan one Parquet file per worker](demo-blogs/parquet-parallel.md): compute per-file stats without starting Spark for a file QA job.
-* [Run a billion Monte Carlo paths in plain Python](demo-blogs/monte-carlo-simulation.md): return sums and squared sums from independent chunks, then reduce locally.
-* [Put the embedding model on A100s, then ask the search question](demo-blogs/gpu-embedding-demo.md): split CPU download from GPU embedding and query search.
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>571M Amazon reviews</strong></td>
+      <td>Read 275 GB of JSONL with HTTP Range requests, deterministic scoring, and heap-based reducers.</td>
+      <td><a href="demo-blogs/amazon-review-distiller.md">amazon-review-distiller.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>NYC taxi history</strong></td>
+      <td>Scan 2.76B taxi and FHV trips to find ghost, emergent, and recovered city zones.</td>
+      <td><a href="demo-blogs/nyc-ghost-neighborhoods.md">nyc-ghost-neighborhoods.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>9.49M Flickr photos</strong></td>
+      <td>Reverse-geocode public photos and build country signatures from user-written tags.</td>
+      <td><a href="demo-blogs/world-photo-index.md">world-photo-index.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>NOAA rain extremes</strong></td>
+      <td>Stream every yearly GHCN-Daily CSV, keep top heaps, and reduce station-level extremes.</td>
+      <td><a href="demo-blogs/ghcn-rainiest-day.md">ghcn-rainiest-day.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>One million GitHub READMEs</strong></td>
+      <td>Export README Parquet from BigQuery, shard deterministic summarizers, and reduce category stats.</td>
+      <td><a href="demo-blogs/github-repo-summarizer.md">github-repo-summarizer.md</a></td>
+    </tr>
+  </tbody>
+</table>
 
-## how to read these
+## Production data jobs
 
-Start with the problem that looks most like yours. Copy the shape, not the dataset. If your data is line-oriented, look at the Amazon walkthrough. If each file is independent, look at Parquet or GHCN. If the work changes hardware mid-pipeline, look at Airbnb or the GPU embedding demo.
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>S3 to Postgres ETL</strong></td>
+      <td>Transform 10,000 gzipped JSON files while protecting Postgres with <code>max_parallelism</code>.</td>
+      <td><a href="demo-blogs/python-etl-no-airflow.md">python-etl-no-airflow.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Millions of image resizes</strong></td>
+      <td>Chunk image keys, resize with Pillow, and stream progress as workers write outputs.</td>
+      <td><a href="demo-blogs/image-dataset-resize.md">image-dataset-resize.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>One Parquet file per worker</strong></td>
+      <td>Compute per-file QA stats without starting Spark for a simple file-parallel job.</td>
+      <td><a href="demo-blogs/parquet-parallel.md">parquet-parallel.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Pandas apply in parallel</strong></td>
+      <td>Partition a Parquet dataset and run ordinary pandas code on each worker.</td>
+      <td><a href="demo-blogs/pandas-apply-parallel.md">pandas-apply-parallel.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Rate-limited API jobs</strong></td>
+      <td>Make millions of calls while encoding provider limits in chunk size, sleeps, and <code>max_parallelism</code>.</td>
+      <td><a href="demo-blogs/rate-limited-api-requests.md">rate-limited-api-requests.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Bounded web scraping</strong></td>
+      <td>Scrape static HTML with retries, backoff, and a global concurrency cap.</td>
+      <td><a href="demo-blogs/parallel-web-scraping.md">parallel-web-scraping.md</a></td>
+    </tr>
+  </tbody>
+</table>
 
-The point is to keep the experiment honest. If the real question needs every document, every image, every monthly file, or the actual GPU model, the walkthrough should make that version the easy one to run.
+## Scientific and geospatial work
+
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Genome alignment</strong></td>
+      <td>Run <code>bwa</code> and <code>samtools</code> in a custom image with one FASTQ pair per worker.</td>
+      <td><a href="demo-blogs/bioinformatics-alignment.md">bioinformatics-alignment.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>GDAL raster processing</strong></td>
+      <td>Compute NDVI one Sentinel tile at a time with <code>rasterio</code> and shared outputs.</td>
+      <td><a href="demo-blogs/gdal-raster-processing.md">gdal-raster-processing.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>Billion-path Monte Carlo</strong></td>
+      <td>Return sums and squared sums from independent chunks, then reduce locally.</td>
+      <td><a href="demo-blogs/monte-carlo-simulation.md">monte-carlo-simulation.md</a></td>
+    </tr>
+  </tbody>
+</table>
+
+## How to read these
+
+Copy the partitioning strategy, not the dataset. The useful part is usually how inputs are split, which code runs inside the worker, what hardware is requested, and where the reduction happens.
+
+If a toy version would skip the tail, remove CUDA, sample away bad files, or hide sink pressure, it is not the same experiment. These examples show the version you would trust before making a product or research decision.
