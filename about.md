@@ -1,5 +1,7 @@
 # About
 
+Check out our essay: [Stop Designing the Cluster](stop-designing-the-cluster.md).
+
 ### Why?
 
 Developers have the most fun, and are most productive, when they get into a "flow state".
