@@ -9,11 +9,17 @@
 * [Software as a Service Agreement](software-as-a-service-agreement.md)
 * [Privacy Policy](website-privacy-policy.md)
 
+## Essays
+
+* [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
+
 ## Examples
 
 * [Process 2.4TB of Parquet Files in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
 * [Parallel Hyperparameter Tuning](examples/parallel-hyperparameter-tuning.md)
 * [Genomic Pipeline on 1,000 CPUs](examples/multi-stage-genomic-pipeline.md)
+* [Other Examples](demo-walkthroughs.md)
+
 
 ## Use Cases
 
