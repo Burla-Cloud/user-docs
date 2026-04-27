@@ -1,19 +1,3 @@
----
-description: Real Burla examples for ML, data science, and production data work.
----
-
-# Other Examples
-
-Use these when you want to see Burla beyond the three main examples: GPU embedding jobs, batch inference, full-corpus scans, file-parallel ETL, scientific pipelines, and jobs that must respect real APIs, databases, and websites.
-
-<figure><img src=".gitbook/assets/other-examples-map.svg" alt="A 16:9 map grouping Burla examples by workload shape: ML batches, full corpora, production IO, and scientific jobs." width="92%"><figcaption></figcaption></figure>
-
-Pick the example that matches your bottleneck. A data scientist usually wants the partitioning pattern, the exact worker code, and where the reduction happens. A startup usually wants to know whether the job can use existing Docker images, stay inside their cloud account, avoid a new queue system, and finish without melting Postgres or an API provider.
-
-{% hint style="info" %}
-Start with the shape of the work. If each input can run alone, open Parquet, GHCN, images, or ETL. If the job changes hardware mid-pipeline, open Airbnb or GPU embeddings. If the bottleneck is outside Python, open APIs, web scraping, or Postgres.
-{% endhint %}
-
 ## ML, embeddings, and search
 
 <table data-view="cards">
@@ -165,8 +149,3 @@ Start with the shape of the work. If each input can run alone, open Parquet, GHC
   </tbody>
 </table>
 
-## How to read these
-
-Copy the partitioning strategy, not the dataset. The useful part is usually how inputs are split, which code runs inside the worker, what hardware is requested, what system is being protected, and where the reduction happens.
-
-If a toy version would skip the tail, remove CUDA, sample away bad files, or hide sink pressure, it is not the same experiment. These examples show the version you would trust before making a product or research decision.
