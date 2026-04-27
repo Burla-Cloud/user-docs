@@ -1,6 +1,6 @@
 # About
 
-Check out our essay: [Stop Designing the Cluster](stop-designing-the-cluster.md).
+Check out our essay: [Stop Designing the Cluster](https://docs.burla.dev/essays/stop-designing-the-cluster.md).
 
 ### Why?
 
