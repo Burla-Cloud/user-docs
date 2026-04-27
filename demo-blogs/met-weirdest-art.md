@@ -1,20 +1,23 @@
-# Finding the weirdest art at the Met
+# Let CLIP compare every Met image, then look for impossible twins
 
-The Met Museum has a large open-access collection, but browsing it is still catalog-first: department, artist, culture, date. This demo asks a visual question instead. Which public-domain artworks are most isolated in CLIP space, and which pairs look nearly identical despite coming from different departments, centuries, or cultures?
+The compromised art demo embeds a gallery sample and finds obvious visual matches. The real version fetches every Met Open Access artwork with a usable image, embeds about 192,000 pieces, and searches across centuries and departments. A sample would mostly find same-room neighbors.
 
-The pipeline joins enhanced Met metadata with a community CRDImages URL map, fetches web-size JPEGs from `images.metmuseum.org/CRDImages/`, embeds them with the `Qdrant/clip-ViT-B-32-vision` ONNX model through `fastembed`, and reduces the vector shards with FAISS.
+This demo asks a plain question: which artworks look alike even though the metadata says they should not?
 
-## What The Job Does
+## what we built
 
-The compromised version embeds a few thousand Met thumbnails and sorts nearest neighbors. It produces fun images, but the result is fragile. Visual outliers are only meaningful when they are outliers against most of the collection.
+Discovery joins Met object metadata to CRDImages paths, then batches object ids. The image URL is deterministic, so workers can fetch from the CDN without the rate-limited API.
 
-The real version works over about 213,000 artworks with both metadata and direct CDN image URLs. Stage 0 downloads `BetterMetObjects.csv` and `met-openaccess-images.csv`, joins on `object_id`, swaps `/original/` image paths to `/web-large/`, and writes `objects.parquet` under `/workspace/shared/met-weirdest/`. The map stage fans out batches of object IDs. Each worker loads the Parquet, fetches images with a 16-thread HTTP pool, thumbnails them, embeds them, and writes one vector Parquet shard.
+```python
+CRD_IMAGE_BASE = "https://images.metmuseum.org/CRDImages/"
+OBJECTS_PATH = Path("/workspace/shared/met-weirdest/objects.parquet")
 
-The reduce stage loads every vector shard, normalizes the matrix, builds a FAISS index, ranks isolation by kth-nearest-neighbor similarity, and finds high-similarity pairs that are not obvious duplicates.
+ids = df["object_id"].tolist()
+random.Random(42).shuffle(ids)
+batches = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
+```
 
-## The Code Shape
-
-The worker is a mix of network IO and CPU inference. It fetches many images concurrently, then runs CLIP locally on the worker.
+Each map worker fetches images with a thread pool, thumbnails them, embeds with CLIP, normalizes, and writes a vector Parquet shard.
 
 ```python
 def fetch_and_embed(batch: list[int]) -> str:
@@ -22,50 +25,52 @@ def fetch_and_embed(batch: list[int]) -> str:
     from PIL import Image
     from concurrent.futures import ThreadPoolExecutor, as_completed
 
+    objs = pd.read_parquet(OBJECTS_PATH).set_index("object_id", drop=False)
     rows = objs.reindex(batch).dropna(subset=["crd_urlpath"]).reset_index(drop=True)
     session = requests.Session()
-    session.headers.update({"User-Agent": USER_AGENT, "Accept": "image/*"})
-
+    work = [(int(oid), CRD_IMAGE_BASE + str(path)) for oid, path in zip(rows["object_id"], rows["crd_urlpath"])]
     with ThreadPoolExecutor(max_workers=HTTP_THREADS) as ex:
-        futures = [ex.submit(_fetch, w) for w in work]
-        for fut in as_completed(futures):
-            oid, data = fut.result()
-            results[oid] = data
-
-    model = _get_clip()
-    vecs = np.asarray(list(model.embed(images, batch_size=CLIP_BATCH)), dtype="float32")
-    norms = np.linalg.norm(vecs, axis=1, keepdims=True)
-    norms = np.where(norms < 1e-12, 1.0, norms)
-    vecs = vecs / norms
-    pq.write_table(out_tbl, str(out_path))
-    return str(out_path)
+        results = dict(f.result() for f in as_completed([ex.submit(_fetch, w) for w in work]))
 ```
 
-The dispatch is bounded because the Met CDN can tolerate parallel reads, but not infinite pressure:
+## how the pipeline works
+
+The reducer loads vector shards, builds a FAISS cosine index, and filters matches by time gap, culture, and department.
 
 ```python
-vec_paths_raw = list(remote_parallel_map(
-    fetch_and_embed,
-    batches,
-    func_cpu=1,
-    func_ram=4,
-    max_parallelism=max_workers,
-))
+model = _get_clip()
+vecs = np.asarray(list(model.embed(images, batch_size=CLIP_BATCH)), dtype="float32")
+vecs = vecs / np.maximum(np.linalg.norm(vecs, axis=1, keepdims=True), 1e-12)
+
+index = faiss.IndexFlatIP(CLIP_DIM)
+index.add(vecs.astype("float32"))
 ```
 
-The reducer runs larger because FAISS needs the full vector matrix:
+## why this demo is interesting
 
-```python
-[results_dir] = list(remote_parallel_map(
-    reduce_met,
-    [vec_paths],
-    func_cpu=16,
-    func_ram=64,
-))
-```
+Museum search usually starts with metadata: artist, period, department, object type. This demo asks what happens when you ignore that and let image geometry speak first. The answer is not art history truth. It is visual coincidence at scale, which is interesting precisely because the metadata says the pairs are unrelated.
 
-## Why It Matters
+The full run matters because nearest-neighbor search is competitive. A gallery sample might find a nice pair, but it cannot tell you whether that pair is actually unusual among 192,000 images. The FAISS reduce makes each candidate compete against the whole museum image corpus before it gets into the final gallery.
 
-This is a good shape for visual dataset audits. The expensive part is not one model call. It is fetching hundreds of thousands of images, surviving bad URLs and CDN behavior, writing durable vector shards, and doing a global nearest-neighbor pass.
+## how to build your version
 
-Burla is useful here because the code stays close to the data problem: download, embed, reduce. The artifact is a ranked set of visual outliers and hidden twins, backed by CLIP vectors and FAISS rather than a hand-picked gallery.
+Use stable image URLs when you can. Keep fetch concurrency inside each worker and worker concurrency outside with `max_parallelism`. Write metadata next to vectors so the reduce can filter matches without another API call.
+
+## practical notes from the build
+
+The useful engineering choice was to avoid the Met API during the hot path. The API is fine for discovery, but the image fetch should hit stable CDN URLs with enough metadata already joined into `objects.parquet`. That lets workers fetch and embed without another metadata round trip.
+
+The reduce filter matters as much as CLIP. Raw nearest neighbors would produce many same-period, same-object-type matches. The demo is interesting because candidates have to cross time, culture, or department boundaries. If you build your own version, write the exclusion rules before browsing the results, or you will tune them around the pairs you already like.
+
+## why Burla fits
+
+Burla removes the image worker fleet, shared vector storage, reducer setup, and CDN-friendly dispatch. It lets you keep the whole experiment as one Python script with map and reduce stages.
+
+
+## ways to adapt it
+
+The same method works for product catalogs, satellite chips, microscopy images, fashion archives, or museum collections with stable image URLs. The map worker should fetch, normalize, embed, and write vectors with enough metadata for filtering. The reduce should encode the interesting constraint: cross-century, cross-brand, cross-region, rare defect, or near-duplicate. The constraint is what turns nearest neighbors into a discovery tool.
+
+## what the gallery sample misses
+
+The real run found a 19th-century silverware case and a Bronze Age Cypriot dagger blade that CLIP sees as visual twins. The compromised gallery sample would have found bowls next to bowls and missed the strange cross-century pair.

@@ -1,20 +1,24 @@
-# Batch ML inference over Parquet reviews
+# Run batch inference as a job, not an endpoint
 
-Batch inference jobs usually look easy in a notebook: load a model, read a few rows, call `model(**enc)`, write predictions. At dataset scale, the slow parts are batching, model load time, memory, and writing results without dragging every row through the laptop.
+The compromised version scores 100,000 rows because setting up a serving stack for a one-shot job feels too heavy. The real experiment scores all 10 million rows with the model and batching you intend to ship. If endpoint setup changed the batch size, model, or corpus, it changed the answer.
 
-This demo reads review text from Parquet on S3, splits rows into 10,000-record batches, runs a Hugging Face sentiment model on Burla workers, and streams predictions to JSONL.
+This demo runs a HuggingFace sentiment model over Parquet reviews. Each Burla worker loads the model once and scores a batch.
 
-## What The Job Does
+## what we built
 
-The compromised version runs the model on a few thousand reviews locally. That tests labels and tokenization. It hides the real cost: model load on many machines, chunk size, PyTorch memory, and output streaming.
+The client reads review ids and text from Parquet, then builds 10,000-row batches.
 
-The real version reads `s3://my-bucket/reviews/` with `pyarrow.dataset`, converts `review_id` and `text` to records, groups rows into batches, and submits those batches to Burla. Each worker gets 4 CPUs and 16 GB RAM. The worker lazily loads `cardiffnlp/twitter-roberta-base-sentiment-latest`, tokenizes its batch with max length 256, runs inference under `torch.no_grad()`, and returns a list of `{review_id, label, score}` rows.
+```python
+import pyarrow.dataset as ds
 
-The driver uses `generator=True` so prediction batches can be written to `predictions.jsonl` as they finish.
+dataset = ds.dataset("s3://my-bucket/reviews/", format="parquet")
+texts = dataset.to_table(columns=["review_id", "text"]).to_pandas()
 
-## The Code Shape
+BATCH = 10_000
+batches = [texts.iloc[i:i + BATCH].to_dict("records") for i in range(0, len(texts), BATCH)]
+```
 
-The worker caches the model on the function object so repeated calls in the same process do not reload weights.
+The worker keeps the model cached on the worker process after the first call.
 
 ```python
 def predict_batch(rows: list[dict]) -> list[dict]:
@@ -22,38 +26,44 @@ def predict_batch(rows: list[dict]) -> list[dict]:
     import torch
 
     if not hasattr(predict_batch, "_model"):
-        model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
-        predict_batch._tok = AutoTokenizer.from_pretrained(model_name)
-        predict_batch._model = AutoModelForSequenceClassification.from_pretrained(model_name).eval()
+        name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+        predict_batch._tok = AutoTokenizer.from_pretrained(name)
+        predict_batch._model = AutoModelForSequenceClassification.from_pretrained(name).eval()
 
-    tok, model = predict_batch._tok, predict_batch._model
-    texts = [r["text"] for r in rows]
-    enc = tok(texts, padding=True, truncation=True, max_length=256, return_tensors="pt")
+    enc = predict_batch._tok([r["text"] for r in rows], padding=True, truncation=True, max_length=256, return_tensors="pt")
     with torch.no_grad():
-        logits = model(**enc).logits
-        probs = torch.softmax(logits, dim=-1).numpy()
-
-    labels = ["negative", "neutral", "positive"]
-    return [{"review_id": r["review_id"], "label": labels[p.argmax()], "score": float(p.max())} for r, p in zip(rows, probs)]
+        probs = torch.softmax(predict_batch._model(**enc).logits, dim=-1).numpy()
+    return [{"review_id": r["review_id"], "score": float(p.max())} for r, p in zip(rows, probs)]
 ```
 
-The map call is small:
+## how the pipeline works
+
+Burla fans out the batches and streams predictions into JSONL.
 
 ```python
-results = remote_parallel_map(
-    predict_batch,
-    batches,
-    func_cpu=4,
-    func_ram=16,
-    generator=True,
-    grow=True,
-)
+from burla import remote_parallel_map
+
+for batch_out in remote_parallel_map(
+    predict_batch, batches, func_cpu=4, func_ram=16, generator=True, grow=True,
+):
+    for row in batch_out:
+        f.write(json.dumps(row) + "\n")
 ```
 
-Top-level imports include `torch` and `transformers` so Burla installs those packages on workers.
+## why this demo is interesting
 
-## Why It Matters
+Batch inference is often forced through serving tools because those tools are familiar, not because the job is serving traffic. An endpoint has health checks, autoscaling, request formats, and idle capacity. A one-time corpus scoring job needs none of that. It needs a model, batches, workers, and output.
 
-This is the normal shape of many ML production chores: one model, many independent batches, a source Parquet dataset, and a line-oriented output file. It does not require a model-serving stack if the job is offline.
+The real run also tests model economics. Batch size, max token length, RAM, and model load time decide cost and throughput. A compromised sample can hide that by running warm on one machine. Running the full corpus through Burla shows whether the model cache, batch size, and output format survive contact with real text length variation.
 
-Burla gives the inference loop enough workers without changing the code into a service. The useful details remain in Python: batch size, tokenizer settings, RAM per worker, and streaming writes.
+## how to build your version
+
+Plan around model load time and output size. Use CPU workers for smaller transformers or sklearn models. Use a GPU image when CUDA matters. Keep top-level imports aligned with what Burla should install, and put giant model objects inside the worker so they are loaded on the worker, not serialized from the client.
+
+## why Burla fits
+
+Burla removes endpoint setup, SageMaker manifests, Batch queues, IAM wiring, and manual worker fleets. You keep batch inference as a Python function over records.
+
+## what the sample misses
+
+The compromised run tells you model code works. The real run tells you throughput, memory, and tail examples across the full corpus. The discovery you miss is usually in the long tail: the category where confidence collapses or the text length that breaks batching.

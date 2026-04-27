@@ -1,20 +1,30 @@
-# Distilling 571 million Amazon reviews
+# Distill 571 million reviews with byte ranges, not vibes
 
-Amazon reviews are a strange public corpus because they are both huge and personal. The `McAuley-Lab/Amazon-Reviews-2023` dataset has 571,544,386 reviews across 34 categories, served as 275 GB of JSONL from Hugging Face. You can sample it in a notebook. You cannot understand its tail behavior from a sample.
+The compromised version samples reviews and asks for the funniest rants. The real version streams 275 GB of Amazon review JSONL with HTTP Range requests, scores every review with deterministic rules, and then reduces the top heaps. A sample changes which categories look angry.
 
-This demo scans the whole corpus for profanity, caps-lock rants, long complaint monologues, censored slurs, punctuation storms, and five-star reviews that say almost nothing. It does not use an LLM. The funny and ugly parts come from regexes, byte ranges, heaps, and enough workers to read every category in parallel.
+This demo builds the Wall of Rants and a second worst-of-worst pass from `McAuley-Lab/Amazon-Reviews-2023` on HuggingFace.
 
-## What The Job Does
+## what we built
 
-The compromised version reads a few million rows from one category and makes a wall of weird reviews. That gets you screenshots, but the rankings are weak. A category like Video Games has a different profanity rate than Gift Cards, and the most extreme punctuation example might sit 180 GB into the corpus.
+Planning starts from file sizes. Each category JSONL becomes roughly 500 MB byte ranges.
 
-The real version divides every category file into roughly 500 MB HTTP Range chunks. Each worker opens one byte range against the Hugging Face CDN, aligns to a newline, parses JSON row by row, and keeps small top-K heaps in memory. It writes one shard JSON to `/workspace/shared/ard/shards/` or `/workspace/shared/ard_worst/shards/`. A reduce pass merges those shards into frontend artifacts.
+```python
+def plan_chunks(chunk_mb: int = 500) -> list[tuple[str, int, int, str]]:
+    from huggingface_hub import HfApi
+    files = [(i.path, i.size) for i in HfApi().list_repo_tree(
+        "McAuley-Lab/Amazon-Reviews-2023",
+        path_in_repo="raw/review_categories",
+        repo_type="dataset",
+    ) if getattr(i, "size", 0) > 0]
+    jobs = []
+    for path, size in files:
+        span = chunk_mb * 1024 * 1024
+        for start in range(0, size, span):
+            jobs.append((path, start, min(start + span, size), f"{Path(path).stem}_{start}"))
+    return jobs
+```
 
-The result is a deterministic map-reduce pipeline over raw review text. No local full download. No Spark cluster. No model pretending to judge tone.
-
-## The Code Shape
-
-The stream primitive is the important part. Each worker receives `(file_path, byte_start, byte_end, chunk_id)` and only reads that slice.
+The streaming primitive aligns byte ranges to newline boundaries and parses JSON rows.
 
 ```python
 def stream_reviews(file_path: str, start: int, end: int):
@@ -34,11 +44,12 @@ def stream_reviews(file_path: str, start: int, end: int):
             lines.pop(0)
         first_line = False
         for line in lines:
-            if line.strip():
-                yield json.loads(line)
+            yield json.loads(line)
 ```
 
-The dispatcher sends hundreds of these chunks to Burla:
+## how the pipeline works
+
+Workers keep top-K heaps for signals such as profanity, caps, rants, and exclamation storms. Reducers merge shard JSONs.
 
 ```python
 results = remote_parallel_map(
@@ -48,14 +59,36 @@ results = remote_parallel_map(
     func_ram=4,
     grow=True,
     max_parallelism=1000,
-    spinner=True,
 )
+
+[result] = remote_parallel_map(reduce_main, [0], grow=True)
 ```
 
-Inside `process_main`, the worker scores text for strong, medium, and mild profanity, caps ratio, exclamation count, and several derived signals. It keeps top examples in heaps instead of returning every scored review to the driver.
+## why this demo is interesting
 
-## Why It Matters
+A review corpus this large has two different questions hiding inside it. One is example hunting: find the wildest text. The other is measurement: which categories produce more of it, and how often? The compromised sample can answer the first question, badly. The real byte-range scan answers both.
 
-A lot of public datasets are too large for the casual tools people use to explore them. Sampling is fine for schema discovery. It is bad for extremes.
+The design avoids model cost and moderation drift. Scoring is regexes, counters, length, caps, punctuation, and heaps. That makes the top lists reproducible and lets the reduce stage explain why a review won. If you want a model later, use it after the reduce on the tiny candidate set, not across 571 million rows.
 
-This demo is useful because it shows a cheap pattern: partition the raw bytes, push simple scoring to the workers, return only the small summaries. Burla's role is to make that pattern feel like Python instead of a batch scheduler. The interesting artifact is the ranked corpus tail, not the infrastructure.
+## how to build your version
+
+Use byte ranges when the dataset is huge and line-oriented. Put scoring in deterministic code first: regexes, counters, heaps, and category rollups. Save LLM calls for the tiny top set if you need labels.
+
+## practical notes from the build
+
+The byte-range design is the part to copy. HuggingFace serves each category as a single line-oriented JSONL file, so the worker cannot assume it starts on a record boundary. The first partial line is discarded when `start > 0`, and the rest of the stream is parsed normally. That small detail is what makes arbitrary byte chunks safe.
+
+The reduce is intentionally heap-based. Each worker keeps only the best examples for each signal and a handful of counters. That means the map output stays small even while the input is hundreds of gigabytes. A full raw-output write would turn the reduce into another storage problem.
+
+## why Burla fits
+
+Burla removes the queue, worker fleet, shared shard layout, reducer dispatch, and cluster babysitting. Each byte range is an input, and workers write compact JSON summaries to `/workspace/shared`.
+
+
+## ways to adapt it
+
+The same byte-range plan works for logs, chat exports, support tickets, or product catalogs stored as JSONL. The worker can score toxicity, policy hits, refund language, medical terms, or schema quality. The reduce can keep examples and rates side by side. That pairing matters because examples make the result readable, while rates keep it honest.
+
+## what the sample misses
+
+The real run found Video Games as the most profane category and a 10,594-exclamation review. The compromised sample would have found funny examples, but it would not know whether they were representative or rare.

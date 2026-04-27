@@ -1,69 +1,75 @@
-# Resizing an image dataset in parallel
+# Resize the whole image corpus before training on it
 
-Image resize jobs are usually simple until there are millions of images. Then the slow parts are not the Pillow calls. They are listing object storage, downloading bytes, preserving EXIF orientation, writing several output sizes, and getting progress without one huge failure domain.
+The compromised version resizes a few folders, starts training, and discovers later that half the corpus has EXIF rotations, corrupt PNGs, or odd aspect ratios. The real preprocessing job touches every image and writes the exact sizes the model will consume.
 
-This demo reads original images from an S3 bucket, creates 256, 512, and 1024 pixel JPEG versions, and writes them to another bucket. It is deliberately plain: `boto3`, Pillow, chunked input lists, and `remote_parallel_map`.
+This demo resizes 5,000,000 images from S3 into 256, 512, and 1024 pixel variants using Pillow on thousands of Burla workers.
 
-## What The Job Does
+## what we built
 
-The compromised version runs on a local directory or a few thousand S3 keys. That is enough to test resize quality and output naming. It does not test the real bottleneck: sustained S3 read and write throughput across a large bucket.
+The client lists source keys and batches them into 1,000-image chunks.
 
-The real version paginates `my-photos/originals/`, filters JPEG and PNG keys, groups them into 1,000-key chunks, and sends each chunk to a worker. The worker downloads each image from `my-photos`, applies `ImageOps.exif_transpose`, converts to RGB, writes three progressive JPEGs to `my-photos-resized`, and returns one small status row per input image.
+```python
+import boto3
 
-The driver streams chunk results with `generator=True` and writes `resize_report.jsonl` as each worker finishes. That is a better shape than waiting for every image status in memory.
+keys = []
+paginator = boto3.client("s3").get_paginator("list_objects_v2")
+for page in paginator.paginate(Bucket="my-photos", Prefix="originals/"):
+    keys += [obj["Key"] for obj in page.get("Contents", []) if obj["Key"].lower().endswith((".jpg", ".jpeg", ".png"))]
 
-## The Code Shape
+chunks = [keys[i:i + 1000] for i in range(0, len(keys), 1000)]
+```
 
-The worker keeps all image IO inside the remote task. Only status rows return to the driver.
+The worker opens each image, fixes EXIF orientation, writes every target size, and returns a small report.
 
 ```python
 def resize_chunk(image_keys: list[str]) -> list[dict]:
-    import io
-    import os
-    import boto3
+    import io, os, boto3
     from PIL import Image, ImageOps
 
     s3 = boto3.client("s3")
     out = []
     for key in image_keys:
         body = s3.get_object(Bucket="my-photos", Key=key)["Body"].read()
-        img = Image.open(io.BytesIO(body))
-        img = ImageOps.exif_transpose(img).convert("RGB")
-
+        img = ImageOps.exif_transpose(Image.open(io.BytesIO(body))).convert("RGB")
         stem = os.path.splitext(os.path.basename(key))[0]
         for size in [256, 512, 1024]:
             resized = img.copy()
             resized.thumbnail((size, size), Image.Resampling.LANCZOS)
             buf = io.BytesIO()
             resized.save(buf, format="JPEG", quality=85, optimize=True, progressive=True)
-            s3.put_object(
-                Bucket="my-photos-resized",
-                Key=f"resized/{size}/{stem}.jpg",
-                Body=buf.getvalue(),
-                ContentType="image/jpeg",
-            )
-        out.append({"key": key, "orig_w": w, "orig_h": h, "ok": True})
+            s3.put_object(Bucket="my-photos-resized", Key=f"resized/{size}/{stem}.jpg", Body=buf.getvalue())
+        out.append({"key": key, "orig_w": img.size[0], "orig_h": img.size[1], "ok": True})
     return out
 ```
 
-The Burla call is a streaming map:
+## how the pipeline works
+
+Results stream back while workers write images directly to S3.
 
 ```python
-with open("resize_report.jsonl", "w") as f:
-    for chunk_result in remote_parallel_map(
-        resize_chunk,
-        chunks,
-        func_cpu=1,
-        func_ram=4,
-        generator=True,
-        grow=True,
-    ):
-        for row in chunk_result:
-            f.write(json.dumps(row) + "\n")
+from burla import remote_parallel_map
+
+for chunk_result in remote_parallel_map(
+    resize_chunk, chunks, func_cpu=1, func_ram=4, generator=True, grow=True,
+):
+    for row in chunk_result:
+        f.write(json.dumps(row) + "\n")
 ```
 
-## Why It Matters
+## why this demo is interesting
 
-This is a common data-engineering chore. Teams often reach for a queue, workers, container images, and a retry dashboard. For a one-off or periodic resize, that can be more machinery than the job deserves.
+Image preprocessing is easy to underestimate because a preview folder looks fine. At corpus scale, the failures are mundane and expensive: portrait images with EXIF rotation, CMYK JPEGs, giant PNGs, truncated files, odd file extensions, and source buckets that throttle a single client. A compromised run smooths over exactly the cases that later crash training.
 
-Burla fits because the unit of work is obvious: a list of object keys. The source and destination are S3 buckets, the worker function is normal Pillow code, and the output report is JSONL. The cluster only supplies enough parallel IO and CPU to finish the backlog quickly.
+The output report is as useful as the resized images. It gives you input dimensions, success flags, and error strings by key. That report becomes the training manifest, the retry list, and the evidence that your model did not silently skip a biased slice of the corpus.
+
+## how to build your version
+
+Choose a chunk size that keeps network and CPU balanced. Put all output writes inside the worker, and stream a report to JSONL. Add your model-specific preprocessing: center crop, pad, WebP conversion, EXIF stripping, or train/val folder routing.
+
+## why Burla fits
+
+Burla removes Lambda fan-out limits, Batch images, manual queues, and a self-managed worker fleet. You get thousands of VMs reading and writing S3 with a normal Python function.
+
+## what the folder sample misses
+
+The compromised subset misses the corrupt images and weird dimensions that break training. The real run builds the manifest that tells you exactly which images are usable.

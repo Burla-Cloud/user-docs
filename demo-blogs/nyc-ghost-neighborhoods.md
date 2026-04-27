@@ -1,58 +1,73 @@
-# Ghost neighborhoods in NYC taxi data
+# Scan every NYC taxi month before naming ghost neighborhoods
 
-NYC taxi data is one of the best public datasets for watching a city change. It is also large enough to punish lazy analysis. Yellow taxis, green taxis, and high-volume rideshare files cover roughly 3 billion trips across more than a decade of monthly Parquet files.
+The compromised mobility analysis samples yellow cabs or a few recent years and gets a clean story. The real run scans every public TLC monthly Parquet file across yellow, green, FHV, and HVFHS trips from 2011 through 2024. If you leave out ride-share data, you change ghosts into artifacts.
 
-This demo asks which taxi zones became ghost neighborhoods, which zones were born late, and which zones collapsed then recovered. The output is a zone-by-month matrix, a choropleth SVG, and leaderboards with sparkline histories.
+This demo processes 2,758,715,765 trips and scores all 264 TLC taxi zones by their own time series.
 
-## What The Job Does
+## what we built
 
-The compromised version reads a few recent months or one taxi type. That is enough to debug schemas. It is not enough to separate a pandemic trough from a real long-term shift, and it misses the handoff from yellow taxis to Uber and Lyft.
-
-The real version processes every monthly file in the Hugging Face mirror `DinoPonjevic/NYC_TaxiData_RAW`: yellow from 2011 through 2024, green from 2014 through 2024, and high-volume FHV from 2019 onward. Workers stream one monthly Parquet at a time, project it down to pickup zone counts, and return a compact result. A 500 MB rideshare month with tens of millions of trips becomes at most 263 zone rows before it crosses the network.
-
-The driver then reduces those per-month dicts into a `zone x month` matrix, classifies zones as ghost, cooling, stable, warming, or emergent, and renders a local HTML report.
-
-## The Code Shape
-
-The worker does not return trip rows. It opens the monthly Parquet from Hugging Face, finds the pickup zone column despite schema drift, counts zones in Arrow batches, and returns only counts.
+Each task is one `(taxi_type, year, month)` Parquet file. The worker streams from CloudFront and returns counts by pickup zone.
 
 ```python
-def process_month(task_id: str) -> dict:
-    url = _hf_url_for_task(task_id)
-    resp = requests.get(url, headers=headers, timeout=300, allow_redirects=True)
-    resp.raise_for_status()
+BASE = "https://d37ci6vzurychx.cloudfront.net/trip-data"
 
-    pf = pq.ParquetFile(pa.BufferReader(resp.content))
-    zone_col = _find_col(schema_names, PU_ZONE_COL_CANDIDATES)
-    counts = defaultdict(int)
+def monthly_url(taxi_type: str, year: int, month: int) -> str:
+    return f"{BASE}/{taxi_type}_tripdata_{year}-{month:02d}.parquet"
 
-    for batch in pf.iter_batches(batch_size=500_000, columns=read_cols):
-        zone_np = batch.column(zone_col).to_numpy(zero_copy_only=False)
-        zone_int = np.asarray(zone_np, dtype=np.float64)
-        valid = ~np.isnan(zone_int) & (zone_int > 0) & (zone_int < 1000)
-        uniq, cnts = np.unique(zone_int[valid].astype(np.int32), return_counts=True)
-        for zi, ci in zip(uniq.tolist(), cnts.tolist()):
-            counts[int(zi)] += int(ci)
-
-    return {"task": task_id, "counts": sorted([[int(k), int(v)] for k, v in counts.items()])}
+jobs = [(taxi_type, year, month) for taxi_type in TAXI_TYPES for year, month in months]
 ```
-
-The Burla call is plain:
 
 ```python
-results = list(remote_parallel_map(
-    process_month,
-    tasks,
-    func_cpu=1,
-    func_ram=4,
-    **kwargs,
-))
+def process_month(job: tuple[str, int, int]) -> dict:
+    import pyarrow.parquet as pq
+    import requests, io
+
+    taxi_type, year, month = job
+    body = requests.get(monthly_url(taxi_type, year, month), timeout=300).content
+    table = pq.read_table(io.BytesIO(body), columns=["PULocationID"])
+    counts = table.column("PULocationID").to_pandas().value_counts().to_dict()
+    return {"taxi_type": taxi_type, "year": year, "month": month, "counts": {int(k): int(v) for k, v in counts.items()}}
 ```
 
-The reduce phase stays local because the map phase has already collapsed billions of trips to a small matrix.
+## how the pipeline works
 
-## Why It Matters
+Burla maps monthly files, then the client builds a zone-by-month matrix and classifies zones.
 
-This demo is useful for data engineers because it shows where the real boundary is. The hard part is not drawing a map. It is getting each worker to stream a big Parquet file, handle old column names, aggregate locally, and avoid sending raw rows back.
+```python
+from burla import remote_parallel_map
 
-Burla is the proof that this can stay as a Python file instead of becoming a Spark job. The result is still a normal data artifact: counts, rankings, SVG paths, and HTML. The cluster only changes the wall clock.
+month_results = remote_parallel_map(process_month, jobs, func_cpu=1, func_ram=4, grow=True)
+
+matrix = build_zone_month_matrix(month_results)
+classified = classify_zones(matrix, zone_lookup)
+write_report(classified)
+```
+
+## why this demo is interesting
+
+Mobility data is full of reporting traps. Yellow cabs, green cabs, app-based FHVs, and high-volume FHV services do not enter the public data at the same time or with the same coverage. A compromised run over one feed can mistake a data-source transition for a neighborhood transition.
+
+The real run keeps the time series wide enough to see both effects. It can separate Manhattan yellow-cab corridors that faded from outer-borough ride-share markets that became visible later. The method is intentionally transparent: count pickups by zone and month, then classify the shape of each zone's series.
+
+## how to build your version
+
+Pick the natural public shard: month files, day files, or partition paths. Return counts, not raw rows. Do the interpretive classification after the map so you can change definitions without rescanning the dataset.
+
+## practical notes from the build
+
+The worker returns monthly counts instead of raw trips because the classification needs time series, not individual rides. That keeps the map output small: one dict per monthly file. The client can then build a zone-by-month matrix, smooth recent means, and classify each zone without rereading CloudFront.
+
+For another city, copy the shape rather than the labels. Use whatever public shard exists, return the smallest aggregate that preserves your question, and keep feed coverage caveats close to the classification. Mobility datasets change schema and reporting rules over time; the walkthrough should make those changes visible.
+
+## why Burla fits
+
+Burla removes the need for Spark or a hand-built VM fleet for a scan that is file-parallel. The worker code is PyArrow and requests; the reduce is pandas and a static report.
+
+
+## ways to adapt it
+
+For another mobility dataset, start with the question before the map. Are you looking for growth, disappearance, recovery, seasonality, or mode shift? That choice decides the aggregate. A bike-share system might need station-by-week counts. A bus dataset might need route-by-hour counts. A delivery dataset might need neighborhood-by-day counts. Burla gives you enough workers to scan the full archive, but the metric still has to match the behavior you care about.
+
+## what the yellow-cab sample misses
+
+The real run shows outer-borough zones becoming visible through FHV and HVFHS data. The compromised yellow-cab subset turns reporting coverage into neighborhood death and misses the second taxi system ride-share created.

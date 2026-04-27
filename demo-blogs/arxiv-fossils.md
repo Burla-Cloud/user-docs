@@ -1,67 +1,79 @@
-# Finding extinct ideas in arXiv
+# Cluster all arXiv abstracts before naming extinct topics
 
-arXiv has decades of paper metadata in one public snapshot. That makes it a good corpus for a question that is hard to answer by browsing: which research topics peaked, faded, or appeared recently?
+The compromised version embeds recent ML papers and calls it a trend study. The real version embeds 2,710,783 arXiv abstracts, clusters the whole corpus, and then asks which topics peaked, faded, or appeared recently. If the corpus starts after your favorite field got big, the experiment is already biased.
 
-This demo processes about 2.7 million arXiv papers from the Hugging Face mirror `jackkuo/arXiv-metadata-oai-snapshot`. It shards metadata to Parquet, embeds title and abstract text with `sentence-transformers/all-MiniLM-L6-v2` through `fastembed`, clusters the vectors, and writes HTML reports for extinct topics, newborn topics, and the loneliest paper in the corpus.
+This demo uses the arXiv metadata snapshot, MiniLM embeddings via fastembed, MiniBatchKMeans, and FAISS.
 
-## What The Job Does
+## what we built
 
-The compromised version caps the corpus at 50,000 papers and runs locally. That version is good for checking date parsing, embedding speed, and report rendering. It is bad for the actual question because niche clusters and old topics get distorted by sampling.
-
-The real version has three stages. Stage 0 runs on one larger worker, downloads the metadata snapshot, extracts title, abstract, categories, and created date, then writes roughly 10,000-paper Parquet shards under `/workspace/shared/arxiv-fossils/raw`. The map stage sends each raw shard to one worker. The worker loads a `fastembed` ONNX model, embeds title plus abstract, normalizes vectors, and writes vector Parquet to `/workspace/shared/arxiv-fossils/vec`.
-
-The reduce stage runs on one large worker. It loads every vector shard, fits MiniBatchKMeans on a sample, assigns all vectors, ranks topic clusters by temporal decline or recent burst, and uses FAISS HNSW nearest-neighbor search to find the paper whose fifth neighbor is farthest away.
-
-## The Code Shape
-
-The worker explicitly pins thread counts. ONNX Runtime otherwise sees the host CPU count inside a cgroup-limited worker and oversubscribes itself.
+Stage 0 streams the JSONL snapshot and writes 10,000-paper Parquet shards to `/workspace/shared/arxiv-fossils/raw/`.
 
 ```python
-os.environ.setdefault("OMP_NUM_THREADS", "1")
-os.environ.setdefault("MKL_NUM_THREADS", "1")
-os.environ.setdefault("ONNXRUNTIME_NUM_THREADS", "1")
-os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+def flush(records, idx):
+    out = RAW_DIR / f"shard_{idx:05d}.parquet"
+    tbl = pa.table({
+        "id": [r.get("id", "") for r in records],
+        "title": [" ".join((r.get("title") or "").split()) for r in records],
+        "abstract": [" ".join((r.get("abstract") or "").split()) for r in records],
+        "categories": [r.get("categories", "") or "" for r in records],
+        "created": [_extract_created(r) for r in records],
+    })
+    pq.write_table(tbl, str(out))
+    return str(out)
+```
 
+Each map worker embeds one raw shard and writes a vector shard.
+
+```python
 def embed_shard(raw_path: str) -> str:
     tbl = pq.read_table(raw_path)
-    texts = [f"{t}\n{a}" for t, a in zip(titles, abstracts)]
-
+    texts = [f"{t}\n{a}" for t, a in zip(tbl.column("title").to_pylist(), tbl.column("abstract").to_pylist())]
     model = _get_model()
-    vecs_iter = model.embed(texts, batch_size=EMBED_BATCH)
-    vecs = np.asarray(list(vecs_iter), dtype="float32")
-    vecs = _l2_normalize(vecs)
-
-    pq.write_table(out_tbl, str(out_path))
+    vecs = np.asarray(list(model.embed(texts, batch_size=EMBED_BATCH)), dtype="float32")
+    vecs = vecs / np.maximum(np.linalg.norm(vecs, axis=1, keepdims=True), 1e-12)
+    out_path = VEC_DIR / f"{Path(raw_path).stem}.parquet"
+    pq.write_table(tbl.append_column("vector", pa.array(vecs.tolist(), type=pa.list_(pa.float32(), 384))), str(out_path))
     return str(out_path)
 ```
 
-The dispatch keeps the stages clear:
+## how the pipeline works
+
+The reduce loads every vector shard, clusters a sample, predicts labels for all papers, and builds a nearest-neighbor index.
 
 ```python
-[raw_paths] = list(remote_parallel_map(
-    stage_raw,
-    [None],
-    func_cpu=8,
-    func_ram=32,
-))
+km = MiniBatchKMeans(n_clusters=400, random_state=42, batch_size=16384, max_iter=80, n_init=1)
+km.fit(fit_vecs)
+labels = km.predict(vecs)
 
-vec_paths = list(remote_parallel_map(
-    embed_shard,
-    raw_paths,
-    func_cpu=1,
-    func_ram=4,
-))
-
-[results_dir] = list(remote_parallel_map(
-    reduce_fossils,
-    [vec_paths],
-    func_cpu=16,
-    func_ram=64,
-))
+index = faiss.IndexFlatIP(vecs.shape[1])
+index.add(vecs.astype("float32"))
 ```
 
-## Why It Matters
+## why this demo is interesting
 
-This is the kind of job that tempts teams into overbuilding. You need a big one-time map, a memory-heavy reduce, and durable intermediate files. You do not need a long-lived cluster framework if the job is a Python pipeline.
+Topic history is a full-corpus problem. If you embed only recent papers, every topic looks alive. If you embed only one field, cross-field outliers disappear. The real run lets old high-energy physics clusters, pandemic SIR bursts, and LLM evaluation clusters sit in the same vector space before any label is attached.
 
-The useful lesson is the split: embed shards independently, store vectors as Parquet, reduce with FAISS and scikit-learn where the global matrix is needed. Burla supplies the worker pool and shared filesystem so the code can stay close to that shape.
+The reduce stage is where the scientific question happens. KMeans gives rough topic neighborhoods. Year histograms decide which clusters peaked and faded. FAISS nearest-neighbor distance finds the loneliest paper. Burla does not make those choices for you; it makes the full set of choices cheap enough to run.
+
+## how to build your version
+
+Use the full corpus if your question is historical. Shard raw text first, embed in map workers, and do the expensive global operations in one large reduce worker. Pin ONNX threads to one per worker so parallelism comes from workers, not oversubscribed threads.
+
+## practical notes from the build
+
+The main trick is separating local decisions from global ones. Embedding is embarrassingly parallel because each abstract stands alone. Clustering and nearest-neighbor search are global because every paper competes with every other paper. The pipeline reflects that: many map workers write vectors, one larger reducer loads the vectors and makes corpus-level decisions.
+
+For a reader building a similar system, resist the urge to classify papers during the map stage. The worker does not know whether a topic is extinct, emergent, or lonely. It only knows how to produce a vector and metadata. The label comes later, after the full corpus is visible.
+
+## why Burla fits
+
+Burla removes the embedding worker pool, shared shard storage, reducer machine selection, and queue logic. You can mix many small embedding workers with one high-memory reducer.
+
+
+## ways to adapt it
+
+Use the same pattern for patents, PubMed abstracts, legal opinions, support tickets, or internal docs. The map stage should produce vectors and metadata. The reduce stage should do the global math: clustering, nearest neighbors, time histograms, or drift scores. Keep labels downstream of the full vector set so early workers do not make corpus-level claims from local shards.
+
+## what the small corpus misses
+
+The real run finds the lonely Norway financial-statements paper and old braneworld clusters fading relative to the full archive. The compromised recent-ML sample cannot see extinction because it removed history.

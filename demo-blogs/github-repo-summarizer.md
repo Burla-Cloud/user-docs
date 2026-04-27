@@ -1,47 +1,25 @@
-# Summarizing a million GitHub READMEs
+# Summarize a million READMEs without calling an LLM
 
-GitHub's public BigQuery dataset is big enough that even finding one README per repo becomes a data job. This demo exports more than a million READMEs to Parquet, uploads that Parquet to Burla's shared filesystem, and fans out deterministic README summarizers across hundreds of workers.
+The compromised version samples popular repos and asks a model to summarize them. The real version streams 1,200,000 GitHub READMEs, applies deterministic heuristics to every one, and then asks what open-source projects say about themselves. If you used a model or a popularity sample, you ran a different experiment.
 
-There is no LLM in the summarizer. It extracts the H1 title, first prose paragraph, primary language, install style, code-fence count, badges, category scores, and token counts. That makes the output cheap, repeatable, and easy to reduce.
+This demo uses BigQuery public GitHub data, writes a Parquet file, uploads it to Burla shared storage, maps 600 shards, and reduces into frontend JSON.
 
-## What The Job Does
+## what we built
 
-The compromised version uses BigQuery sample tables. The repo notes explain why that fails: `sample_files` and `sample_contents` only yield about 16,000 matched READMEs because the samples are not correlated. It is enough for a demo UI, but not for a claim about GitHub at scale.
-
-The real version scans the full `github_repos.files` and `github_repos.contents` tables, picks one README per repo, joins primary language from `github_repos.languages`, and streams Arrow batches into `samples/readmes.parquet`. The estimated scan is about 3 TB. That is an explicit cost choice in `prepare.py`.
-
-Then `scale.py` uploads the Parquet to `/workspace/shared/grs/readmes.parquet`, partitions rows into 600 stripes, and runs one worker per stripe. Each worker streams row groups, processes every nth row, and writes one JSON shard to `/workspace/shared/grs/shards`.
-
-## The Code Shape
-
-The worker avoids loading the full Parquet in memory. It iterates Arrow batches and selects rows by modulo.
+The worker reads a stripe of `/workspace/shared/grs/readmes.parquet` and emits one JSON shard.
 
 ```python
-def summarize_shard(shard_idx: int, n_shards: int) -> dict:
-    import pyarrow.parquet as pq
+SHARD_OUT = "/workspace/shared/grs/shards"
+PARQUET_PATH = "/workspace/shared/grs/readmes.parquet"
 
-    pf = pq.ParquetFile(PARQUET_PATH)
-    global_idx = 0
-    for batch in pf.iter_batches(
-        batch_size=4000,
-        columns=["repo_name", "lang", "path", "size", "content"],
-    ):
-        for j in range(batch.num_rows):
-            g = global_idx + j
-            if (g % n_shards) != shard_idx:
-                continue
-            s = summarize_row(
-                repo_list[j] or "",
-                lang_list[j] or "",
-                path_list[j] or "",
-                int(size_list[j] or 0),
-                content_list[j] or "",
-            )
-            rows.append(s)
-        global_idx += batch.num_rows
+CATEGORIES = {
+    "ml": {"tensorflow": 4, "pytorch": 4, "embedding": 2, "llm": 4},
+    "web": {"react": 3, "django": 2, "graphql": 3, "frontend": 2},
+    "devops": {"docker": 3, "kubernetes": 4, "terraform": 4},
+}
 ```
 
-The fan-out is direct:
+The map stage uploads the Parquet once, then fans out `summarize_shard` across 600 workers.
 
 ```python
 jobs = [(i, args.shards) for i in range(args.shards)]
@@ -52,14 +30,53 @@ results = remote_parallel_map(
     func_ram=args.func_ram,
     grow=True,
     max_parallelism=args.parallelism,
-    spinner=True,
 )
 ```
 
-The summarizer itself is old-fashioned text processing: regexes for install commands, category word weights, README badges, code fences, and token frequency.
+## how the pipeline works
 
-## Why It Matters
+The reducer keeps heaps per category and language, plus document-frequency counters for TF-IDF.
 
-This demo is useful because it respects the boring bottlenecks: BigQuery scan cost, Parquet export size, cluster upload, row-group iteration, and bounded worker memory.
+```python
+def reduce_bucket(bucket_idx: int, n_buckets: int, top_per_cat: int, top_per_lang: int, sample_cap: int) -> dict:
+    files = sorted(f for f in os.listdir("/workspace/shared/grs/shards") if f.endswith(".json"))
+    my_files = [f for i, f in enumerate(files) if i % n_buckets == bucket_idx]
+    by_cat, by_lang, doc_freq = {}, {}, {}
+    cat_heaps = {}
+    for fn in my_files:
+        with open(os.path.join("/workspace/shared/grs/shards", fn)) as f:
+            rows = json.load(f).get("rows", [])
+        for row in rows:
+            cat = row.get("category", "other")
+            quality = row.get("badges", 0) * 1.5 + row.get("code_blocks", 0) * 0.3
+            heapq.heappush(cat_heaps.setdefault(cat, []), (quality, row["repo"], row))
+```
 
-For data engineers, it is a clean pattern for "run the same cheap function over a very wide table." Burla handles the worker pool and the shared file path. The job logic remains a deterministic Python function over one README at a time.
+## why this demo is interesting
+
+The point is not to produce pretty summaries of famous repositories. It is to count the culture of README files at scale: install instructions, badges, code fences, category words, cloned templates, and empty placeholders. An LLM would make individual rows smoother while making the aggregate harder to trust.
+
+The real run keeps the analysis reproducible. Every category comes from visible keyword weights, every install method from a regex, and every distinctive word from TF-IDF over the reduced corpus. That makes the weird findings debuggable. If a category looks wrong, you can inspect the rules and rerun the reduce without changing a prompt.
+
+## how to build your version
+
+Keep the summary deterministic until you know you need a model. Stream source rows into Parquet, put the Parquet on `/workspace/shared`, write one shard per worker, and reduce heaps and counters in parallel buckets. Add an LLM later only for the small set of examples you want a human to read.
+
+## practical notes from the build
+
+The upload stage is easy to overlook. A 1.3 GB Parquet cannot be captured as a Python closure and shipped with the function. The demo gzips and chunks it, writes part files on `/workspace/shared`, then finalizes the Parquet on a worker. After that, every map worker reads the same shared path.
+
+That pattern is useful outside READMEs. If the input artifact is too large to pickle, stage it once into the shared workspace and pass paths through Burla inputs. Keep the function small, keep the data near the workers, and make the reduce consume shard files rather than client memory.
+
+## why Burla fits
+
+Burla removes BigQuery output shipping, worker deployment, queue setup, and reducer scheduling. The shared filesystem is the bridge between map and reduce.
+
+
+## ways to adapt it
+
+This pattern is useful whenever text lives in many records but the output is aggregate behavior. You can scan docs, changelogs, package manifests, issue templates, or config files. Make workers emit compact facts, not prose. Let the reducer count, rank, and sample. That keeps the analysis explainable and avoids paying model cost before you know which rows matter.
+
+## what the sample misses
+
+The real run found template clones, install-method gaps, and category-level language ownership. The compromised sample of famous repos would miss the boilerplate swamp that defines the corpus.

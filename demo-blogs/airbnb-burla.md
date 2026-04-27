@@ -1,37 +1,47 @@
-# Airbnb at full public-data scale
+# Test Airbnb hypotheses at public-data scale
 
-Airbnb data is easy to sample and hard to exhaust. Inside Airbnb publishes listings and reviews for major cities, but the interesting questions need all of it: photos, review text, city metadata, and enough compute to avoid turning the project into a month of batch jobs.
+The compromised Airbnb analysis uses a few cities, primary listing images, and a small review sample. The real version runs across 1,097,241 listings, 1,406,718 photo URLs, 1,243,339 CPU-scored images, 48,122 GPU-detected images, and 50,686,612 reviews. If you shrink the inputs, the hypothesis changes from "is this true globally?" to "did I find a cute anecdote?"
 
-This demo runs across 1,097,241 listings in 116 cities, scrapes 1,406,718 photo URLs, CLIP-scores 1,243,339 images, sends 48,122 candidate images through YOLOv8 on A100s, and scores 50,686,612 reviews through a three-tier funnel ending with Claude Haiku on the top 10,000. The point is not that Airbnb is special. The point is that a messy public-data question often becomes a systems problem before it becomes a statistics problem.
+This demo is a full project with stages, checkpoints, and shared Parquet artifacts under `/workspace/shared/airbnb`.
 
-## What The Job Does
+## what we built
 
-The compromised version is a city or two, a few thousand listings, and maybe one visual feature. That version is useful for debugging. It also lies by omission: different cities have different photo habits, review norms, and scraping failure modes.
-
-The real version keeps the whole shape of the dataset. It validates every live Inside Airbnb city, cleans each city's listings, scrapes public listing pages, falls back to listing-data photos where public pages hit Datadome, scores every image with CLIP, runs YOLOv8 on selected high-signal images, scores review text, then tests five hypotheses with bootstrap confidence intervals.
-
-Each stage writes Parquet to Burla's shared GCS-backed filesystem under `/workspace/shared`, then later stages read those Parquets. That matters because the dataset is too large to shuttle through the driver after every step.
-
-## The Code Shape
-
-The GPU image stage shows the pattern. First, one large CPU worker chooses the top image candidates from the CPU-scored Parquet. Then A100 workers run YOLOv8 over batches.
+Every stage is a `remote_parallel_map` over dataclass inputs. Workers write Parquet shards to the shared filesystem, and merge workers combine them.
 
 ```python
 from burla import remote_parallel_map
 
-[picked] = remote_parallel_map(
-    select_top_k_images,
-    [TopKImagesArgs(
-        images_cpu_path=f"{SHARED_ROOT}/images_cpu.parquet",
-        top_n_per_axis=TOP_N_PER_AXIS,
-    )],
-    func_cpu=8,
-    func_ram=64,
-    max_parallelism=1,
+results = remote_parallel_map(
+    worker_fn,
+    list_of_dataclass_inputs,
+    func_cpu=1,
+    func_ram=8,
+    max_parallelism=1000,
     grow=True,
-    spinner=True,
 )
+```
 
+The listing stage downloads and cleans each Inside Airbnb city dump.
+
+```python
+def download_and_clean_city(args: DownloadCityArgs) -> dict:
+    import gzip, io, os, pandas as pd, requests
+
+    r = requests.get(args.listings_url, timeout=600, headers={"User-Agent": "Mozilla/5.0"})
+    df = pd.read_csv(io.BytesIO(gzip.decompress(r.content)), low_memory=False)
+    df["listing_id"] = df["id"].astype("int64")
+    df["price_usd"] = df["price"].apply(_parse_price_inline)
+    df["demand_proxy"] = pd.to_numeric(df.get("reviews_per_month"), errors="coerce").fillna(0)
+    out_path = os.path.join(args.shared_root, f"{args.city_slug}.parquet")
+    df.to_parquet(out_path, compression="zstd", index=False)
+    return {"ok": True, "n_rows": int(len(df)), "shared_path": out_path}
+```
+
+## how the pipeline works
+
+Images run through a CPU CLIP stage, then a smaller A100 YOLO stage on top candidates. Reviews run through a three-tier funnel: heuristic, embeddings and clusters, then Claude Haiku on the top 10,000.
+
+```python
 results = remote_parallel_map(
     gpu_detect_image_batch,
     batches,
@@ -40,16 +50,45 @@ results = remote_parallel_map(
     func_gpu="A100_40G",
     max_parallelism=n_workers,
     grow=True,
-    spinner=True,
 )
 ```
 
-The review stage is more like a search funnel. It ingests `reviews.csv.gz` files by city, merges them into `reviews_raw.parquet`, rechunks by row group, runs a cheap heuristic over every review, embeds the top 200,000 with `sentence-transformers/all-MiniLM-L6-v2`, clusters with MiniBatchKMeans, and sends the top 10,000 to Claude.
+```python
+results = remote_parallel_map(
+    heuristic_score_batch,
+    batches,
+    func_cpu=1,
+    func_ram=2,
+    max_parallelism=n_workers,
+    grow=True,
+)
+```
 
-That structure is honest about cost. A model call over 50 million reviews would be wasteful. A regex pass over everything and a model pass over the weird tail is the right split.
+## why this demo is interesting
 
-## Why It Matters
+This is the demo where infrastructure most clearly changes the experiment. A city sample can produce a slick story about decor, reviews, and demand, but it cannot tell whether the pattern survives across regions, room types, listing density, scrape failures, and language differences. The real run is messier and more honest.
 
-Most data science demos stop right before the part that hurts: heterogeneous input files, image downloads, GPU model weight placement, text funnels, partial scrape failure, and checkpointed intermediate data. This one includes those parts.
+It also shows why stage boundaries matter. Listings, photo manifests, CPU CLIP scores, GPU YOLO detections, review scores, correlations, and site JSON are separate artifacts. That means a bad GPU run does not force a listing re-download, and a new correlation test can reuse the same scored Parquet files.
 
-Burla is mostly boring here, which is the useful bit. The project is normal Python stages and worker functions. The cluster exists so that a million-listing, 50-million-review run can be treated like one local pipeline with a lot of workers behind it.
+## how to build your version
+
+Split the project by artifact boundaries: clean listings, photo manifest, CPU image scores, GPU object detections, review scores, correlations, site JSON. Make every expensive stage resume from Parquet. Run a sample stage first when it has external cost, then run the full stage with the same code.
+
+## practical notes from the build
+
+The Airbnb project is also a reminder to checkpoint aggressively. Stage 2b CPU image scoring covered the full photo manifest, while Stage 3 GPU detection only ran on top candidates. That split made the GPU bill controllable and kept the broad visual features available even when the object detector had a lower success rate than planned.
+
+For a similar project, do not start with the website. Start with artifact contracts. Decide what each stage writes, what downstream stages read, and which artifacts are cheap enough to regenerate. The site is then a view over outputs, not the thing holding the analysis together.
+
+## why Burla fits
+
+Burla removes the manual worker fleet, CPU/GPU split friction, shared filesystem wiring, queue setup, and scheduler code. It lets a notebook-style project grow into a multi-stage pipeline without turning into platform work.
+
+
+## ways to adapt it
+
+The same shape works for marketplaces, delivery apps, real estate portals, and local services. Keep public records as the spine, then add expensive signals only where they answer a hypothesis. CPU image embeddings can cover everything. GPU detection can focus on candidates. LLM review labeling can run after a heuristic funnel. That order keeps the cost tied to the question instead of the dataset size.
+
+## what the city sample misses
+
+The real run can test whether televisions, mirrors, plants, cleaning fees, and review weirdness correlate with demand across cities. The compromised city sample mostly discovers local taste and anti-bot luck.

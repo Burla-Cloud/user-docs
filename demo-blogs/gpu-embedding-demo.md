@@ -1,62 +1,89 @@
-# Embedding Wikipedia on A100 workers
+# Put the embedding model on A100s, then ask the search question
 
-Vector search demos often cheat on the expensive part. They embed a few thousand rows, ship a prebuilt FAISS index, then talk about retrieval. This demo keeps the expensive part visible: download Wikipedia Parquet shards, embed titles and text with `BAAI/bge-large-en-v1.5`, write `.npy` vector shards, embed a query, and rank by cosine similarity.
+The compromised vector demo embeds 500 articles on CPU and calls it semantic search. The real version uses the same GPU image and model you would use for a larger corpus, writes shards to shared storage, and searches across the combined matrix. If CUDA was removed to make the demo easy, the experiment got smaller.
 
-It uses a custom Docker image, `jakezuliani/burla-embedder:latest`, based on `pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime`. That detail matters. CUDA wheels are already in the image, so the driver avoids top-level `torch` imports that would make Burla install CPU wheels over the image's GPU stack.
+This demo embeds 50,000 Wikipedia articles with `BAAI/bge-large-en-v1.5` on Burla A100 workers.
 
-## What The Job Does
+## what we built
 
-The compromised version embeds 1,000 or 5,000 Wikipedia rows on one GPU. It proves the model works, but it hides the queueing problem: many shards, model load time, shared output paths, query embedding, and result assembly.
-
-The real version defaults to 50,000 articles split into shards. CPU workers download Parquet files from the Hugging Face dataset `wikimedia/wikipedia`, write JSONL text shards to `/workspace/shared/vector_embeddings_demo/texts`, then A100 workers load Sentence Transformers and write normalized float32 embeddings to `/workspace/shared/vector_embeddings_demo/embeddings`. The client downloads those vector shards from the shared GCS bucket and computes top-K similarity locally.
-
-The demo also supports staged reruns with `DEMO_STAGE=download`, `embed`, or `search`, so a failed query step does not force another GPU embedding pass.
-
-## The Code Shape
-
-The worker cache is the whole trick. A GPU worker may process multiple tasks; the module-level `cache` keeps the model loaded inside that worker process.
+The Docker image starts from a CUDA PyTorch runtime and bakes model weights into the image so workers do not race on HuggingFace downloads.
 
 ```python
-cache = {}
+IMAGE = "jakezuliani/burla-embedder:latest"
+MODEL_NAME = "BAAI/bge-large-en-v1.5"
+SHARED_ROOT = "/workspace/shared/vector_embeddings_demo"
+MAX_GPU_PARALLELISM = int(os.environ.get("DEMO_MAX_GPU_PARALLELISM", 8))
+```
 
+Stage 1 downloads Wikipedia Parquet shards on CPU workers and writes JSONL to `/workspace/shared`.
+
+```python
+def download_shard(shard_idx, articles_per_shard, shared_root):
+    import io, json, urllib.request
+    from pathlib import Path
+    import pyarrow.parquet as pq
+
+    url = PARQUET_URL_TEMPLATE.format(shard_idx=shard_idx % 41)
+    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "burla-demo/1.0"})) as response:
+        table = pq.read_table(io.BytesIO(response.read())).slice(0, articles_per_shard)
+    out_path = Path(shared_root) / "texts" / f"shard-{shard_idx:05d}.jsonl"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text("\n".join(json.dumps({"id": r["id"], "title": r["title"], "text": r["text"][:2000]}) for r in table.to_pylist()))
+    return str(out_path)
+```
+
+## how the pipeline works
+
+Stage 2 runs on A100s and caches the model in a module-level dict on each worker.
+
+```python
 def embed_shard(shard_path, model_name, shared_root):
-    import numpy as np
-    import torch
+    import json, numpy as np
+    from pathlib import Path
     from sentence_transformers import SentenceTransformer
 
     if "model" not in cache:
-        print(f"loading {model_name} (cuda={torch.cuda.is_available()}) ...")
         cache["model"] = SentenceTransformer(model_name, device="cuda")
-
-    model = cache["model"]
-    vecs = model.encode(
-        texts,
-        batch_size=64,
-        normalize_embeddings=True,
-        show_progress_bar=False,
-        convert_to_numpy=True,
-    ).astype("float32")
-    np.save(emb_path, vecs)
-    return {"emb_path": str(emb_path), "ids_path": str(ids_path), "n": len(ids)}
+    rows = [json.loads(line) for line in Path(shard_path).read_text().splitlines()]
+    texts = [f"{r['title']}\n\n{r['text']}" for r in rows]
+    vecs = cache["model"].encode(texts, batch_size=64, normalize_embeddings=True).astype("float32")
+    return {"n": len(rows), "shape": list(vecs.shape)}
 ```
-
-The GPU fan-out is explicit:
 
 ```python
 embed_results = remote_parallel_map(
-    embed_shard,
-    embed_inputs,
-    image=IMAGE,
-    grow=True,
+    embed_shard, embed_inputs,
+    image=IMAGE, grow=True,
     func_gpu="A100",
-    max_parallelism=max_par,
+    max_parallelism=MAX_GPU_PARALLELISM,
 )
 ```
 
-For the query, the same image and model run on one A100, then the client multiplies the query vector by the concatenated matrix.
+## why this demo is interesting
 
-## Why It Matters
+GPU demos often cheat by moving the model back to CPU or embedding a tiny corpus. That proves the Python imports work, but it does not test image pull time, CUDA compatibility, A100 quota, model cache behavior, or the split between CPU preprocessing and GPU embedding. Those are the parts that decide whether the real job runs.
 
-Embedding pipelines fail in boring ways: Python version mismatch, CPU wheels replacing CUDA wheels, model reload per task, vector shards too large for the driver, and unclear restart boundaries. This repo addresses those directly.
+This walkthrough also shows a practical CPU/GPU division. Download and text extraction do not need A100s. Embedding does. Query embedding can run on one GPU call so the client never needs CUDA. That split is where Burla is useful: the same script can ask for different worker shapes at different stages.
 
-For ML engineers, the useful part is the split between CPU download work, GPU embedding work, and local retrieval. Burla is the way those phases run without a separate orchestrator. The model, Docker image, GCS-backed shared workspace, and A100 limit are all visible in the code.
+## how to build your version
+
+Pin the Python version to match the image. Bake large weights into the image when startup downloads would dominate. Keep `/workspace/shared` as the handoff between CPU download, GPU embed, and client-side search through the GCS-backed shared workspace bucket.
+
+## practical notes from the build
+
+The image and client Python version must match. Burla workers run the custom CUDA image, and the client has to use the same Python major and minor version. That detail is boring until it blocks job assignment. The README calls it out because GPU jobs fail in ways that look like infrastructure when the cause is version drift.
+
+The other habit to copy is lazy importing. Keep `torch` and `sentence_transformers` inside GPU worker functions so the client environment does not overwrite CUDA wheels inside the image.
+
+## why Burla fits
+
+Burla removes GPU fleet setup, mixed CPU/GPU scheduling, endpoint creation, and CUDA worker wiring. You can run CPU stages and GPU stages from the same Python file.
+
+
+## ways to adapt it
+
+For a larger corpus, keep the same stage boundaries and change only the shard plan. Raise article count, increase articles per shard until each A100 stays busy, and cap GPU parallelism to quota. For a different model, rebuild the image with the new weights already downloaded. For a vector database backfill, replace the local search stage with writes to your index after each embedding shard finishes.
+
+## what the CPU toy misses
+
+The real run exposes model load time, A100 quota, shard sizing, shared path behavior, and duplicate-title handling. The compromised CPU sample answers only whether the library imports.

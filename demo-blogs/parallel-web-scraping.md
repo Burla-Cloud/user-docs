@@ -1,30 +1,30 @@
-# Scraping URLs with bounded parallelism
+# Scrape the archive, not the easy page sample
 
-Web scraping is easy to parallelize badly. If every worker hammers the same site with no pacing, the job becomes a denial-of-service test. This demo uses Burla to spread work across many workers while keeping a polite per-worker delay and an explicit cap on global parallelism.
+The compromised scraper grabs a few thousand pages and calls the parser good. The real scraper runs the same parser over the whole URL list, where the stale pages, 503s, redirects, and odd HTML live. If the failures were filtered out by scale, you tested a smaller question.
 
-The source is simple: `urls.txt` becomes chunks of 500 URLs. Each worker uses `httpx` with HTTP/2, parses HTML with `selectolax`, extracts the title and a price meta tag, and returns rows. The driver streams results to `scraped.jsonl`.
+This demo scrapes 1,000,000 URLs by chunking them into groups of 500 and running up to 1,000 Burla workers.
 
-## What The Job Does
+## what we built
 
-The compromised version uses a local thread pool. That is fine for a few thousand pages. It runs into local CPU, DNS, socket, and bandwidth limits, and it couples the whole scrape to one machine.
+The client only plans work. The worker keeps one `httpx.Client` open so HTTP/2 and connection pooling work inside each chunk.
 
-The real version creates 2,000 chunks and caps the job to 1,000 concurrent Burla workers. Each worker has its own `httpx.Client`, retry loop, status handling for 429 and 503, random jitter, and a short sleep after each URL. That means the global job can be large while each worker behaves like a cautious scraper.
+```python
+with open("urls.txt") as f:
+    urls = [u.strip() for u in f if u.strip()]
 
-The output is appended locally as chunk results arrive. This avoids one giant return value and gives partial progress if the crawl is interrupted.
+CHUNK = 500
+chunks = [urls[i:i + CHUNK] for i in range(0, len(urls), CHUNK)]
+```
 
-## The Code Shape
-
-The worker function is regular Python. It imports `httpx` and `selectolax` inside the worker, reuses a client, and handles transient failures locally.
+The parser is intentionally small: fetch, back off on temporary failures, parse the title and price metadata.
 
 ```python
 def scrape_chunk(urls: list[str]) -> list[dict]:
-    import random
-    import time
-    import httpx
+    import random, time, httpx
     from selectolax.parser import HTMLParser
 
     out = []
-    with httpx.Client(http2=True, timeout=20.0, headers=HEADERS, follow_redirects=True) as client:
+    with httpx.Client(http2=True, timeout=20.0, follow_redirects=True) as client:
         for url in urls:
             for attempt in range(4):
                 try:
@@ -35,7 +35,6 @@ def scrape_chunk(urls: list[str]) -> list[dict]:
                     r.raise_for_status()
                     tree = HTMLParser(r.text)
                     title = tree.css_first("title")
-                    price = tree.css_first("meta[itemprop=price]")
                     out.append({"url": url, "title": title.text(strip=True) if title else None})
                     break
                 except (httpx.HTTPError, httpx.TimeoutException) as e:
@@ -45,24 +44,35 @@ def scrape_chunk(urls: list[str]) -> list[dict]:
     return out
 ```
 
-The dispatch uses `max_parallelism` and `generator=True`:
+## how the pipeline works
+
+The output streams to JSONL as chunks finish. That matters when the scrape runs for hours.
 
 ```python
-for chunk_rows in remote_parallel_map(
-    scrape_chunk,
-    chunks,
-    func_cpu=1,
-    func_ram=2,
-    max_parallelism=1000,
-    generator=True,
-    grow=True,
+from burla import remote_parallel_map
+
+for rows in remote_parallel_map(
+    scrape_chunk, chunks, func_cpu=1, func_ram=2,
+    max_parallelism=1000, generator=True, grow=True,
 ):
-    for row in chunk_rows:
+    for row in rows:
         f.write(json.dumps(row) + "\n")
 ```
 
-## Why It Matters
+## why this demo is interesting
 
-The useful pattern is not "scrape faster at all costs." It is "make the unit of work small, cap global concurrency, and keep per-worker pacing obvious in code."
+Scraping problems are rarely solved by making a single machine busier. DNS, TLS, parsing, per-site politeness, and failure logging all matter. The real question is whether the crawler can cover the archive without turning errors into invisible holes. A compromised sample tends to over-represent fresh pages and under-represent the stale pages that poison downstream analysis.
 
-Burla is a fit when the URL list is much larger than one laptop should handle but the scraper is still ordinary Python. The demo keeps the operational choices visible: chunk size, retry behavior, 429 handling, and output streaming.
+The design here is deliberately plain: chunk URLs, reuse a client per worker, parse the fields you need, and return an error row when a page fails. That makes the output useful even before it is perfect. You can compute failure rates by host, retry only bad chunks, or inspect parser misses without replaying the whole crawl.
+
+## how to build your version
+
+Keep the worker polite. Set a user agent, add per-worker sleeps, and cap global workers. Put parsing next to fetching so a failure returns a useful row. If the site needs JavaScript, use a browser tool or a browser image; for static pages, `httpx` is cheaper and faster.
+
+## why Burla fits
+
+Burla removes the Redis/Kafka queue, Kubernetes worker pool, deploy scripts, and cluster babysitting. You write the scraper as a function over chunks and tune one global cap.
+
+## what the page sample misses
+
+The real archive contains the broken pages that define the quality of your dataset. The compromised scrape finds only the happy path and misses the stale catalog pages, poison HTML, and rate-limit behavior that decide whether the crawl is usable.

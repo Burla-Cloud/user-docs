@@ -1,20 +1,29 @@
-# Scanning thousands of Parquet files
+# Scan every Parquet shard instead of trusting a sample
 
-Many analytics jobs are simple per-file scans hiding under a large file count. You have daily partitions, user shards, or event logs in S3. For each file you need row counts, byte sizes, distinct users, revenue sums, null rates, or schema checks.
+The compromised version reads ten Parquet files, squints at the summary stats, and hopes the other 4,990 files look the same. The real version scans every shard and finds the broken partition, the weird schema, the null burst, or the revenue spike. If you asked for a dataset audit, sampling quietly changed the experiment.
 
-This demo lists Parquet files under an S3 prefix, sends one file key per worker, reads each file with PyArrow, returns a small stats dict, and writes `parquet_scan_report.csv`.
+This demo scans thousands of S3 Parquet files with one worker per file. Each worker returns a small report: rows, bytes, distinct users, revenue, and null rate.
 
-## What The Job Does
+## what we built
 
-The compromised version reads a hundred files locally and estimates the rest. That can catch obvious schema problems, but it will miss the one bad shard, the weird null pocket, or the partition whose revenue sum is off.
+First we list the files. This stays on the client because object listing is cheap and gives us the work queue.
 
-The real version scans every file. It paginates `s3.list_objects_v2` under `events/2025/`, keeps keys ending in `.parquet`, and sends the list to Burla. Each worker calls `s3.get_object`, passes the body to `pq.read_table`, computes a few stats, and returns one dict.
+```python
+import boto3
 
-The interesting constraint is result size. Returning one small dict per file is fine. Returning file contents would be a mistake. The remote workers do the scan, and the driver only builds a pandas report from stats.
+s3 = boto3.client("s3")
+response = s3.list_objects_v2(Bucket="my-events-bucket", Prefix="events/2025/")
+parquet_keys = [obj["Key"] for obj in response["Contents"] if obj["Key"].endswith(".parquet")]
+while response.get("IsTruncated"):
+    response = s3.list_objects_v2(
+        Bucket="my-events-bucket",
+        Prefix="events/2025/",
+        ContinuationToken=response["NextContinuationToken"],
+    )
+    parquet_keys += [obj["Key"] for obj in response["Contents"] if obj["Key"].endswith(".parquet")]
+```
 
-## The Code Shape
-
-The worker is intentionally one file wide.
+The worker opens one object and uses PyArrow to inspect it. You can swap the body for a transform, a schema check, or a rewrite.
 
 ```python
 def scan_parquet_file(key: str) -> dict:
@@ -22,36 +31,43 @@ def scan_parquet_file(key: str) -> dict:
     import pyarrow.parquet as pq
 
     s3 = boto3.client("s3")
-    obj = s3.get_object(Bucket=BUCKET, Key=key)
+    obj = s3.get_object(Bucket="my-events-bucket", Key=key)
     table = pq.read_table(obj["Body"])
-
     return {
         "key": key,
         "rows": table.num_rows,
         "bytes": obj["ContentLength"],
         "distinct_users": table.column("user_id").combine_chunks().unique().length(),
         "revenue_sum": float(table.column("revenue").to_pandas().sum()),
-        "null_user_rate": table.column("user_id").null_count / max(table.num_rows, 1),
     }
 ```
 
-The Burla call maps that over every key:
+## how the pipeline works
+
+The Burla call is the dispatcher. Each key is one input. Results come back as Python dicts and become a DataFrame report.
 
 ```python
-stats = remote_parallel_map(
-    scan_parquet_file,
-    parquet_keys,
-    func_cpu=1,
-    func_ram=4,
-    grow=True,
-)
+from burla import remote_parallel_map
 
-df = pd.DataFrame(stats)
-df.to_csv("parquet_scan_report.csv", index=False)
+stats = remote_parallel_map(scan_parquet_file, parquet_keys, func_cpu=1, func_ram=4, grow=True)
+report = pd.DataFrame(stats)
+report.to_csv("parquet_scan_report.csv", index=False)
 ```
 
-## Why It Matters
+## why this demo is interesting
 
-This is one of the cleanest uses of distributed compute: each file is independent, work per file is bounded, and the result per file is tiny. The code does not need a distributed DataFrame API.
+Parquet datasets often fail by partition, not by schema alone. One day has a bad writer version. One customer shard has null ids. One backfill wrote timestamps in seconds while the rest wrote milliseconds. A compromised sample almost always misses that because the bug is sparse. The real scan gives you one row per file, which is exactly the shape a data engineer needs for triage.
 
-Burla is useful because it turns a slow serial loop into a map over object keys. The demo keeps the storage nouns visible: S3 bucket, prefix, Parquet key, PyArrow table, CSV report.
+This also keeps the audit close to the storage layout. You are not asking Spark to build one logical table and hide file identity. You are asking a sharper question: what is true about each object in the bucket? That is a better fit for PyArrow plus a map over keys.
+
+## how to build your version
+
+Pick the file-level invariant you care about: row counts, min/max timestamps, primary-key uniqueness, compression, schema drift, or per-file aggregates. Keep the worker pure: input key in, report dict out. If each file is large, give the worker more RAM. If each file is small, batch several keys per worker.
+
+## why Burla fits
+
+Spark can scan Parquet, but a per-file audit is often easier as Python. AWS Batch makes you define a job, container, queue, and retry policy before you can answer the question. Burla turns the S3 keys into a live queue and runs the exact PyArrow code you would have written in a notebook.
+
+## what the small run misses
+
+The bad file is usually not in the first ten. The real scan catches the one partition with a null `user_id` explosion. The compromised scan gives you a clean-looking report and leaves the broken day in production.

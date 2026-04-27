@@ -1,20 +1,22 @@
-# Parallel API calls with a global cap
+# Make millions of API calls without lying about the rate cap
 
-External API enrichment is a common slow job. You have a few million user IDs, an endpoint that permits about 1,000 requests per second, and a local script that can either run for days or get banned.
+The compromised version tests 5,000 ids and says the backfill is "ready." The real version calls the API for every id while respecting the provider's global cap. If the small run never hit 429s, it did not test the system you plan to run.
 
-This demo splits user IDs into chunks and runs those chunks across Burla workers while capping global parallelism. Each worker makes one request per second. With `max_parallelism=1000`, the whole job aims for about 1,000 requests per second without a central rate limiter.
+This demo chunks 2,000,000 ids into 2,000 tasks. Burla runs up to 1,000 workers, and each worker sleeps one second between requests, giving roughly 1,000 requests per second globally.
 
-## What The Job Does
+## what we built
 
-The compromised version uses a local async client and sleeps between calls. That is fine for thousands of users. At millions, one machine is the bottleneck, and any retry storm is hard to reason about.
+Chunking is the contract. Each chunk is big enough to amortize worker startup and small enough to stream results as they finish.
 
-The real version reads `user_ids.txt`, groups IDs into 1,000-ID chunks, and submits up to 2,000 tasks while allowing only 1,000 workers to run at once. Each worker owns an `httpx.Client`, sends bearer-authenticated requests, respects `Retry-After` on HTTP 429, and sleeps one second after each successful request.
+```python
+with open("user_ids.txt") as f:
+    user_ids = [line.strip() for line in f if line.strip()]
 
-The driver streams chunk results and writes `enriched.jsonl`. That means the output grows continuously and memory stays bounded.
+CHUNK = 1000
+chunks = [user_ids[i:i + CHUNK] for i in range(0, len(user_ids), CHUNK)]
+```
 
-## The Code Shape
-
-The worker keeps the policy explicit. It retries only 429s, uses the server's `Retry-After` when present, and otherwise backs off by attempt count.
+The worker owns retry and local pacing. That keeps rate-limit behavior close to the HTTP call instead of hiding it in a scheduler.
 
 ```python
 def enrich_chunk(ids: list[str]) -> list[dict]:
@@ -27,8 +29,7 @@ def enrich_chunk(ids: list[str]) -> list[dict]:
             for attempt in range(5):
                 r = client.get(f"https://api.example.com/v1/users/{uid}")
                 if r.status_code == 429:
-                    wait = float(r.headers.get("Retry-After", 2 ** attempt))
-                    time.sleep(wait)
+                    time.sleep(float(r.headers.get("Retry-After", 2 ** attempt)))
                     continue
                 r.raise_for_status()
                 out.append({"user_id": uid, **r.json()})
@@ -37,9 +38,13 @@ def enrich_chunk(ids: list[str]) -> list[dict]:
     return out
 ```
 
-The dispatch is where the global cap lives:
+## how the pipeline works
+
+`max_parallelism` is the important line. It is the global throttle for live workers.
 
 ```python
+from burla import remote_parallel_map
+
 results = remote_parallel_map(
     enrich_chunk,
     chunks,
@@ -51,10 +56,20 @@ results = remote_parallel_map(
 )
 ```
 
-The arithmetic is easy to audit: one request per second per worker times at most 1,000 workers.
+## why this demo is interesting
 
-## Why It Matters
+Rate limits are where toy parallelism lies. A local async script can look fast until it meets the provider's real cap, then it becomes a retry storm. The useful experiment is not "can I make requests?" It is "can I finish the whole backfill without breaking the contract?" That means chunking, global concurrency, local pacing, and resumable output.
 
-This is a useful pattern for data teams that need to enrich records from a partner API without building a queue service. The remote function contains the per-worker policy. `max_parallelism` is the coarse global knob.
+This pattern also works for LLM providers. Replace user ids with prompts, make the per-worker sleep reflect RPM or TPM, and stream results as JSONL. Burla handles the worker count; your code still handles provider-specific behavior such as `Retry-After`, failed payloads, and partial output.
 
-Burla's role is not to hide rate limits. It makes the batch large enough to finish while leaving the rate behavior in code where a reviewer can see it.
+## how to build your version
+
+Start with the provider's real rule: requests per second, concurrent sessions, daily tokens, or model TPM. Convert it into a per-worker budget. Put 429 handling inside the worker. Use `generator=True` to stream JSONL to disk so a long backfill does not hold everything in memory.
+
+## why Burla fits
+
+The annoying parts are queue setup, worker deployment, retries, and live concurrency. Burla supplies the worker fleet and the cap. Your function still owns API semantics, which is where they belong.
+
+## what the tiny run misses
+
+A compromised run proves the endpoint responds. The real run proves your pacing, retry, and streaming logic survive the full backfill. Without that, the missed discovery is the provider banning you halfway through the job.
