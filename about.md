@@ -1,6 +1,6 @@
 # About
 
-Check out our essay: [The Question You Asked Is Not the Experiment You Ran](https://docs.burla.dev/essays/the-experiment-you-dont-run.md).
+Check out our essay: [The Question You Asked Is Not the Experiment You Ran](https://docs.burla.dev/essays/the-experiment-you-dont-run).
 
 ### Why?
 
