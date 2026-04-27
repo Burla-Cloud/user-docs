@@ -4,14 +4,14 @@ description: Real Burla examples for ML, data science, and production data work.
 
 # Other Examples
 
-Use these when you want to see Burla beyond the three main examples: GPU embedding jobs, batch inference, public-data scans, file-parallel ETL, scientific pipelines, and API workloads with real external limits.
+Use these when you want to see Burla beyond the three main examples: GPU embedding jobs, batch inference, full-corpus scans, file-parallel ETL, scientific pipelines, and jobs that must respect real APIs, databases, and websites.
 
-Each example is built around a production constraint: how inputs are partitioned, which container and hardware profile runs each stage, how results are reduced, and which constraint the toy version would miss.
+<figure><img src=".gitbook/assets/other-examples-map.svg" alt="A 16:9 map grouping Burla examples by workload shape: ML batches, full corpora, production IO, and scientific jobs." width="92%"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/vector-field-icon (2).svg" alt="A field of arrows representing many independent tasks running in parallel." width="45%"><figcaption></figcaption></figure>
+Pick the example that matches your bottleneck. A data scientist usually wants the partitioning pattern, the exact worker code, and where the reduction happens. A startup usually wants to know whether the job can use existing Docker images, stay inside their cloud account, avoid a new queue system, and finish without melting Postgres or an API provider.
 
 {% hint style="info" %}
-Start with the workload shape. If the work is one file per task, look at Parquet, GHCN, images, or ETL. If the job changes hardware mid-pipeline, look at Airbnb or GPU embeddings. If the bottleneck is an external system, look at APIs, scraping, or Postgres.
+Start with the shape of the work. If each input can run alone, open Parquet, GHCN, images, or ETL. If the job changes hardware mid-pipeline, open Airbnb or GPU embeddings. If the bottleneck is outside Python, open APIs, web scraping, or Postgres.
 {% endhint %}
 
 ## ML, embeddings, and search
@@ -124,13 +124,13 @@ Start with the workload shape. If the work is one file per task, look at Parquet
       <td><a href="demo-blogs/pandas-apply-parallel.md">pandas-apply-parallel.md</a></td>
     </tr>
     <tr>
-      <td><strong>Rate-limited API jobs</strong></td>
-      <td>Make millions of calls while encoding provider limits in chunk size, sleeps, and <code>max_parallelism</code>.</td>
+      <td><strong>Enrich millions of users through a rate-limited API</strong></td>
+      <td>Backfill user profiles while keeping provider limits explicit in chunk size, sleeps, and <code>max_parallelism</code>.</td>
       <td><a href="demo-blogs/rate-limited-api-requests.md">rate-limited-api-requests.md</a></td>
     </tr>
     <tr>
-      <td><strong>Bounded web scraping</strong></td>
-      <td>Scrape static HTML with retries, backoff, and a global concurrency cap.</td>
+      <td><strong>Crawl a million website pages without hiding failures</strong></td>
+      <td>Scrape static HTML with polite pacing, retries, error rows, and a global concurrency cap.</td>
       <td><a href="demo-blogs/parallel-web-scraping.md">parallel-web-scraping.md</a></td>
     </tr>
   </tbody>
@@ -167,6 +167,6 @@ Start with the workload shape. If the work is one file per task, look at Parquet
 
 ## How to read these
 
-Copy the partitioning strategy, not the dataset. The useful part is usually how inputs are split, which code runs inside the worker, what hardware is requested, and where the reduction happens.
+Copy the partitioning strategy, not the dataset. The useful part is usually how inputs are split, which code runs inside the worker, what hardware is requested, what system is being protected, and where the reduction happens.
 
 If a toy version would skip the tail, remove CUDA, sample away bad files, or hide sink pressure, it is not the same experiment. These examples show the version you would trust before making a product or research decision.
