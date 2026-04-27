@@ -56,7 +56,3 @@
 * [Limit parallelism for APIs, databases, and websites](common-patterns/limit-parallelism-for-apis-databases-and-websites.md)
 * [Use custom Docker images and GPUs](common-patterns/use-custom-docker-images-and-gpus.md)
 * [Run jobs in the background.](common-patterns/run-python-in-the-background.md)
-
-## Essays
-
-* [Stop Designing the Cluster](stop-designing-the-cluster.md)
