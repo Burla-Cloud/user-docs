@@ -227,4 +227,3 @@ Do not ask for a GPU because the whole pipeline has a GPU step. Ask for a GPU on
 - [Process every raster tile, not a pretty subset](../demo-blogs/gdal-raster-processing.md)
 - [Genomic Pipeline on 1,000 CPUs](../examples/multi-stage-genomic-pipeline.md)
 - [Test Airbnb hypotheses at public-data scale](../demo-blogs/airbnb-burla.md)
-- [The Question You Asked Is Not the Experiment You Ran](../the-experiment-you-dont-run.md)

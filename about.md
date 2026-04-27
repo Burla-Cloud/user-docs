@@ -1,6 +1,6 @@
 # About
 
-Check out our essay: [Stop Designing the Cluster](https://docs.burla.dev/essays/stop-designing-the-cluster.md).
+Check out our essay: [The Question You Asked Is Not the Experiment You Ran](https://docs.burla.dev/essays/the-experiment-you-dont-run.md).
 
 ### Why?
 

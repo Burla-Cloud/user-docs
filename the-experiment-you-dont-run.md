@@ -1,5 +1,6 @@
 ---
 description: Why dynamic hardware should be a normal part of ML and data programs.
+hidden: true
 ---
 
 # The Question You Asked Is Not the Experiment You Ran
