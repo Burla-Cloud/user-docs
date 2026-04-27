@@ -2,42 +2,41 @@
 
 In this example we:
 
-* Download [this 1.4GB Kaggle Dataset](https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022/data?select=Combined_Flights_2022.csv) of commercial flight delays.
-* Train 36 XGBoost models with different parameters using 13, 80-CPU machines.
-* Identify the best model from training results.
+* Download a 1.4GB Kaggle flight-delay dataset.
+* Boot 13 machines with 80 CPUs each.
+* Train 36 XGBoost models in parallel and pick the best one.
 
-### Step 1: Upload your data to the cluster
+### Dataset: 2022 flight delays
 
-Download the following CSV file:
+The dataset is [Combined_Flights_2022.csv](https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022/data?select=Combined_Flights_2022.csv), a commercial flight-delay CSV from Kaggle.
+
+The question is simple: given the route, airline, schedule, airport ids, and date fields, can we predict whether a flight arrives at least 15 minutes late?
+
+This is the kind of job where I don't want to build a training platform. I want to try a bunch of XGBoost settings, look at the AUCs, and move on.
+
+### Step 1: Upload the CSV
+
+Download the CSV here:
 
 {% embed url="https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022?resource=download&select=Combined_Flights_2022.csv" %}
 
-Then upload it to your Burla cluster filesystem:
+Then upload it to the Burla filesystem.
 
 <figure><img src="../.gitbook/assets/upload_demo.gif" alt=""><figcaption><p>(upload section is fast-forwarded)</p></figcaption></figure>
 
-Any files uploaded here will appear in a network attached folder at `./shared` inside every container in the cluster. Conversely, any files your code leaves in this folder will appear in the "Filesystem" tab where you can download them later, or store for future work!
+Files uploaded here appear at `./shared` inside every worker container. Files your code writes there show up back in the dashboard, so you can download results later.
 
 ### Step 2: Boot some VMs
 
-In the "Settings" tab, select the hardware and quantity of machines you want, then hit **⏻ Start** !\
-Here we boot 13, 80-CPU VM's, these VM's delete themself after 15min. of inactivity.
+For this run we boot 13 VMs, each with 80 CPUs.
 
 <figure><img src="../.gitbook/assets/cluster_boot_demo.gif" alt=""><figcaption><p>(Booting is fast-forwarded, this cluster actually took 1.5 min. to boot up)</p></figcaption></figure>
 
-Now that our machines are ready, we can call `remote_parallel_map` !
+The workers use the `python:3.12` image. That image does not already have XGBoost, pandas, or sklearn installed, which is fine. Burla detects the local packages the function needs and installs them inside the worker containers when the job starts.
 
-You may have noticed in the settings we're using the `python:3.12` docker image.\
-This is the image the code will run inside, and it doesn't come with any of the packages we need (like XGBoost, Pandas, etc). This is ok because Burla detect's local packages at runtime and quickly installs them in all containers, usually in just a few seconds.
+### Step 3: Write the model function
 
-### Step 3: Write a function to train one model.
-
-This function:
-
-* Loads `Combined_Flights_2022.csv` from the `./shared` folder as a Pandas DataFrame.
-* Cleans and separates data into train / test sets.
-* Trains one XGBoost model using the provided `params` dict, and 80 CPUs.
-* Scores the model on the test set, then returns the AUC.
+Each function call trains one model with one set of hyperparameters. It loads the CSV from `./shared`, cleans a few columns, trains XGBoost with all 80 CPUs, and returns the AUC.
 
 ```python
 import pandas as pd
@@ -45,62 +44,60 @@ import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
 
-# avoid leakage and messy data
 columns_to_train_on = [
-    "Airline","Operating_Airline","Marketing_Airline_Network",
-    "IATA_Code_Marketing_Airline","IATA_Code_Operating_Airline",
-    "Origin","Dest","OriginState","DestState","OriginWac","DestWac",
-    "OriginAirportID","DestAirportID","OriginCityMarketID","DestCityMarketID",
-    "Distance","DistanceGroup","CRSElapsedTime",
-    "DayOfWeek","Month","Quarter","DayofMonth","Year",
-    "DepTimeBlk","ArrTimeBlk","CRSDepTime","CRSArrTime"
+    "Airline", "Operating_Airline", "Marketing_Airline_Network",
+    "IATA_Code_Marketing_Airline", "IATA_Code_Operating_Airline",
+    "Origin", "Dest", "OriginState", "DestState", "OriginWac", "DestWac",
+    "OriginAirportID", "DestAirportID", "OriginCityMarketID", "DestCityMarketID",
+    "Distance", "DistanceGroup", "CRSElapsedTime",
+    "DayOfWeek", "Month", "Quarter", "DayofMonth", "Year",
+    "DepTimeBlk", "ArrTimeBlk", "CRSDepTime", "CRSArrTime",
 ]
 
 def train_model(params):
     print("Loading dataset ...")
     df = pd.read_csv("./shared/Combined_Flights_2022.csv")
-    df = df.dropna(subset=["ArrDel15"])  # <- null when flight never arrived (cancelled/diverted/etc)
-    
+    df = df.dropna(subset=["ArrDel15"])
+
     y = df["ArrDel15"].astype(int)
     X = pd.get_dummies(df[columns_to_train_on], dummy_na=False)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-    data_size_gb = (X_train.memory_usage(deep=True).sum() + y_train.memory_usage(deep=True)) / (1024**3)
+    data_size_gb = (X_train.memory_usage(deep=True).sum() + y_train.memory_usage(deep=True)) / (1024 ** 3)
 
-    # `data_size_gb` is > than original csv size mostly from one hot encoding
-    print(f"Training XGBClassifier on {format(len(df), ",")} rows ({data_size_gb:.1f}GB) using 80 CPUs ...")
+    print(f"Training on {format(len(df), ',')} rows ({data_size_gb:.1f}GB) using 80 CPUs ...")
     model = xgb.XGBClassifier(tree_method="hist", n_jobs=80, eval_metric="auc", **params)
     model.fit(X_train, y_train)
-    auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
 
+    auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
     print(f"Done training, [AUC={auc:.4f}] Hyperparameters: {params}")
     return {"auc": auc, "params": params}
-
 ```
 
-To test out the function we call it on just one machine, by passing it one set of parameters:
+### Step 4: Test one model
+
+Before launching the whole grid, run one model. This is the smoke test. It tells us the CSV path, packages, memory, and function shape are all sane.
 
 ```python
 from burla import remote_parallel_map
 
 parameter_grid = [{"n_estimators": 300, "max_depth": 4, "eta": 0.1}]
-
 results = remote_parallel_map(train_model, parameter_grid, func_cpu=80)
 
 print(f"Model with params {parameter_grid[0]} yielded an AUC of: {results[0]}!")
 ```
 
-We also pass `func_cpu=80` to tell Burla this function call should have 80 CPU's made available to it.\
-We'll need this since we're passing `n_jobs=80` to XGBoost inside the `train_model` function.
+We pass `func_cpu=80` because the XGBoost call uses `n_jobs=80`. There is no magic here. The function asks for the same hardware the training code is going to use.
 
-### Step 4: Call the function in parallel, on 13 separate VMs!
+### Step 5: Run the grid
 
-Here we pass 36 sets of parameters to `train_model`.\
-Because each function call requires 80 CPUs, and we have 13, 80CPU machines, this will immediately start 13 function calls, and queue the remaining 26. Burla can reliably queue up to 10 million inputs.
+Now we send 36 parameter sets to the cluster.
 
 ```python
 parameter_grid = [
     {"n_estimators": n, "max_depth": d, "eta": e}
-    for n in [300, 600, 900] for d in [4, 6, 8, 10] for e in [0.05, 0.1, 0.15]
+    for n in [300, 600, 900]
+    for d in [4, 6, 8, 10]
+    for e in [0.05, 0.1, 0.15]
 ]
 
 results = remote_parallel_map(train_model, parameter_grid, func_cpu=80)
@@ -109,9 +106,16 @@ best = max(results, key=lambda r: r["auc"])
 print("Best:", best)
 ```
 
-Once submitted, we can monitor progress and view logs from the "Jobs" tab in the dashboard:
+Because we have 13 machines, the first 13 models start immediately and the rest wait in the queue. Burla can queue millions of inputs, so 36 models is nothing.
+
+You can watch logs from the Jobs tab while the models train.
 
 <figure><img src="../.gitbook/assets/demo.gif" alt=""><figcaption></figcaption></figure>
 
+### What's the point?
 
+The point is not that XGBoost is hard to parallelize. It isn't.
 
+The annoying part is usually the stuff around it: picking machines, getting the CSV onto them, installing packages, running many trainings at once, and collecting the scores without turning the notebook into a platform project.
+
+If someone asked me to try a parameter grid on this dataset, this is the version I would actually want to run. Same CSV, same model code, no rewrite into a different framework just because my laptop is too small.

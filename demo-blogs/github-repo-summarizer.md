@@ -1,10 +1,14 @@
 # Summarize a million READMEs without calling an LLM
 
-The compromised version samples popular repos and asks a model to summarize them. The real version streams 1,200,000 GitHub READMEs, applies deterministic heuristics to every one, and then asks what open-source projects say about themselves. If you used a model or a popularity sample, you ran a different experiment.
+In this example we:
 
-This demo uses BigQuery public GitHub data, writes a Parquet file, uploads it to Burla shared storage, maps 600 shards, and reduces into frontend JSON.
+* Export 1,200,000 GitHub READMEs from BigQuery.
+* Upload the Parquet to Burla shared storage.
+* Run deterministic summarizers over 600 shards and reduce into frontend JSON.
 
-## what we built
+I like this one because the first instinct is to ask an LLM. That would make individual rows prettier and the aggregate harder to trust.
+
+### Step 1: Put the Parquet where workers can read it
 
 The worker reads a stripe of `/workspace/shared/grs/readmes.parquet` and emits one JSON shard.
 
@@ -19,7 +23,9 @@ CATEGORIES = {
 }
 ```
 
-The map stage uploads the Parquet once, then fans out `summarize_shard` across 600 workers.
+### Step 2: Fan out the shards
+
+The map stage runs `summarize_shard` across 600 workers.
 
 ```python
 jobs = [(i, args.shards) for i in range(args.shards)]
@@ -33,7 +39,7 @@ results = remote_parallel_map(
 )
 ```
 
-## how the pipeline works
+### Step 3: Reduce counters and examples
 
 The reducer keeps heaps per category and language, plus document-frequency counters for TF-IDF.
 
@@ -52,31 +58,8 @@ def reduce_bucket(bucket_idx: int, n_buckets: int, top_per_cat: int, top_per_lan
             heapq.heappush(cat_heaps.setdefault(cat, []), (quality, row["repo"], row))
 ```
 
-## why this demo is interesting
+### What's the point?
 
-The point is not to produce pretty summaries of famous repositories. It is to count the culture of README files at scale: install instructions, badges, code fences, category words, cloned templates, and empty placeholders. An LLM would make individual rows smoother while making the aggregate harder to trust.
+Pretty summaries of famous repos are the boring version. I care about README culture at scale: install instructions, badges, code fences, category words, cloned templates, and empty placeholders.
 
-The real run keeps the analysis reproducible. Every category comes from visible keyword weights, every install method from a regex, and every distinctive word from TF-IDF over the reduced corpus. That makes the weird findings debuggable. If a category looks wrong, you can inspect the rules and rerun the reduce without changing a prompt.
-
-## how to build your version
-
-Keep the summary deterministic until you know you need a model. Stream source rows into Parquet, put the Parquet on `/workspace/shared`, write one shard per worker, and reduce heaps and counters in parallel buckets. Add an LLM later only for the small set of examples you want a human to read.
-
-## practical notes from the build
-
-The upload stage is easy to overlook. A 1.3 GB Parquet cannot be captured as a Python closure and shipped with the function. The demo gzips and chunks it, writes part files on `/workspace/shared`, then finalizes the Parquet on a worker. After that, every map worker reads the same shared path.
-
-That pattern is useful outside READMEs. If the input artifact is too large to pickle, stage it once into the shared workspace and pass paths through Burla inputs. Keep the function small, keep the data near the workers, and make the reduce consume shard files rather than client memory.
-
-## why Burla fits
-
-Burla removes BigQuery output shipping, worker deployment, queue setup, and reducer scheduling. The shared filesystem is the bridge between map and reduce.
-
-
-## ways to adapt it
-
-This pattern is useful whenever text lives in many records but the output is aggregate behavior. You can scan docs, changelogs, package manifests, issue templates, or config files. Make workers emit compact facts, not prose. Let the reducer count, rank, and sample. That keeps the analysis explainable and avoids paying model cost before you know which rows matter.
-
-## what the sample misses
-
-The real run found template clones, install-method gaps, and category-level language ownership. The compromised sample of famous repos would miss the boilerplate swamp that defines the corpus.
+A model would make the rows sound smoother. I do not want smoother here. I want counts I can debug. If a category looks wrong, I can inspect the keyword weights and rerun the reduce.

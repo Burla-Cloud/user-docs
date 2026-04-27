@@ -1,12 +1,16 @@
 # Align every FASTQ sample without building a scheduler first
 
-The compromised genomics run aligns one public sample, writes down the command, and postpones the cohort. The real experiment starts every sample in the cohort and produces BAMs with the same reference, read group, and container. If the cohort never ran, you tested the command rather than the analysis.
+In this example we:
 
-This demo runs BWA-MEM and samtools on thousands of paired-end FASTQ samples, one sample per Burla worker.
+* Read a paired-end FASTQ manifest.
+* Run BWA-MEM and samtools in a custom worker image.
+* Produce one BAM per sample, with one sample per Burla worker.
 
-## what we built
+One aligned sample proves the command works. It does not prove the cohort ran.
 
-Bioinformatics tools need native binaries, so this demo uses a custom worker image.
+### Step 1: Use an image with the native tools
+
+Bioinformatics tools need native binaries, so the worker image matters.
 
 ```python
 IMAGE = "us-docker.pkg.dev/test-burla/burla-demos/burla-bio-worker:latest"
@@ -18,7 +22,9 @@ with open("manifest.tsv") as f:
 sample_jobs = [{"sample_id": s[0], "fq1": s[1], "fq2": s[2]} for s in samples]
 ```
 
-The worker downloads the reference indexes and FASTQs, then shells out to the tools everyone already knows.
+### Step 2: Align one sample per worker
+
+The worker downloads the FASTQs, runs the command-line tools, indexes the BAM, and writes the output to S3.
 
 ```python
 def align_sample(job: dict) -> dict:
@@ -40,35 +46,25 @@ def align_sample(job: dict) -> dict:
     return {"sample_id": sid, "elapsed_s": round(time.time() - t0, 1)}
 ```
 
-## how the pipeline works
+### Step 3: Run the cohort
 
-Burla runs the container image and passes each sample dict to the worker.
+Each sample gets 4 CPUs and 16GB of RAM.
 
 ```python
 from burla import remote_parallel_map
 
 reports = remote_parallel_map(
-    align_sample, sample_jobs,
-    func_cpu=4, func_ram=16,
+    align_sample,
+    sample_jobs,
+    func_cpu=4,
+    func_ram=16,
     image=IMAGE,
     grow=True,
 )
 ```
 
-## why this demo is interesting
+### What's the point?
 
-Alignment is a good demo because the hard part is not inventing a new algorithm. The command is known. The pain is getting the same command, the same reference, and the same binaries onto enough machines at once, then collecting BAMs without losing failures. That is infrastructure work pretending to be science.
+The command is known. The pain is getting the same command, reference, binaries, and output path onto enough machines at once.
 
-The real experiment is cohort-level. Mapping rate distributions, missing pairs, corrupt FASTQs, and sample-specific runtime only appear when every sample runs. A compromised smoke test is still worth doing, but it should stay a smoke test. Once the command works, the useful next step is running the cohort and inspecting the report.
-
-## how to build your version
-
-Build the smallest image that has the binaries: BWA, samtools, minimap2, STAR, DeepVariant, or GATK. Put reference files in a bucket or bake them into the image if they are stable. Make one input equal one sample, and return BAM size, elapsed time, mapping rate, and output paths.
-
-## why Burla fits
-
-Burla removes Nextflow setup, Batch compute environments, job queues, and AMI scripts. The custom image gives workers the tools, while `remote_parallel_map` gives you the sample queue.
-
-## what the single sample misses
-
-One aligned sample proves the command. The real cohort run finds the sample with bad pairs, the reference mismatch, and the outlier mapping rate. That is the discovery the compromised run skips.
+This is why I like one-sample-per-worker. The report gives sample-specific runtime and failures, and the output is already in S3. Once the smoke test works, run the cohort. That is where bad pairs, corrupt FASTQs, and mapping-rate outliers show up.

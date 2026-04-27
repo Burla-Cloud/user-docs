@@ -1,12 +1,16 @@
 # Scrape the archive, not the easy page sample
 
-The compromised scraper grabs a few thousand pages and calls the parser good. The real scraper runs the same parser over the whole URL list, where the stale pages, 503s, redirects, and odd HTML live. If the failures were filtered out by scale, you tested a smaller question.
+In this example we:
 
-This demo scrapes 1,000,000 URLs by chunking them into groups of 500 and running up to 1,000 Burla workers.
+* Read 1,000,000 URLs from a file.
+* Scrape them in 500-URL chunks.
+* Stream JSONL rows with either parsed fields or errors.
 
-## what we built
+The stale pages, redirects, 503s, and broken HTML are the dataset. A happy-path sample filters out the part you most need to measure.
 
-The client only plans work. The worker keeps one `httpx.Client` open so HTTP/2 and connection pooling work inside each chunk.
+### Step 1: Chunk URLs
+
+The client only plans work. Each worker gets a chunk.
 
 ```python
 with open("urls.txt") as f:
@@ -16,7 +20,9 @@ CHUNK = 500
 chunks = [urls[i:i + CHUNK] for i in range(0, len(urls), CHUNK)]
 ```
 
-The parser is intentionally small: fetch, back off on temporary failures, parse the title and price metadata.
+### Step 2: Fetch and parse inside the worker
+
+The worker keeps one HTTP client open, backs off on temporary failures, and returns an error row when a page fails.
 
 ```python
 def scrape_chunk(urls: list[str]) -> list[dict]:
@@ -44,35 +50,28 @@ def scrape_chunk(urls: list[str]) -> list[dict]:
     return out
 ```
 
-## how the pipeline works
+### Step 3: Stream the crawl
 
-The output streams to JSONL as chunks finish. That matters when the scrape runs for hours.
+Chunks stream back as they finish, so the scrape can run for hours without building one giant result list.
 
 ```python
 from burla import remote_parallel_map
 
 for rows in remote_parallel_map(
-    scrape_chunk, chunks, func_cpu=1, func_ram=2,
-    max_parallelism=1000, generator=True, grow=True,
+    scrape_chunk,
+    chunks,
+    func_cpu=1,
+    func_ram=2,
+    max_parallelism=1000,
+    generator=True,
+    grow=True,
 ):
     for row in rows:
         f.write(json.dumps(row) + "\n")
 ```
 
-## why this demo is interesting
+### What's the point?
 
-Scraping problems are rarely solved by making a single machine busier. DNS, TLS, parsing, per-site politeness, and failure logging all matter. The real question is whether the crawler can cover the archive without turning errors into invisible holes. A compromised sample tends to over-represent fresh pages and under-represent the stale pages that poison downstream analysis.
+Scraping gets weird fast. DNS, TLS, parser misses, per-site politeness, and failure logging all matter.
 
-The design here is deliberately plain: chunk URLs, reuse a client per worker, parse the fields you need, and return an error row when a page fails. That makes the output useful even before it is perfect. You can compute failure rates by host, retry only bad chunks, or inspect parser misses without replaying the whole crawl.
-
-## how to build your version
-
-Keep the worker polite. Set a user agent, add per-worker sleeps, and cap global workers. Put parsing next to fetching so a failure returns a useful row. If the site needs JavaScript, use a browser tool or a browser image; for static pages, `httpx` is cheaper and faster.
-
-## why Burla fits
-
-Burla removes the Redis/Kafka queue, Kubernetes worker pool, deploy scripts, and cluster babysitting. You write the scraper as a function over chunks and tune one global cap.
-
-## what the page sample misses
-
-The real archive contains the broken pages that define the quality of your dataset. The compromised scrape finds only the happy path and misses the stale catalog pages, poison HTML, and rate-limit behavior that decide whether the crawl is usable.
+This design is plain on purpose: chunk URLs, reuse a client, parse the fields you need, return an error row when something fails. Once the output exists, you can compute failure rates by host or retry only bad chunks.
