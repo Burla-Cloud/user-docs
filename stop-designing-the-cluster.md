@@ -1,5 +1,6 @@
 ---
 description: Why cluster-first distributed systems are the wrong abstraction, and what work-first tools let teams build instead.
+hidden: true
 layout:
   width: default
   title:

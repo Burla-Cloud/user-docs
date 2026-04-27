@@ -12,6 +12,7 @@
 ## Essays
 
 * [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
+* [Stop Designing the Cluster](stop-designing-the-cluster.md)
 
 ## Examples
 
