@@ -8,39 +8,33 @@ Real Burla workloads for ML, data pipelines, production IO, and scientific compu
       <th></th>
       <th></th>
       <th data-hidden data-card-target data-type="content-ref"></th>
-      <th data-hidden data-card-cover data-type="files"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>GPU embeddings on A100s</strong></td>
+      <td><img src=".gitbook/assets/more-examples/gpu-embedding-demo.png" alt="" width="96"><br><strong>GPU embeddings on A100s</strong></td>
       <td>Embed 50,000 Wikipedia articles with a CUDA image, CPU download stage, GPU embedding stage, and shared vector artifacts.</td>
       <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/gpu-embedding-demo.md">gpu-embedding-demo.md</a></td>
-      <td><a href=".gitbook/assets/more-examples/gpu-embedding-demo.png">gpu-embedding-demo.png</a></td>
     </tr>
     <tr>
       <td><strong>Batch inference without serving</strong></td>
       <td>Load a Hugging Face model once per worker and score Parquet batches without building an endpoint.</td>
       <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/ml-inference-batch.md">ml-inference-batch.md</a></td>
-      <td></td>
     </tr>
     <tr>
       <td><strong>Embed the whole arXiv</strong></td>
       <td>Cluster 2.7M abstracts and find isolated papers by running the embedding job at corpus scale.</td>
       <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/arxiv-fossils.md">arxiv-fossils.md</a></td>
-      <td></td>
     </tr>
     <tr>
       <td><strong>Label-free visual search over the Met</strong></td>
       <td>Fetch and embed Open Access museum images, then use FAISS to find visual matches without labels.</td>
       <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/met-weirdest-art.md">met-weirdest-art.md</a></td>
-      <td></td>
     </tr>
     <tr>
       <td><strong>Multimodal Airbnb analysis</strong></td>
       <td>Run listings, photos, CLIP, YOLOv8, reviews, and bootstrap confidence intervals across the public corpus.</td>
       <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/airbnb-burla.md">airbnb-burla.md</a></td>
-      <td></td>
     </tr>
   </tbody>
 </table>
