@@ -59,8 +59,6 @@ This is the real cost of infrastructure friction. It does not merely slow experi
 
 ## Hardware should be control flow
 
-<figure><img src=".gitbook/assets/blog-experiment-control-flow-small.png" alt="Documents enter a control-flow map and split toward CPU, OCR, GPU, and fan-in stations." width="50%"><figcaption></figcaption></figure>
-
 Good experiments escalate. They start cheap, keep the interesting cases, and spend expensive hardware only where the data earns it.
 
 This is how careful people spend attention. Our tools often ask for the spending plan before there is evidence.
@@ -120,8 +118,6 @@ That is why the work so often turns into glue. One script to inspect files. One 
 Someone still has to build the infrastructure. But ML and data people should be able to stay inside the problem longer.
 
 ## Self-hosting is not a footnote
-
-<figure><img src=".gitbook/assets/blog-experiment-self-hosting-small.png" alt="A worker pulls CPU and GPU chips from a magician's hat inside a vault whose sign says data stays here." width="50%"><figcaption></figcaption></figure>
 
 One constraint decides whether any of this matters: the data often cannot move.
 
