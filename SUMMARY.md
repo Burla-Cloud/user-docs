@@ -18,7 +18,7 @@
 * [Process 2.4TB of Parquet Files in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
 * [Parallel Hyperparameter Tuning](examples/parallel-hyperparameter-tuning.md)
 * [Genomic Pipeline on 1,000 CPUs](examples/multi-stage-genomic-pipeline.md)
-* [Other Examples](demo-walkthroughs.md)
+* [More Examples](demo-walkthroughs.md)
   * [GPU embeddings on A100s](demo-blogs/gpu-embedding-demo.md)
   * [Batch inference without serving](demo-blogs/ml-inference-batch.md)
   * [Embed the whole arXiv](demo-blogs/arxiv-fossils.md)

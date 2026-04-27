@@ -1,3 +1,5 @@
+Real Burla workloads for ML, data pipelines, production IO, and scientific computing.
+
 ## ML, embeddings, and search
 
 <table data-view="cards">
