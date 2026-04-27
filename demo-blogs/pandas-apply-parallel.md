@@ -1,12 +1,16 @@
 # Keep the pandas apply, scale the dataset
 
-The compromised version rewrites the transform for Spark, drops the annoying Python bits, and then answers a simpler question. The real version runs the row function you already trust across the full Parquet dataset. If your regex, API lookup, or weird row rule changed, the experiment changed too.
+In this example we:
 
-This demo splits a large event table by user id, runs normal `df.apply(..., axis=1)` on each chunk, and concatenates the results.
+* Split a Parquet event table by user id.
+* Run normal `df.apply(..., axis=1)` on each worker.
+* Concatenate the enriched chunks into one output dataset.
 
-## what we built
+Sometimes the ugly pandas row function is the business logic. Rewriting it into Spark just to make it run faster can quietly change the answer.
 
-We use PyArrow to discover a cheap partition key, then stripe user ids across 1,200 chunks. That gives each worker a slice it can filter from the Parquet dataset.
+### Step 1: Pick a partition key
+
+Here we stripe user ids across 1,200 chunks. Each worker can filter the Parquet dataset down to its users.
 
 ```python
 import pyarrow.dataset as ds
@@ -17,7 +21,9 @@ all_users = dataset.to_table(columns=["user_id"]).column("user_id").unique().to_
 chunks = [all_users[i::1200] for i in range(1200)]
 ```
 
-The worker reads only its users and runs plain pandas. There is no UDF dialect here.
+### Step 2: Run plain pandas
+
+The worker reads its slice and applies the same row function you would run locally.
 
 ```python
 def apply_on_chunk(user_ids: list[str]) -> pd.DataFrame:
@@ -37,9 +43,9 @@ def apply_on_chunk(user_ids: list[str]) -> pd.DataFrame:
     return pd.concat([df, df.apply(enrich, axis=1)], axis=1)
 ```
 
-## how the pipeline works
+### Step 3: Concatenate the results
 
-Burla treats each user-id chunk as one input. The final reduce is ordinary pandas concatenation.
+Burla treats each user-id chunk as one input.
 
 ```python
 from burla import remote_parallel_map
@@ -49,20 +55,8 @@ final = pd.concat(frames, ignore_index=True)
 final.to_parquet("enriched.parquet")
 ```
 
-## why this demo is interesting
+### What's the point?
 
-The useful part is that the row function survives intact. Many teams have a pandas transform that encodes years of tiny product rules: regexes, string cleanup, hand-built buckets, odd exceptions from old data. Rewriting that into Spark SQL or a vectorized expression may be possible, but it is also a new implementation with new bugs.
+A lot of useful transforms are full of regexes, JSON parsing, weird buckets, and old product rules. They are not beautiful. They are just correct.
 
-The infrastructure choice changes the experiment when the rewrite drops behavior. Burla lets you keep the original Python and change the amount of hardware instead. That is especially handy for one-off feature backfills, data migrations, and notebook-born transforms that need to run once over a real dataset.
-
-## how to build your version
-
-Choose a partition key that keeps each chunk under worker memory: user id, account id, date bucket, or a hash. Make the worker read from the source of truth, run the existing `apply`, and return a DataFrame or write a shard to storage. If the output is large, have workers write Parquet shards and merge later.
-
-## why Burla fits
-
-Burla removes the Ray or Dask cluster setup and the Spark rewrite. You keep the pandas code, ask for CPU and RAM per worker, and let the input chunks act as the queue. That matters for row functions full of Python objects, regexes, `json.loads`, and small external calls.
-
-## what the rewrite misses
-
-A compromised rewrite often drops the part that made the transform useful. The real run keeps the messy row function and applies it everywhere, so the output answers the same question you asked in the notebook.
+This lets you keep that code and change the amount of hardware underneath it. For a one-off backfill or migration, that is often the most honest thing to do.

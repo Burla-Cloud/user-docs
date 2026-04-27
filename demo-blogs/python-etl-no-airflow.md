@@ -1,10 +1,14 @@
 # Run the file-drop ETL before it becomes a platform project
 
-The compromised ETL loops through yesterday's files from one machine, then someone opens an Airflow ticket because it is slow. The real job is simpler: transform every file in the drop, write to Postgres, and cap database concurrency. If you changed the job into an orchestration project, you changed the experiment.
+In this example we:
 
-This demo processes 10,000 gzipped JSON files from S3 and loads cleaned rows into Postgres.
+* List 10,000 gzipped JSON files from S3.
+* Transform each file in a Burla worker.
+* Load cleaned rows into Postgres while capping database concurrency.
 
-## what we built
+This is the kind of job that turns into an Airflow ticket when the actual problem is just: yesterday's files are too slow on one machine.
+
+### Step 1: List the files
 
 The client lists the daily prefix and builds one input per file.
 
@@ -19,7 +23,9 @@ for page in boto3.client("s3").get_paginator("list_objects_v2").paginate(Bucket=
     keys += [obj["Key"] for obj in page.get("Contents", []) if obj["Key"].endswith(".json.gz")]
 ```
 
-The worker handles extract, transform, and load for one object. It uses `execute_values` so each file becomes one batched insert.
+### Step 2: Transform and insert one file
+
+The worker owns extract, transform, and load for one object. `execute_values` keeps each file as one batched insert.
 
 ```python
 def etl_one_file(key: str) -> dict:
@@ -40,37 +46,30 @@ def etl_one_file(key: str) -> dict:
     return {"key": key, "rows_in": len(rows_in), "rows_out": len(rows_out)}
 ```
 
-## how the pipeline works
+### Step 3: Protect Postgres
 
-The database is protected by `max_parallelism`. Results stream back so the terminal can show progress.
+The database is the constraint, so `max_parallelism` is the important line.
 
 ```python
 from burla import remote_parallel_map
 
 done = 0
 for r in remote_parallel_map(
-    etl_one_file, keys, func_cpu=1, func_ram=2,
-    max_parallelism=1000, generator=True, grow=True,
+    etl_one_file,
+    keys,
+    func_cpu=1,
+    func_ram=2,
+    max_parallelism=1000,
+    generator=True,
+    grow=True,
 ):
     done += 1
     if done % 100 == 0:
         print(done, r["rows_out"])
 ```
 
-## why this demo is interesting
+### What's the point?
 
-Airflow is useful when a pipeline has durable schedules, dependencies, owners, and reruns. A lot of ETL work is smaller: a daily file drop, a backfill, or a migration that needs parallelism more than a platform. The compromised version either runs too slowly on one box or grows into a DAG system before the data question is answered.
+Transforming 10,000 files in parallel is easy. Loading them without flattening Postgres is the part that matters.
 
-The real experiment is sink-aware. Transforming 10,000 files in parallel is easy; loading them without flattening Postgres is the part that matters. That is why `max_parallelism` belongs in the walkthrough. It turns the database connection pool into a first-class constraint instead of an afterthought.
-
-## how to build your version
-
-Make one worker own one file or one partition. Keep the load idempotent with `ON CONFLICT`, merge keys, or output partitions. Pick the concurrency from the sink: Postgres connection pool, warehouse write slots, or API quota.
-
-## why Burla fits
-
-Burla removes the scheduler, metadata database, DAG deploy path, Batch queue, and worker fleet. A daily cron or CI job can run the Python file and still fan out across cloud machines.
-
-## what the local loop misses
-
-The compromised loop tests transform correctness. The real run tests sink pressure, duplicate behavior, and every malformed file in the drop. That is where ETL breaks.
+That is why I like this shape. The Python stays boring, the insert stays idempotent, and the sink gets a real concurrency cap. You can put this behind cron or CI without adopting a workflow platform for one file drop.

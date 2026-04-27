@@ -1,12 +1,16 @@
 # Cluster all arXiv abstracts before naming extinct topics
 
-The compromised version embeds recent ML papers and calls it a trend study. The real version embeds 2,710,783 arXiv abstracts, clusters the whole corpus, and then asks which topics peaked, faded, or appeared recently. If the corpus starts after your favorite field got big, the experiment is already biased.
+In this example we:
 
-This demo uses the arXiv metadata snapshot, MiniLM embeddings via fastembed, MiniBatchKMeans, and FAISS.
+* Embed 2,710,783 arXiv abstracts.
+* Cluster the whole corpus with MiniBatchKMeans.
+* Use FAISS to find lonely papers and topic clusters that faded over time.
 
-## what we built
+If the question is historical, a recent-paper sample is almost useless. It starts after half the history already happened.
 
-Stage 0 streams the JSONL snapshot and writes 10,000-paper Parquet shards to `/workspace/shared/arxiv-fossils/raw/`.
+### Step 1: Shard the metadata
+
+The arXiv snapshot is JSONL. We stream it once and write 10,000-paper Parquet shards into the shared folder.
 
 ```python
 def flush(records, idx):
@@ -22,7 +26,9 @@ def flush(records, idx):
     return str(out)
 ```
 
-Each map worker embeds one raw shard and writes a vector shard.
+### Step 2: Embed each shard
+
+Each worker reads one raw shard, embeds title plus abstract, normalizes the vectors, and writes another Parquet shard.
 
 ```python
 def embed_shard(raw_path: str) -> str:
@@ -36,9 +42,9 @@ def embed_shard(raw_path: str) -> str:
     return str(out_path)
 ```
 
-## how the pipeline works
+### Step 3: Reduce the whole corpus
 
-The reduce loads every vector shard, clusters a sample, predicts labels for all papers, and builds a nearest-neighbor index.
+The reduce worker loads the vector shards, clusters a sample, predicts labels for all papers, and builds a nearest-neighbor index.
 
 ```python
 km = MiniBatchKMeans(n_clusters=400, random_state=42, batch_size=16384, max_iter=80, n_init=1)
@@ -49,31 +55,8 @@ index = faiss.IndexFlatIP(vecs.shape[1])
 index.add(vecs.astype("float32"))
 ```
 
-## why this demo is interesting
+### What's the point?
 
-Topic history is a full-corpus problem. If you embed only recent papers, every topic looks alive. If you embed only one field, cross-field outliers disappear. The real run lets old high-energy physics clusters, pandemic SIR bursts, and LLM evaluation clusters sit in the same vector space before any label is attached.
+The worker cannot know whether a topic is extinct. It only sees one shard. The label comes later, once the whole archive is visible.
 
-The reduce stage is where the scientific question happens. KMeans gives rough topic neighborhoods. Year histograms decide which clusters peaked and faded. FAISS nearest-neighbor distance finds the loneliest paper. Burla does not make those choices for you; it makes the full set of choices cheap enough to run.
-
-## how to build your version
-
-Use the full corpus if your question is historical. Shard raw text first, embed in map workers, and do the expensive global operations in one large reduce worker. Pin ONNX threads to one per worker so parallelism comes from workers, not oversubscribed threads.
-
-## practical notes from the build
-
-The main trick is separating local decisions from global ones. Embedding is embarrassingly parallel because each abstract stands alone. Clustering and nearest-neighbor search are global because every paper competes with every other paper. The pipeline reflects that: many map workers write vectors, one larger reducer loads the vectors and makes corpus-level decisions.
-
-For a reader building a similar system, resist the urge to classify papers during the map stage. The worker does not know whether a topic is extinct, emergent, or lonely. It only knows how to produce a vector and metadata. The label comes later, after the full corpus is visible.
-
-## why Burla fits
-
-Burla removes the embedding worker pool, shared shard storage, reducer machine selection, and queue logic. You can mix many small embedding workers with one high-memory reducer.
-
-
-## ways to adapt it
-
-Use the same pattern for patents, PubMed abstracts, legal opinions, support tickets, or internal docs. The map stage should produce vectors and metadata. The reduce stage should do the global math: clustering, nearest neighbors, time histograms, or drift scores. Keep labels downstream of the full vector set so early workers do not make corpus-level claims from local shards.
-
-## what the small corpus misses
-
-The real run finds the lonely Norway financial-statements paper and old braneworld clusters fading relative to the full archive. The compromised recent-ML sample cannot see extinction because it removed history.
+That is the useful shape here: many workers produce vectors, then one bigger worker makes the global decision. If I were doing this for patents, PubMed abstracts, legal opinions, or internal docs, I would keep the same split.

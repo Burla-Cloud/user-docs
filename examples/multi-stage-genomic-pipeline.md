@@ -2,29 +2,29 @@
 
 In this example we:
 
-* Download raw Illumina genomic-sequencing data from [this NCBI experiment](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE165845).
-* Call and align each sample with a human reference genome.
-* Combine samples into a single large .BED file, then convert to PGEN/PVAR/PSAM files.
+* Download raw Illumina sequencing data from [GSE165845](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE165845).
+* Download the reference genome plus the Illumina BPM and EGT files.
+* Convert 360 samples in parallel, then merge everything into PGEN/PVAR/PSAM files.
 
-This is a typical workflow to prepare Illumina sequencing data for downstream analysis.
+This is a pretty normal genomics workflow. The weird part is usually not the science. The weird part is getting all the command-line tools, reference files, sample files, and CPUs lined up at the same time.
 
 ### Step 1: Boot some VMs
 
-In the "Settings" tab we select the hardware, container image, and quantity of VM's we want.\
-Then hit **⏻ Start** on the homepage!
+For this run we boot 13 VMs with 80 CPUs each.
 
 <figure><img src="../.gitbook/assets/boot.gif" alt=""><figcaption></figcaption></figure>
 
-Here we boot 13, 80-CPU VM's, these VM's delete themself after 15min of inactivity.\
-We also specify a custom docker image: `jakezuliani/idats_to_pgen:latest`\
-This image has bcftools, PLINK, and PLINK2 installed, this is the image our code will run inside.
+We use a custom Docker image:
 
-Once our machines are have booted, we can call `remote_parallel_map` !
+```text
+jakezuliani/idats_to_pgen:latest
+```
 
-### Step 2: download prerequisite data
+That image has `bcftools`, `plink`, and `plink2` installed. Burla runs our Python functions inside that image, so the worker can call the same tools I would call from a terminal.
 
-This code downloads the reference genome, and BPM / EGT files then saves it all to `./shared`.\
-This directory is network linked to a Google Cloud Storage bucket using GCSFuse.
+### Step 2: Download prerequisite data
+
+First we download the reference genome, the BPM file, and the EGT cluster file. Everything goes into `./shared`, which is backed by a Google Cloud Storage bucket.
 
 <details>
 
@@ -49,14 +49,13 @@ def _run_cmd(cmd: str, print_output=False):
         print(process.stderr)
         raise subprocess.CalledProcessError(process.returncode, cmd)
 
-# urls
 SAMPLE_INFO_URL = "https://storage.googleapis.com/burla-demo-data/genomic_sample_info.csv"
 REF_GZ_URL = "ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz"
 REF_FAI_URL = "ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.fai"
 illumina_base_url = "https://webdata.illumina.com/downloads/productfiles/global-screening-array/v1-0"
 BPM_URL = f"{illumina_base_url}/infinium-global-screening-array-v1-0-c1-manifest-file-bpm-build37.zip"
 CLUSTER_URL = f"{illumina_base_url}/infinium-global-screening-array-v1-0-c1-cluster-file.zip"
-# filepaths
+
 REF_PATH = Path("shared/idat_to_pgen_pipeline/human_g1k_v37.fasta")
 REF_GZ_PATH = REF_PATH.with_suffix(".fasta.gz")
 REF_FAI_PATH = REF_PATH.with_suffix(".fasta.fai")
@@ -69,39 +68,34 @@ EGT_PATH = Path("shared/idat_to_pgen_pipeline/GSA-24v1-0_C1_ClusterFile.egt")
 ```python
 def download_prerequisite_data(_):
     Path("shared/idat_to_pgen_pipeline").mkdir(parents=True, exist_ok=True)
-    
-    # download bpm / cluster files:
+
     if not BPM_PATH.exists():
         bpm_zip = zipfile.ZipFile(io.BytesIO(requests.get(BPM_URL).content))
         cluster_zip = zipfile.ZipFile(io.BytesIO(requests.get(CLUSTER_URL).content))
         bpm_zip.extractall("shared/idat_to_pgen_pipeline")
         cluster_zip.extractall("shared/idat_to_pgen_pipeline")
 
-    # download / unzip reference genome:
     if not REF_PATH.with_suffix(".fasta.gz").exists():
         _run_cmd(f"wget --passive-ftp -O {REF_GZ_PATH} {REF_GZ_URL}", print_output=True)
-        # uses old RAZF format, this makes it unzippable:
         _run_cmd(f"truncate -s 891946027 {REF_GZ_PATH}", print_output=True)
         _run_cmd(f"gunzip -f {REF_GZ_PATH}", print_output=True)
 
-    # index reference genome for bcftools
     if not REF_FAI_PATH.exists():
         _run_cmd(f"samtools faidx {REF_PATH}", print_output=True)
 
-    # return list of (sample_id, cell_line, replicate) tuples:
     df = pd.read_csv(SAMPLE_INFO_URL)
     return list(zip(df.sample_id, df.cell_line, df.replicate))
 
 sample_info = remote_parallel_map(download_prerequisite_data, [None])[0]
 ```
 
-After downloading this data, it appears in the Filesystem tab in the dashboard: (GCS)
+After that, the prerequisite files show up in the dashboard filesystem.
 
 <figure><img src="../.gitbook/assets/CleanShot 2026-01-11 at 12.40.39.png" alt=""><figcaption></figcaption></figure>
 
-### Step 3: Download IDAT files for all 360 samples in parallel
+### Step 3: Download the IDAT files
 
-This code uses 720 parallel 1-CPU containers to download the red & green IDAT file for each sample.
+Each sample has a red and green IDAT file, so 360 samples means 720 files. This is exactly the kind of thing I don't want to do one at a time.
 
 ```python
 def download_single_idat_file(_id, cell_line, replicate, color):
@@ -117,81 +111,69 @@ sample_info_colored = [(*a, color) for a in sample_info for color in ("Grn", "Re
 remote_parallel_map(download_single_idat_file, sample_info_colored)
 ```
 
-Folders with Red/Green IDAT's for each sample are now visible in the Filesystem tab:
+The sample folders now contain the red and green IDATs.
 
 <figure><img src="../.gitbook/assets/result2 (1).gif" alt=""><figcaption></figcaption></figure>
 
-### Step 4: Call and align all samples in parallel
+### Step 4: Convert every sample
 
-This code uses 360 parallel containers each with 8 CPUs and 32G of RAM.\
-For each pair of IDAT files this code:
-
-* Performs base calling and genotype clustering with `bcftools +idat2gtc`&#x20;
-* Aligns to a reference genome with `bcftools +gtc2vcf`&#x20;
-* Filters to retain only biallelic variants with `bcftools view -m2 -M2`&#x20;
-* Converts the VCF into PLINK BED, BIM, and FAM files using `plink`
+Now each worker takes one sample, converts the IDAT pair to GTC, aligns to the reference genome, filters biallelic variants, and writes PLINK BED/BIM/FAM files.
 
 ```python
 def convert_idats_to_plink_bed_format(_id, cell_line, replicate):
     gtc_path = Path(f"shared/idat_to_pgen_pipeline/{_id}/{cell_line}_{replicate}.gtc")
     vcf_path = gtc_path.with_suffix(".vcf")
 
-    # Convert green & red IDAT to single GTC
     _run_cmd(f"bcftools +idat2gtc --bpm {BPM_PATH} --egt {EGT_PATH} --idats shared/idat_to_pgen_pipeline/{_id}", print_output=True)
     move(f"{cell_line}_{replicate}.gtc", gtc_path)
 
-    # Convert GTC to VCF
     _run_cmd(f"bcftools +gtc2vcf {gtc_path} -b {BPM_PATH} -e {EGT_PATH} -f {REF_PATH} -o {vcf_path} --do-not-check-bpm", print_output=True)
 
-    # Filter VCF, only keep biallelic sites
     filtered_vcf_path = vcf_path.with_suffix(".temp_filtered.vcf")
     _run_cmd(f"bcftools view -m2 -M2 -o {filtered_vcf_path} {vcf_path}", print_output=True)
     filtered_vcf_path.rename(vcf_path)
 
-    # Convert VCF to BED
     _run_cmd(f"plink --vcf {vcf_path} --out {vcf_path.with_suffix('')} --const-fid 0, --make-bed --allow-extra-chr --keep-allele-order", print_output=True)
 
 remote_parallel_map(convert_idats_to_plink_bed_format, sample_info, func_cpu=8)
 ```
 
-Each sample's folder now contains output from the above commands:
+Each function call gets 8 CPUs and 32GB of RAM. That is enough for one sample, and it lets the whole cohort move at once.
 
 <figure><img src="../.gitbook/assets/CleanShot 2026-01-11 at 13.00.49.png" alt=""><figcaption></figcaption></figure>
 
-### Step 5: Merge samples into a single PGEN/PVAR/PSAM file.
+### Step 5: Merge the cohort
 
-This code uses a single container with 80 CPUs and 320G of RAM.
+The final merge runs once, with a bigger worker.
 
 ```python
 MERGED_PATH = "shared/idat_to_pgen_pipeline/merged"
 
 def combine_bed_files_into_pgen_file(sample_info):
-    # Merge bed files into one big bed file
     mergelist = [f"shared/idat_to_pgen_pipeline/{_id}/{cl}_{r}" for _id, cl, r in sample_info]
     mergelist_path = Path("merge_list.txt")
     mergelist_path.write_text("\n".join(mergelist))
     cmd = f"plink --bfile {mergelist[0]} --merge-list {mergelist_path} --out {MERGED_PATH} --allow-extra-chr --biallelic-only strict"
     _run_cmd(cmd, print_output=True)
-    # Convert merged BED to PGEN using plink2
     _run_cmd(f"plink2 --bfile {MERGED_PATH} --out {MERGED_PATH} --make-pgen --allow-extra-chr", print_output=True)
 
 _ = remote_parallel_map(combine_bed_files_into_pgen_file, [sample_info], func_cpu=80, func_ram=320)
 ```
 
-After running the PGEN/PVAR/PSAM files are available for download in the Filesystem tab! (GCS)
+After it finishes, the PGEN/PVAR/PSAM files are available in the dashboard.
 
 <figure><img src="../.gitbook/assets/CleanShot 2026-01-11 at 13.09.29.png" alt=""><figcaption></figcaption></figure>
 
 ### Want to run this code yourself?
 
-This demo is available as a Google Colab notebook here:\
+The demo is available as a Colab notebook:
+
 [https://colab.research.google.com/drive/1lEbeGOoowZ9FKA9yctziWyhH6TvLuxTi?usp=sharing](https://colab.research.google.com/drive/1lEbeGOoowZ9FKA9yctziWyhH6TvLuxTi?usp=sharing)
 
-The notebook contains instructions to get Burla up and running as well as run the demo.\
-Don't hesitate to email me (jake@burla.dev) if you get stuck! Thank you for trying Burla!
+### What's the point?
 
-&#x20;
+This is the real reason I like this example: the pipeline stays boring.
 
-&#x20;
+The worker code is still Python calling `bcftools` and `plink`. The files still live in a normal shared folder. The only real change is that instead of nursing one sample through the pipeline, we run the cohort at the size it was meant to run.
 
-&#x20;
+If this were my analysis, I would not want to spend the day building a scheduler before I even know whether the genotype conversion works. I would want to run the thing, look at the outputs, and only optimize once there is a real bottleneck.
