@@ -117,18 +117,6 @@ That is why the work so often turns into glue. One script to inspect files. One 
 
 Someone still has to build the infrastructure. But ML and data people should be able to stay inside the problem longer.
 
-## Self-hosting is not a footnote
-
-One constraint decides whether any of this matters: the data often cannot move.
-
-Healthcare data, financial data, customer documents, internal logs, proprietary datasets, giant buckets already sitting in GCP. These are not edge cases. This is the work.
-
-For many teams, the dataset is not an upload. It is a bucket, a VPC, an IAM policy, an audit log, and a procurement argument.
-
-The best developer experience in the world is useless if the data has to leave the customer's cloud account. The runtime has to go where the bucket already is.
-
-That is why self-hosting matters here. Developers can fan out, switch hardware, switch containers, and stream logs back from inside the cloud account that already has the data. The organization keeps IAM, audit logs, cost controls, and network boundaries.
-
 ## This is why the cloud still feels early
 
 The cloud already won at the hardware layer. Nobody needs to be convinced that a thousand machines can exist.
@@ -177,7 +165,7 @@ index_parts = remote_parallel_map(
 
 Your function runs across remote machines. Prints and exceptions come back locally. Different calls can use different CPUs, GPUs, and Docker containers.
 
-The self-hosted version installs into your own GCP project, so data and compute stay in your cloud.
+Teams can run this inside their own private GCP project today. Burla is designed to be self-hosted, so data and compute stay in the customer's cloud while the developer experience still feels local.
 
 We have demos, like [processing 2.4TB of Parquet files on 10,000 CPUs in 76 seconds](examples/process-2.4tb-of-parquet-files-in-76s.md). But the benchmark is not the point.
 
