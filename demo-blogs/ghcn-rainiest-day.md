@@ -29,8 +29,8 @@ def _stream_year_rows(year: int):
 The worker filters precipitation rows, applies the unit conversion, and keeps only the top records for that year.
 
 ```python
+import heapq
 def process_year(year: int) -> str:
-    import heapq
     heap, country = [], {}
     for row in _stream_year_rows(year):
         if len(row) < 4 or row[2] != "PRCP":

@@ -28,9 +28,9 @@ chunks = [keys[i:i + 1000] for i in range(0, len(keys), 1000)]
 The worker opens each image, fixes EXIF orientation, writes every target size, and returns a small report.
 
 ```python
+import io, os, boto3
+from PIL import Image, ImageOps
 def resize_chunk(image_keys: list[str]) -> list[dict]:
-    import io, os, boto3
-    from PIL import Image, ImageOps
 
     s3 = boto3.client("s3")
     out = []

@@ -46,10 +46,10 @@ def download_shard(shard_idx, articles_per_shard, shared_root):
 Now each GPU worker loads the model once and embeds one text shard.
 
 ```python
+import json, numpy as np
+from pathlib import Path
+from sentence_transformers import SentenceTransformer
 def embed_shard(shard_path, model_name, shared_root):
-    import json, numpy as np
-    from pathlib import Path
-    from sentence_transformers import SentenceTransformer
 
     if "model" not in cache:
         cache["model"] = SentenceTransformer(model_name, device="cuda")

@@ -1,19 +1,3 @@
----
-description: Real Burla examples for ML, data science, and production data work.
----
-
-# Other Examples
-
-Use these when you want to see Burla beyond the three main examples: GPU embedding jobs, batch inference, public-data scans, file-parallel ETL, scientific pipelines, and API workloads with real external limits.
-
-Each example is built around a production constraint: how inputs are partitioned, which container and hardware profile runs each stage, how results are reduced, and which constraint the toy version would miss.
-
-<figure><img src=".gitbook/assets/vector-field-icon (2).svg" alt="A field of arrows representing many independent tasks running in parallel." width="45%"><figcaption></figcaption></figure>
-
-{% hint style="info" %}
-Start with the workload shape. If the work is one file per task, look at Parquet, GHCN, images, or ETL. If the job changes hardware mid-pipeline, look at Airbnb or GPU embeddings. If the bottleneck is an external system, look at APIs, scraping, or Postgres.
-{% endhint %}
-
 ## ML, embeddings, and search
 
 <table data-view="cards">
@@ -165,8 +149,3 @@ Start with the workload shape. If the work is one file per task, look at Parquet
   </tbody>
 </table>
 
-## How to read these
-
-Copy the partitioning strategy, not the dataset. The useful part is usually how inputs are split, which code runs inside the worker, what hardware is requested, and where the reduction happens.
-
-If a toy version would skip the tail, remove CUDA, sample away bad files, or hide sink pressure, it is not the same experiment. These examples show the version you would trust before making a product or research decision.

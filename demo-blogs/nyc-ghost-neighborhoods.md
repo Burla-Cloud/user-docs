@@ -26,9 +26,9 @@ jobs = [(taxi_type, year, month) for taxi_type in TAXI_TYPES for year, month in 
 Each worker downloads one Parquet file and returns pickup counts by zone. It does not send raw trips back to the client.
 
 ```python
+import pyarrow.parquet as pq
+import requests, io
 def process_month(job: tuple[str, int, int]) -> dict:
-    import pyarrow.parquet as pq
-    import requests, io
 
     taxi_type, year, month = job
     body = requests.get(monthly_url(taxi_type, year, month), timeout=300).content

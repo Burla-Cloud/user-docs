@@ -26,10 +26,10 @@ chunks = [all_users[i::1200] for i in range(1200)]
 The worker reads its slice and applies the same row function you would run locally.
 
 ```python
+import re
+import pandas as pd
+import pyarrow.dataset as ds
 def apply_on_chunk(user_ids: list[str]) -> pd.DataFrame:
-    import re
-    import pandas as pd
-    import pyarrow.dataset as ds
 
     pd.set_option("future.infer_string", False)
     dataset = ds.dataset("s3://my-bucket/events/", format="parquet")

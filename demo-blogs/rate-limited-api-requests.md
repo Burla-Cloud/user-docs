@@ -25,9 +25,9 @@ chunks = [user_ids[i:i + CHUNK] for i in range(0, len(user_ids), CHUNK)]
 The worker owns local pacing and retry behavior.
 
 ```python
+import time
+import httpx
 def enrich_chunk(ids: list[str]) -> list[dict]:
-    import time
-    import httpx
 
     out = []
     with httpx.Client(timeout=30.0, headers={"Authorization": "Bearer $API_KEY"}) as client:
