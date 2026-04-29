@@ -69,9 +69,9 @@ The artifact names are not ceremony. They are what make reruns cheap.
 The first stage should find the shape of the data without spending expensive hardware.
 
 ```python
+from pathlib import Path
+import json
 def inspect_pdf(path):
-    from pathlib import Path
-    import json
 
     profile = {
         "path": path,
@@ -117,10 +117,10 @@ The branching logic stays in Python. You do not need to turn it into a scheduler
 ## Stage 3: parse normal PDFs on CPU
 
 ```python
+from pathlib import Path
+import json
+from pypdf import PdfReader
 def parse_pdf(path):
-    from pathlib import Path
-    import json
-    from pypdf import PdfReader
 
     reader = PdfReader(path)
     text = "\n".join(page.extract_text() or "" for page in reader.pages)
@@ -146,10 +146,10 @@ text_paths = remote_parallel_map(
 The OCR stage needs different dependencies. Use a different image only for this call.
 
 ```python
+from pathlib import Path
+import json
+import subprocess
 def ocr_pdf(path):
-    from pathlib import Path
-    import json
-    import subprocess
 
     sidecar_path = "/tmp/ocr.txt"
     subprocess.run(["ocrmypdf", "--sidecar", sidecar_path, path, "/tmp/out.pdf"], check=True)
@@ -182,12 +182,12 @@ all_text_paths = text_paths + ocr_text_paths
 ```
 
 ```python
+import json
+from pathlib import Path
+import numpy as np
+from sentence_transformers import SentenceTransformer
 def embed_text_file(path):
-    import json
-    from pathlib import Path
 
-    import numpy as np
-    from sentence_transformers import SentenceTransformer
 
     if not hasattr(embed_text_file, "_model"):
         embed_text_file._model = SentenceTransformer("BAAI/bge-large-en-v1.5", device="cuda")
@@ -221,9 +221,9 @@ The GPU stage has its own quota, image, and batch behavior. It should not force 
 When a stage needs a global view, run a reducer with the resources that reducer needs.
 
 ```python
+from pathlib import Path
+import json
 def build_manifest(paths):
-    from pathlib import Path
-    import json
 
     output_path = Path("/workspace/shared/doc-pipeline/final/embedding-manifest.json")
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -283,4 +283,5 @@ If the only final step is summing small values, use the basic map-reduce pattern
 - [Put the embedding model on A100s, then ask the search question](../demo-blogs/gpu-embedding-demo.md)
 - [Process every raster tile, not a pretty subset](../demo-blogs/gdal-raster-processing.md)
 - [Align every FASTQ sample without building a scheduler first](../demo-blogs/bioinformatics-alignment.md)
+- [The Question You Asked Is Not the Experiment You Ran](../the-experiment-you-dont-run.md)
 - [Read/Write Files to Cloud Storage](../common-patterns/read-and-write-gcs-files.md)

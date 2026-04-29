@@ -32,9 +32,9 @@ while response.get("IsTruncated"):
 The worker opens one object and returns a small dict. You can swap this for a schema check, transform, or rewrite.
 
 ```python
+import boto3
+import pyarrow.parquet as pq
 def scan_parquet_file(key: str) -> dict:
-    import boto3
-    import pyarrow.parquet as pq
 
     s3 = boto3.client("s3")
     obj = s3.get_object(Bucket="my-events-bucket", Key=key)

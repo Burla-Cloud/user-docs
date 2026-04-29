@@ -25,9 +25,9 @@ with open("sentinel_tiles.txt") as f:
 The worker reads both bands, computes NDVI, and returns summary stats.
 
 ```python
+import boto3, numpy as np, rasterio
+from rasterio.io import MemoryFile
 def compute_ndvi(tile_id: str) -> dict:
-    import boto3, numpy as np, rasterio
-    from rasterio.io import MemoryFile
 
     s3 = boto3.client("s3", region_name="eu-central-1")
     def read_band(band: str):

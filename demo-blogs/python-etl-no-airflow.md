@@ -28,9 +28,9 @@ for page in boto3.client("s3").get_paginator("list_objects_v2").paginate(Bucket=
 The worker owns extract, transform, and load for one object. `execute_values` keeps each file as one batched insert.
 
 ```python
+import gzip, json, os, boto3, psycopg2
+from psycopg2.extras import execute_values
 def etl_one_file(key: str) -> dict:
-    import gzip, json, os, boto3, psycopg2
-    from psycopg2.extras import execute_values
 
     body = boto3.client("s3").get_object(Bucket="my-events-bucket", Key=key)["Body"].read()
     rows_in = [json.loads(line) for line in gzip.decompress(body).splitlines() if line]

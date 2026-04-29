@@ -107,8 +107,8 @@ with open("sentinel_tiles.txt") as f:
 The worker should make one input useful. Keep source reads, local work, and output writes together.
 
 ```python
+import pyarrow.parquet as pq
 def scan_one_parquet_file(path):
-    import pyarrow.parquet as pq
 
     table = pq.read_table(path)
     return {
@@ -187,8 +187,8 @@ For small outputs, reduce locally after `remote_parallel_map` returns.
 For large outputs, run a second Burla call over output paths.
 
 ```python
+import pandas as pd
 def combine_reports(paths):
-    import pandas as pd
 
     frames = [pd.read_parquet(path) for path in paths]
     out_path = "/workspace/shared/final/report.parquet"

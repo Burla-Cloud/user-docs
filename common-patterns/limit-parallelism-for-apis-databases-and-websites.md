@@ -72,10 +72,10 @@ id_chunks = chunks(user_ids, 1000)
 Put pacing and provider behavior next to the HTTP call.
 
 ```python
+import os
+import time
+import httpx
 def enrich_users(user_ids):
-    import os
-    import time
-    import httpx
 
     rows = []
     headers = {"Authorization": f"Bearer {os.environ['API_TOKEN']}"}
@@ -120,13 +120,13 @@ For databases, count connections before CPUs.
 If each worker opens one connection and Postgres can safely handle 80 write connections, start with `max_parallelism=80`.
 
 ```python
+import gzip
+import json
+import os
+import boto3
+import psycopg2
+from psycopg2.extras import execute_values
 def load_file_to_postgres(key):
-    import gzip
-    import json
-    import os
-    import boto3
-    import psycopg2
-    from psycopg2.extras import execute_values
 
     body = boto3.client("s3").get_object(Bucket="my-events", Key=key)["Body"].read()
     rows = [json.loads(line) for line in gzip.decompress(body).splitlines()]
@@ -164,11 +164,11 @@ The bottleneck here is not Python. It is the sink.
 For static pages, one worker should keep one HTTP client open for a chunk of URLs.
 
 ```python
+import random
+import time
+import httpx
+from selectolax.parser import HTMLParser
 def scrape_urls(urls):
-    import random
-    import time
-    import httpx
-    from selectolax.parser import HTMLParser
 
     rows = []
     with httpx.Client(http2=True, timeout=20.0, follow_redirects=True) as client:

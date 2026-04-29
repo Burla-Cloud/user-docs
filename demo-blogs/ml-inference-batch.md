@@ -27,9 +27,9 @@ batches = [texts.iloc[i:i + BATCH].to_dict("records") for i in range(0, len(text
 Each worker loads the model the first time it runs, then reuses it for later batches on the same process.
 
 ```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
 def predict_batch(rows: list[dict]) -> list[dict]:
-    from transformers import AutoTokenizer, AutoModelForSequenceClassification
-    import torch
 
     if not hasattr(predict_batch, "_model"):
         name = "cardiffnlp/twitter-roberta-base-sentiment-latest"

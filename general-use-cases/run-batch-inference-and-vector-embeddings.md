@@ -65,9 +65,9 @@ Batch size is a resource choice:
 Load the model inside the worker. Do not serialize a model from your laptop into the function input.
 
 ```python
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+import torch
 def score_reviews(batch):
-    from transformers import AutoModelForSequenceClassification, AutoTokenizer
-    import torch
 
     if not hasattr(score_reviews, "_model"):
         model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
@@ -130,12 +130,12 @@ shard_paths = [str(path) for path in Path("/workspace/shared/doc-shards").glob("
 ```
 
 ```python
+import json
+from pathlib import Path
+import numpy as np
+from sentence_transformers import SentenceTransformer
 def embed_documents(shard_path):
-    import json
-    from pathlib import Path
 
-    import numpy as np
-    from sentence_transformers import SentenceTransformer
 
     if not hasattr(embed_documents, "_model"):
         embed_documents._model = SentenceTransformer("BAAI/bge-large-en-v1.5", device="cuda")

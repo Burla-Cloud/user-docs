@@ -26,8 +26,8 @@ tasks = [(i, PER_CHUNK, params) for i in range(N_CHUNKS)]
 The worker is normal NumPy. It returns enough statistics to combine results exactly.
 
 ```python
+import numpy as np
 def run_chunk(chunk_id: int, n: int, p: dict) -> dict:
-    import numpy as np
 
     rng = np.random.default_rng(seed=42 + chunk_id)
     z = rng.standard_normal(n)

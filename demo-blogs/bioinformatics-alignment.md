@@ -27,8 +27,8 @@ sample_jobs = [{"sample_id": s[0], "fq1": s[1], "fq2": s[2]} for s in samples]
 The worker downloads the FASTQs, runs the command-line tools, indexes the BAM, and writes the output to S3.
 
 ```python
+import os, subprocess, time
 def align_sample(job: dict) -> dict:
-    import os, subprocess, time
 
     sid, fq1, fq2 = job["sample_id"], job["fq1"], job["fq2"]
     work = f"/tmp/{sid}"

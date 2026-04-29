@@ -79,10 +79,10 @@ sample_jobs = [
 The worker can call the tools directly.
 
 ```python
+import os
+import subprocess
+import time
 def align_sample(job):
-    import os
-    import subprocess
-    import time
 
     sample_id = job["sample_id"]
     work_dir = f"/tmp/{sample_id}"
@@ -138,7 +138,7 @@ PY
 
 Baking model weights into the image makes startup slower at build time and faster at job time. That is usually the right trade when many GPU workers load the same model.
 
-## Keep heavy imports inside the worker
+## Cache heavy models on the worker
 
 Plan text shards or document batches on the client.
 
@@ -148,15 +148,15 @@ from pathlib import Path
 shard_paths = [str(path) for path in Path("/workspace/shared/texts").glob("*.jsonl")]
 ```
 
-Load the model inside the worker. Cache it on the worker process so later inputs on the same worker do not reload it.
+Cache the model on the worker process so later inputs on the same worker do not reload it.
 
 ```python
+import json
+from pathlib import Path
+import numpy as np
+from sentence_transformers import SentenceTransformer
 def embed_shard(shard_path):
-    import json
-    from pathlib import Path
 
-    import numpy as np
-    from sentence_transformers import SentenceTransformer
 
     if not hasattr(embed_shard, "_model"):
         embed_shard._model = SentenceTransformer("BAAI/bge-large-en-v1.5", device="cuda")
@@ -227,3 +227,4 @@ Do not ask for a GPU because the whole pipeline has a GPU step. Ask for a GPU on
 - [Process every raster tile, not a pretty subset](../demo-blogs/gdal-raster-processing.md)
 - [Genomic Pipeline on 1,000 CPUs](../examples/multi-stage-genomic-pipeline.md)
 - [Test Airbnb hypotheses at public-data scale](../demo-blogs/airbnb-burla.md)
+- [The Question You Asked Is Not the Experiment You Ran](../the-experiment-you-dont-run.md)

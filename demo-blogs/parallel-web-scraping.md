@@ -25,9 +25,9 @@ chunks = [urls[i:i + CHUNK] for i in range(0, len(urls), CHUNK)]
 The worker keeps one HTTP client open, backs off on temporary failures, and returns an error row when a page fails.
 
 ```python
+import random, time, httpx
+from selectolax.parser import HTMLParser
 def scrape_chunk(urls: list[str]) -> list[dict]:
-    import random, time, httpx
-    from selectolax.parser import HTMLParser
 
     out = []
     with httpx.Client(http2=True, timeout=20.0, follow_redirects=True) as client:
