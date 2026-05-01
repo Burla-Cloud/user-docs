@@ -5,7 +5,7 @@ There are two ways to host Burla:
 1. [In your cloud (Self-Hosted)](get-started.md#quickstart-self-hosted)
 2. [In our cloud (Managed)](get-started.md#quickstart-managed)
 
-### Quickstart: Managed
+## Quickstart: Managed
 
 Getting started is simple. Our Google Colab notebook contains additional examples and instructions.
 
@@ -16,7 +16,7 @@ Getting started is simple. Our Google Colab notebook contains additional example
 
 ***
 
-### Quickstart: Self-Hosted
+## Quickstart: Self-Hosted
 
 We recommend you first give Burla a try inside our cloud to make sure it's right for you.\
 Our quickstart is free and only takes 2 minutes: [Quickstart](https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing)
