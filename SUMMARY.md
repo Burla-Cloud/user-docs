@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Home](README.md)
-* [Get Started](get-started.md)
+* [Getting Started](get-started.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
 * [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)

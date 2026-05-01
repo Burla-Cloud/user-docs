@@ -1,8 +1,11 @@
-# Get Started
+# Getting Started
 
-There are two ways to host Burla. In your cloud (Self-Hosted) or in our cloud (Managed).
+There are two ways to host Burla:
 
-### Quickstart:  Managed
+1. [In your cloud (Self-Hosted)](get-started.md#quickstart-self-hosted)
+2. [In our cloud (Managed)](get-started.md#quickstart-managed)
+
+### Quickstart: Managed
 
 Getting started is simple. Our Google Colab notebook contains additional examples and instructions.
 
@@ -75,8 +78,6 @@ def my_function(my_input):
     
 remote_parallel_map(my_function, [1, 2, 3]) 
 ```
-
-&#x20;
 
 ***
 
