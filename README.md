@@ -43,11 +43,11 @@ This runs `my_function` on 1000 vms in less than one second:
 
 ## A better way to build scalable AI/ML data-pipelines.
 
-Burla can change containers, hardware, or cluster-size automatically mid-workload.\
-This makes it trivial to create super dynamic pipelines that switch hardware at runtime.
+Burla can change containers, hardware, or fan out to thousands of machines mid-workload.\
+This makes it possible to create dynamic pipelines that decide hardware and scale at runtime.
 
-Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and any Docker container.\
-Pipelines built with Burla are simpler, more maintainable, faster, and more fun to develop!
+Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, or any container.\
+Pipelines built with Burla are simpler, more maintainable, faster, and much easier to develop!
 
 ```python
 remote_parallel_map(process, [...], image="osgeo/gdal:latest")
@@ -67,17 +67,17 @@ Cancel bad runs, filter logs to watch individual inputs, or monitor output files
 
 ## How it works:
 
-Remote development, local feel. With Burla hardware is defined
+With Burla, running code in the cloud feels the same as running code locally.
 
 ```python
 return_values = remote_parallel_map(my_function, my_inputs)
 ```
 
-When functions are run with `remote_parallel_map`:
+When a Python function is run using `remote_parallel_map`:
 
-* Anything they print appears locally (and inside the dashboard).
+* Anything it prints appears locally (and inside the dashboard).
 * Any exceptions are thrown locally.
-* Any packages or local modules are (very quickly) cloned on remote machines.
+* Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs or thousands of machines.
 
 ### Features:
