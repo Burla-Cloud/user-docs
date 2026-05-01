@@ -245,5 +245,5 @@ Raise the cap after you see clean logs, stable latency, and no growing error rat
 * [Make millions of API calls without lying about the rate cap](../demo-blogs/rate-limited-api-requests.md)
 * [Scrape the archive, not the easy page sample](../demo-blogs/parallel-web-scraping.md)
 * [Run the file-drop ETL before it becomes a platform project](../demo-blogs/python-etl-no-airflow.md)
-* [Process data in your database quickly](/broken/pages/EWtmWb6R0zebKMBihlKu)
+* [Process data in your database quickly](../demo-blogs/process-data-in-your-database-quickly.md)
 * [Summarize a million READMEs without calling an LLM](../demo-blogs/github-repo-summarizer.md)

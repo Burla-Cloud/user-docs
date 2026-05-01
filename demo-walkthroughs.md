@@ -25,16 +25,10 @@ Real Burla workloads for ML, data pipelines, production IO, and scientific compu
       <td><a href=".gitbook/assets/more-examples/571m-amazon-reviews.png">571m-amazon-reviews.png</a></td>
     </tr>
     <tr>
-      <td><strong>Vector Embeddings & Inference</strong></td>
-      <td>Score records or create embeddings in batches without deploying a serving endpoint.</td>
-      <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/basic-examples/run-batch-inference-and-vector-embeddings">run-batch-inference-and-vector-embeddings.md</a></td>
-      <td><a href=".gitbook/assets/more-examples/ml-inference-batch.png">ml-inference-batch.png</a></td>
-    </tr>
-    <tr>
-      <td><strong>Pipelines with dynamic hardware</strong></td>
-      <td>Split a workflow into stages that use different CPUs, RAM, GPUs, or Docker images.</td>
-      <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/basic-examples/run-pipeline-stages-on-different-hardware">run-pipeline-stages-on-different-hardware.md</a></td>
-      <td><a href=".gitbook/assets/more-examples/gpu-embedding-demo.png">gpu-embedding-demo.png</a></td>
+      <td><strong>Process data in your database quickly</strong></td>
+      <td>Split database rows into ID ranges, process each range in parallel, and combine the results.</td>
+      <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/basic-examples/process-data-in-your-database-quickly">process-data-in-your-database-quickly.md</a></td>
+      <td><a href=".gitbook/assets/more-examples/s3-to-postgres-etl.png">s3-to-postgres-etl.png</a></td>
     </tr>
   </tbody>
 </table>
