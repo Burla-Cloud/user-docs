@@ -282,4 +282,4 @@ If the only final step is summing small values, use the basic map-reduce pattern
 * [Process every raster tile, not a pretty subset](../demo-blogs/gdal-raster-processing.md)
 * [Align every FASTQ sample without building a scheduler first](../demo-blogs/bioinformatics-alignment.md)
 * [The Question You Asked Is Not the Experiment You Ran](../the-experiment-you-dont-run.md)
-* [Read/Write Files to Cloud Storage](../common-patterns/read-and-write-gcs-files.md)
+* [Read/Write Files to Cloud Storage](../how-to-guides/read-and-write-gcs-files.md)

@@ -47,11 +47,11 @@
 * [Vector Embeddings & Inference](use-cases/run-batch-inference-and-vector-embeddings.md)
 * [Pipelines with dynamic hardware.](use-cases/run-pipeline-stages-on-different-hardware.md)
 
-## How To
+## How To Guides
 
-* [Read/Write Files to Cloud Storage.](common-patterns/read-and-write-gcs-files.md)
-* [Use custom Docker images & GPUs](how-to/use-custom-docker-images-and-gpus.md)
-* [Run jobs in the background.](how-to/run-python-in-the-background.md)
-* [Limit parallelism for APIs or databases.](how-to/limit-parallelism-for-apis-databases-and-websites.md)
-* [Combine many results/files into one. (Perform a Map-Reduce operation)](common-patterns/combine-many-results-files-into-one-map-reduce.md)
-* [Decide how to split your work.](common-patterns/choose-how-to-split-your-work.md)
+* [Read/Write Files to Cloud Storage.](how-to-guides/read-and-write-gcs-files.md)
+* [Use custom Docker images & GPUs](how-to-guides/use-custom-docker-images-and-gpus.md)
+* [Run jobs in the background.](how-to-guides/run-python-in-the-background.md)
+* [Limit parallelism for APIs or databases.](how-to-guides/limit-parallelism-for-apis-databases-and-websites.md)
+* [Combine many results/files into one. (Perform a Map-Reduce operation)](how-to-guides/combine-many-results-files-into-one-map-reduce.md)
+* [Decide how to split your work.](how-to-guides/choose-how-to-split-your-work.md)
