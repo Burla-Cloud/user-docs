@@ -49,13 +49,15 @@ This makes it possible to create dynamic pipelines that decide hardware and scal
 Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, or any container.\
 Pipelines built with Burla are simpler, more maintainable, faster, and much easier to develop!
 
+This code:
+
 ```python
 remote_parallel_map(process, [...], image="osgeo/gdal:latest")
 remote_parallel_map(aggregate, [...], func_cpu=64)
 remote_parallel_map(predict, [...], func_gpu="A100")
 ```
 
-This creates a pipeline like:
+Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/data-pipeline-4-high-quality (1).gif" alt=""><figcaption></figcaption></figure>
 
