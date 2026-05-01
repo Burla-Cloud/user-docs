@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Hyperparameter Tune XGBoost with 1,000 CPUs
 
 In this example we:

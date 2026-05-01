@@ -1,5 +1,6 @@
 ---
 description: Run Burla workers with custom images, native tools, and GPUs.
+hidden: true
 layout:
   width: default
   title:

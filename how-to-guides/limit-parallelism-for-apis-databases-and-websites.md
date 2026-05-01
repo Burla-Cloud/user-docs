@@ -1,5 +1,6 @@
 ---
 description: Keep Burla jobs inside external service limits.
+hidden: true
 layout:
   width: default
   title:

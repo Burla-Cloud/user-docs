@@ -1,5 +1,6 @@
 ---
 description: Write and read files in GCS through /workspace/shared.
+hidden: true
 layout:
   width: default
   title:

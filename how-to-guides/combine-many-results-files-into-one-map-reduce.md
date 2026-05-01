@@ -2,6 +2,7 @@
 description: >-
   A beginner-friendly map-reduce pattern for combining many outputs into one
   file.
+hidden: true
 layout:
   width: default
   title:

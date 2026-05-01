@@ -1,5 +1,6 @@
 ---
 description: Pick the input unit for a Burla job.
+hidden: true
 layout:
   width: default
   title:

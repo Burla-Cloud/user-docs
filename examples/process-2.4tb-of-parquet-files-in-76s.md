@@ -1,5 +1,6 @@
 ---
 description: With <30 lines of Python.
+hidden: true
 ---
 
 # Process 2.4TB of Parquet Files in 76s

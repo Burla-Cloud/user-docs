@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Genomic Pipeline on 1,000 CPUs
 
 In this example we:

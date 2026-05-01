@@ -1,5 +1,6 @@
 ---
 description: Detached job example.
+hidden: true
 layout:
   width: default
   title:
