@@ -2,6 +2,20 @@
 
 * [Home](README.md)
 * [Getting Started](get-started.md)
+* [How-to Guides](how-to-guides.md)
+  * [Read/Write Files to Cloud Storage](how-to-guides/read-and-write-gcs-files.md)
+  * [Use custom Docker images & GPUs](how-to-guides/use-custom-docker-images-and-gpus.md)
+  * [Run jobs in the background](how-to-guides/run-python-in-the-background.md)
+  * [Limit parallelism for APIs or databases](how-to-guides/limit-parallelism-for-apis-databases-and-websites.md)
+  * [Combine many results/files into one](how-to-guides/combine-many-results-files-into-one-map-reduce.md)
+  * [Decide how to split your work](how-to-guides/choose-how-to-split-your-work.md)
+* [API/CLI Reference](API-Reference.md)
+* [About](about.md)
+* [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
+* [Vulnerability Disclosure Program](security.md)
+* [Managed Service Privacy Policy](privacy-policy.md)
+* [Software as a Service Agreement](software-as-a-service-agreement.md)
+* [Privacy Policy](website-privacy-policy.md)
 
 ## Examples
 
@@ -42,23 +56,3 @@
       * [Genome alignment](demo-blogs/bioinformatics-alignment.md)
       * [GDAL raster processing](demo-blogs/gdal-raster-processing.md)
       * [Billion-path Monte Carlo](demo-blogs/monte-carlo-simulation.md)
-
-## Guides
-
-* [How-to Guides](how-to-guides.md)
-  * [Read/Write Files to Cloud Storage](how-to-guides/read-and-write-gcs-files.md)
-  * [Use custom Docker images & GPUs](how-to-guides/use-custom-docker-images-and-gpus.md)
-  * [Run jobs in the background](how-to-guides/run-python-in-the-background.md)
-  * [Limit parallelism for APIs or databases](how-to-guides/limit-parallelism-for-apis-databases-and-websites.md)
-  * [Combine many results/files into one](how-to-guides/combine-many-results-files-into-one-map-reduce.md)
-  * [Decide how to split your work](how-to-guides/choose-how-to-split-your-work.md)
-
-## Reference
-
-* [API/CLI Reference](API-Reference.md)
-* [About](about.md)
-* [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
-* [Vulnerability Disclosure Program](security.md)
-* [Managed Service Privacy Policy](privacy-policy.md)
-* [Software as a Service Agreement](software-as-a-service-agreement.md)
-* [Privacy Policy](website-privacy-policy.md)
