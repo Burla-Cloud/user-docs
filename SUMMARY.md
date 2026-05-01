@@ -2,11 +2,19 @@
 
 * [Home](README.md)
 * [Getting Started](get-started.md)
-* [Examples](examples.md)
+
+## Examples
+
+* [Process 2.4TB of Parquet Files in 76s](https://docs.burla.dev/examples/process-2.4tb-of-parquet-files-in-76s)
+* [Test Airbnb hypotheses at public-data scale](https://docs.burla.dev/examples/demo-walkthroughs/ml-embeddings-and-search/airbnb-burla)
+* [Distill 571 million Amazon reviews](https://docs.burla.dev/examples/demo-walkthroughs/full-corpus-analysis/amazon-review-distiller)
+* [Genomic Pipeline on 1,000 CPUs](https://docs.burla.dev/examples/multi-stage-genomic-pipeline)
+* [GPU embeddings on A100s](https://docs.burla.dev/examples/demo-walkthroughs/ml-embeddings-and-search/gpu-embedding-demo)
+* [All examples](examples.md)
   * [Process 2.4TB of Parquet Files in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
   * [Parallel Hyperparameter Tuning](examples/parallel-hyperparameter-tuning.md)
   * [Genomic Pipeline on 1,000 CPUs](examples/multi-stage-genomic-pipeline.md)
-  * [More Examples](demo-walkthroughs.md)
+  * [More examples](demo-walkthroughs.md)
     * [Basic examples](demo-categories/basic-examples.md)
       * [Process thousands of files quickly](demo-blogs/process-thousands-of-files-quickly.md)
       * [Process one giant file quickly](demo-blogs/process-one-giant-file-quickly.md)
@@ -34,6 +42,9 @@
       * [Genome alignment](demo-blogs/bioinformatics-alignment.md)
       * [GDAL raster processing](demo-blogs/gdal-raster-processing.md)
       * [Billion-path Monte Carlo](demo-blogs/monte-carlo-simulation.md)
+
+## Guides
+
 * [How-to Guides](how-to-guides.md)
   * [Read/Write Files to Cloud Storage](how-to-guides/read-and-write-gcs-files.md)
   * [Use custom Docker images & GPUs](how-to-guides/use-custom-docker-images-and-gpus.md)
@@ -41,6 +52,9 @@
   * [Limit parallelism for APIs or databases](how-to-guides/limit-parallelism-for-apis-databases-and-websites.md)
   * [Combine many results/files into one](how-to-guides/combine-many-results-files-into-one-map-reduce.md)
   * [Decide how to split your work](how-to-guides/choose-how-to-split-your-work.md)
+
+## Reference
+
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
 * [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
