@@ -109,4 +109,4 @@ When that works, run the same workflow on your giant file.
 
 ## What to do next
 
-If your data is already in a database, continue with [Process data in your database quickly.](process-data-in-your-database-quickly.md)
+If your data is already in a database, continue with [Process data in your database quickly.](/broken/pages/EWtmWb6R0zebKMBihlKu)

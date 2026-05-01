@@ -18,13 +18,9 @@ layout:
     visible: true
 ---
 
-# Choose how to split your work
+# Decide how to split your work.
 
-Use this when you know what code should run, but not what to pass as the input list.
-Do not use this to tune a job whose input unit is already obvious.
-The unit of work is one item from the list you pass to `remote_parallel_map`.
-Each worker should own enough work to be worth starting, but not so much that one failure wastes an hour.
-The output should be small, or a path to a file written by the worker.
+Use this when you know what code should run, but not what to pass as the input list. Do not use this to tune a job whose input unit is already obvious. The unit of work is one item from the list you pass to `remote_parallel_map`. Each worker should own enough work to be worth starting, but not so much that one failure wastes an hour. The output should be small, or a path to a file written by the worker.
 
 The main decision in a Burla job is not the cluster size. It is the shape of the input list.
 
@@ -146,10 +142,10 @@ report.to_csv("scan-report.csv", index=False)
 For large outputs, write a file from inside the worker and return the path.
 
 ```python
-def transform_one_file(path):
-    from pathlib import Path
-    import pyarrow.parquet as pq
+from pathlib import Path
+import pyarrow.parquet as pq
 
+def transform_one_file(path):
     table = pq.read_table(path)
     output_path = Path("/workspace/shared/processed") / Path(path).name
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -188,13 +184,12 @@ For large outputs, run a second Burla call over output paths.
 
 ```python
 import pandas as pd
-def combine_reports(paths):
 
+def combine_reports(paths):
     frames = [pd.read_parquet(path) for path in paths]
     out_path = "/workspace/shared/final/report.parquet"
     pd.concat(frames, ignore_index=True).to_parquet(out_path)
     return out_path
-
 
 [final_report_path] = remote_parallel_map(
     combine_reports,
@@ -220,9 +215,8 @@ That checklist catches most bad Burla job shapes before you spend money on them.
 
 ## Examples that use this pattern
 
-- [Process thousands of files quickly](../general-use-cases/process-thousands-of-files-quickly.md)
-- [Process one giant file quickly](../general-use-cases/process-one-giant-file-quickly.md)
-- [Process data in your database quickly](../general-use-cases/process-data-in-your-database-quickly.md)
-- [Scan every Parquet shard instead of trusting a sample](../demo-blogs/parquet-parallel.md)
-- [Distill 571 million reviews with byte ranges](../demo-blogs/amazon-review-distiller.md)
-- [Resize the whole image corpus before training on it](../demo-blogs/image-dataset-resize.md)
+* [Process thousands of files quickly](../general-use-cases/process-thousands-of-files-quickly.md)
+* [Process one giant file quickly](../general-use-cases/process-one-giant-file-quickly.md)
+* [Scan every Parquet shard instead of trusting a sample](../demo-blogs/parquet-parallel.md)
+* [Distill 571 million reviews with byte ranges](../demo-blogs/amazon-review-distiller.md)
+* [Resize the whole image corpus before training on it](../demo-blogs/image-dataset-resize.md)

@@ -18,13 +18,9 @@ layout:
     visible: true
 ---
 
-# Limit parallelism for APIs, databases, and websites
+# Limit parallelism for APIs or databases.
 
-Use this when the slowest or most fragile part of your job is outside Burla.
-Do not use every available CPU when an API quota, website, database, or model provider is the real limit.
-The unit of work is usually a chunk of IDs, URLs, prompts, files, or database ranges.
-Each worker should reuse one client or connection inside that chunk.
-The output should include successes and failures so you can retry only the work that failed.
+Use this when the slowest or most fragile part of your job is outside Burla. Do not use every available CPU when an API quota, website, database, or model provider is the real limit. The unit of work is usually a chunk of IDs, URLs, prompts, files, or database ranges. Each worker should reuse one client or connection inside that chunk. The output should include successes and failures so you can retry only the work that failed.
 
 Parallelism is not always the target. Sometimes the target is finishing the whole job without breaking the contract with another system.
 
@@ -48,7 +44,7 @@ Then choose:
 
 The rough formula is:
 
-```text
+```
 global throughput = live workers * per-worker throughput
 ```
 
@@ -224,13 +220,13 @@ prompt_chunks = chunks(prompts, PROMPTS_PER_WORKER)
 
 This tries to send about 25 prompts per second across the job:
 
-```text
+```
 50 workers * 1 prompt every 2 seconds = 25 prompts per second
 ```
 
 If the provider bills or limits by token, reduce worker count when prompts or outputs get longer.
 
-## Choose the first value for max_parallelism
+## Choose the first value for max\_parallelism
 
 Start lower than the theoretical limit.
 
@@ -246,8 +242,8 @@ Raise the cap after you see clean logs, stable latency, and no growing error rat
 
 ## Examples that use this pattern
 
-- [Make millions of API calls without lying about the rate cap](../demo-blogs/rate-limited-api-requests.md)
-- [Scrape the archive, not the easy page sample](../demo-blogs/parallel-web-scraping.md)
-- [Run the file-drop ETL before it becomes a platform project](../demo-blogs/python-etl-no-airflow.md)
-- [Process data in your database quickly](../general-use-cases/process-data-in-your-database-quickly.md)
-- [Summarize a million READMEs without calling an LLM](../demo-blogs/github-repo-summarizer.md)
+* [Make millions of API calls without lying about the rate cap](../demo-blogs/rate-limited-api-requests.md)
+* [Scrape the archive, not the easy page sample](../demo-blogs/parallel-web-scraping.md)
+* [Run the file-drop ETL before it becomes a platform project](../demo-blogs/python-etl-no-airflow.md)
+* [Process data in your database quickly](/broken/pages/EWtmWb6R0zebKMBihlKu)
+* [Summarize a million READMEs without calling an LLM](../demo-blogs/github-repo-summarizer.md)

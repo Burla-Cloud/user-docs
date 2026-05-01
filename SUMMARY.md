@@ -44,15 +44,14 @@
 
 * [Process thousands of files quickly.](general-use-cases/process-thousands-of-files-quickly.md)
 * [Process one giant file quickly.](general-use-cases/process-one-giant-file-quickly.md)
-* [Process data in your database quickly.](general-use-cases/process-data-in-your-database-quickly.md)
-* [Pipelines with dynamic hardware.](use-cases/run-pipeline-stages-on-different-hardware.md)
 * [Vector Embeddings & Inference](use-cases/run-batch-inference-and-vector-embeddings.md)
+* [Pipelines with dynamic hardware.](use-cases/run-pipeline-stages-on-different-hardware.md)
 
 ## How To
 
 * [Read/Write Files to Cloud Storage.](common-patterns/read-and-write-gcs-files.md)
-* [Choose how to split your work](common-patterns/choose-how-to-split-your-work.md)
-* [Combine many results/files into one. (Map-Reduce)](common-patterns/combine-many-results-files-into-one-map-reduce.md)
-* [Limit parallelism for APIs, databases, and websites](how-to/limit-parallelism-for-apis-databases-and-websites.md)
 * [Use custom Docker images & GPUs](how-to/use-custom-docker-images-and-gpus.md)
 * [Run jobs in the background.](how-to/run-python-in-the-background.md)
+* [Limit parallelism for APIs or databases.](how-to/limit-parallelism-for-apis-databases-and-websites.md)
+* [Combine many results/files into one. (Perform a Map-Reduce operation)](common-patterns/combine-many-results-files-into-one-map-reduce.md)
+* [Decide how to split your work.](common-patterns/choose-how-to-split-your-work.md)
