@@ -1,24 +1,4 @@
----
-description: A pattern for processing many files in parallel.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: false
-  metadata:
-    visible: false
-  tags:
-    visible: true
----
-
-# Process thousands of files quickly.
+# Process thousands of files quickly
 
 If you have a lot of files, the fastest pattern is usually:
 

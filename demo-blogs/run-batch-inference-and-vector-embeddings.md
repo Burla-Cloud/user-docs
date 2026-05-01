@@ -1,23 +1,3 @@
----
-description: Score records or create embeddings without deploying an endpoint.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: false
-  metadata:
-    visible: false
-  tags:
-    visible: true
----
-
 # Vector Embeddings & Inference
 
 Use this when you need predictions or embeddings for many records, documents, images, or reviews. Do not use this for live request serving or a tiny one-off prediction. The unit of work is a batch of records, a file shard, or a document shard. Each worker loads the model, scores its batch, and writes or returns compact output. The output is usually JSONL, Parquet, vectors, or a manifest of paths.
@@ -206,9 +186,9 @@ Use a custom pipeline when each item depends on the previous item. Batch inferen
 
 ## Examples that use this pattern
 
-* [Run batch inference as a job, not an endpoint](../demo-blogs/ml-inference-batch.md)
-* [Put the embedding model on A100s, then ask the search question](../demo-blogs/gpu-embedding-demo.md)
-* [Cluster all arXiv abstracts before naming extinct topics](../demo-blogs/arxiv-fossils.md)
-* [Label-free visual search over the Met](../demo-blogs/met-weirdest-art.md)
+* [Run batch inference as a job, not an endpoint](ml-inference-batch.md)
+* [Put the embedding model on A100s, then ask the search question](gpu-embedding-demo.md)
+* [Cluster all arXiv abstracts before naming extinct topics](arxiv-fossils.md)
+* [Label-free visual search over the Met](met-weirdest-art.md)
 * [Read/Write Files to Cloud Storage](../how-to-guides/read-and-write-gcs-files.md)
 * [Combine many results/files into one](../how-to-guides/combine-many-results-files-into-one-map-reduce.md)

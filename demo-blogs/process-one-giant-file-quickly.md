@@ -1,26 +1,4 @@
----
-description: >-
-  A guide for splitting one large file into chunks and processing chunks in
-  parallel.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: false
-  metadata:
-    visible: false
-  tags:
-    visible: true
----
-
-# Process one giant file quickly.
+# Process one giant file quickly
 
 When one file is too large for fast single-machine processing, use this pattern:
 
@@ -109,4 +87,4 @@ When that works, run the same workflow on your giant file.
 
 ## What to do next
 
-If your data is already in a database, continue with [Process data in your database quickly.](/broken/pages/EWtmWb6R0zebKMBihlKu)
+If you need help choosing the right input shape, continue with [Decide how to split your work.](../how-to-guides/choose-how-to-split-your-work.md)

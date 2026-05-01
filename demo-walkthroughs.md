@@ -1,5 +1,44 @@
 Real Burla workloads for ML, data pipelines, production IO, and scientific computing.
 
+## Basic examples
+
+<table data-view="cards">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th data-hidden data-card-target data-type="content-ref"></th>
+      <th data-hidden data-card-cover data-type="files"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Process thousands of files quickly</strong></td>
+      <td>Run one function call per file, write per-file outputs, and combine the results.</td>
+      <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/basic-examples/process-thousands-of-files-quickly">process-thousands-of-files-quickly.md</a></td>
+      <td><a href=".gitbook/assets/more-examples/one-parquet-file-per-worker.png">one-parquet-file-per-worker.png</a></td>
+    </tr>
+    <tr>
+      <td><strong>Process one giant file quickly</strong></td>
+      <td>Split a large file into chunks, process chunks in parallel, and reduce the outputs.</td>
+      <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/basic-examples/process-one-giant-file-quickly">process-one-giant-file-quickly.md</a></td>
+      <td><a href=".gitbook/assets/more-examples/571m-amazon-reviews.png">571m-amazon-reviews.png</a></td>
+    </tr>
+    <tr>
+      <td><strong>Vector Embeddings & Inference</strong></td>
+      <td>Score records or create embeddings in batches without deploying a serving endpoint.</td>
+      <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/basic-examples/run-batch-inference-and-vector-embeddings">run-batch-inference-and-vector-embeddings.md</a></td>
+      <td><a href=".gitbook/assets/more-examples/ml-inference-batch.png">ml-inference-batch.png</a></td>
+    </tr>
+    <tr>
+      <td><strong>Pipelines with dynamic hardware</strong></td>
+      <td>Split a workflow into stages that use different CPUs, RAM, GPUs, or Docker images.</td>
+      <td><a href="https://docs.burla.dev/examples/demo-walkthroughs/basic-examples/run-pipeline-stages-on-different-hardware">run-pipeline-stages-on-different-hardware.md</a></td>
+      <td><a href=".gitbook/assets/more-examples/gpu-embedding-demo.png">gpu-embedding-demo.png</a></td>
+    </tr>
+  </tbody>
+</table>
+
 ## ML, embeddings, and search
 
 <table data-view="cards">

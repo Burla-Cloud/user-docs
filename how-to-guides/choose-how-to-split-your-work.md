@@ -215,8 +215,8 @@ That checklist catches most bad Burla job shapes before you spend money on them.
 
 ## Examples that use this pattern
 
-* [Process thousands of files quickly](../general-use-cases/process-thousands-of-files-quickly.md)
-* [Process one giant file quickly](../general-use-cases/process-one-giant-file-quickly.md)
+* [Process thousands of files quickly](../demo-blogs/process-thousands-of-files-quickly.md)
+* [Process one giant file quickly](../demo-blogs/process-one-giant-file-quickly.md)
 * [Scan every Parquet shard instead of trusting a sample](../demo-blogs/parquet-parallel.md)
 * [Distill 571 million reviews with byte ranges](../demo-blogs/amazon-review-distiller.md)
 * [Resize the whole image corpus before training on it](../demo-blogs/image-dataset-resize.md)

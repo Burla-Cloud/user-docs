@@ -16,6 +16,11 @@
 * [Parallel Hyperparameter Tuning](examples/parallel-hyperparameter-tuning.md)
 * [Genomic Pipeline on 1,000 CPUs](examples/multi-stage-genomic-pipeline.md)
 * [More Examples](demo-walkthroughs.md)
+  * [Basic examples](demo-categories/basic-examples.md)
+    * [Process thousands of files quickly](demo-blogs/process-thousands-of-files-quickly.md)
+    * [Process one giant file quickly](demo-blogs/process-one-giant-file-quickly.md)
+    * [Vector Embeddings & Inference](demo-blogs/run-batch-inference-and-vector-embeddings.md)
+    * [Pipelines with dynamic hardware](demo-blogs/run-pipeline-stages-on-different-hardware.md)
   * [ML, embeddings, and search](demo-categories/ml-embeddings-and-search.md)
     * [GPU embeddings on A100s](demo-blogs/gpu-embedding-demo.md)
     * [Batch inference without serving](demo-blogs/ml-inference-batch.md)
@@ -39,13 +44,6 @@
     * [Genome alignment](demo-blogs/bioinformatics-alignment.md)
     * [GDAL raster processing](demo-blogs/gdal-raster-processing.md)
     * [Billion-path Monte Carlo](demo-blogs/monte-carlo-simulation.md)
-
-## Use Cases
-
-* [Process thousands of files quickly.](general-use-cases/process-thousands-of-files-quickly.md)
-* [Process one giant file quickly.](general-use-cases/process-one-giant-file-quickly.md)
-* [Vector Embeddings & Inference](use-cases/run-batch-inference-and-vector-embeddings.md)
-* [Pipelines with dynamic hardware.](use-cases/run-pipeline-stages-on-different-hardware.md)
 
 ## How To Guides
 

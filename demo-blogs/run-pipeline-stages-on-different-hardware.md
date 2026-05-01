@@ -1,26 +1,4 @@
----
-description: >-
-  Split a Burla workflow into stages with different resources defined at
-  runtime.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: false
-  metadata:
-    visible: false
-  tags:
-    visible: true
----
-
-# Pipelines with dynamic hardware.
+# Pipelines with dynamic hardware
 
 Use this when different parts of a job need different CPUs, RAM, GPUs, or Docker images. Do not use this for a single homogeneous map job. The unit of work can change by stage: files, samples, image batches, document shards, or candidate lists. Each worker writes a durable artifact that the next stage can read. The output is a chain of artifacts, plus a final report, index, table, or manifest.
 
@@ -277,9 +255,9 @@ If the only final step is summing small values, use the basic map-reduce pattern
 ## Examples that use this pattern
 
 * [Genomic Pipeline on 1,000 CPUs](../examples/multi-stage-genomic-pipeline.md)
-* [Test Airbnb hypotheses at public-data scale](../demo-blogs/airbnb-burla.md)
-* [Put the embedding model on A100s, then ask the search question](../demo-blogs/gpu-embedding-demo.md)
-* [Process every raster tile, not a pretty subset](../demo-blogs/gdal-raster-processing.md)
-* [Align every FASTQ sample without building a scheduler first](../demo-blogs/bioinformatics-alignment.md)
+* [Test Airbnb hypotheses at public-data scale](airbnb-burla.md)
+* [Put the embedding model on A100s, then ask the search question](gpu-embedding-demo.md)
+* [Process every raster tile, not a pretty subset](gdal-raster-processing.md)
+* [Align every FASTQ sample without building a scheduler first](bioinformatics-alignment.md)
 * [The Question You Asked Is Not the Experiment You Ran](../the-experiment-you-dont-run.md)
 * [Read/Write Files to Cloud Storage](../how-to-guides/read-and-write-gcs-files.md)
