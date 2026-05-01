@@ -118,3 +118,5 @@ remote_parallel_map(process_id_range, small_test_ranges)
 ```
 
 After small tests succeed, run your full range list.
+
+Use the `max_parallelism` argument to avoid overloading your database.

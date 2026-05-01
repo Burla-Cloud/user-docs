@@ -21,8 +21,8 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla is a high-performance parallel processing library for data-teams that iterate quickly.\
-Run vector embeddings, inference, or preprocessing inside your cloud with instant feedback.
+Burla is a Python package for abstracting hardware, it makes cloud computing fast and simple.\
+Scale vector embeddings, inference, preprocessing, build dynamic AI/ML pipelines, and more.
 
 Burla only has one function:
 
@@ -41,9 +41,10 @@ This runs `my_function` on 1000 vms in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## The cleanest way to build data-pipelines that scale.
+## A better way to build scalable AI/ML data-pipelines.
 
-Zero special syntax. Change containers, hardware, or cluster-size automatically mid-workload.
+Burla can change containers, hardware, or cluster-size automatically mid-workload.\
+This makes it trivial to create super dynamic pipelines that switch hardware at runtime.
 
 Burla scales up to 10,000 CPUs in a single function call, supports GPUs, and any Docker container.\
 Pipelines built with Burla are simpler, more maintainable, faster, and more fun to develop!
@@ -66,7 +67,7 @@ Cancel bad runs, filter logs to watch individual inputs, or monitor output files
 
 ## How it works:
 
-Remote development, local feel. With Burla hardware is defined&#x20;
+Remote development, local feel. With Burla hardware is defined
 
 ```python
 return_values = remote_parallel_map(my_function, my_inputs)
@@ -83,22 +84,22 @@ When functions are run with `remote_parallel_map`:
 
 {% columns %}
 {% column width="50%" %}
-**📦  Automatic Package Sync**
+**📦 Automatic Package Sync**
 
 Burla automatically (and very quickly) clones your Python packages on every remote machine where code is executed.
 
-**🐋  Custom Containers**
+**🐋 Custom Containers**
 
 Easily run code in any Docker container.\
 Public or private, just paste an image URI in the settings, then hit start!
 {% endcolumn %}
 
 {% column width="50%" %}
-**📂  Network Filesystem**
+**📂 Network Filesystem**
 
 Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to a folder in every container.
 
-**⚙️  Variable Hardware Per-Function**
+**⚙️ Variable Hardware Per-Function**
 
 The `func_cpu` and `func_ram` args make it possible to assign big hardware to some functions, and less to others.
 {% endcolumn %}
@@ -112,15 +113,15 @@ Free for Hobbyists. Compute prices the same as Google Cloud.
 
 {% columns %}
 {% column %}
-### Self-Hosted: (in your cloud)
+#### Self-Hosted: (in your cloud)
 {% endcolumn %}
 
 {% column %}
-### Managed: (in Burla's cloud)
+#### Managed: (in Burla's cloud)
 {% endcolumn %}
 {% endcolumns %}
 
-| ✔ $100/month per Enterprise User.  | ✔  $100/month per Enterprise User.                                            |
+| ✔ $100/month per Enterprise User.  | ✔ $100/month per Enterprise User.                                             |
 | ---------------------------------- | ----------------------------------------------------------------------------- |
 | ✅ Free for all non-commercial use. | ✅ 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing). |
 |                                    | ✅ $500 in free credits for qualified users.                                   |
@@ -140,8 +141,6 @@ Learn more about permissions and installation in our getting started guide:
 2. Run our quickstart in this Google Colab notebook:
 
 {% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
-
-
 
 ***
 
