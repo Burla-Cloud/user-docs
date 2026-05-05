@@ -18,6 +18,14 @@ If the review reveals a user-experience issue, revise the change before calling 
 
 All cover images, card images, example thumbnails, article images, post images, and page artwork across the Burla docs site should share one visual design language.
 
+Generate these raster image assets with the GPT Image 2 image-generation model, `gpt-image-2`. Do not hand-draw them, build them as SVG/HTML/CSS diagrams, render them locally in 3D software, or use another image model/provider unless the user explicitly asks for that fallback.
+
+If `gpt-image-2` is unavailable in the current environment, stop and say so clearly instead of substituting a different production method. The reusable prompts below are the source of truth for image generation; adapt only the page title, page concept, dimensions, and any page-specific semantic objects.
+
+When replacing existing docs assets, preserve the established output sizes unless the user asks otherwise: card images are `900 x 506` PNGs and cover images are `1990 x 480` PNGs. Save final generated files into `.gitbook/assets/` so GitBook references project-local assets, not temporary generated-image paths.
+
+After generation, inspect the images before finalizing. Confirm that they follow the shared visual language, contain no text or labels, use the Burla cyan accent intentionally, remain readable at card size, and that cover-image outer edges match `#F8FBFC` without visible seams.
+
 Use a minimal premium 3D product-render style. Images should feel like expensive SaaS documentation art: matte white objects, restrained geometry, soft studio lighting, subtle contact shadows, generous whitespace, and one saturated Burla cyan accent. The image should communicate the page concept quickly, even when seen at small size in a sidebar, card grid, or preview tile.
 
 Prefer clear, iconic product-metaphor compositions over abstract decorative diagrams. Each image should have one dominant central object that represents the main concept, plus only the minimum supporting objects needed to explain the action. The viewer should understand the page concept in under a second at card size.
