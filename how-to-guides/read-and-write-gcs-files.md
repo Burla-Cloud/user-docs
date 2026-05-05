@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/parquet-parallel.png
+cover: ../.gitbook/assets/how-to-guides/read-write-gcs-files.png
 description: Write and read files in GCS through /workspace/shared.
 hidden: true
 layout:
@@ -56,7 +56,7 @@ In the Burla dashboard → **Filesystem**, you should see:
 * `/workspace/shared/hello.txt`
 * `/workspace/shared/goodbye.txt`
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/how-to-guides/read-write-gcs-files.png" alt="Stylized diagram showing files flowing through /workspace/shared into cloud storage."><figcaption></figcaption></figure>
 
 ## Step 2: Read files back (comes from GCS)
 
