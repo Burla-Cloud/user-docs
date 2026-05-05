@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/image-dataset-resize.png
+hidden: true
 ---
 
 # Resize the whole image corpus before training on it

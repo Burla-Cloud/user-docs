@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/571m-amazon-reviews.png
+hidden: true
 ---
 
 # Process one giant file quickly

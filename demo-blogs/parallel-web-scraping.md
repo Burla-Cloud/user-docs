@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/parallel-web-scraping.png
+hidden: true
 ---
 
 # Scrape the archive, not the easy page sample

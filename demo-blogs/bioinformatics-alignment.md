@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/bioinformatics-alignment.png
+hidden: true
 ---
 
 # Align every FASTQ sample without building a scheduler first

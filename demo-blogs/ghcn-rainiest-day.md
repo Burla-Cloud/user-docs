@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/ghcn-rainiest-day.png
+hidden: true
 ---
 
 # Find the rainiest day by scanning every NOAA year file

@@ -21,6 +21,6 @@ Want the full catalog across starter workflows, data processing, production jobs
 <table data-view="cards">
 <thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
 <tbody>
-<tr><td><strong>Browse all examples</strong></td><td>See every Burla workload pattern in one place, from starter jobs to full-corpus analysis.</td><td><a href="../examples.md">examples.md</a></td><td><a href="../.gitbook/assets/other-examples-map.svg">other-examples-map.svg</a></td></tr>
+<tr><td><strong>Browse all examples</strong></td><td>See every Burla workload pattern in one place, from starter jobs to full-corpus analysis.</td><td><a href="../examples.md">All Examples</a></td><td><a href="../.gitbook/assets/other-examples-map.svg">other-examples-map.svg</a></td></tr>
 </tbody>
 </table>

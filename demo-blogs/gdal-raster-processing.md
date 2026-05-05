@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/gdal-raster-processing.png
+hidden: true
 ---
 
 # Process every raster tile, not a pretty subset

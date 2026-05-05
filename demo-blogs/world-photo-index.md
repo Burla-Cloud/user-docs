@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/world-photo-index.png
+hidden: true
 ---
 
 # Map what the world photographed

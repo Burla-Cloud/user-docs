@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/met-weirdest-art.png
+hidden: true
 ---
 
 # Let CLIP compare every Met image

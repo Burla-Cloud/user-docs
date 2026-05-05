@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/ml-inference-batch.png
+hidden: true
 ---
 
 # Run batch inference as a job, not an endpoint

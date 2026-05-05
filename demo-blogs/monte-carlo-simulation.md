@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/monte-carlo-simulation.png
+hidden: true
 ---
 
 # Run the Monte Carlo you actually meant to run

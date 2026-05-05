@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/parquet-parallel.png
+hidden: true
 ---
 
 # Scan every Parquet shard instead of trusting a sample

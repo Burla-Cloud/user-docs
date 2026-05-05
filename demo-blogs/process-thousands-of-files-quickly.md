@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/one-parquet-file-per-worker.png
+hidden: true
 ---
 
 # Process thousands of files quickly

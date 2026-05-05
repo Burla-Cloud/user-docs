@@ -1,5 +1,6 @@
 ---
 cover: ../.gitbook/assets/more-examples/github-repo-summarizer.png
+hidden: true
 ---
 
 # Summarize a million READMEs without calling an LLM
