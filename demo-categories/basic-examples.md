@@ -1,4 +1,4 @@
-# Basics & How-to Guides
+# Start Here: Core Patterns
 
 Start here for practical Burla patterns and beginner-friendly workload shapes.
 

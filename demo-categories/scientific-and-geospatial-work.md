@@ -1,4 +1,4 @@
-# Science & Geo Examples
+# Scientific & Geospatial Computing
 
 Examples for bioinformatics, raster processing, and scientific data scans.
 

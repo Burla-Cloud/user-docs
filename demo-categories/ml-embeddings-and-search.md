@@ -1,4 +1,4 @@
-# ML & Search Examples
+# ML, Embeddings & Search
 
 Examples for GPU embeddings, batch inference, vector search, and multimodal analysis.
 
