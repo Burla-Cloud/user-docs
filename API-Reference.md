@@ -1,7 +1,5 @@
 # API Reference
 
-## API-Reference
-
 ### `burla.remote_parallel_map`
 
 Run a Python function on many remote computers at the same time.
@@ -40,6 +38,14 @@ Optionally, it can return a generator that yields results as they become availab
 
 
 <table data-header-hidden><thead><tr><th width="180.60546875"></th><th></th></tr></thead><tbody><tr><td><strong>Returns</strong></td><td></td></tr><tr><td><strong>Type</strong></td><td><strong>Description</strong></td></tr><tr><td><code>List</code> or <code>Generator</code></td><td>List of objects returned by <code>function_</code> in no particular order. If <code>Generator=True</code>, returns generator yielding objects returned by <code>function_</code> in the order they are produced.</td></tr></tbody></table>
+
+&#x20;
+
+&#x20;
+
+&#x20;
+
+&#x20;
 
 ***
 

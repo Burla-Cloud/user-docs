@@ -1,7 +1,5 @@
 # CLI Reference
 
-## CLI-Reference
-
 Burla's CLI contains the following commands:
 
 * [`burla install`](CLI-Reference.md#burla-install)  Deploy self-hosted Burla in your Google Cloud project.
@@ -171,6 +169,10 @@ When the "Authorize" button is hit, a new auth token is created and sent to your
 This token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
 
 This token is refreshed each time the `burla login` is run, or certain amount of time passes.
+
+&#x20;
+
+&#x20;
 
 &#x20;
 
