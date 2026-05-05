@@ -1,9 +1,11 @@
 # CLI Reference
 
+## CLI-Reference
+
 Burla's CLI contains the following commands:
 
-* [`burla install`](CLI-Reference.md#burla-install)  Deploy self-hosted Burla in your Google Cloud project.
-* [`burla login`](CLI-Reference.md#burla-login)  Connect your computer to the cluster you last logged into in the browser.
+* [`burla install`](CLI-Reference.md#burla-install) Deploy self-hosted Burla in your Google Cloud project.
+* [`burla login`](CLI-Reference.md#burla-login) Connect your computer to the cluster you last logged into in the browser.
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 
@@ -20,7 +22,7 @@ Installs Burla inside the Google Cloud project that your [gcloud CLI](https://cl
 For a more user-friendly installation guide see: [Installation: Self-Hosted](get-started.md)
 
 To view your current gcloud project run: `gcloud config get project`\
-To change your current gcloud project run: `gcloud config set project <desired-project-id>`&#x20;
+To change your current gcloud project run: `gcloud config set project <desired-project-id>`
 
 **Prerequisites:**
 
@@ -151,8 +153,6 @@ We encourage you to check out [\_install.py](https://github.com/Burla-Cloud/burl
 
 ***
 
-&#x20;
-
 ### `burla login`
 
 Connects your computer to the Burla cluster you most recently logged into in your browser.\
@@ -164,19 +164,11 @@ Launches the "Authorize this Machine" page in your default web browser.
 
 If there is no auth-cookie (you have not yet logged into the dashboard), throws simple error requesting you login to your cluster dashboard first.
 
-When the "Authorize" button is hit, a new auth token is created and sent to your machine.&#x20;
+When the "Authorize" button is hit, a new auth token is created and sent to your machine.
 
 This token is saved in the text file `burla_credentials.json`. This file is stored in your operating system's recommended user data directory which is determined using the [appdirs](https://github.com/ActiveState/appdirs) python library.
 
 This token is refreshed each time the `burla login` is run, or certain amount of time passes.
-
-&#x20;
-
-&#x20;
-
-&#x20;
-
-&#x20;
 
 ***
 
