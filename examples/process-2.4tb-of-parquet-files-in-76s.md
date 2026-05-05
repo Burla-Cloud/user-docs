@@ -1,10 +1,10 @@
 ---
-cover: ../.gitbook/assets/more-examples/parquet-parallel.png
 description: With <30 lines of Python.
-hidden: true
+cover: ../.gitbook/assets/more-examples/parquet-parallel.png
+coverY: 0
 ---
 
-# Process 2.4TB of Parquet Files in 76s
+# 2.4TB of Parquet files in 76s
 
 In this example we:
 
@@ -174,8 +174,6 @@ However, if I were in the office, and you asked me to get you the min/mean/max p
 
 Not to mention, I'd do it all using an interface a beginner can understand!
 
-
-
 <details>
 
 <summary>Bonus: I think a time of &#x3C;5s is possible 👀</summary>
@@ -190,13 +188,13 @@ Well, we tested this, **and it took just 39s to complete!**
 
 Unfortunately, 1T rows in 39s is _SLOW_, how could we hit single digits?
 
-#### Faster downloads:
+**Faster downloads:**
 
 N4-standard-80 machines have a max download speed of about 50Gbps from cloud storage in the same region, and each machine (using the improved compression) needs to download eight 1.17G files, or 9.36G of total data.
 
 In practice, it can be hard to hit the max download speed of 50Gbps (I think?) so let's assume that, using the right parallel connection logic (not GCSFuse), you can consistently achieve 40Gbps. This would mean you could get the entire compressed dataset into memory in just 1.9 seconds.
 
-#### Parallelize the 1-Billion challenge winning code?
+**Parallelize the 1-Billion challenge winning code?**
 
 The best solution to the original 1-billion row challenge finishes in 1.5s using 8cpus and 32G of ram.\
 Could we just run the 1BRC winning code on 1,000 machines in parallel? Then aggregate results?\
@@ -206,11 +204,4 @@ The only issue is we have a compressed parquet file in memory, and the 1-billion
 
 If anyone decides to give this a try, or has a good reason they don't think this would work, let me know! My email is jake@burla.dev
 
-
-
 </details>
-
-
-
-
-

@@ -1,9 +1,9 @@
 ---
 cover: ../.gitbook/assets/more-examples/bioinformatics-alignment.png
-hidden: true
+coverY: 0
 ---
 
-# Genomic Pipeline on 1,000 CPUs
+# 1,000-CPU Genomics Pipeline
 
 In this example we:
 
@@ -21,7 +21,7 @@ For this run we boot 13 VMs with 80 CPUs each.
 
 We use a custom Docker image:
 
-```text
+```
 jakezuliani/idats_to_pgen:latest
 ```
 

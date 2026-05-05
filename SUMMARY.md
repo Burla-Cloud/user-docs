@@ -20,9 +20,9 @@
 ## Examples
 
 * [All examples](examples.md)
-* [2.4TB Parquet in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
-* [1,000-CPU XGBoost](examples/parallel-hyperparameter-tuning.md)
-* [1,000-CPU Genomics](examples/multi-stage-genomic-pipeline.md)
+* [2.4TB of Parquet files in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
+* [Tune XGBoost with 1,000 CPUs](examples/parallel-hyperparameter-tuning.md)
+* [1,000-CPU Genomics Pipeline](examples/multi-stage-genomic-pipeline.md)
 * [Basic examples](demo-categories/basic-examples.md)
   * [Thousands of files](demo-blogs/process-thousands-of-files-quickly.md)
   * [One giant file](demo-blogs/process-one-giant-file-quickly.md)

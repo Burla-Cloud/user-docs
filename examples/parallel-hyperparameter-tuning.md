@@ -1,9 +1,9 @@
 ---
 cover: ../.gitbook/assets/more-examples/pandas-apply-parallel.png
-hidden: true
+coverY: 0
 ---
 
-# Hyperparameter Tune XGBoost with 1,000 CPUs
+# Tune XGBoost with 1,000 CPUs
 
 In this example we:
 
@@ -13,7 +13,7 @@ In this example we:
 
 ### Dataset: 2022 flight delays
 
-The dataset is [Combined_Flights_2022.csv](https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022/data?select=Combined_Flights_2022.csv), a commercial flight-delay CSV from Kaggle.
+The dataset is [Combined\_Flights\_2022.csv](https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022/data?select=Combined_Flights_2022.csv), a commercial flight-delay CSV from Kaggle.
 
 The question is simple: given the route, airline, schedule, airport ids, and date fields, can we predict whether a flight arrives at least 15 minutes late?
 
