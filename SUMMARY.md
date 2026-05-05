@@ -38,9 +38,9 @@
 ## Production data jobs
 
 * [Query 2.4TB Parquet in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
-* [Run 10K-file S3 ETL](demo-blogs/python-etl-no-airflow.md)
+* [ETL 10K S3 files to Postgres](demo-blogs/python-etl-no-airflow.md)
 * [Resize 1M images](demo-blogs/image-dataset-resize.md)
-* [Scan every Parquet shard](demo-blogs/parquet-parallel.md)
+* [Audit 5,000 Parquet files](demo-blogs/parquet-parallel.md)
 * [Parallelize pandas apply](demo-blogs/pandas-apply-parallel.md)
 * [Run a 2M-user API backfill](demo-blogs/rate-limited-api-requests.md)
 * [Scrape 1M web pages](demo-blogs/parallel-web-scraping.md)
@@ -50,4 +50,4 @@
 * [1,000-CPU Genomics Pipeline](examples/multi-stage-genomic-pipeline.md)
 * [Align every FASTQ sample](demo-blogs/bioinformatics-alignment.md)
 * [NDVI for 2K Sentinel tiles](demo-blogs/gdal-raster-processing.md)
-* [Run billion-path Monte Carlo](demo-blogs/monte-carlo-simulation.md)
+* [Run 1B option simulations](demo-blogs/monte-carlo-simulation.md)
