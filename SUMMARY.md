@@ -17,15 +17,9 @@
 * [Software as a Service Agreement](software-as-a-service-agreement.md)
 * [Privacy Policy](website-privacy-policy.md)
 
-## Basic examples
-
-* [All examples](examples.md)
-* [Process 1000's of files](demo-blogs/process-thousands-of-files-quickly.md)
-* [Process one giant file](demo-blogs/process-one-giant-file-quickly.md)
-* [Terabyte-scale ETL](demo-blogs/process-data-in-your-database-quickly.md)
-
 ## ML, embeddings, and search
 
+* [All examples](examples.md)
 * [Embed 50K Wikipedia articles](demo-blogs/gpu-embedding-demo.md)
 * [Tune XGBoost on 1,000 CPUs](examples/parallel-hyperparameter-tuning.md)
 * [Run batch LLM inference](demo-blogs/ml-inference-batch.md)
