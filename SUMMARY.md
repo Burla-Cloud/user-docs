@@ -9,6 +9,7 @@
   * [Limit parallelism for APIs or databases](how-to-guides/limit-parallelism-for-apis-databases-and-websites.md)
   * [Combine many results/files into one](how-to-guides/combine-many-results-files-into-one-map-reduce.md)
   * [Decide how to split your work](how-to-guides/choose-how-to-split-your-work.md)
+* [All examples](examples.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
 * [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
@@ -16,10 +17,6 @@
 * [Managed Service Privacy Policy](privacy-policy.md)
 * [Software as a Service Agreement](software-as-a-service-agreement.md)
 * [Privacy Policy](website-privacy-policy.md)
-
-## Examples
-
-* [All examples](examples.md)
 
 ## ML, embeddings, and search
 
