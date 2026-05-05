@@ -1,9 +1,13 @@
 ---
-cover: ../.gitbook/assets/how-to-guides/read-write-gcs-cover.png
 description: Write and read files in GCS through /workspace/shared.
 hidden: true
+cover: ../.gitbook/assets/how-to-guides/read-write-gcs-cover.png
+coverY: 0
 layout:
   width: default
+  cover:
+    visible: true
+    size: hero
   title:
     visible: true
   description:
@@ -20,7 +24,7 @@ layout:
     visible: true
 ---
 
-# Read/Write Files to Cloud Storage.
+# Read/Write Files to Cloud Storage
 
 In Burla, `/workspace/shared` is a shared folder connected to your Google Cloud Storage bucket:
 
