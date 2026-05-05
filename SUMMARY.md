@@ -31,13 +31,13 @@
 
 * [Distill 571M Amazon reviews](demo-blogs/amazon-review-distiller.md)
 * [Scan 2.76B NYC taxi trips](demo-blogs/nyc-ghost-neighborhoods.md)
-* [Map 9.49M Flickr photos](demo-blogs/world-photo-index.md)
+* [Geocode 9.49M Flickr photos](demo-blogs/world-photo-index.md)
 * [Find NOAA's rainiest day](demo-blogs/ghcn-rainiest-day.md)
 * [Summarize 1M GitHub READMEs](demo-blogs/github-repo-summarizer.md)
 
 ## Production data jobs
 
-* [2.4TB of Parquet files in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
+* [Query 2.4TB Parquet in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
 * [Run 10K-file S3 ETL](demo-blogs/python-etl-no-airflow.md)
 * [Resize 1M images](demo-blogs/image-dataset-resize.md)
 * [Scan every Parquet shard](demo-blogs/parquet-parallel.md)
