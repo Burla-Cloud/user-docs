@@ -1,10 +1,26 @@
 # ML & Search Examples
 
-Examples for GPU embeddings, batch inference, vector search, and multimodal analysis. For the full catalog, see [All examples](../examples.md).
+Examples for GPU embeddings, batch inference, vector search, and multimodal analysis.
 
-* [Embed 50K Wikipedia articles](../demo-blogs/gpu-embedding-demo.md)
-* [Tune XGBoost on 1,000 CPUs](../examples/parallel-hyperparameter-tuning.md)
-* [Run batch LLM inference](../demo-blogs/ml-inference-batch.md)
-* [Embed 2.7M arXiv papers](../demo-blogs/arxiv-fossils.md)
-* [Search 192K artworks with CLIP](../demo-blogs/met-weirdest-art.md)
-* [Rank 50 million Airbnbs](../demo-blogs/airbnb-burla.md)
+<table data-view="cards">
+<thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
+<tbody>
+<tr><td><strong>Embed 50K Wikipedia articles</strong></td><td>Embed 50,000 Wikipedia articles with a CUDA image, CPU download stage, GPU embedding stage, and shared vector artifacts.</td><td><a href="../demo-blogs/gpu-embedding-demo.md">gpu-embedding-demo.md</a></td><td><a href="../.gitbook/assets/more-examples/gpu-embedding-demo.png">gpu-embedding-demo.png</a></td></tr>
+<tr><td><strong>Tune XGBoost on 1,000 CPUs</strong></td><td>Train 36 XGBoost models across 1,000 CPUs and pick the best flight-delay model.</td><td><a href="../examples/parallel-hyperparameter-tuning.md">parallel-hyperparameter-tuning.md</a></td><td><a href="../.gitbook/assets/more-examples/pandas-apply-parallel.png">pandas-apply-parallel.png</a></td></tr>
+<tr><td><strong>Run batch LLM inference</strong></td><td>Load a Hugging Face model once per worker and score Parquet batches without building an endpoint.</td><td><a href="../demo-blogs/ml-inference-batch.md">ml-inference-batch.md</a></td><td><a href="../.gitbook/assets/more-examples/ml-inference-batch.png">ml-inference-batch.png</a></td></tr>
+<tr><td><strong>Embed 2.7M arXiv papers</strong></td><td>Cluster 2.7M abstracts and find isolated papers by running the embedding job at corpus scale.</td><td><a href="../demo-blogs/arxiv-fossils.md">arxiv-fossils.md</a></td><td><a href="../.gitbook/assets/more-examples/arxiv-fossils.png">arxiv-fossils.png</a></td></tr>
+<tr><td><strong>Search 192K artworks with CLIP</strong></td><td>Fetch and embed Open Access museum images, then use FAISS to find visual matches without labels.</td><td><a href="../demo-blogs/met-weirdest-art.md">met-weirdest-art.md</a></td><td><a href="../.gitbook/assets/more-examples/met-weirdest-art.png">met-weirdest-art.png</a></td></tr>
+<tr><td><strong>Rank 50 million Airbnbs</strong></td><td>Run listings, photos, CLIP, YOLOv8, reviews, and bootstrap confidence intervals across the public corpus.</td><td><a href="../demo-blogs/airbnb-burla.md">airbnb-burla.md</a></td><td><a href="../.gitbook/assets/more-examples/airbnb-burla.png">airbnb-burla.png</a></td></tr>
+</tbody>
+</table>
+
+## See All Examples
+
+Want the full catalog across starter workflows, data processing, production jobs, and science?
+
+<table data-view="cards">
+<thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
+<tbody>
+<tr><td><strong>Browse all examples</strong></td><td>See every Burla workload pattern in one place, from starter jobs to full-corpus analysis.</td><td><a href="../examples.md">examples.md</a></td><td><a href="../.gitbook/assets/other-examples-map.svg">other-examples-map.svg</a></td></tr>
+</tbody>
+</table>
