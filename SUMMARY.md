@@ -25,19 +25,15 @@
 * [Run batch LLM inference](demo-blogs/ml-inference-batch.md)
 * [Embed 2.7M arXiv papers](demo-blogs/arxiv-fossils.md)
 * [Search 192K artworks with CLIP](demo-blogs/met-weirdest-art.md)
-
-## Corpus Analysis Examples
-
-* [Analyze 50M Airbnb reviews](demo-blogs/airbnb-burla.md)
-* [Scan 2.76B NYC taxi trips](demo-blogs/nyc-ghost-neighborhoods.md)
-* [Find NOAA's rainiest day](demo-blogs/ghcn-rainiest-day.md)
-* [Summarize 1M GitHub READMEs](demo-blogs/github-repo-summarizer.md)
+* [Rank 50 million Airbnbs](demo-blogs/airbnb-burla.md)
 
 ## Data Processing Examples
 
 * [Query 2.4TB Parquet in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
 * [Distill 571M Amazon reviews](demo-blogs/amazon-review-distiller.md)
+* [Scan 2.76B NYC taxi trips](demo-blogs/nyc-ghost-neighborhoods.md)
 * [Geocode 9.49M Flickr photos](demo-blogs/world-photo-index.md)
+* [Summarize 1M GitHub READMEs](demo-blogs/github-repo-summarizer.md)
 * [Audit 5,000 Parquet files](demo-blogs/parquet-parallel.md)
 * [Parallelize pandas apply](demo-blogs/pandas-apply-parallel.md)
 
@@ -53,4 +49,5 @@
 
 * [1,000-CPU Genomics Pipeline](examples/multi-stage-genomic-pipeline.md)
 * [Align every FASTQ sample](demo-blogs/bioinformatics-alignment.md)
+* [Find NOAA's rainiest day](demo-blogs/ghcn-rainiest-day.md)
 * [NDVI for 2K Sentinel tiles](demo-blogs/gdal-raster-processing.md)
