@@ -2,13 +2,6 @@
 
 * [Home](README.md)
 * [Getting Started](get-started.md)
-* [How-to Guides](how-to-guides.md)
-  * [Read/Write Files to Cloud Storage](how-to-guides/read-and-write-gcs-files.md)
-  * [Use custom Docker images & GPUs](how-to-guides/use-custom-docker-images-and-gpus.md)
-  * [Run jobs in the background](how-to-guides/run-python-in-the-background.md)
-  * [Limit parallelism for APIs or databases](how-to-guides/limit-parallelism-for-apis-databases-and-websites.md)
-  * [Combine many results/files into one](how-to-guides/combine-many-results-files-into-one-map-reduce.md)
-  * [Decide how to split your work](how-to-guides/choose-how-to-split-your-work.md)
 * [API/CLI Reference](API-Reference.md)
 * [About](about.md)
 * [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
@@ -27,7 +20,13 @@
 
 ## All Examples
 
-* [Basic Examples](demo-categories/basic-examples.md)
+* [Basics & How-to Guides](demo-categories/basic-examples.md)
+  * [Read/Write Files to Cloud Storage](how-to-guides/read-and-write-gcs-files.md)
+  * [Use custom Docker images & GPUs](how-to-guides/use-custom-docker-images-and-gpus.md)
+  * [Run jobs in the background](how-to-guides/run-python-in-the-background.md)
+  * [Limit parallelism for APIs or databases](how-to-guides/limit-parallelism-for-apis-databases-and-websites.md)
+  * [Combine many results/files into one](how-to-guides/combine-many-results-files-into-one-map-reduce.md)
+  * [Decide how to split your work](how-to-guides/choose-how-to-split-your-work.md)
   * [Process 1000's of files](demo-blogs/process-thousands-of-files-quickly.md)
   * [Process one giant file](demo-blogs/process-one-giant-file-quickly.md)
   * [Terabyte-Scale ETL](demo-blogs/process-data-in-your-database-quickly.md)

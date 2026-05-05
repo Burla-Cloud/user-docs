@@ -1,6 +1,22 @@
-# Basic Examples
+# Basics & How-to Guides
 
-Starter examples for common Burla job shapes.
+Start here for practical Burla patterns and beginner-friendly workload shapes.
+
+## How-to Guides
+
+<table data-view="cards">
+<thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
+<tbody>
+<tr><td><strong>Read/Write Files to Cloud Storage</strong></td><td>Use <code>/workspace/shared</code> to read and write files through Google Cloud Storage.</td><td><a href="../how-to-guides/read-and-write-gcs-files.md">read-and-write-gcs-files.md</a></td><td><a href="../.gitbook/assets/how-to-guides/read-write-gcs-card.png">read-write-gcs-card.png</a></td></tr>
+<tr><td><strong>Use custom Docker images & GPUs</strong></td><td>Run workers with custom images, native tools, CUDA dependencies, and GPU resources.</td><td><a href="../how-to-guides/use-custom-docker-images-and-gpus.md">use-custom-docker-images-and-gpus.md</a></td><td><a href="../.gitbook/assets/how-to-guides/custom-docker-gpus-card.png">custom-docker-gpus-card.png</a></td></tr>
+<tr><td><strong>Run jobs in the background</strong></td><td>Detach long jobs so they keep running if your laptop sleeps or disconnects.</td><td><a href="../how-to-guides/run-python-in-the-background.md">run-python-in-the-background.md</a></td><td><a href="../.gitbook/assets/how-to-guides/run-background-card.png">run-background-card.png</a></td></tr>
+<tr><td><strong>Limit parallelism for APIs or databases</strong></td><td>Keep Burla jobs inside external service limits with chunking and <code>max_parallelism</code>.</td><td><a href="../how-to-guides/limit-parallelism-for-apis-databases-and-websites.md">limit-parallelism-for-apis-databases-and-websites.md</a></td><td><a href="../.gitbook/assets/how-to-guides/limit-parallelism-card.png">limit-parallelism-card.png</a></td></tr>
+<tr><td><strong>Combine many results/files into one</strong></td><td>Use a simple map-reduce pattern to merge parallel outputs into one final result.</td><td><a href="../how-to-guides/combine-many-results-files-into-one-map-reduce.md">combine-many-results-files-into-one-map-reduce.md</a></td><td><a href="../.gitbook/assets/how-to-guides/map-reduce-card.png">map-reduce-card.png</a></td></tr>
+<tr><td><strong>Decide how to split your work</strong></td><td>Choose the right input unit before scaling a job across many workers.</td><td><a href="../how-to-guides/choose-how-to-split-your-work.md">choose-how-to-split-your-work.md</a></td><td><a href="../.gitbook/assets/how-to-guides/split-work-card.png">split-work-card.png</a></td></tr>
+</tbody>
+</table>
+
+## Basic Examples
 
 <table data-view="cards">
 <thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
@@ -8,17 +24,5 @@ Starter examples for common Burla job shapes.
 <tr><td><strong>Process 1000's of files</strong></td><td>Run one function call per file, write per-file outputs, and combine the results.</td><td><a href="../demo-blogs/process-thousands-of-files-quickly.md">process-thousands-of-files-quickly.md</a></td><td><a href="../.gitbook/assets/more-examples/one-parquet-file-per-worker.png">one-parquet-file-per-worker.png</a></td></tr>
 <tr><td><strong>Process one giant file</strong></td><td>Split a large file into chunks, process chunks in parallel, and reduce the outputs.</td><td><a href="../demo-blogs/process-one-giant-file-quickly.md">process-one-giant-file-quickly.md</a></td><td><a href="../.gitbook/assets/more-examples/571m-amazon-reviews.png">571m-amazon-reviews.png</a></td></tr>
 <tr><td><strong>Terabyte-Scale ETL</strong></td><td>Split database rows into ID ranges, process each range in parallel, and combine the results.</td><td><a href="../demo-blogs/process-data-in-your-database-quickly.md">process-data-in-your-database-quickly.md</a></td><td><a href="../.gitbook/assets/more-examples/s3-to-postgres-etl.png">s3-to-postgres-etl.png</a></td></tr>
-</tbody>
-</table>
-
-## See Other Examples
-
-<table data-view="cards">
-<thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
-<tbody>
-<tr><td><strong>ML & Search Examples</strong></td><td>GPU embeddings, batch inference, vector search, and multimodal analysis.</td><td><a href="ml-embeddings-and-search.md">ml-embeddings-and-search.md</a></td><td><a href="../.gitbook/assets/more-examples/gpu-embedding-demo.png">gpu-embedding-demo.png</a></td></tr>
-<tr><td><strong>Data Processing Examples</strong></td><td>Large-scale file, corpus, table scan, and Python data workloads.</td><td><a href="data-processing-examples.md">data-processing-examples.md</a></td><td><a href="../.gitbook/assets/more-examples/amazon-review-distiller.png">amazon-review-distiller.png</a></td></tr>
-<tr><td><strong>Production Job Examples</strong></td><td>ETL, image processing, API backfills, web scraping, and simulations.</td><td><a href="production-data-jobs.md">production-data-jobs.md</a></td><td><a href="../.gitbook/assets/more-examples/python-etl-no-airflow.png">python-etl-no-airflow.png</a></td></tr>
-<tr><td><strong>Science & Geo Examples</strong></td><td>Bioinformatics, raster processing, and scientific data scans.</td><td><a href="scientific-and-geospatial-work.md">scientific-and-geospatial-work.md</a></td><td><a href="../.gitbook/assets/more-examples/bioinformatics-alignment.png">bioinformatics-alignment.png</a></td></tr>
 </tbody>
 </table>
