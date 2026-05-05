@@ -2,6 +2,11 @@
 description: With <30 lines of Python.
 cover: ../.gitbook/assets/more-examples/parquet-parallel.png
 coverY: 0
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # 2.4TB of Parquet files in 76s

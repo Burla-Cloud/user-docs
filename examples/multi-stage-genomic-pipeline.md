@@ -1,6 +1,11 @@
 ---
 cover: ../.gitbook/assets/more-examples/bioinformatics-alignment.png
 coverY: 0
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # 1,000-CPU Genomics Pipeline

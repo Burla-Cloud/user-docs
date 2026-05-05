@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/parquet-parallel.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Scan every Parquet shard instead of trusting a sample

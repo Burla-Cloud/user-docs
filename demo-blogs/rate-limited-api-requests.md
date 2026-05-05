@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/rate-limited-api-requests.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Make millions of API calls without lying about the rate cap

@@ -1,5 +1,11 @@
 ---
 cover: ../.gitbook/assets/more-examples/arxiv-fossils.png
+coverY: 0
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Cluster all arXiv abstracts before naming extinct topics

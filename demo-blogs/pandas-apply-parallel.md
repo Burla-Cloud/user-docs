@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/pandas-apply-parallel.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Keep the pandas apply, scale the dataset

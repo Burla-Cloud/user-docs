@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/world-photo-index.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Map what the world photographed

@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/one-parquet-file-per-worker.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Process thousands of files quickly

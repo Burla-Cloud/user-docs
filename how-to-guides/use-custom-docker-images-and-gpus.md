@@ -1,9 +1,13 @@
 ---
 cover: ../.gitbook/assets/how-to-guides/custom-docker-gpus-cover.png
+coverY: 0
 description: Run Burla workers with custom images, native tools, and GPUs.
 hidden: true
 layout:
   width: default
+  cover:
+    visible: true
+    size: hero
   title:
     visible: true
   description:

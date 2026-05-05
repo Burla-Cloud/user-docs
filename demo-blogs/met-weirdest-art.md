@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/met-weirdest-art.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Let CLIP compare every Met image

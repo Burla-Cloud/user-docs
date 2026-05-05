@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/gdal-raster-processing.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Process every raster tile, not a pretty subset

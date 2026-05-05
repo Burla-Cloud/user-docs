@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/monte-carlo-simulation.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Run the Monte Carlo you actually meant to run

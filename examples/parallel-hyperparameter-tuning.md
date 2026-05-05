@@ -2,6 +2,11 @@
 cover: ../.gitbook/assets/more-examples/pandas-apply-parallel.png
 coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Tune XGBoost with 1,000 CPUs

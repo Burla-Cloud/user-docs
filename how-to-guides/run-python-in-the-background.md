@@ -1,9 +1,13 @@
 ---
 cover: ../.gitbook/assets/how-to-guides/run-background-cover.png
+coverY: 0
 description: Detached job example.
 hidden: true
 layout:
   width: default
+  cover:
+    visible: true
+    size: hero
   title:
     visible: true
   description:

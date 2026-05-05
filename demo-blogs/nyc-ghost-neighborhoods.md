@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/nyc-ghost-neighborhoods.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Scan every NYC taxi month

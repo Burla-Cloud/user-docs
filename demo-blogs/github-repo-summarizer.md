@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/github-repo-summarizer.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Summarize a million READMEs without calling an LLM

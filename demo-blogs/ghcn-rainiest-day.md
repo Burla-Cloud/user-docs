@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/ghcn-rainiest-day.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Find the rainiest day by scanning every NOAA year file

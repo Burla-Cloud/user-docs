@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/s3-to-postgres-etl.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Process data in your database quickly

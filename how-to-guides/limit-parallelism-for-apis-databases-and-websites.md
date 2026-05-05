@@ -1,9 +1,13 @@
 ---
 cover: ../.gitbook/assets/how-to-guides/limit-parallelism-cover.png
+coverY: 0
 description: Keep Burla jobs inside external service limits.
 hidden: true
 layout:
   width: default
+  cover:
+    visible: true
+    size: hero
   title:
     visible: true
   description:

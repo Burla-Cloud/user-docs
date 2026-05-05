@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/image-dataset-resize.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Resize the whole image corpus before training on it

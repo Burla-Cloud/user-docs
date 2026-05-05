@@ -1,5 +1,11 @@
 ---
 cover: ../.gitbook/assets/more-examples/amazon-review-distiller.png
+coverY: 0
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Distill 571 million Amazon reviews

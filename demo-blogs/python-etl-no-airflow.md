@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/python-etl-no-airflow.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Run the file-drop ETL before it becomes a platform project

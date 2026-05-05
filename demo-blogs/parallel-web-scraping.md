@@ -1,6 +1,12 @@
 ---
 cover: ../.gitbook/assets/more-examples/parallel-web-scraping.png
+coverY: 0
 hidden: true
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Scrape the archive, not the easy page sample

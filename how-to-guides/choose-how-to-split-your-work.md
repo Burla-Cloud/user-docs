@@ -1,9 +1,13 @@
 ---
 cover: ../.gitbook/assets/how-to-guides/split-work-cover.png
+coverY: 0
 description: Pick the input unit for a Burla job.
 hidden: true
 layout:
   width: default
+  cover:
+    visible: true
+    size: hero
   title:
     visible: true
   description:

@@ -1,5 +1,11 @@
 ---
 cover: ../.gitbook/assets/more-examples/airbnb-burla.png
+coverY: 0
+layout:
+  width: default
+  cover:
+    visible: true
+    size: hero
 ---
 
 # Test Airbnb hypotheses at public-data scale
