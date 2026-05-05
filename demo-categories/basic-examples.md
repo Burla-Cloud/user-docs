@@ -10,14 +10,3 @@ Starter examples for common Burla job shapes.
 <tr><td><strong>Terabyte-Scale ETL</strong></td><td>Split database rows into ID ranges, process each range in parallel, and combine the results.</td><td><a href="../demo-blogs/process-data-in-your-database-quickly.md">process-data-in-your-database-quickly.md</a></td><td><a href="../.gitbook/assets/more-examples/s3-to-postgres-etl.png">s3-to-postgres-etl.png</a></td></tr>
 </tbody>
 </table>
-
-## See All Examples
-
-Want the full catalog across ML, data processing, production jobs, and science?
-
-<table data-view="cards">
-<thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
-<tbody>
-<tr><td><strong>Browse all examples</strong></td><td>See every Burla workload pattern in one place, from starter jobs to full-corpus analysis.</td><td><a href="../examples.md">All Examples</a></td><td><a href="../.gitbook/assets/other-examples-map.svg">other-examples-map.svg</a></td></tr>
-</tbody>
-</table>

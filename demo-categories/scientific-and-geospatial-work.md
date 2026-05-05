@@ -11,14 +11,3 @@ Examples for bioinformatics, raster processing, and scientific data scans.
 <tr><td><strong>NDVI for 2K Sentinel tiles</strong></td><td>Compute NDVI one Sentinel tile at a time with <code>rasterio</code> and shared outputs.</td><td><a href="../demo-blogs/gdal-raster-processing.md">gdal-raster-processing.md</a></td><td><a href="../.gitbook/assets/more-examples/gdal-raster-processing.png">gdal-raster-processing.png</a></td></tr>
 </tbody>
 </table>
-
-## See All Examples
-
-Want the full catalog across starter workflows, ML, data processing, and production jobs?
-
-<table data-view="cards">
-<thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
-<tbody>
-<tr><td><strong>Browse all examples</strong></td><td>See every Burla workload pattern in one place, from starter jobs to full-corpus analysis.</td><td><a href="../examples.md">All Examples</a></td><td><a href="../.gitbook/assets/other-examples-map.svg">other-examples-map.svg</a></td></tr>
-</tbody>
-</table>

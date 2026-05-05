@@ -27,7 +27,6 @@
 
 ## All Examples
 
-* [All Examples](examples.md)
 * [Basic Examples](demo-categories/basic-examples.md)
   * [Process 1000's of files](demo-blogs/process-thousands-of-files-quickly.md)
   * [Process one giant file](demo-blogs/process-one-giant-file-quickly.md)

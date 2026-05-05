@@ -14,14 +14,3 @@ Large-scale data processing examples for files, corpora, table scans, and ordina
 <tr><td><strong>Parallelize pandas apply</strong></td><td>Partition a Parquet dataset and run ordinary pandas code on each worker.</td><td><a href="../demo-blogs/pandas-apply-parallel.md">pandas-apply-parallel.md</a></td><td><a href="../.gitbook/assets/more-examples/pandas-apply-parallel.png">pandas-apply-parallel.png</a></td></tr>
 </tbody>
 </table>
-
-## See All Examples
-
-Want the full catalog across starter workflows, ML, production jobs, and science?
-
-<table data-view="cards">
-<thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
-<tbody>
-<tr><td><strong>Browse all examples</strong></td><td>See every Burla workload pattern in one place, from starter jobs to full-corpus analysis.</td><td><a href="../examples.md">All Examples</a></td><td><a href="../.gitbook/assets/other-examples-map.svg">other-examples-map.svg</a></td></tr>
-</tbody>
-</table>

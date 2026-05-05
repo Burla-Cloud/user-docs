@@ -12,14 +12,3 @@ Examples for file-parallel ETL, image processing, external service limits, and o
 <tr><td><strong>Run 1B option simulations</strong></td><td>Split the run into independent chunks, then reduce sums and squared sums locally.</td><td><a href="../demo-blogs/monte-carlo-simulation.md">monte-carlo-simulation.md</a></td><td><a href="../.gitbook/assets/more-examples/monte-carlo-simulation.png">monte-carlo-simulation.png</a></td></tr>
 </tbody>
 </table>
-
-## See All Examples
-
-Want the full catalog across starter workflows, ML, data processing, and science?
-
-<table data-view="cards">
-<thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead>
-<tbody>
-<tr><td><strong>Browse all examples</strong></td><td>See every Burla workload pattern in one place, from starter jobs to full-corpus analysis.</td><td><a href="../examples.md">All Examples</a></td><td><a href="../.gitbook/assets/other-examples-map.svg">other-examples-map.svg</a></td></tr>
-</tbody>
-</table>
