@@ -17,9 +17,12 @@
 * [Software as a Service Agreement](software-as-a-service-agreement.md)
 * [Privacy Policy](website-privacy-policy.md)
 
-## ML, embeddings, and search
+## Examples
 
 * [All examples](examples.md)
+
+## ML, embeddings, and search
+
 * [Embed 50K Wikipedia articles](demo-blogs/gpu-embedding-demo.md)
 * [Tune XGBoost on 1,000 CPUs](examples/parallel-hyperparameter-tuning.md)
 * [Run batch LLM inference](demo-blogs/ml-inference-batch.md)
