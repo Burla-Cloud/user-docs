@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/nyc-taxi-history.png
+cover: ../.gitbook/assets/how-to-guides/run-background-cover.png
 description: Detached job example.
 hidden: true
 layout:

@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/one-parquet-file-per-worker.png
+cover: ../.gitbook/assets/how-to-guides/split-work-cover.png
 description: Pick the input unit for a Burla job.
 hidden: true
 layout:

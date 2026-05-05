@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/gpu-embedding-demo.png
+cover: ../.gitbook/assets/how-to-guides/custom-docker-gpus-cover.png
 description: Run Burla workers with custom images, native tools, and GPUs.
 hidden: true
 layout:
