@@ -27,7 +27,7 @@
 * [Tune XGBoost on 1,000 CPUs](examples/parallel-hyperparameter-tuning.md)
 * [Run batch LLM inference](demo-blogs/ml-inference-batch.md)
 * [Embed 2.7M arXiv papers](demo-blogs/arxiv-fossils.md)
-* [CLIP-search Met images](demo-blogs/met-weirdest-art.md)
+* [Search 192K artworks with CLIP](demo-blogs/met-weirdest-art.md)
 * [Analyze 50M Airbnb reviews](demo-blogs/airbnb-burla.md)
 
 ## Full-corpus analysis
@@ -35,7 +35,7 @@
 * [Distill 571M Amazon reviews](demo-blogs/amazon-review-distiller.md)
 * [Scan 2.76B NYC taxi trips](demo-blogs/nyc-ghost-neighborhoods.md)
 * [Map 9.49M Flickr photos](demo-blogs/world-photo-index.md)
-* [Process all NOAA rain records](demo-blogs/ghcn-rainiest-day.md)
+* [Find NOAA's rainiest day](demo-blogs/ghcn-rainiest-day.md)
 * [Summarize 1M GitHub READMEs](demo-blogs/github-repo-summarizer.md)
 
 ## Production data jobs
@@ -44,13 +44,13 @@
 * [Run 10K-file S3 ETL](demo-blogs/python-etl-no-airflow.md)
 * [Resize 1M images](demo-blogs/image-dataset-resize.md)
 * [Scan every Parquet shard](demo-blogs/parquet-parallel.md)
-* [Apply pandas at full scale](demo-blogs/pandas-apply-parallel.md)
-* [Make millions of API calls](demo-blogs/rate-limited-api-requests.md)
+* [Parallelize pandas apply](demo-blogs/pandas-apply-parallel.md)
+* [Run a 2M-user API backfill](demo-blogs/rate-limited-api-requests.md)
 * [Scrape 1M web pages](demo-blogs/parallel-web-scraping.md)
 
 ## Scientific and geospatial work
 
 * [1,000-CPU Genomics Pipeline](examples/multi-stage-genomic-pipeline.md)
 * [Align every FASTQ sample](demo-blogs/bioinformatics-alignment.md)
-* [Process every raster tile](demo-blogs/gdal-raster-processing.md)
+* [NDVI for 2K Sentinel tiles](demo-blogs/gdal-raster-processing.md)
 * [Run billion-path Monte Carlo](demo-blogs/monte-carlo-simulation.md)
