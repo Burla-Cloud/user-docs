@@ -55,11 +55,11 @@ To run `burla install` you'll need permission to run these `gcloud` commands:
 * `gcloud firestore databases create ...`
 * `gcloud run deploy ...`
 
-I've listed the **exact required permissions** for the `burla install` command [in it's CLI doc](API-Reference.md#prerequisites).
+I've listed the **exact required permissions** for the `burla install` command [in it's CLI doc](CLI-Reference.md#prerequisites).
 
 </details>
 
-See the [install docs](API-Reference.md#burla-install) for more info regarding permissions.
+See the [install docs](CLI-Reference.md#burla-install) for more info regarding permissions.
 
 #### 3. Start a machine and run some code!
 

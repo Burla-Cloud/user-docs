@@ -2,7 +2,8 @@
 
 * [Home](README.md)
 * [Getting Started](get-started.md)
-* [API/CLI Reference](API-Reference.md)
+* [API Reference](API-Reference.md)
+* [CLI Reference](CLI-Reference.md)
 * [About](about.md)
 * [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
 * [Vulnerability Disclosure Program](security.md)
