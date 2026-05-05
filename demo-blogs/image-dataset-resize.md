@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/image-dataset-resize.png
+---
+
 # Resize the whole image corpus before training on it
 
 In this example we:

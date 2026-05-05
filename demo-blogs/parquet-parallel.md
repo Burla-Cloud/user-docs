@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/parquet-parallel.png
+---
+
 # Scan every Parquet shard instead of trusting a sample
 
 In this example we:

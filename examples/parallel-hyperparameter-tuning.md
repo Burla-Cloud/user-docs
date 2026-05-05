@@ -1,4 +1,5 @@
 ---
+cover: ../.gitbook/assets/more-examples/pandas-apply-parallel.png
 hidden: true
 ---
 

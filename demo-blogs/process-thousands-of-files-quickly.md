@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/one-parquet-file-per-worker.png
+---
+
 # Process thousands of files quickly
 
 If you have a lot of files, the fastest pattern is usually:

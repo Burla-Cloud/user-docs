@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/monte-carlo-simulation.png
+---
+
 # Run the Monte Carlo you actually meant to run
 
 In this example we:

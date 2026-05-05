@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/571m-amazon-reviews.png
+---
+
 # Process one giant file quickly
 
 When one file is too large for fast single-machine processing, use this pattern:

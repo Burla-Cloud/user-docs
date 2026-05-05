@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/parallel-web-scraping.png
+---
+
 # Scrape the archive, not the easy page sample
 
 In this example we:

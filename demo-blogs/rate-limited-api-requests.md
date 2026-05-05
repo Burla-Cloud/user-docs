@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/rate-limited-api-requests.png
+---
+
 # Make millions of API calls without lying about the rate cap
 
 In this example we:

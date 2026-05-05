@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/nyc-ghost-neighborhoods.png
+---
+
 # Scan every NYC taxi month
 
 In this example we:

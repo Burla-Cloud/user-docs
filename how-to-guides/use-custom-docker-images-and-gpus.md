@@ -1,4 +1,5 @@
 ---
+cover: ../.gitbook/assets/more-examples/gpu-embedding-demo.png
 description: Run Burla workers with custom images, native tools, and GPUs.
 hidden: true
 layout:

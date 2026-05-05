@@ -1,4 +1,5 @@
 ---
+cover: ../.gitbook/assets/more-examples/parquet-parallel.png
 description: Write and read files in GCS through /workspace/shared.
 hidden: true
 layout:

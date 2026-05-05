@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/arxiv-fossils.png
+---
+
 # Cluster all arXiv abstracts before naming extinct topics
 
 In this example we:

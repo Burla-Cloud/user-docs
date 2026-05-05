@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/ghcn-rainiest-day.png
+---
+
 # Find the rainiest day by scanning every NOAA year file
 
 In this example we:

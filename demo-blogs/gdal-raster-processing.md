@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/gdal-raster-processing.png
+---
+
 # Process every raster tile, not a pretty subset
 
 In this example we:

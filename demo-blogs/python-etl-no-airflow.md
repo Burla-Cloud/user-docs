@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/python-etl-no-airflow.png
+---
+
 # Run the file-drop ETL before it becomes a platform project
 
 In this example we:

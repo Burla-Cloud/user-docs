@@ -1,4 +1,5 @@
 ---
+cover: ../.gitbook/assets/more-examples/parquet-parallel.png
 description: With <30 lines of Python.
 hidden: true
 ---

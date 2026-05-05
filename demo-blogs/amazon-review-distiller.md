@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/amazon-review-distiller.png
+---
+
 # Distill 571 million Amazon reviews
 
 In this example we:

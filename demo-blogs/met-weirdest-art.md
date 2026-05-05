@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/met-weirdest-art.png
+---
+
 # Let CLIP compare every Met image
 
 In this example we:

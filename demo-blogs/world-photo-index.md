@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/world-photo-index.png
+---
+
 # Map what the world photographed
 
 In this example we:

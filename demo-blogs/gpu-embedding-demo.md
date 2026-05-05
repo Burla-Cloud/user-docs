@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/gpu-embedding-demo.png
+---
+
 # Put an embedding model on A100s
 
 In this example we:

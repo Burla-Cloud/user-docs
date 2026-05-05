@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/airbnb-burla.png
+---
+
 # Test Airbnb hypotheses at public-data scale
 
 In this example we:

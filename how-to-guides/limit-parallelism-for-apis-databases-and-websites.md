@@ -1,4 +1,5 @@
 ---
+cover: ../.gitbook/assets/more-examples/rate-limited-api-requests.png
 description: Keep Burla jobs inside external service limits.
 hidden: true
 layout:

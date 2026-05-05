@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/s3-to-postgres-etl.png
+---
+
 # Process data in your database quickly
 
 If your table has millions of rows, one long query loop is usually slow.

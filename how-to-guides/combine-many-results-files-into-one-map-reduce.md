@@ -1,4 +1,5 @@
 ---
+cover: ../.gitbook/assets/more-examples/billion-path-monte-carlo.png
 description: >-
   A beginner-friendly map-reduce pattern for combining many outputs into one
   file.

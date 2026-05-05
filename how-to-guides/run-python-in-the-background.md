@@ -1,4 +1,5 @@
 ---
+cover: ../.gitbook/assets/more-examples/nyc-taxi-history.png
 description: Detached job example.
 hidden: true
 layout:

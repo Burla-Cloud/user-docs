@@ -1,3 +1,7 @@
+---
+cover: ../.gitbook/assets/more-examples/pandas-apply-parallel.png
+---
+
 # Keep the pandas apply, scale the dataset
 
 In this example we:
