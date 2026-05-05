@@ -1,11 +1,7 @@
----
-hidden: true
----
+# Basic Examples
 
-# Basic examples
+Starter examples for common Burla job shapes. For the full catalog, see [All examples](../examples.md).
 
-Starter examples for common Burla job shapes.
-
-* [Thousands of files](../demo-blogs/process-thousands-of-files-quickly.md)
-* [One giant file](../demo-blogs/process-one-giant-file-quickly.md)
-* [Database range jobs](../demo-blogs/process-data-in-your-database-quickly.md)
+* [Process 1000's of files](../demo-blogs/process-thousands-of-files-quickly.md)
+* [Process one giant file](../demo-blogs/process-one-giant-file-quickly.md)
+* [Terabyte-Scale ETL](../demo-blogs/process-data-in-your-database-quickly.md)

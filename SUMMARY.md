@@ -27,8 +27,8 @@
 
 ## All Examples
 
-* [Basic Examples](examples.md#basic-examples)
-* [ML & Search Examples](examples.md#ml-and-search-examples)
-* [Data Processing Examples](examples.md#data-processing-examples)
-* [Production Job Examples](examples.md#production-job-examples)
-* [Science & Geo Examples](examples.md#science-and-geo-examples)
+* [Basic Examples](demo-categories/basic-examples.md)
+* [ML & Search Examples](demo-categories/ml-embeddings-and-search.md)
+* [Data Processing Examples](demo-categories/data-processing-examples.md)
+* [Production Job Examples](demo-categories/production-data-jobs.md)
+* [Science & Geo Examples](demo-categories/scientific-and-geospatial-work.md)

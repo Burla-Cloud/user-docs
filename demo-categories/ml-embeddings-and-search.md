@@ -1,13 +1,10 @@
----
-hidden: true
----
+# ML & Search Examples
 
-# ML, embeddings, and search
+Examples for GPU embeddings, batch inference, vector search, and multimodal analysis. For the full catalog, see [All examples](../examples.md).
 
-Examples for GPU embeddings, batch inference, vector search, and multimodal analysis.
-
-* [A100 embeddings](../demo-blogs/gpu-embedding-demo.md)
-* [Batch inference](../demo-blogs/ml-inference-batch.md)
-* [Whole-arXiv embeddings](../demo-blogs/arxiv-fossils.md)
-* [Met visual search](../demo-blogs/met-weirdest-art.md)
-* [50M Airbnb reviews](../demo-blogs/airbnb-burla.md)
+* [Embed 50K Wikipedia articles](../demo-blogs/gpu-embedding-demo.md)
+* [Tune XGBoost on 1,000 CPUs](../examples/parallel-hyperparameter-tuning.md)
+* [Run batch LLM inference](../demo-blogs/ml-inference-batch.md)
+* [Embed 2.7M arXiv papers](../demo-blogs/arxiv-fossils.md)
+* [Search 192K artworks with CLIP](../demo-blogs/met-weirdest-art.md)
+* [Rank 50 million Airbnbs](../demo-blogs/airbnb-burla.md)
