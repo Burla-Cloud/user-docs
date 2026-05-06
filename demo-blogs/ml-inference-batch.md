@@ -15,22 +15,42 @@ In this example we:
 
 * Read review text from Parquet.
 * Load a HuggingFace sentiment model once per worker.
-* Score the whole corpus in batches and stream JSONL results.
+* Score the whole corpus in batches.
+* Stream JSONL results as batches finish.
 
 I would not build an endpoint for this. There is no traffic to serve. There is just a pile of rows that need model scores.
 
-### Step 1: Build batches
+### Dataset: product reviews in Parquet
 
-The client reads ids and text from Parquet, then builds 10,000-row batches.
+Assume the source dataset has `review_id` and `text` columns.
 
 ```python
-import pyarrow.dataset as ds
+import json
+from pathlib import Path
 
-dataset = ds.dataset("s3://my-bucket/reviews/", format="parquet")
+import pyarrow.dataset as ds
+from burla import remote_parallel_map
+
+DATASET = "s3://my-bucket/reviews/"
+OUT_PATH = Path("/workspace/shared/batch-inference/review-sentiment.jsonl")
+BATCH_SIZE = 10_000
+MODEL_NAME = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+```
+
+### Step 1: Build batches
+
+The client reads ids and text, then builds 10,000-row batches. Each batch is one worker input.
+
+```python
+dataset = ds.dataset(DATASET, format="parquet")
 texts = dataset.to_table(columns=["review_id", "text"]).to_pandas()
 
-BATCH = 10_000
-batches = [texts.iloc[i:i + BATCH].to_dict("records") for i in range(0, len(texts), BATCH)]
+batches = [
+    texts.iloc[i:i + BATCH_SIZE].to_dict("records")
+    for i in range(0, len(texts), BATCH_SIZE)
+]
+
+print(f"Built {len(batches):,} inference batches")
 ```
 
 ### Step 2: Write the worker function
@@ -38,42 +58,75 @@ batches = [texts.iloc[i:i + BATCH].to_dict("records") for i in range(0, len(text
 Each worker loads the model the first time it runs, then reuses it for later batches on the same process.
 
 ```python
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
 def predict_batch(rows: list[dict]) -> list[dict]:
-
     if not hasattr(predict_batch, "_model"):
-        name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
-        predict_batch._tok = AutoTokenizer.from_pretrained(name)
-        predict_batch._model = AutoModelForSequenceClassification.from_pretrained(name).eval()
+        predict_batch._tok = AutoTokenizer.from_pretrained(MODEL_NAME)
+        predict_batch._model = AutoModelForSequenceClassification.from_pretrained(MODEL_NAME).eval()
 
-    enc = predict_batch._tok([r["text"] for r in rows], padding=True, truncation=True, max_length=256, return_tensors="pt")
+    enc = predict_batch._tok(
+        [row["text"] or "" for row in rows],
+        padding=True,
+        truncation=True,
+        max_length=256,
+        return_tensors="pt",
+    )
     with torch.no_grad():
         probs = torch.softmax(predict_batch._model(**enc).logits, dim=-1).numpy()
-    return [{"review_id": r["review_id"], "score": float(p.max())} for r, p in zip(rows, probs)]
+
+    labels = ["negative", "neutral", "positive"]
+    return [
+        {
+            "review_id": row["review_id"],
+            "label": labels[int(prob.argmax())],
+            "confidence": float(prob.max()),
+        }
+        for row, prob in zip(rows, probs)
+    ]
 ```
 
-### Step 3: Run it on the cluster
+The model stays cached on the worker process. Later batches assigned to that process do not reload it.
+
+### Step 3: Smoke test one batch
+
+Run one batch first so you can see model download time, memory, and output shape.
+
+```python
+test_rows = remote_parallel_map(
+    predict_batch,
+    batches[:1],
+    func_cpu=4,
+    func_ram=16,
+)[0]
+
+print(test_rows[:3])
+```
+
+### Step 4: Run the full scoring job
 
 The output streams back as each batch finishes, so we can write JSONL without holding everything in memory.
 
 ```python
-from burla import remote_parallel_map
+OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+with OUT_PATH.open("w") as f:
+    for batch_out in remote_parallel_map(
+        predict_batch,
+        batches,
+        func_cpu=4,
+        func_ram=16,
+        generator=True,
+        grow=True,
+    ):
+        for row in batch_out:
+            f.write(json.dumps(row) + "\n")
 
-for batch_out in remote_parallel_map(
-    predict_batch,
-    batches,
-    func_cpu=4,
-    func_ram=16,
-    generator=True,
-    grow=True,
-):
-    for row in batch_out:
-        f.write(json.dumps(row) + "\n")
+print(OUT_PATH)
 ```
 
 ### What's the point?
 
 The endpoint version is usually overbuilt. Health checks, autoscaling, request formats, and idle capacity are useful when users are sending traffic. They are annoying when I just need to score a dataset once.
 
-The real question is whether the model, batch size, token length, memory, and output format survive the full corpus. A tiny sample mostly tells you the imports work.
+The real question is whether the model, batch size, token length, memory, and output format survive the full corpus. A tiny sample mostly tells you the imports work. A batch job tells you whether the exact scoring code can finish every row and leave behind a file you can audit.

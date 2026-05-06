@@ -11,91 +11,156 @@ layout:
 
 # Process one giant file quickly
 
-When one file is too large for fast single-machine processing, use this pattern:
+In this example we:
 
-1. split the file into chunk files
-2. process chunk files in parallel
-3. combine chunk results into one final result
+* Split one giant newline-delimited text file into chunk files.
+* Run one worker per chunk.
+* Write one compact JSON report per chunk.
+* Combine chunk reports into a final result.
 
-This keeps the logic simple and gives you parallel speed.
+One giant file is usually not a distributed-systems problem. It is a splitting problem. Once the file is chunked, the rest of the job looks like the many-files example.
 
-## Before you start
+### Dataset: one large JSONL export
 
-Make sure you have already:
+Assume the input has already been uploaded to Burla shared storage:
 
-1. installed Burla: `pip install burla`
-2. connected your machine: `burla login`
-3. started your cluster in the Burla dashboard
-
-## Step 1: Split one big file into chunk files
-
-This example takes one giant text file and writes smaller chunk files with 50,000 lines each.
-
-```python
-from pathlib import Path
-
-
-def create_chunk_files(
-    input_file_path="/workspace/shared/giant/input.txt",
-    output_directory_path="/workspace/shared/giant/chunks",
-    lines_per_chunk=50000,
-):
-    output_directory = Path(output_directory_path)
-    output_directory.mkdir(parents=True, exist_ok=True)
-    lines = Path(input_file_path).read_text().splitlines()
-    chunk_paths = []
-    for index in range(0, len(lines), lines_per_chunk):
-        chunk_path = output_directory / f"chunk-{index // lines_per_chunk}.txt"
-        chunk_path.write_text("\n".join(lines[index:index + lines_per_chunk]) + "\n")
-        chunk_paths.append(str(chunk_path))
-    return chunk_paths
-
-
-chunk_file_paths = create_chunk_files()
+```text
+/workspace/shared/giant/events.jsonl
 ```
 
-## Step 2: Process chunks in parallel
-
-Now run one function call per chunk file.
+The file is newline-delimited JSON. Each line is one event row.
 
 ```python
+import json
 from pathlib import Path
+
 from burla import remote_parallel_map
 
-
-def count_lines_in_chunk(chunk_file_path):
-    line_count = len(Path(chunk_file_path).read_text().splitlines())
-    result_path = Path("/workspace/shared/giant/chunk-results") / f"{Path(chunk_file_path).stem}.txt"
-    result_path.parent.mkdir(parents=True, exist_ok=True)
-    result_path.write_text(f"{line_count}\n")
-    return str(result_path)
-
-
-chunk_result_paths = remote_parallel_map(count_lines_in_chunk, chunk_file_paths)
+INPUT_PATH = Path("/workspace/shared/giant/events.jsonl")
+CHUNK_DIR = Path("/workspace/shared/giant/chunks")
+REPORT_DIR = Path("/workspace/shared/giant/reports")
+FINAL_DIR = Path("/workspace/shared/giant/final")
+LINES_PER_CHUNK = 50_000
 ```
 
-## Step 3: Combine chunk results into one final result
+### Step 1: Split without loading the file into memory
 
-After all chunks finish, combine the per-chunk outputs.
+The client streams the input file once and writes chunk files. This is intentionally boring code, because the split step should be easy to inspect.
 
 ```python
-from pathlib import Path
+def create_chunk_files() -> list[str]:
+    CHUNK_DIR.mkdir(parents=True, exist_ok=True)
+    chunk_paths = []
 
-total_line_count = sum(int(Path(path).read_text().strip()) for path in chunk_result_paths)
+    out_f = None
+    try:
+        with INPUT_PATH.open("r", encoding="utf-8", errors="replace") as in_f:
+            for line_idx, line in enumerate(in_f):
+                if line_idx % LINES_PER_CHUNK == 0:
+                    if out_f:
+                        out_f.close()
+                    chunk_path = CHUNK_DIR / f"chunk-{line_idx // LINES_PER_CHUNK:05d}.jsonl"
+                    chunk_paths.append(str(chunk_path))
+                    out_f = chunk_path.open("w", encoding="utf-8")
+                out_f.write(line)
+    finally:
+        if out_f:
+            out_f.close()
 
-final_result_path = Path("/workspace/shared/giant/final/line-count.txt")
-final_result_path.parent.mkdir(parents=True, exist_ok=True)
-final_result_path.write_text(f"total_line_count={total_line_count}\n")
+    return chunk_paths
 
-print(final_result_path)
+chunk_paths = create_chunk_files()
+print(f"Wrote {len(chunk_paths):,} chunk files")
 ```
 
-## Step 4: Start small, then scale
+If this step is slow, that is fine. It runs once. The expensive part is processing every chunk.
 
-Test the full workflow with a small file first.
+### Step 2: Process one chunk
 
-When that works, run the same workflow on your giant file.
+Each worker reads one chunk and returns only a small report.
 
-## What to do next
+```python
+def summarize_event_chunk(chunk_path: str) -> dict:
+    chunk_path = Path(chunk_path)
+    report_path = REPORT_DIR / f"{chunk_path.stem}.json"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+
+    rows = 0
+    purchases = 0
+    revenue = 0.0
+
+    with chunk_path.open("r", encoding="utf-8", errors="replace") as f:
+        for line in f:
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            rows += 1
+            if row.get("event_type") == "purchase":
+                purchases += 1
+                revenue += float(row.get("amount") or 0)
+
+    report = {
+        "chunk_path": str(chunk_path),
+        "report_path": str(report_path),
+        "rows": rows,
+        "purchases": purchases,
+        "revenue": revenue,
+    }
+    report_path.write_text(json.dumps(report) + "\n")
+    return report
+```
+
+### Step 3: Test one chunk, then run all chunks
+
+Run the first chunk before launching the whole file.
+
+```python
+test_report = remote_parallel_map(
+    summarize_event_chunk,
+    chunk_paths[:1],
+    func_cpu=1,
+    func_ram=2,
+)[0]
+
+print(test_report)
+```
+
+Then send the full chunk list.
+
+```python
+reports = remote_parallel_map(
+    summarize_event_chunk,
+    chunk_paths,
+    func_cpu=1,
+    func_ram=2,
+    grow=True,
+)
+```
+
+### Step 4: Reduce the chunk reports
+
+The workers do the row-level scan. The client only combines counts and sums.
+
+```python
+summary = {
+    "chunks": len(reports),
+    "rows": sum(row["rows"] for row in reports),
+    "purchases": sum(row["purchases"] for row in reports),
+    "revenue": sum(row["revenue"] for row in reports),
+}
+
+FINAL_DIR.mkdir(parents=True, exist_ok=True)
+summary_path = FINAL_DIR / "event-summary.json"
+summary_path.write_text(json.dumps(summary, indent=2) + "\n")
+
+print(summary)
+print(summary_path)
+```
+
+### What's the point?
+
+The split is not a hack. It is the part that turns one awkward input into a clean parallel job.
+
+Once the chunk files exist, every worker has the same contract: read one chunk, write one report, return a small dict. That makes failures localized and reruns cheap. If chunk 37 has malformed JSON, you do not have to reason about a cluster. You inspect chunk 37.
 
 If you need help choosing the right input shape, continue with [Decide how to split your work.](../how-to-guides/choose-how-to-split-your-work.md)

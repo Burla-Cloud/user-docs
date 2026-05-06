@@ -9,105 +9,146 @@ layout:
     size: hero
 ---
 
-# Process data in your database quickly
+# Process database rows without building a queue
 
-If your table has millions of rows, one long query loop is usually slow.
+In this example we:
 
-A simple faster pattern is:
+* Split an indexed PostgreSQL table into non-overlapping ID ranges.
+* Run one worker per range.
+* Return small aggregate reports instead of raw rows.
+* Use `max_parallelism` so the database remains the constraint, not the cluster.
 
-1. split rows into many ID ranges
-2. process each range in parallel
-3. combine range results
+This is the pattern I would use for a backfill where the source of truth is still the database. The goal is not to replace SQL. The goal is to run ordinary Python over many row ranges without turning one script into a queueing system.
 
-This pattern works best with a numeric column you can split into ranges, such as an indexed `id` column.
+### Dataset: an `orders` table
 
-## Before you start
+Assume the table has an indexed integer `id` column and a `status`, `amount`, and `updated_at` column.
 
-Make sure you have already:
-
-1. installed Burla: `pip install burla`
-2. connected your machine: `burla login`
-3. started your cluster in the Burla dashboard
-
-For this example, also install a PostgreSQL driver:
-
-4. `pip install psycopg2-binary`
-
-## Step 1: Decide your row ranges
-
-Start with ranges that do not overlap.
+The workers need a database URL they can reach from the Burla cluster. Do not use `localhost` unless the database is actually inside the worker.
 
 ```python
-def build_id_ranges(start_id, end_id, rows_per_range):
+import os
+from dataclasses import dataclass
+
+import psycopg2
+from burla import remote_parallel_map
+
+DATABASE_URL = os.environ["DATABASE_URL"]
+ROWS_PER_RANGE = 25_000
+MAX_DB_CONNECTIONS = 20
+```
+
+### Step 1: Build ID ranges
+
+First ask the database for the range you intend to scan. Then split that range into jobs.
+
+```python
+@dataclass(frozen=True)
+class IdRange:
+    start_id: int
+    end_id: int
+
+def get_id_bounds() -> tuple[int, int]:
+    with psycopg2.connect(DATABASE_URL) as conn:
+        with conn.cursor() as cur:
+            cur.execute("SELECT min(id), max(id) FROM orders WHERE updated_at >= current_date - interval '1 day'")
+            return cur.fetchone()
+
+def build_id_ranges(start_id: int, end_id: int, rows_per_range: int) -> list[IdRange]:
     return [
-        (range_start_id, min(range_start_id + rows_per_range - 1, end_id))
-        for range_start_id in range(start_id, end_id + 1, rows_per_range)
+        IdRange(start, min(start + rows_per_range - 1, end_id))
+        for start in range(start_id, end_id + 1, rows_per_range)
     ]
 
+start_id, end_id = get_id_bounds()
+id_ranges = build_id_ranges(start_id, end_id, ROWS_PER_RANGE)
 
-id_ranges = build_id_ranges(start_id=1, end_id=100_000, rows_per_range=10_000)
+print(f"Built {len(id_ranges):,} ID ranges")
 ```
 
-## Step 2: Write one function that processes one range
+ID ranges are easy to reason about because they do not overlap. They also make reruns obvious: rerun the failed ranges.
 
-Each function call opens its own database connection and handles one ID range.
+### Step 2: Process one range
+
+Each worker opens its own database connection, runs one bounded query, and returns a small aggregate.
 
 ```python
-import psycopg2
-
-
-def process_id_range(id_range):
-    start_id, end_id = id_range
-
-    with psycopg2.connect(
-        host="localhost",
-        dbname="app",
-        user="app",
-        password="app",
-    ) as connection:
-        with connection.cursor() as cursor:
-            cursor.execute(
-                "SELECT amount FROM orders WHERE id BETWEEN %s AND %s",
-                (start_id, end_id),
+def summarize_order_range(id_range: IdRange) -> dict:
+    with psycopg2.connect(DATABASE_URL) as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT
+                    count(*) AS row_count,
+                    count(*) FILTER (WHERE status = 'paid') AS paid_count,
+                    coalesce(sum(amount) FILTER (WHERE status = 'paid'), 0) AS paid_amount
+                FROM orders
+                WHERE id BETWEEN %s AND %s
+                """,
+                (id_range.start_id, id_range.end_id),
             )
-            amounts = [row[0] for row in cursor.fetchall()]
+            row_count, paid_count, paid_amount = cur.fetchone()
 
-    return {"row_count": len(amounts), "total_amount": float(sum(amounts))}
+    return {
+        "start_id": id_range.start_id,
+        "end_id": id_range.end_id,
+        "row_count": int(row_count),
+        "paid_count": int(paid_count),
+        "paid_amount": float(paid_amount),
+    }
 ```
 
-## Step 3: Run all ranges in parallel
+If the worker needs to update rows, make the write idempotent. For read-only analytics, keep it read-only.
 
-Pass the list of ranges to `remote_parallel_map`.
+### Step 3: Smoke test one range
+
+Test one small range before opening many database connections.
 
 ```python
-from burla import remote_parallel_map
+test_result = remote_parallel_map(
+    summarize_order_range,
+    id_ranges[:1],
+    func_cpu=1,
+    func_ram=2,
+)[0]
 
-range_results = remote_parallel_map(process_id_range, id_ranges)
+print(test_result)
 ```
 
-## Step 4: Combine the range results
+This catches network access, credentials, package installs, and SQL mistakes before the full backfill starts.
 
-Now compute one final total from all range outputs.
+### Step 4: Run the full range list
+
+`max_parallelism` is the important line. It is the number of live workers allowed to hit the database at once.
 
 ```python
-total_rows = sum(range_result["row_count"] for range_result in range_results)
-total_amount = sum(range_result["total_amount"] for range_result in range_results)
-
-print(f"Total rows processed: {total_rows}")
-print(f"Total amount: {total_amount}")
+range_results = remote_parallel_map(
+    summarize_order_range,
+    id_ranges,
+    func_cpu=1,
+    func_ram=2,
+    max_parallelism=MAX_DB_CONNECTIONS,
+    grow=True,
+)
 ```
 
-## Step 5: Run a small test before the full job
+### Step 5: Reduce the results
 
-Always test first with a small ID window.
+The client combines the small per-range reports.
 
 ```python
-from burla import remote_parallel_map
+summary = {
+    "ranges": len(range_results),
+    "rows": sum(row["row_count"] for row in range_results),
+    "paid_orders": sum(row["paid_count"] for row in range_results),
+    "paid_amount": sum(row["paid_amount"] for row in range_results),
+}
 
-small_test_ranges = build_id_ranges(start_id=1, end_id=5_000, rows_per_range=1_000)
-remote_parallel_map(process_id_range, small_test_ranges)
+print(summary)
 ```
 
-After small tests succeed, run your full range list.
+### What's the point?
 
-Use the `max_parallelism` argument to avoid overloading your database.
+The database is usually the bottleneck, so the best version of this job is explicit about database pressure.
+
+The cluster can run thousands of workers. That does not mean your database wants thousands of connections. Split by indexed ranges, keep the worker query bounded, return small results, and cap concurrency where the real constraint lives.

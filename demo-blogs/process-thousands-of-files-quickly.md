@@ -11,94 +11,133 @@ layout:
 
 # Process thousands of files quickly
 
-If you have a lot of files, the fastest pattern is usually:
+In this example we:
 
-1. give each file to one function call
-2. run many function calls in parallel
-3. save each output to `/workspace/shared`
+* Read a folder of raw log files from Burla shared storage.
+* Run one Python function call per file.
+* Write one compact JSON report per file.
+* Combine the per-file reports into a single error summary.
 
-This keeps your script simple and makes it easy to scale up.
+This is the first pattern I would reach for when the input is already split into files. Do not make the worker aware of the whole dataset. Give it one file, make it produce one small report, then reduce those reports after the parallel work is done.
 
-## Before you start
+### Dataset: raw application logs
 
-Make sure you have already:
+Assume a daily log export has already been uploaded to:
 
-1. installed Burla: `pip install burla`
-2. connected your machine: `burla login`
-3. started your cluster in the Burla dashboard
-
-For shared filesystem details, read [Read and Write GCS Files](../how-to-guides/read-and-write-gcs-files.md).
-
-## Step 1: Build a list of file paths
-
-Start with a list of input files.
-
-```python
-from pathlib import Path
-
-input_file_paths = [str(path) for path in Path("/workspace/shared/logs/raw").glob("*.txt")]
+```text
+/workspace/shared/logs/raw/
 ```
 
-Each path in the list becomes one parallel function call.
-
-## Step 2: Write one file-processing function
-
-This function reads one input file and writes one output file.
+Every worker can read that folder. Anything the workers write back under `/workspace/shared` is visible to the client and to later workers.
 
 ```python
+import json
 from pathlib import Path
 
-
-def count_error_lines(input_file_path):
-    input_path = Path(input_file_path)
-    output_path = Path("/workspace/shared/logs/processed") / f"{input_path.stem}.txt"
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    error_count = sum("ERROR" in line for line in input_path.read_text().splitlines())
-    output_path.write_text(f"{error_count}\n")
-    return str(output_path)
-```
-
-## Step 3: Run all files in parallel
-
-Use `remote_parallel_map` with your function and file path list.
-
-```python
 from burla import remote_parallel_map
 
-processed_file_paths = remote_parallel_map(count_error_lines, input_file_paths)
+RAW_DIR = Path("/workspace/shared/logs/raw")
+REPORT_DIR = Path("/workspace/shared/logs/reports")
+FINAL_DIR = Path("/workspace/shared/logs/final")
 ```
 
-## Step 4: Combine the per-file outputs into one report
+### Step 1: Build the work list
 
-You can keep this final combine step simple.
+The client does the cheap planning step. Each path in `input_paths` becomes one function call.
 
 ```python
-from pathlib import Path
+input_paths = sorted(str(path) for path in RAW_DIR.glob("*.txt"))
 
-total_error_count = 0
-
-for processed_file_path in processed_file_paths:
-    total_error_count += int(Path(processed_file_path).read_text().strip())
-
-final_report_path = Path("/workspace/shared/logs/final/error-report.txt")
-final_report_path.parent.mkdir(parents=True, exist_ok=True)
-final_report_path.write_text(f"total_error_count={total_error_count}\n")
-
-print(final_report_path)
+print(f"Found {len(input_paths):,} log files")
+print(input_paths[:3])
 ```
 
-## Step 5: Scale up safely
+If this list is empty, fix the upload or path before thinking about parallelism.
 
-Before you run thousands of files, test with a small subset first.
+### Step 2: Process one file
+
+The worker reads one file, counts the lines that matter, writes a small JSON report, and returns the report path.
 
 ```python
-from burla import remote_parallel_map
+def scan_log_file(input_path: str) -> dict:
+    input_path = Path(input_path)
+    report_path = REPORT_DIR / f"{input_path.stem}.json"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
 
-remote_parallel_map(count_error_lines, input_file_paths[:20])
+    line_count = 0
+    error_count = 0
+    warning_count = 0
+
+    with input_path.open("r", encoding="utf-8", errors="replace") as f:
+        for line in f:
+            line_count += 1
+            error_count += "ERROR" in line
+            warning_count += "WARN" in line
+
+    report = {
+        "input_path": str(input_path),
+        "report_path": str(report_path),
+        "line_count": line_count,
+        "error_count": error_count,
+        "warning_count": warning_count,
+    }
+    report_path.write_text(json.dumps(report) + "\n")
+    return report
 ```
 
-When the small test works, run the full list.
+Return dictionaries for small metadata. Write larger outputs to shared storage and return paths.
 
-## What to do next
+### Step 3: Smoke test a few files
+
+Run a small slice first. This catches path mistakes, encoding problems, package issues, and bad assumptions about the file format.
+
+```python
+test_reports = remote_parallel_map(
+    scan_log_file,
+    input_paths[:20],
+    func_cpu=1,
+    func_ram=2,
+)
+
+print(test_reports[:2])
+```
+
+If the reports look right, launch the full file list.
+
+```python
+reports = remote_parallel_map(
+    scan_log_file,
+    input_paths,
+    func_cpu=1,
+    func_ram=2,
+    grow=True,
+)
+```
+
+### Step 4: Reduce the reports
+
+The reduce step runs locally because the result list is small.
+
+```python
+summary = {
+    "files": len(reports),
+    "lines": sum(row["line_count"] for row in reports),
+    "errors": sum(row["error_count"] for row in reports),
+    "warnings": sum(row["warning_count"] for row in reports),
+}
+
+FINAL_DIR.mkdir(parents=True, exist_ok=True)
+summary_path = FINAL_DIR / "log-summary.json"
+summary_path.write_text(json.dumps(summary, indent=2) + "\n")
+
+print(summary)
+print(summary_path)
+```
+
+### What's the point?
+
+The useful abstraction is not "run logs on a cluster." It is one file per worker, one report per file, one small reduce at the end.
+
+That shape is easy to debug. If one report looks wrong, you know exactly which input produced it. If one file fails, rerun that file. If the job grows from 1,000 files to 100,000 files, the function body does not change.
 
 If you have one very large file instead of many small files, continue with [Process one giant file quickly.](process-one-giant-file-quickly.md)

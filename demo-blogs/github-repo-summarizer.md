@@ -15,17 +15,29 @@ In this example we:
 
 * Export 1,200,000 GitHub READMEs from BigQuery.
 * Upload the Parquet to Burla shared storage.
-* Run deterministic summarizers over 600 shards and reduce into frontend JSON.
+* Run deterministic summarizers over 600 stable shards.
+* Reduce category counts, examples, and keyword statistics into frontend JSON.
 
 I like this one because the first instinct is to ask an LLM. That would make individual rows prettier and the aggregate harder to trust.
 
-### Step 1: Put the Parquet where workers can read it
+### Dataset: README Parquet export
 
-The worker reads a stripe of `/workspace/shared/grs/readmes.parquet` and emits one JSON shard.
+The BigQuery export includes repository metadata, README text, language, stars, and a deterministic `shard_id`.
 
 ```python
-SHARD_OUT = "/workspace/shared/grs/shards"
+import heapq
+import json
+from collections import Counter, defaultdict
+from pathlib import Path
+
+import pandas as pd
+import pyarrow.dataset as ds
+from burla import remote_parallel_map
+
 PARQUET_PATH = "/workspace/shared/grs/readmes.parquet"
+SHARD_DIR = Path("/workspace/shared/grs/shards")
+FINAL_DIR = Path("/workspace/shared/grs/final")
+N_SHARDS = 600
 
 CATEGORIES = {
     "ml": {"tensorflow": 4, "pytorch": 4, "embedding": 2, "llm": 4},
@@ -34,39 +46,115 @@ CATEGORIES = {
 }
 ```
 
-### Step 2: Fan out the shards
+The `shard_id` is what keeps workers from all reading and filtering the same giant file by accident.
 
-The map stage runs `summarize_shard` across 600 workers.
+### Step 1: Score one README
+
+The scoring function is deliberately inspectable. If a category looks wrong later, the weights are right here.
 
 ```python
-jobs = [(i, args.shards) for i in range(args.shards)]
-results = remote_parallel_map(
+def score_readme(text: str) -> tuple[str, int, dict]:
+    text_lower = (text or "").lower()
+    scores = {
+        category: sum(text_lower.count(word) * weight for word, weight in weights.items())
+        for category, weights in CATEGORIES.items()
+    }
+    category, score = max(scores.items(), key=lambda item: item[1])
+    if score == 0:
+        category = "other"
+
+    badges = text_lower.count("![") + text_lower.count("<img")
+    code_blocks = text_lower.count("```")
+    return category, score, {"badges": badges, "code_blocks": code_blocks}
+```
+
+This is not trying to write beautiful prose. It is trying to make aggregate README patterns measurable.
+
+### Step 2: Summarize one shard
+
+Each worker reads one `shard_id`, scores the READMEs, and writes a JSON shard.
+
+```python
+def summarize_shard(shard_id: int) -> dict:
+    dataset = ds.dataset(PARQUET_PATH, format="parquet")
+    table = dataset.filter(ds.field("shard_id") == shard_id).to_table()
+    df = table.to_pandas()
+
+    rows = []
+    for row in df.itertuples(index=False):
+        category, score, badges = score_readme(row.readme_text)
+        rows.append({
+            "repo": row.repo_name,
+            "language": row.language or "unknown",
+            "stars": int(row.stars or 0),
+            "category": category,
+            "score": int(score),
+            **badges,
+        })
+
+    SHARD_DIR.mkdir(parents=True, exist_ok=True)
+    out_path = SHARD_DIR / f"shard-{shard_id:05d}.json"
+    out_path.write_text(json.dumps({"rows": rows}) + "\n")
+    return {"shard_id": shard_id, "rows": len(rows), "path": str(out_path)}
+```
+
+### Step 3: Run the shards
+
+Smoke test one shard, then run the full shard list.
+
+```python
+test = remote_parallel_map(
     summarize_shard,
-    jobs,
-    func_cpu=args.func_cpu,
-    func_ram=args.func_ram,
+    [0],
+    func_cpu=2,
+    func_ram=8,
+)[0]
+
+print(test)
+```
+
+```python
+shard_reports = remote_parallel_map(
+    summarize_shard,
+    range(N_SHARDS),
+    func_cpu=2,
+    func_ram=8,
     grow=True,
-    max_parallelism=args.parallelism,
 )
 ```
 
-### Step 3: Reduce counters and examples
+### Step 4: Reduce counters and examples
 
-The reducer keeps heaps per category and language, plus document-frequency counters for TF-IDF.
+The reducer keeps counts plus small heaps of representative repos.
 
 ```python
-def reduce_bucket(bucket_idx: int, n_buckets: int, top_per_cat: int, top_per_lang: int, sample_cap: int) -> dict:
-    files = sorted(f for f in os.listdir("/workspace/shared/grs/shards") if f.endswith(".json"))
-    my_files = [f for i, f in enumerate(files) if i % n_buckets == bucket_idx]
-    by_cat, by_lang, doc_freq = {}, {}, {}
-    cat_heaps = {}
-    for fn in my_files:
-        with open(os.path.join("/workspace/shared/grs/shards", fn)) as f:
-            rows = json.load(f).get("rows", [])
-        for row in rows:
-            cat = row.get("category", "other")
-            quality = row.get("badges", 0) * 1.5 + row.get("code_blocks", 0) * 0.3
-            heapq.heappush(cat_heaps.setdefault(cat, []), (quality, row["repo"], row))
+by_category = Counter()
+by_language = Counter()
+examples = defaultdict(list)
+
+for report in shard_reports:
+    with open(report["path"]) as f:
+        rows = json.load(f)["rows"]
+    for row in rows:
+        by_category[row["category"]] += 1
+        by_language[row["language"]] += 1
+        quality = row["stars"] + row["badges"] * 10 + row["code_blocks"]
+        heapq.heappush(examples[row["category"]], (quality, row["repo"], row))
+        if len(examples[row["category"]]) > 50:
+            heapq.heappop(examples[row["category"]])
+
+FINAL_DIR.mkdir(parents=True, exist_ok=True)
+out_path = FINAL_DIR / "readme-summary.json"
+out_path.write_text(json.dumps({
+    "by_category": by_category,
+    "by_language": by_language,
+    "examples": {
+        category: [row for _, _, row in sorted(heap, reverse=True)]
+        for category, heap in examples.items()
+    },
+}, indent=2) + "\n")
+
+print(out_path)
 ```
 
 ### What's the point?
