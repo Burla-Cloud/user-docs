@@ -30,7 +30,7 @@ Use a minimal premium 3D product-render style. Images should feel like expensive
 
 Prefer clear, iconic product-metaphor compositions over abstract decorative diagrams. Each image should have one dominant central object that represents the main concept, plus only the minimum supporting objects needed to explain the action. The viewer should understand the page concept in under a second at card size.
 
-Use stronger visual hierarchy than a neutral workflow diagram: a large central subject, smaller supporting objects, and one or two thick Burla-cyan action arrows or connectors. Avoid spreading many small objects evenly across the frame. The image should feel like a polished 3D product icon, not a generic architecture diagram.
+Use stronger visual hierarchy than a neutral workflow diagram: a large central subject, smaller supporting objects, and one or two thick Burla-cyan action arrows or connectors. Arrows and connector lines must float in clear negative space; their shafts, heads, tails, bends, and shadows must not touch, overlap, plug into, pass behind, or visually intersect any object. Avoid spreading many small objects evenly across the frame. The image should feel like a polished 3D product icon, not a generic architecture diagram.
 
 Objects should be semantically recognizable but still minimal: files can have subtle non-text document grooves, storage can use a simple cloud/storage mark, GPUs can use simplified chip geometry, and containers can use layered blocks. Do not use labels or real UI text. The image should communicate through shape, scale, and motion, not written explanation.
 
@@ -78,7 +78,7 @@ Composition: one dominant central subject, one clear action, no more than two su
 
 The image should feel like a polished 3D product icon, not a generic architecture diagram. Use semantically recognizable but minimal objects. Communicate through shape, scale, and motion, not text.
 
-If the concept involves movement, transfer, routing, or data flow, use one or two thick rounded Burla-cyan arrows or connectors. Keep arrows short, bold, sculptural, and readable at thumbnail size.
+If the concept involves movement, transfer, routing, or data flow, use one or two thick rounded Burla-cyan arrows or connectors. Keep arrows short, bold, sculptural, and readable at thumbnail size. Arrows and connector lines must float in open negative space with visible gaps around all objects; they must not touch, overlap, plug into, pass behind, or visually intersect any object.
 
 Use Burla colors: cyan #7ECBDD for the main accent, muted blue-gray #3B5A64 only for subtle edges or shadows, and white/near-white for primary objects and background.
 
@@ -98,7 +98,7 @@ The background must match the docs website background exactly: rgb(248, 251, 252
 
 Composition: very wide and short, one dominant central subject or focal group, no more supporting objects than needed, important objects centered vertically, generous empty space, no important detail near top or bottom edges, matte white or near-white objects, soft studio lighting, subtle contact shadows, restrained geometry, and one saturated Burla cyan accent.
 
-The image should feel like a wide version of a polished 3D product icon, not a full workflow diagram. Use clear visual hierarchy: larger main object, smaller supporting objects, and one or two obvious action arrows or connectors when useful.
+The image should feel like a wide version of a polished 3D product icon, not a full workflow diagram. Use clear visual hierarchy: larger main object, smaller supporting objects, and one or two obvious action arrows or connectors when useful. Arrows and connector lines must float in open negative space with visible gaps around all objects; they must not touch, overlap, plug into, pass behind, or visually intersect any object.
 
 Use Burla colors: cyan #7ECBDD for the main accent, muted blue-gray #3B5A64 only for subtle edges or shadows, white/near-white for primary objects, and #F8FBFC for the page-matching background.
 
