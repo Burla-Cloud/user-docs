@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/met-weirdest-art.png
+cover: ../.gitbook/assets/more-examples/met-weirdest-art-cover.png
 coverY: 0
 hidden: true
 layout:

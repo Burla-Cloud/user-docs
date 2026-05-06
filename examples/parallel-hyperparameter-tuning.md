@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/pandas-apply-parallel.png
+cover: ../.gitbook/assets/more-examples/parallel-hyperparameter-tuning-cover.png
 coverY: 0
 hidden: true
 layout:

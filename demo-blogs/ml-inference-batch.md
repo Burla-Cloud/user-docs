@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/ml-inference-batch.png
+cover: ../.gitbook/assets/more-examples/ml-inference-batch-cover.png
 coverY: 0
 hidden: true
 layout:

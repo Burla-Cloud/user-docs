@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/arxiv-fossils.png
+cover: ../.gitbook/assets/more-examples/arxiv-fossils-cover.png
 coverY: 0
 layout:
   width: default

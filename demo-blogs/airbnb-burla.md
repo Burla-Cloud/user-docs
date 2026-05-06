@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/airbnb-burla.png
+cover: ../.gitbook/assets/more-examples/airbnb-burla-cover.png
 coverY: 0
 layout:
   width: default
