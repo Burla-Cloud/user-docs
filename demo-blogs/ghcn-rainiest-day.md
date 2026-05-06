@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/ghcn-rainiest-day.png
+cover: ../.gitbook/assets/more-examples/ghcn-rainiest-day-cover.png
 coverY: 0
 hidden: true
 layout:

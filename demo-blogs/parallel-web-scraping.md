@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/parallel-web-scraping.png
+cover: ../.gitbook/assets/more-examples/parallel-web-scraping-cover.png
 coverY: 0
 hidden: true
 layout:

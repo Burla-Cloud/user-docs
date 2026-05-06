@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/bioinformatics-alignment.png
+cover: ../.gitbook/assets/more-examples/multi-stage-genomic-pipeline-cover.png
 coverY: 0
 layout:
   width: default

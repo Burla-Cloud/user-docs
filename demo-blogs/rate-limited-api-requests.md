@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/rate-limited-api-requests.png
+cover: ../.gitbook/assets/more-examples/rate-limited-api-requests-cover.png
 coverY: 0
 hidden: true
 layout:

@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/image-dataset-resize.png
+cover: ../.gitbook/assets/more-examples/image-dataset-resize-cover.png
 coverY: 0
 hidden: true
 layout:

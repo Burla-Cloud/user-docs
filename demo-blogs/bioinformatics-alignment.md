@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/bioinformatics-alignment.png
+cover: ../.gitbook/assets/more-examples/bioinformatics-alignment-cover.png
 coverY: 0
 hidden: true
 layout:

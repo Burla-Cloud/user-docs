@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/monte-carlo-simulation.png
+cover: ../.gitbook/assets/more-examples/monte-carlo-simulation-cover.png
 coverY: 0
 hidden: true
 layout:

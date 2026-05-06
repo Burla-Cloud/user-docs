@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/gdal-raster-processing.png
+cover: ../.gitbook/assets/more-examples/gdal-raster-processing-cover.png
 coverY: 0
 hidden: true
 layout:

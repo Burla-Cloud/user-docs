@@ -1,6 +1,6 @@
 ---
 description: With <30 lines of Python.
-cover: ../.gitbook/assets/more-examples/query-2-4tb-parquet-cover.png
+cover: ../.gitbook/assets/more-examples/trillion-row-parquet-cover.png
 coverY: 0
 layout:
   width: default

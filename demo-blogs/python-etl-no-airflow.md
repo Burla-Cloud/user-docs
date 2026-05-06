@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/python-etl-no-airflow.png
+cover: ../.gitbook/assets/more-examples/python-etl-no-airflow-cover.png
 coverY: 0
 hidden: true
 layout:
