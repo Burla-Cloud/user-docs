@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/571m-amazon-reviews.png
+cover: ../.gitbook/assets/more-examples/process-one-giant-file-cover.png
 coverY: 0
 hidden: true
 layout:

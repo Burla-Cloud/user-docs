@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/s3-to-postgres-etl.png
+cover: ../.gitbook/assets/more-examples/terabyte-etl-cover.png
 coverY: 0
 hidden: true
 layout:
