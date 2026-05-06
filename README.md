@@ -114,7 +114,7 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 Free for Hobbyists. Enterprise seats are $100/month.\
 Same machine prices as Google Cloud. No Burla markup on compute.
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Run your first 1000-CPU job in 2 minutes:
 

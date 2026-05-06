@@ -1,7 +1,5 @@
 # CLI Reference
 
-## CLI-Reference
-
 Burla's CLI contains the following commands:
 
 * [`burla install`](CLI-Reference.md#burla-install) Deploy self-hosted Burla in your Google Cloud project.
