@@ -128,9 +128,9 @@ Free for Hobbyists. Compute prices the same as Google Cloud.
 | ✅ Free for all non-commercial use. | ✅ 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing). |
 |                                    | ✅ $500 in free credits for qualified users.                                   |
 
-### Try the 1000-CPU Quickstart, it's free and takes 2 minutes:
+### Run your first 1000-CPU job in 2 minutes:
 
-No setup required. Sign in, open the Colab, and watch Burla run your Python function on 1,000 CPUs.
+No setup required. Sign in, open the Colab, and follow along. It's only 4 steps!
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Run the quickstart in this Google Colab notebook:
