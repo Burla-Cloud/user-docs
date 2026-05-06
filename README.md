@@ -116,7 +116,7 @@ Same machine prices as Google Cloud. No Burla markup on compute.
 
 ## Run your first 1000-CPU job in 2 minutes:
 
-Zero setup required. Sign in, open the Colab, and follow along. You're 4 steps from scalable Python!
+Zero setup required. Sign in, open the Colab, and follow along. It's only 4 steps!
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Run the quickstart in this Google Colab notebook:

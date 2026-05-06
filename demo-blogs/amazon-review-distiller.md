@@ -6,15 +6,29 @@ layout:
   cover:
     visible: true
     size: hero
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
-# Distill 571 million Amazon reviews
+# Ranking 572M Amazon reviews
 
 In this example we:
 
 * Stream 275 GB of Amazon review JSONL from HuggingFace.
 * Split 34 category files into 545 byte-range chunks instead of downloading everything first.
-* Build both the Wall of Rants and Unhinged Mode with deterministic scoring.
+* Find the most absurd ones (build the wall of rants & unhinged mode) with deterministic scoring.
 
 The goal is not just a funny sample. The repo parses 571,544,386 reviews, keeps tiny top-K heaps per shard, merges them into category findings, then runs a second worst-of-worst pass for censored strong profanity and categorized slur hits.
 

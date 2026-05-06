@@ -6,9 +6,23 @@ layout:
   cover:
     visible: true
     size: hero
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
-# 1,000-CPU Genomics Pipeline
+# Genomic alignment pipeline (Illumina)
 
 In this example we:
 
@@ -16,7 +30,7 @@ In this example we:
 * Download the reference genome plus the Illumina BPM and EGT files.
 * Convert 360 samples in parallel, then merge everything into PGEN/PVAR/PSAM files.
 
-This is a pretty normal genomics workflow. The weird part is usually not the science. The weird part is getting all the command-line tools, reference files, sample files, and CPUs lined up at the same time.
+This is a pretty normal genomics workflow. The hard part is usually not the science. The hard part is getting all the command-line tools, reference files, sample files, and CPUs lined up at the same time.
 
 ### Step 1: Boot some VMs
 

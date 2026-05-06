@@ -13,11 +13,11 @@
 
 ## Featured Examples
 
-* [Query 2.4TB Parquet in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
-* [Test Airbnb hypotheses](demo-blogs/airbnb-burla.md)
-* [Distill 571M Amazon reviews](demo-blogs/amazon-review-distiller.md)
-* [Cluster arXiv abstracts](demo-blogs/arxiv-fossils.md)
-* [1,000-CPU Genomics Pipeline](examples/multi-stage-genomic-pipeline.md)
+* [Query 2.4TBs of Parquet files in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
+* [Ranking 1.7M Airbnbs by TV location](demo-blogs/airbnb-burla.md)
+* [Ranking 572M Amazon reviews](demo-blogs/amazon-review-distiller.md)
+* [Clustering 2.7M arXiv abstracts](demo-blogs/arxiv-fossils.md)
+* [Genomic alignment pipeline (Illumina)](examples/multi-stage-genomic-pipeline.md)
 
 ## All Examples
 
