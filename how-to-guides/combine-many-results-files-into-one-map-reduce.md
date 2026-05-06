@@ -50,7 +50,7 @@ Make sure you have already:
 2. connected your machine: `burla login`
 3. started your cluster in the Burla dashboard
 
-If you’re new to `/workspace/shared`, start with [Read and Write GCS Files](read-and-write-gcs-files.md). If you’re new to `func_cpu` and `func_ram`, start with [Run code on one big cloud machine.](/broken/pages/ul1MmInVV9iLEeFLkEri)
+If you’re new to `/workspace/shared`, start with [Read and Write GCS Files](read-and-write-gcs-files.md). If you’re new to `func_cpu` and `func_ram`, see the [`remote_parallel_map` API reference](../API-Reference.md).
 
 ## Step 1 (Map): Write one file per input
 
