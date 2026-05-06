@@ -40,9 +40,9 @@ results = remote_parallel_map(
 The listing stage downloads each Inside Airbnb city dump and writes one cleaned Parquet file per city.
 
 ```python
-def download_and_clean_city(args: DownloadCityArgs) -> dict:
-    import gzip, io, os, pandas as pd, requests
+import gzip, io, os, pandas as pd, requests
 
+def download_and_clean_city(args: DownloadCityArgs) -> dict:
     r = requests.get(args.listings_url, timeout=600, headers={"User-Agent": "Mozilla/5.0"})
     df = pd.read_csv(io.BytesIO(gzip.decompress(r.content)), low_memory=False)
     df["listing_id"] = df["id"].astype("int64")

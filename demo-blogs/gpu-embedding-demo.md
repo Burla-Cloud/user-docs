@@ -37,11 +37,11 @@ I like baking the model into the image for demos like this. Otherwise every work
 Downloading and trimming text does not need A100s. Each CPU worker grabs a Wikipedia Parquet shard and writes JSONL to the shared folder.
 
 ```python
-def download_shard(shard_idx, articles_per_shard, shared_root):
-    import io, json, urllib.request
-    from pathlib import Path
-    import pyarrow.parquet as pq
+import io, json, urllib.request
+from pathlib import Path
+import pyarrow.parquet as pq
 
+def download_shard(shard_idx, articles_per_shard, shared_root):
     url = PARQUET_URL_TEMPLATE.format(shard_idx=shard_idx % 41)
     with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "burla-demo/1.0"})) as response:
         table = pq.read_table(io.BytesIO(response.read())).slice(0, articles_per_shard)

@@ -24,14 +24,14 @@ No captions are generated here. The text comes from people, which is part of wha
 Each worker downloads one HuggingFace metadata shard, keeps geotagged photos, reverse-geocodes them, and writes compact JSONL.
 
 ```python
+import gzip, json, os, requests
+from huggingface_hub import hf_hub_url
+import reverse_geocoder as rg
+
 REPO_ID = "dalle-mini/YFCC100M_OpenAI_subset"
 OUTPUT_DIR = "/workspace/shared/wpi/shards"
 
 def process_shard(shard_id: str) -> dict:
-    import gzip, json, os, requests
-    from huggingface_hub import hf_hub_url
-    import reverse_geocoder as rg
-
     meta_url = hf_hub_url(REPO_ID, filename=f"metadata/metadata_{shard_id}.jsonl.gz", repo_type="dataset")
     rows = [json.loads(l) for l in gzip.decompress(requests.get(meta_url).content).decode("utf-8", errors="replace").split("\n") if l.strip()]
     geotagged = [r for r in rows if r.get("latitude") and r.get("longitude")]

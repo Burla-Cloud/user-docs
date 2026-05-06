@@ -23,8 +23,9 @@ The goal is the Wall of Rants. But the real question is bigger than funny exampl
 Each category file is huge, so we turn it into roughly 500MB jobs.
 
 ```python
+from huggingface_hub import HfApi
+
 def plan_chunks(chunk_mb: int = 500) -> list[tuple[str, int, int, str]]:
-    from huggingface_hub import HfApi
     files = [(i.path, i.size) for i in HfApi().list_repo_tree(
         "McAuley-Lab/Amazon-Reviews-2023",
         path_in_repo="raw/review_categories",

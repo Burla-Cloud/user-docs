@@ -37,11 +37,11 @@ batches = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
 Each worker fetches images with a thread pool, thumbnails them, embeds with CLIP, and writes a vector shard.
 
 ```python
-def fetch_and_embed(batch: list[int]) -> str:
-    import requests
-    from PIL import Image
-    from concurrent.futures import ThreadPoolExecutor, as_completed
+import requests
+from PIL import Image
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
+def fetch_and_embed(batch: list[int]) -> str:
     objs = pd.read_parquet(OBJECTS_PATH).set_index("object_id", drop=False)
     rows = objs.reindex(batch).dropna(subset=["crd_urlpath"]).reset_index(drop=True)
     session = requests.Session()

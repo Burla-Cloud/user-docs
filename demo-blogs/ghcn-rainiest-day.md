@@ -24,9 +24,9 @@ The run found 1,750.0 mm at Koumac, New Caledonia on 1976-01-17.
 NOAA publishes one compressed CSV per year. That makes the input list obvious.
 
 ```python
-def _stream_year_rows(year: int):
-    import csv, gzip, io, requests
+import csv, gzip, io, requests
 
+def _stream_year_rows(year: int):
     url = f"https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_year/{year}.csv.gz"
     with requests.get(url, stream=True, timeout=300, headers={"User-Agent": "ghcn-rainiest-day/1.0"}) as resp:
         resp.raise_for_status()
