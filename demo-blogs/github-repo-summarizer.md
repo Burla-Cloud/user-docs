@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/github-repo-summarizer.png
+cover: ../.gitbook/assets/more-examples/github-readme-summarizer-cover.png
 coverY: 0
 hidden: true
 layout:

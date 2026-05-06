@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/parquet-parallel.png
+cover: ../.gitbook/assets/more-examples/parquet-audit-cover.png
 coverY: 0
 hidden: true
 layout:

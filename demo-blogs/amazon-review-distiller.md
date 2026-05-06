@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/amazon-review-distiller.png
+cover: ../.gitbook/assets/more-examples/amazon-review-distiller-cover.png
 coverY: 0
 layout:
   width: default

@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/nyc-ghost-neighborhoods.png
+cover: ../.gitbook/assets/more-examples/nyc-taxi-history-cover.png
 coverY: 0
 hidden: true
 layout:

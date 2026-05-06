@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/world-photo-index.png
+cover: ../.gitbook/assets/more-examples/world-photo-index-cover.png
 coverY: 0
 hidden: true
 layout:
