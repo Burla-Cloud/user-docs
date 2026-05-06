@@ -14,7 +14,7 @@
 ## Featured Examples
 
 * [Query 2.4TB Parquet in 76s](examples/process-2.4tb-of-parquet-files-in-76s.md)
-* [Rank 50 million Airbnbs](demo-blogs/airbnb-burla.md)
+* [Analyze every public Airbnb](demo-blogs/airbnb-burla.md)
 * [Distill 571M Amazon reviews](demo-blogs/amazon-review-distiller.md)
 * [Embed 2.7M arXiv papers](demo-blogs/arxiv-fossils.md)
 * [1,000-CPU Genomics Pipeline](examples/multi-stage-genomic-pipeline.md)

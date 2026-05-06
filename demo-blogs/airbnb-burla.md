@@ -12,8 +12,8 @@ layout:
 
 In this example we:
 
-* Process 1,097,241 public Airbnb listings.
-* Score 1,243,339 images on CPU and 48,122 top candidates on A100s.
+* Process every public Inside Airbnb listing across 119 cities and 4 quarterly snapshots.
+* CLIP-score 1.7M photos, then use Claude Haiku Vision to validate the shortlists.
 * Analyze 50,686,612 reviews with a staged review funnel.
 
 This is the demo where the infrastructure really changes the experiment. A few cities can make a nice story. The whole corpus tells you whether the story survives contact with the rest of the world.
@@ -35,41 +35,41 @@ results = remote_parallel_map(
 )
 ```
 
-### Step 2: Clean the listings
+### Step 2: Score every photo first
 
-The listing stage downloads each Inside Airbnb city dump and writes one cleaned Parquet file per city.
-
-```python
-import gzip, io, os, pandas as pd, requests
-
-def download_and_clean_city(args: DownloadCityArgs) -> dict:
-    r = requests.get(args.listings_url, timeout=600, headers={"User-Agent": "Mozilla/5.0"})
-    df = pd.read_csv(io.BytesIO(gzip.decompress(r.content)), low_memory=False)
-    df["listing_id"] = df["id"].astype("int64")
-    df["price_usd"] = df["price"].apply(_parse_price_inline)
-    df["demand_proxy"] = pd.to_numeric(df.get("reviews_per_month"), errors="coerce").fillna(0)
-    out_path = os.path.join(args.shared_root, f"{args.city_slug}.parquet")
-    df.to_parquet(out_path, compression="zstd", index=False)
-    return {"ok": True, "n_rows": int(len(df)), "shared_path": out_path}
-```
-
-### Step 3: Split CPU and GPU work
-
-Images first go through a broad CPU CLIP stage. Then the top candidates go through a smaller A100 YOLO stage.
+The photo stage downloads image URLs, runs CLIP on CPU workers, and writes Parquet shards for the next stages. The broad pass stays cheap and parallel.
 
 ```python
 results = remote_parallel_map(
-    gpu_detect_image_batch,
+    cpu_score_image_batch,
     batches,
-    func_cpu=8,
-    func_ram=64,
-    func_gpu="A100_40G",
+    func_cpu=1,
+    func_ram=4,
     max_parallelism=n_workers,
     grow=True,
+    spinner=False,
 )
 ```
 
-Reviews use the same idea: cheap heuristic pass first, embeddings and clusters second, Claude Haiku only on the top 10,000.
+### Step 3: Validate the photo shortlists
+
+The original YOLOv8 GPU stage is still in the source repo for completeness, but it is not the live photo pipeline. The published demo uses Haiku Vision to validate the CLIP shortlists for pets, TV placement, hectic kitchens, and drug-den vibes.
+
+```python
+results = remote_parallel_map(
+    haiku_validate_tv_batch,
+    tv_batches,
+    func_cpu=2,
+    func_ram=8,
+    max_parallelism=n_workers,
+    grow=True,
+    spinner=False,
+)
+```
+
+### Step 4: Funnel the reviews
+
+Reviews use the same shape: cheap heuristic scoring on every review, SBERT embeddings for the top 200,000, then Claude Haiku scoring for the top 12,000.
 
 ```python
 results = remote_parallel_map(
@@ -79,11 +79,22 @@ results = remote_parallel_map(
     func_ram=2,
     max_parallelism=n_workers,
     grow=True,
+    spinner=False,
+)
+
+results = remote_parallel_map(
+    embed_reviews_batch,
+    embed_batches,
+    func_cpu=2,
+    func_ram=8,
+    max_parallelism=n_workers,
+    grow=True,
+    spinner=False,
 )
 ```
 
 ### What's the point?
 
-I would not start with the website. I would start with artifact contracts: listings, photo manifest, CPU image scores, GPU detections, review scores, correlations, site JSON.
+I would not start with the website. I would start with artifact contracts: listings, photo manifest, CPU image scores, Haiku-validated photo categories, review scores, correlations, site JSON.
 
 That sounds boring, but it is what keeps the project honest. You can rerun one stage, inspect the bad shard, or try a new hypothesis without paying for everything again. I think this is the difference between a fun notebook and an analysis you can actually believe.
