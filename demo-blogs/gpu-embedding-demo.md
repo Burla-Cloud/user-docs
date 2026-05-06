@@ -1,5 +1,5 @@
 ---
-cover: ../.gitbook/assets/more-examples/gpu-embedding-demo.png
+cover: ../.gitbook/assets/more-examples/gpu-embedding-demo-cover.png
 coverY: 0
 hidden: true
 layout:
