@@ -107,30 +107,16 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 {% endcolumn %}
 {% endcolumns %}
 
-***
-
 ## Pricing:
 
-Free for Hobbyists. Compute prices the same as Google Cloud.
+Free for Hobbyists. Enterprise seats are $100/month.\
+Same machine prices as Google Cloud. No Burla markup on compute.
 
-{% columns %}
-{% column %}
-#### Self-Hosted: (in your cloud)
-{% endcolumn %}
+<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
-{% column %}
-#### Managed: (in Burla's cloud)
-{% endcolumn %}
-{% endcolumns %}
+## Run your first 1000-CPU job in 2 minutes:
 
-| ✔ $100/month per Enterprise User.  | ✔ $100/month per Enterprise User.                                             |
-| ---------------------------------- | ----------------------------------------------------------------------------- |
-| ✅ Free for all non-commercial use. | ✅ 100% Identical pricing to [Google Cloud](https://cloud.google.com/pricing). |
-|                                    | ✅ $500 in free credits for qualified users.                                   |
-
-### Try the 1000-CPU Quickstart, it's free and takes 2 minutes:
-
-No setup required. Sign in, open the Colab, and watch Burla run your Python function on 1,000 CPUs.
+Zero setup required. Sign in, open the Colab, and follow along. It's only 4 steps!
 
 1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
 2. Run the quickstart in this Google Colab notebook:

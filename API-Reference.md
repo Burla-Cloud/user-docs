@@ -1,6 +1,12 @@
 # API Reference
 
-## API-Reference
+Burla's Python API contains the following top-level interfaces:
+
+* [`burla.remote_parallel_map`](API-Reference.md#burla.remote_parallel_map) Run any Python function on many remote computers.
+
+That's it!
+
+***
 
 ### `burla.remote_parallel_map`
 

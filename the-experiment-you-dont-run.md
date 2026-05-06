@@ -168,6 +168,6 @@ Your function runs across remote machines. Prints and exceptions come back local
 
 Teams can run this inside their own private GCP project today. Burla is designed to be self-hosted, so data and compute stay in the customer's cloud while the developer experience still feels local.
 
-We have demos, like [processing 2.4TB of Parquet files on 10,000 CPUs in 76 seconds](examples/process-2.4tb-of-parquet-files-in-76s.md). But the benchmark is not the point.
+We have demos, like [processing 2.4TB of Parquet files on 10,000 CPUs in 76 seconds](/broken/pages/uPoCTbLEC4qf8qp8QvBn). But the benchmark is not the point.
 
 The point is being able to run the version of the experiment you meant to run.
