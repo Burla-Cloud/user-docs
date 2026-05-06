@@ -107,8 +107,6 @@ The `func_cpu` and `func_ram` args make it possible to assign big hardware to so
 {% endcolumn %}
 {% endcolumns %}
 
-***
-
 ## Pricing:
 
 Free for Hobbyists. Enterprise seats are $100/month.\
