@@ -228,7 +228,7 @@ Do not ask for a GPU because the whole pipeline has a GPU step. Ask for a GPU on
 
 ## Examples that use this pattern
 
-- [Put the embedding model on A100s, then ask the search question](../demo-blogs/gpu-embedding-demo.md)
+- [Embed Wikipedia on A100s, then ask the search question](../demo-blogs/gpu-embedding-demo.md)
 - [Align every FASTQ sample without building a scheduler first](../demo-blogs/bioinformatics-alignment.md)
 - [Process every raster tile, not a pretty subset](../demo-blogs/gdal-raster-processing.md)
 - [Genomic Pipeline on 1,000 CPUs](../examples/multi-stage-genomic-pipeline.md)
