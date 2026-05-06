@@ -116,7 +116,7 @@ Same machine prices as Google Cloud. No Burla markup on compute.
 
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-### Getting Started: Run your first 1000-CPU job in 2 minutes.
+## Run your first 1000-CPU job in 2 minutes:
 
 Zero setup required. Sign in, open the Colab, and follow along. You're 4 steps from scalable Python!
 
