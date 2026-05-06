@@ -1,9 +1,7 @@
 # Getting Started
 
-There are two ways to host Burla:
-
-1. [In your cloud (Self-Hosted)](get-started.md#quickstart-self-hosted)
-2. [In our cloud (Managed)](get-started.md#quickstart-managed)
+There are two ways to host Burla, in your cloud (self-hosted) or in our cloud (managed).\
+Below are guides to get started with both. Don't hesitate to email jake@burla.dev if you get stuck!
 
 ## Quickstart: Managed
 
