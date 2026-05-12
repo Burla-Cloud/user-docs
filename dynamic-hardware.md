@@ -18,7 +18,7 @@ layout:
     visible: true
 ---
 
-# The Computer Should Figure Out How Much Computer It Needs
+# Your Workload Should Choose Its Own Hardware
 
 You should not have to estimate how much CPU or RAM your workload needs.
 
