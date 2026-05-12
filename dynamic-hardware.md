@@ -148,6 +148,18 @@ That tradeoff is worth stating plainly. Dynamic Hardware gets its efficiency by 
 
 But when work items are idempotent, this is exactly the right trade.
 
+## The next step is moving work without killing it
+
+The long-term version of Dynamic Hardware should not need to kill the worker at all.
+
+Today, Burla runs workers in containers. The roadmap is to run workers inside VMs, then move the entire running VM to another machine when a node gets crowded. The worker, its memory, and any processes it started would keep running. The overloaded node would get more space. The migrated work would not be retried, because it would not have stopped.
+
+This is called live migration. The primitive is already real: [Google Cloud uses live migration](https://docs.cloud.google.com/compute/docs/instances/live-migration-process) to move running VMs during host maintenance without interrupting the workload, rebooting the instance, or changing the VM's application state from the guest's point of view.
+
+Using live migration for Dynamic Hardware would remove the idempotency requirement from this kind of rescheduling. Instead of killing the smallest workers around a large one, Burla could move them to machines with more room. If no good destination exists, `grow=True` could add a node and move the running workers there. Burla could also keep a little empty space in the cluster specifically as migration room.
+
+That is the stronger version of the idea: users do not specify CPU or RAM, Burla keeps every node close to 100% CPU or RAM utilization, and the work keeps running while the system rearranges the hardware underneath it.
+
 ## The interface should be the work
 
 The deeper point is not that Burla chooses better defaults.
