@@ -5,7 +5,7 @@
 * [API Reference](API-Reference.md)
 * [CLI Reference](CLI-Reference.md)
 * [About](about.md)
-* [Your Workload Should Choose Its Own Hardware](dynamic-hardware.md)
+* [Hardware Should Be Dynamic](dynamic-hardware.md)
 * [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
 * [Vulnerability Disclosure Program](security.md)
 * [Managed Service Privacy Policy](privacy-policy.md)

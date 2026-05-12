@@ -18,7 +18,7 @@ layout:
     visible: true
 ---
 
-# Your Workload Should Choose Its Own Hardware
+# Hardware Should Be Dynamic
 
 You should not have to estimate how much CPU or RAM your workload needs.
 
