@@ -18,7 +18,7 @@ layout:
     visible: true
 ---
 
-# Dynamic Hardware
+# The Computer Should Figure Out How Much Computer It Needs
 
 You should not have to estimate how much CPU or RAM your workload needs.
 
