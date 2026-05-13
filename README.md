@@ -74,7 +74,7 @@ remote_parallel_map(..., grow=True)
 
 By automatically adjusting CPU/RAM available to each task while running, Burla can massively improve resource utilization, and eliminate out of memory Errors or silent RAM-swap slowdowns.
 
-Dynamic Hardware often more than doubles resource efficiency. Read our blog to learn how it works.
+Dynamic Hardware often more than doubles resource efficiency. Read [our blog](dynamic-hardware.md) to learn how it works.
 
 ## How it works:
 
