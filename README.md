@@ -61,7 +61,7 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/data-pipeline-4-high-quality (1).gif" alt=""><figcaption></figcaption></figure>
 
-## Double resource utilization with dynamic hardware.
+## Resource needs are dynamic. Hardware should be too.
 
 Ever had a pipeline crash after running for 6 hours? or sit at 10% CPU for most of it's run?\
 Resource needs change during your workload. With Burla, available hardware can change with it.
@@ -74,7 +74,7 @@ remote_parallel_map(..., grow=True)
 
 By automatically adjusting CPU/RAM available to each task while running, Burla can massively improve utilization, and eliminate out of memory Errors or silent slowdowns from RAM spilling to disk.
 
-The separate `grow` argument enables Burla to add and remove nodes from the cluster while running. Fully adapting both cluster size and resource allocation at runtime often yields a more than 2x gain in resource efficiency. Read [our blog](dynamic-hardware.md) to learn how it works.
+The `grow` argument enables Burla to add and remove nodes from the cluster while running. Fully adapting both cluster size and resource allocation at runtime often yields a more than 2x gain in resource efficiency. Read [our blog](dynamic-hardware.md) to learn how it works.
 
 ## How it works:
 
