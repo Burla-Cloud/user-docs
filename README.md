@@ -56,7 +56,7 @@ remote_parallel_map(predict, [...], func_gpu="A100")
 
 Creates a pipeline like:
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
 ## Resource needs change.                                           Hardware should change with it.
 
