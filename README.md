@@ -52,7 +52,7 @@ Pipelines built with Burla are simpler, more maintainable, faster, and much easi
 This code:
 
 ```python
-remote_parallel_map(process, [...], image="osgeo/gdal:latest")
+remote_parallel_map(process, [...], image="rocker/geospatial:latest")
 remote_parallel_map(aggregate, [...], func_cpu=64)
 remote_parallel_map(predict, [...], func_gpu="A100")
 ```
@@ -61,11 +61,20 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/data-pipeline-4-high-quality (1).gif" alt=""><figcaption></figcaption></figure>
 
-### Monitor progress in the dashboard:
+## Resource needs are dynamic. Hardware should be too.
 
-Cancel bad runs, filter logs to watch individual inputs, or monitor output files in the UI.
+Ever had a pipeline crash after running for 6 hours? or sit at 10% CPU for most of it's run?\
+Resource needs change during your workload. With Burla, available hardware can change with it.
 
-<figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
+```python
+remote_parallel_map(..., func_cpu="dynamic")
+remote_parallel_map(..., func_ram="dynamic")
+remote_parallel_map(..., grow=True)
+```
+
+By automatically adjusting CPU/RAM available to each task while running, Burla can massively improve resource utilization, and eliminate out of memory Errors or silent RAM-swap slowdowns.
+
+Dynamic Hardware often more than doubles resource efficiency. Read our blog to learn how it works.
 
 ## How it works:
 
@@ -82,37 +91,18 @@ When a Python function is run using `remote_parallel_map`:
 * Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs or thousands of machines.
 
-### Features:
+### Monitor progress in the dashboard:
 
-{% columns %}
-{% column width="50%" %}
-**📦 Automatic Package Sync**
+Cancel bad runs, filter logs to watch individual inputs, or monitor output files live in the Filesystem UI.
 
-Burla automatically (and very quickly) clones your Python packages on every remote machine where code is executed.
-
-**🐋 Custom Containers**
-
-Easily run code in any Docker container.\
-Public or private, just paste an image URI in the settings, then hit start!
-{% endcolumn %}
-
-{% column width="50%" %}
-**📂 Network Filesystem**
-
-Need to get big data into/out of the cluster? Burla automatically mounts a cloud storage bucket to a folder in every container.
-
-**⚙️ Variable Hardware Per-Function**
-
-The `func_cpu` and `func_ram` args make it possible to assign big hardware to some functions, and less to others.
-{% endcolumn %}
-{% endcolumns %}
+<figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
 
 ## Pricing:
 
-Free for Hobbyists. Enterprise seats are $100/month.\
-Same machine prices as Google Cloud. No Burla markup on compute.
+Prices not based on consumption. Enterprise seats start at $100/month.\
+Burla is free for Hobbyists and Researchers.
 
-<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## Run your first 1000-CPU job in 2 minutes:
 
@@ -122,10 +112,6 @@ Zero setup required. Sign in, open the Colab, and follow along. It's only 4 step
 2. Run the quickstart in this Google Colab notebook:
 
 {% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
-
-
-
-
 
 ***
 
