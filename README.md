@@ -72,9 +72,9 @@ remote_parallel_map(..., func_ram="dynamic")
 remote_parallel_map(..., grow=True)
 ```
 
-By automatically adjusting CPU/RAM available to each task while running, Burla can massively improve utilization, and eliminate out of memory Errors or silent RAM-swap slowdowns.
+By automatically adjusting CPU/RAM available to each task while running, Burla can massively improve utilization, and eliminate out of memory Errors or silent slowdowns from RAM spilling to disk.
 
-Dynamic Hardware often more than doubles resource efficiency. Read [our blog](dynamic-hardware.md) to learn how it works.
+The separate `grow` argument enables Burla to add and remove nodes from the cluster while running. Fully adapting both cluster size and resource allocation at runtime can yield a more than 2x gain in efficiency. Read [our blog](dynamic-hardware.md) to learn how it works.
 
 ## How it works:
 
