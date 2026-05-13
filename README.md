@@ -61,7 +61,7 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/data-pipeline-4-high-quality (1).gif" alt=""><figcaption></figcaption></figure>
 
-## Resource needs are dynamic. Hardware should be too.
+## Double resource utilization with dynamic hardware.
 
 Ever had a pipeline crash after running for 6 hours? or sit at 10% CPU for most of it's run?\
 Resource needs change during your workload. With Burla, available hardware can change with it.
@@ -72,7 +72,7 @@ remote_parallel_map(..., func_ram="dynamic")
 remote_parallel_map(..., grow=True)
 ```
 
-By automatically adjusting CPU/RAM available to each task while running, Burla can massively improve resource utilization, and eliminate out of memory Errors or silent RAM-swap slowdowns.
+By automatically adjusting CPU/RAM available to each task while running, Burla can massively improve utilization, and eliminate out of memory Errors or silent RAM-swap slowdowns.
 
 Dynamic Hardware often more than doubles resource efficiency. Read [our blog](dynamic-hardware.md) to learn how it works.
 
