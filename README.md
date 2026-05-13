@@ -22,7 +22,7 @@ layout:
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
 Burla manages infrastructure inside your cloud, increases efficiency, and let's you focus on code.\
-Scale vector embeddings, inference, preprocessing, build data-pipelines, and more.
+Scale vector embeddings, inference, preprocessing, data-pipelines, and much more.
 
 Burla only has one function:
 
