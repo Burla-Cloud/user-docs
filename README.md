@@ -21,8 +21,8 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla manages infrastructure inside your cloud, doubles efficiency, and let's you focus on code.\
-Scale vector embeddings, inference, preprocessing, build dynamic AI/ML pipelines, and more.
+Burla manages infrastructure inside your cloud, increases efficiency, and let's you focus on code.\
+Scale vector embeddings, inference, preprocessing, build data-pipelines, and more.
 
 Burla only has one function:
 
@@ -43,9 +43,7 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 ## Stop wasting time. Infrastructure can manage itself.
 
-Define the hardware or container you need next to the code that needs it.
-
-Easily change hardware, docker containers, or fan out to thousands of machines mid-workload.\
+Simply define the hardware or container you need next to the code that needs it.\
 Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, or any container.
 
 This code:
@@ -58,14 +56,14 @@ remote_parallel_map(predict, [...], func_gpu="A100")
 
 Creates a pipeline like:
 
-<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-## Resource needs change.                                           Hardware should change with it!
+## Resource needs change.                                           Hardware should change with it.
 
 Burla can adapt hardware assigned to each function call live while the program is running.\
 This frequently more than doubles compute efficiency, and eliminates memory errors.
 
-<figure><img src=".gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ```python
 remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
@@ -99,7 +97,7 @@ Cancel bad runs, filter logs to watch individual inputs, or monitor output files
 Prices not based on consumption. Enterprise seats start at $100/month.\
 Burla is free for Hobbyists and Researchers.
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Run your first 1000-CPU job in 2 minutes:
 
