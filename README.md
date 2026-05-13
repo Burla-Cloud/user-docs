@@ -61,7 +61,7 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/data-pipeline-4-high-quality (1).gif" alt=""><figcaption></figcaption></figure>
 
-## Resource needs are dynamic. Hardware should be too
+## Resource needs change. Your hardware should too.
 
 Ever had a pipeline crash after running for 6 hours? or sit at 10% CPU for most of it's run?\
 Resource needs change during your workload. With Burla, available hardware can change with it.
