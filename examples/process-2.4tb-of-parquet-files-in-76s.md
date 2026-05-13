@@ -1,15 +1,29 @@
 ---
 description: With <30 lines of Python.
-cover: ../.gitbook/assets/more-examples/trillion-row-parquet-cover.png
+cover: ../.gitbook/assets/more-examples/query-2-4tb-parquet-cover.png
 coverY: 0
 layout:
   width: default
   cover:
     visible: true
     size: hero
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+  metadata:
+    visible: true
+  tags:
+    visible: true
 ---
 
-# 2.4TB of Parquet files in 76s
+# Query 2.4TBs of Parquet files in 76s
 
 In this example we:
 

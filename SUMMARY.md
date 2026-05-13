@@ -5,7 +5,13 @@
 * [API Reference](API-Reference.md)
 * [CLI Reference](CLI-Reference.md)
 * [About](about.md)
-* [Hardware Should Be Dynamic](dynamic-hardware.md)
+
+## Blog
+
+* [Resource needs change.           Hardware should change with it.](blog/dynamic-hardware.md)
+
+***
+
 * [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
 * [Vulnerability Disclosure Program](security.md)
 * [Managed Service Privacy Policy](privacy-policy.md)

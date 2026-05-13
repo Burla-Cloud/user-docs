@@ -1,5 +1,7 @@
 ---
-description: Why CPU and RAM estimates are the wrong interface for uneven parallel workloads.
+description: >-
+  Why CPU and RAM estimates are the wrong interface for uneven parallel
+  workloads.
 layout:
   width: default
   title:
@@ -18,7 +20,7 @@ layout:
     visible: true
 ---
 
-# Hardware Should Be Dynamic
+# Resource needs change.           Hardware should change with it.
 
 You should not have to estimate how much CPU or RAM your workload needs.
 
@@ -30,7 +32,7 @@ That is a strange question to ask the user.
 
 The user does not know the answer. More importantly, the user cannot know the answer in advance, because the answer depends on the PDFs themselves. The resource profile is not a single number. It is a distribution.
 
-<figure><img src=".gitbook/assets/dynamic-hardware-pdf-queue.png" alt="Many differently sized document stacks flow into one simple processing block."><figcaption><p>The work is obvious: parse the documents. The hardware profile is what the system should discover.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/dynamic-hardware-pdf-queue.png" alt="Many differently sized document stacks flow into one simple processing block."><figcaption><p>The work is obvious: parse the documents. The hardware profile is what the system should discover.</p></figcaption></figure>
 
 The traditional interface is:
 
@@ -58,7 +60,7 @@ Or you can make a guess that is right on average. This still loses, because the 
 
 In the PDF example, a fixed worker size has to serve tiny PDFs and giant PDFs. If you size every worker for the giant PDFs, the tiny PDFs waste memory. If you size every worker for the tiny PDFs, the giant PDFs fail or crawl. If you pick a compromise, both problems remain: some work is overprovisioned, and some work is underprovisioned.
 
-<figure><img src=".gitbook/assets/dynamic-hardware-task-distribution.png" alt="A long-tail distribution where most PDFs need little CPU or RAM and a few need much more."><figcaption><p>Most parallel jobs are not made of identical work items. A fixed resource request has to pretend they are.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/dynamic-hardware-task-distribution.png" alt="A long-tail distribution where most PDFs need little CPU or RAM and a few need much more."><figcaption><p>Most parallel jobs are not made of identical work items. A fixed resource request has to pretend they are.</p></figcaption></figure>
 
 This is not a user error. It is a bad abstraction.
 
@@ -80,7 +82,7 @@ Burla starts aggressively, with one worker per available CPU. If CPU and RAM are
 
 When the node saturates, Burla removes workers. For CPU, saturation means the whole node is out of available CPU capacity, not that a single core is busy. For memory, the danger point is when RAM is exhausted and the system would otherwise start spilling to swap. The input being processed by a removed worker goes back onto the queue, where another worker can pick it up later.
 
-<figure><img src=".gitbook/assets/dynamic-hardware-worker-adjustment.png" alt="A server tray with worker blocks inside it, where smaller workers leave and a larger worker keeps running with more space."><figcaption><p>Burla does not resize a running computer. It resizes the amount of work competing for that computer.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/dynamic-hardware-worker-adjustment.png" alt="A server tray with worker blocks inside it, where smaller workers leave and a larger worker keeps running with more space."><figcaption><p>Burla does not resize a running computer. It resizes the amount of work competing for that computer.</p></figcaption></figure>
 
 The eviction policy matters. Burla should evict the workers using the least resources first.
 
@@ -102,7 +104,7 @@ Idle capacity cannot be recovered. Once a second of CPU time passes unused, it i
 
 Dynamic Hardware uses that capacity speculatively. Some speculative work completes. Some is evicted and retried. But because it runs only while the node has room, it does not reduce the progress of the work that actually needed the machine.
 
-<figure><img src=".gitbook/assets/dynamic-hardware-idle-capacity.png" alt="A line chart showing node pressure over time, with unused capacity above the line that Dynamic Hardware can fill."><figcaption><p>Static scheduling leaves uncertainty as empty space. Dynamic Hardware turns that space into useful attempts.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/dynamic-hardware-idle-capacity.png" alt="A line chart showing node pressure over time, with unused capacity above the line that Dynamic Hardware can fill."><figcaption><p>Static scheduling leaves uncertainty as empty space. Dynamic Hardware turns that space into useful attempts.</p></figcaption></figure>
 
 This is the proof-like core of the argument.
 
@@ -126,7 +128,7 @@ With `grow=True`, if a job is no longer running at its maximum useful parallelis
 
 This matters because evicting workers on one node should not mean the whole job slows down. If a few large PDFs force some nodes to reduce their worker count, Burla can compensate by adding more machines. The job keeps moving, and the user does not have to decide in advance how many machines the workload needs.
 
-<figure><img src=".gitbook/assets/dynamic-hardware-grow-cluster.png" alt="A cluster grows by adding a new node that begins pulling document work from a queue."><figcaption><p>Dynamic Hardware is not only worker tuning inside one node. It is runtime infrastructure adaptation for the whole job.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/dynamic-hardware-grow-cluster.png" alt="A cluster grows by adding a new node that begins pulling document work from a queue."><figcaption><p>Dynamic Hardware is not only worker tuning inside one node. It is runtime infrastructure adaptation for the whole job.</p></figcaption></figure>
 
 This is why "Dynamic Hardware" is a useful name even though the mechanism is partly concurrency control.
 

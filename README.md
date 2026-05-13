@@ -21,7 +21,7 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla is a Python package for abstracting hardware, it makes cloud computing fast and simple.\
+Burla manages infrastructure inside your cloud, doubles efficiency, and let's you focus on code.\
 Scale vector embeddings, inference, preprocessing, build dynamic AI/ML pipelines, and more.
 
 Burla only has one function:
@@ -37,17 +37,16 @@ def my_function(x):
 remote_parallel_map(my_function, my_inputs)
 ```
 
-This runs `my_function` on 1000 vms in less than one second:
+This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## A better way to build scalable AI/ML data-pipelines.
+## Stop wasting time. Infrastructure can manage itself.
 
-Burla can change containers, hardware, or fan out to thousands of machines mid-workload.\
-This makes it possible to create dynamic pipelines that decide hardware and scale at runtime.
+Define the hardware or container you need next to the code that needs it.
 
-Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, or any container.\
-Pipelines built with Burla are simpler, more maintainable, faster, and much easier to develop!
+Easily change hardware, docker containers, or fan out to thousands of machines mid-workload.\
+Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, or any container.
 
 This code:
 
@@ -59,26 +58,24 @@ remote_parallel_map(predict, [...], func_gpu="A100")
 
 Creates a pipeline like:
 
-<figure><img src=".gitbook/assets/data-pipeline-4-high-quality (1).gif" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-## Resource needs change. Your hardware should too.
+## Resource needs change.                                           Hardware should change with it!
 
-Ever had a pipeline crash after running for 6 hours? or sit at 10% CPU for most of it's run?\
-Resource needs change during your workload. With Burla, available hardware can change with it.
+Burla can adapt hardware assigned to each function call live while the program is running.\
+This frequently more than doubles compute efficiency, and eliminates memory errors.
+
+<figure><img src=".gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 ```python
-remote_parallel_map(..., func_cpu="dynamic")
-remote_parallel_map(..., func_ram="dynamic")
-remote_parallel_map(..., grow=True)
+remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
 ```
 
-By automatically adjusting CPU/RAM available to each task while running, Burla can massively improve utilization, and eliminate out of memory Errors or silent slowdowns from RAM spilling to disk.
+Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
 
-The `grow` argument enables Burla to add and remove nodes from the cluster while running. Fully adapting both cluster size and resource allocation at runtime often yields a more than 2x gain in resource efficiency. Read [our blog](dynamic-hardware.md) to learn how it works.
+## Remote development, local feel.
 
-## How it works:
-
-With Burla, running code in the cloud feels the same as running code locally.
+Running code in the cloud shouldn't feel any different than running code locally.
 
 ```python
 return_values = remote_parallel_map(my_function, my_inputs)
