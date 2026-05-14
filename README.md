@@ -58,7 +58,7 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
-## Infra that manages itself can double comput efficiency.
+## Infrastructure that manages itself is twice as efficient.
 
 Burla adapts hardware available to each function call live while the program is running.\
 This frequently more than doubles compute efficiency, and eliminates out of memory errors.
