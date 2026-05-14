@@ -41,7 +41,7 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Stop gluing cloud services together.                                  It's 2026, self-hosted data infrastructure is trivial now.
+## Stop gluing cloud services together.                                  It's 2026, self-hosted data infrastructure can be trivial.
 
 Simply define the hardware or container you need inside your code next to the function that needs it.\
 Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, and any container.
