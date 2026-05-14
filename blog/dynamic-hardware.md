@@ -1,7 +1,5 @@
 ---
-description: >-
-  Why CPU and RAM estimates are the wrong interface for uneven parallel
-  workloads.
+description: Why CPU and RAM estimates are the wrong interface for cloud computing.
 layout:
   width: default
   title:
@@ -21,8 +19,6 @@ layout:
 ---
 
 # Resource needs change.            Hardware should change with it.
-
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
 You should not have to estimate how much CPU or RAM your workload needs.
 
