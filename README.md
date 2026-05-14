@@ -65,12 +65,11 @@ This frequently more than doubles compute efficiency, and eliminates out of memo
 
 <figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-Few workloads use 100% CPU the entire time they run. Burla automatically puts extra space to use.
-
 ```python
 remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
 ```
 
+Few workloads use 100% CPU the entire time they run. Burla automatically puts extra space to use.\
 Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
 
 ## Remote development, local feel.
