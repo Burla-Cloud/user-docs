@@ -58,14 +58,14 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
-## Infrastructure that manages itself is twice as efficient.
+## Self-managing infra can be >2x more efficient.
 
-Burla adapts hardware available to each function call live while the program is running.\
+Burla vertically scales hardware available to each function call live while the program is running.\
 This frequently more than doubles compute efficiency, and eliminates out of memory errors.
 
 <figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-Few workloads use 100% CPU the entire time they run. Burla can automatically use this extra space.
+Few workloads use 100% CPU the entire time they run. Burla automatically puts this space to use.
 
 ```python
 remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
