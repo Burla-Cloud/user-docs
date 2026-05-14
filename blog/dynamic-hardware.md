@@ -1,5 +1,5 @@
 ---
-description: Why CPU and RAM estimates are the wrong interface for cloud computing.
+description: In fact, it's much better if you don't.
 layout:
   width: default
   title:
@@ -18,35 +18,29 @@ layout:
     visible: true
 ---
 
-# Resource needs change.            Hardware should change with it.
+# You should never need to estimate how much CPU or RAM you need.
 
-You should not have to estimate how much CPU or RAM your workload needs.
+This might sound crazy but it's true. The reason why has nothing to do with our ability to guess.
 
-That sentence sounds almost too simple to be interesting. In practice, it cuts against one of the basic assumptions of modern cloud computing: before you run the job, you are expected to describe the hardware it should run on.
+The real reason is that modern cloud schedulers with access to live resource use information can vertically scale available CPU and RAM per workload in realtime, massively boosting efficiency, and eliminating memory errors.
 
-A data science team wants to parse 10,000 PDFs. Some are short. Some are enormous. Some are malformed. Some require much more memory because the parser loads large sections into memory. The actual job is clear: parse the PDFs. But the infrastructure interface asks a different question: how much CPU and RAM should each worker get?
+This violates one of the most basic assumptions of modern cloud computing: before you run a workload, you need to describe the hardware it should run on. Not only is this unnecessary, it forces you into a static resource box, where more useful work frequently _could_ happen but doesn't. How often does your workload use 100% CPU or RAM? [Estimates](https://www.datacenterdynamics.com/en/news/only-13-of-provisioned-cpus-and-20-of-memory-utilized-in-cloud-computing-report/) put average utilization below 25%.
 
-That is a strange question to ask the user.
+Let's clarify with a simple example. A data science team wants to parse 10,000 PDFs. Some are short. Some are enormous. Some are malformed. Some require much more memory, and many require very little. The job is clear: parse the PDFs. But the infrastructure interface asks a different question: how much CPU and RAM should each worker get? How many machines should I use? Should I process all the small ones separately? or run a separate cleaning step to avoid wasting resources?
 
-The user does not know the answer. More importantly, the user cannot know the answer in advance, because the answer depends on the PDFs themselves. The resource profile is not a single number. It is a distribution.
-
-<figure><img src="../.gitbook/assets/dynamic-hardware-pdf-queue.png" alt="Many differently sized document stacks flow into one simple processing block."><figcaption><p>The work is obvious: parse the documents. The hardware profile is what the system should discover.</p></figcaption></figure>
+We shouldn't need to think about these things. Not because it's annoying (which it is), but because even if you guess perfectly, the large PDF's will still sit at 10% CPU for an hour before quickly spiking to 100%, then back to 10%, and that extra space could have been put to use processing small PDFs.
 
 The traditional interface is:
 
 > Run this code on this hardware.
 
-Burla's interface should be closer to:
+An ideal interface should be closer to:
 
 > Run this code.
 
 The system should figure out the hardware while the job is running.
 
-That is the idea behind Dynamic Hardware.
-
-By more efficient, I mean more fully used: CPU and RAM spend more of the job doing useful work instead of sitting idle behind a conservative guess. Higher utilization usually shows up as lower cloud cost, shorter runtime, or both. But the underlying win is simpler than either one: the cluster is closer to full.
-
-## The problem with guessing
+## Problems with guessing
 
 When you choose fixed resources upfront, there are only three possible outcomes.
 

@@ -8,11 +8,10 @@
 
 ## Blog
 
-* [Resource needs change.           Hardware should change with it.](blog/dynamic-hardware.md)
+* [You should never need to estimate how much CPU or RAM you need.](blog/dynamic-hardware.md)
 
 ***
 
-* [The Question You Asked Is Not the Experiment You Ran](the-experiment-you-dont-run.md)
 * [Vulnerability Disclosure Program](security.md)
 * [Managed Service Privacy Policy](privacy-policy.md)
 * [Software as a Service Agreement](software-as-a-service-agreement.md)

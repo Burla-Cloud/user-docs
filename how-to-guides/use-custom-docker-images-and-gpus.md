@@ -1,8 +1,8 @@
 ---
-cover: ../.gitbook/assets/how-to-guides/custom-docker-gpus-cover.png
-coverY: 0
 description: Run Burla workers with custom images, native tools, and GPUs.
 hidden: true
+cover: ../.gitbook/assets/how-to-guides/custom-docker-gpus-cover.png
+coverY: 0
 layout:
   width: default
   cover:
@@ -24,13 +24,9 @@ layout:
     visible: true
 ---
 
-# Use custom Docker images and GPUs
+# Use custom Docker images & GPUs
 
-Use this when your worker needs CUDA, native binaries, pinned system packages, large model weights, or a private runtime.
-Do not build an image for a small pure-Python job unless package install time is already the problem.
-The unit of work stays the same: one file, batch, tile, sample, or shard per input.
-Each worker runs your function inside the image you pass to `remote_parallel_map`.
-The output should be small metadata or a path to files written by the worker.
+Use this when your worker needs CUDA, native binaries, pinned system packages, large model weights, or a private runtime. Do not build an image for a small pure-Python job unless package install time is already the problem. The unit of work stays the same: one file, batch, tile, sample, or shard per input. Each worker runs your function inside the image you pass to `remote_parallel_map`. The output should be small metadata or a path to files written by the worker.
 
 An image changes the worker environment. It should not change the shape of the job.
 
@@ -228,9 +224,9 @@ Do not ask for a GPU because the whole pipeline has a GPU step. Ask for a GPU on
 
 ## Examples that use this pattern
 
-- [Embed Wikipedia on A100s, then ask the search question](../demo-blogs/gpu-embedding-demo.md)
-- [Align every FASTQ sample without building a scheduler first](../demo-blogs/bioinformatics-alignment.md)
-- [Process every raster tile, not a pretty subset](../demo-blogs/gdal-raster-processing.md)
-- [Genomic Pipeline on 1,000 CPUs](../examples/multi-stage-genomic-pipeline.md)
-- [Test Airbnb hypotheses at public-data scale](../demo-blogs/airbnb-burla.md)
-- [The Question You Asked Is Not the Experiment You Ran](../the-experiment-you-dont-run.md)
+* [Embed Wikipedia on A100s, then ask the search question](../demo-blogs/gpu-embedding-demo.md)
+* [Align every FASTQ sample without building a scheduler first](../demo-blogs/bioinformatics-alignment.md)
+* [Process every raster tile, not a pretty subset](../demo-blogs/gdal-raster-processing.md)
+* [Genomic Pipeline on 1,000 CPUs](../examples/multi-stage-genomic-pipeline.md)
+* [Test Airbnb hypotheses at public-data scale](../demo-blogs/airbnb-burla.md)
+* [The Question You Asked Is Not the Experiment You Ran](/broken/pages/if4VVPAhR8Yy7e7rPhSv)
