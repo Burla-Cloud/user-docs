@@ -58,7 +58,7 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
-## Self-managing infra can be >2x more efficient.
+## Infra that manages itself is more than twice as efficient.
 
 Burla vertically scales hardware available to each function call live while the program is running.\
 This frequently more than doubles compute efficiency, and eliminates out of memory errors.
