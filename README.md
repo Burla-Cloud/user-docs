@@ -21,7 +21,7 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla manages infrastructure inside your cloud, and let's you focus on the code instead.\
+Burla manages the compoute infrastructure inside your cloud, saving time, and doubling efficiency.\
 Scale vector embeddings, inference, preprocessing, data-pipelines, and much more.
 
 Burla only has one function:
@@ -58,14 +58,14 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
-## Infra that manages itself is more than twice as efficient.
+## Infra that manages itself is over twice as efficient.
 
 Burla vertically scales hardware available to each function call live while the program is running.\
 This frequently more than doubles compute efficiency, and eliminates out of memory errors.
 
 <figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-Few workloads use 100% CPU the entire time they run. Burla automatically puts this space to use.
+Few workloads use 100% CPU the entire time they run. Burla automatically puts extra space to use.
 
 ```python
 remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
