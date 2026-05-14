@@ -81,7 +81,7 @@ Running code in the cloud shouldn't feel any different from running code locally
 return_values = remote_parallel_map(my_function, my_inputs)
 ```
 
-When a Python function is run using `remote_parallel_map`, it runs in its own container the cloud, but:
+When a Python function is run using `remote_parallel_map`, it runs in the cloud but:
 
 * Anything it prints appears locally (and inside the dashboard).
 * Any exceptions are thrown locally.
