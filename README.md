@@ -21,7 +21,7 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla manages infrastructure inside your cloud, increases efficiency, and let's you focus on code.\
+Burla manages infrastructure inside your cloud, and let's you focus on the code instead.\
 Scale vector embeddings, inference, preprocessing, data-pipelines, and much more.
 
 Burla only has one function:
@@ -41,10 +41,10 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Stop wasting time. Infrastructure can manage itself.
+## Stop gluing cloud services together.                                  It's 2026, self-hosted data infrastructure is trivial now.
 
-Simply define the hardware or container you need next to the code that needs it.\
-Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, or any container.
+Simply define the hardware or container you need inside your code next to the function that needs it.\
+Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, and any container.
 
 This code:
 
@@ -58,7 +58,7 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
-## Resource needs change.                                           Hardware should change with it.
+## Resource needs change during runtime.                                           Hardware should change with it!
 
 Burla can adapt hardware assigned to each function call live while the program is running.\
 This frequently more than doubles compute efficiency, and eliminates memory errors.
@@ -73,7 +73,7 @@ Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardw
 
 ## Remote development, local feel.
 
-Running code in the cloud shouldn't feel any different than running code locally.
+Running code in the cloud shouldn't feel any different from running code locally.
 
 ```python
 return_values = remote_parallel_map(my_function, my_inputs)
@@ -94,8 +94,8 @@ Cancel bad runs, filter logs to watch individual inputs, or monitor output files
 
 ## Pricing:
 
-Prices not based on consumption. Enterprise seats start at $100/month.\
-Burla is free for Hobbyists and Researchers.
+Prices are **not** based on compute consumption.\
+Burla is $100/month per user for enterprises, and free for everyone else.
 
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
