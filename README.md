@@ -54,7 +54,7 @@ remote_parallel_map(aggregate, [...], func_cpu=64)
 remote_parallel_map(predict, [...], func_gpu="A100")
 ```
 
-Creates a pipeline like:
+Creates a data-pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
