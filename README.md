@@ -41,7 +41,7 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Stop gluing cloud services together.                                  It's 2026, self-hosted data infrastructure can be trivial.
+## Stop gluing cloud services together.                                  It's 2026, self-hosted data infrastructure is trivial now.
 
 Simply define the hardware or container you need inside your code next to the function that needs it.\
 Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, and any container.
@@ -58,14 +58,14 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
-## Infra that manages itself is more than twice as efficient.
+## Infra that manages itself can be >2x more efficient.
 
 Burla adapts hardware available to each function call live while the program is running.\
 This frequently more than doubles compute efficiency, and eliminates out of memory errors.
 
 <figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-Few workloads use 100% CPU the entire time they run. Burla automatically utilizes this extra space.
+Few workloads use 100% CPU the entire time they run. Burla can automatically use this extra space.
 
 ```python
 remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
