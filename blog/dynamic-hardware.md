@@ -58,63 +58,44 @@ This is not a user error. It is a bad abstraction.
 
 The system is asking the user to predict something that will only become visible during execution.
 
-## Hardware is not the thing that needs to be fixed
+## How Burla vertically scales CPU and RAM
 
-A running machine cannot magically grow more CPUs or RAM. But the number of workers running on that machine can change.
+A running machine cannot magically grow more CPUs or RAM. However, the number of workers running on that machine can change.
 
-That is the important move.
+Dynamic hardware does not mean that a single computer literally changes size every second. It means that the effective resources available to each unit of work change while the job runs.
 
-Dynamic Hardware does not mean that a single computer literally changes size every second. It means that the effective resources available to each unit of work change while the job runs.
-
-Burla workers do not need fixed CPU and RAM limits inside the node. If a node has many workers, they share the node's resources. If some workers are removed, the remaining workers have more CPU and RAM available to them. If more workers are added, the available resources per worker decrease.
+Burla workers (docker containers) do not have fixed CPU and RAM limits inside a node. If a node has many workers, they share the node's resources. If some workers are removed, the remaining workers have more CPU and RAM available to them. If more workers are added, the available resources per worker decrease.
 
 So Burla can control the hardware available to each task by controlling concurrency.
 
-Burla starts aggressively, with one worker per available CPU. If CPU and RAM are still low, Burla adds workers. Those workers pull more inputs from the queue and start doing useful work.
-
-When the node saturates, Burla removes workers. For CPU, saturation means the whole node is out of available CPU capacity, not that a single core is busy. For memory, the danger point is when RAM is exhausted and the system would otherwise start spilling to swap. The input being processed by a removed worker goes back onto the queue, where another worker can pick it up later.
-
 <figure><img src="../.gitbook/assets/dynamic-hardware-worker-adjustment.png" alt="A server tray with worker blocks inside it, where smaller workers leave and a larger worker keeps running with more space."><figcaption><p>Burla does not resize a running computer. It resizes the amount of work competing for that computer.</p></figcaption></figure>
 
-The eviction policy matters. Burla should evict the workers using the least resources first.
+Burla starts aggressively, with one worker per available CPU. If CPU and RAM utilization is low, Burla adds workers. Those workers pull more inputs from the queue and start doing useful work.
 
-If one worker is parsing a huge PDF and several others are parsing small PDFs, the huge PDF is probably the one that needs the machine. Killing the largest task would be exactly wrong. Burla should remove the smaller workers around it, giving the large task more room to finish. The smaller tasks go back to the queue and can run somewhere else later.
+When the node saturates, Burla removes workers. For CPU, saturation means the whole node is (almost) out of available CPU capacity, not that a single core is busy. For memory, this means RAM is exhausted and the system would otherwise start spilling to swap. The input being processed by a removed worker goes back onto the queue, where another worker can pick it up later.
 
-This is the opposite of treating every task as though it deserves the same static slice of the machine.
+This is how Burla adjusts CPU and RAM available to each task during runtime.
 
 ## Why killing work is not waste
 
 At first, this sounds inefficient. A worker may run for a while, get killed, and have its input retried later. Isn't that wasted work?
 
-Not in the situation Dynamic Hardware is designed for.
+Because the worker was running in capacity that otherwise would have been idle, this is not waste. If it finishes before the node becomes saturated, the job has made progress. If it does not finish, the input returns to the queue. Retry overhead is tiny, and the work item is assumed to be idempotent: it can run more than once without corrupting the result.
 
-The worker was running in capacity that otherwise would have been idle. If it finishes before the node becomes saturated, the job has made progress. If it does not finish, the input returns to the queue. Retry overhead is tiny, and the work item is assumed to be idempotent: it can run more than once without corrupting the result.
+The alternative is not "run the task perfectly." The alternative is to leave that CPU or RAM unused.
 
-The alternative is not "run the task perfectly." The alternative is to leave that CPU or RAM unused because the system is afraid the capacity might be needed later.
-
-Idle capacity cannot be recovered. Once a second of CPU time passes unused, it is gone.
-
-Dynamic Hardware uses that capacity speculatively. Some speculative work completes. Some is evicted and retried. But because it runs only while the node has room, it does not reduce the progress of the work that actually needed the machine.
-
-<figure><img src="../.gitbook/assets/dynamic-hardware-idle-capacity.png" alt="A line chart showing node pressure over time, with unused capacity above the line that Dynamic Hardware can fill."><figcaption><p>Static scheduling leaves uncertainty as empty space. Dynamic Hardware turns that space into useful attempts.</p></figcaption></figure>
-
-This is the proof-like core of the argument.
+Dynamic hardware uses extra capacity speculatively. Some speculative work completes. Some is evicted and retried. But because it runs only while the node has room, it does not reduce the progress of any work already using that machine.
 
 A static scheduler has to reserve for uncertainty. It must choose a fixed worker count, a fixed worker size, or fixed resource requests before it knows what the tasks will actually do. That leaves unused capacity whenever the guess is conservative.
 
 Dynamic Hardware can reproduce the conservative behavior when the machine is full, but it can also use idle capacity while it exists. If the extra work finishes, utilization improves. If the extra work is evicted, the system has lost very little, because the input simply returns to the queue.
 
-Against a human guess or a static scheduler without perfect future knowledge, this is a better position to be in.
+Against a human guess, or a static scheduler, this is a much better position to be in.
 
-The only scheduler that could beat it in principle is an impossible one: a scheduler that already knows exactly how much CPU, RAM, and time every future task will require. Real users do not have that knowledge. Real static schedulers do not have that knowledge either.
+## Vertical scaling requires horizontal scaling.
 
-Burla can observe what is actually happening.
-
-That is the advantage.
-
-## Dynamic Hardware also means growing the cluster
-
-Worker count inside a node is one layer. The cluster itself can also change.
+Adjusting worker count inside a node can vertically scale available resources per task.\
+The cluster itself must also grow and shrink during runtime to make this actually useful.
 
 With `grow=True`, if a job is no longer running at its maximum useful parallelism, Burla can add more nodes while the job is running. Those new nodes join the job, start pulling inputs from the queue, and do more work.
 
@@ -122,7 +103,7 @@ This matters because evicting workers on one node should not mean the whole job 
 
 <figure><img src="../.gitbook/assets/dynamic-hardware-grow-cluster.png" alt="A cluster grows by adding a new node that begins pulling document work from a queue."><figcaption><p>Dynamic Hardware is not only worker tuning inside one node. It is runtime infrastructure adaptation for the whole job.</p></figcaption></figure>
 
-This is why "Dynamic Hardware" is a useful name even though the mechanism is partly concurrency control.
+This is why "Dynamic Hardware" is a useful name even though the mechanism is really concurrency control.
 
 From the user's perspective, the amount of hardware available to the workload is changing. A worker may effectively get more of a node when other workers are removed. The job may get more nodes when more parallelism is needed. The user does not manage those decisions directly.
 
@@ -134,25 +115,25 @@ Burla adapts the infrastructure.
 
 There is one important constraint: work items must be idempotent.
 
-If a worker dies while parsing a PDF, that PDF may be parsed again later. The program must be correct even if the same input is attempted more than once.
+If a worker dies while parsing a PDF, that PDF may be parsed again later. The program must work correctly even if the same input is attempted more than once.
 
-For many data-parallel workloads, this is a reasonable requirement. Parsing documents, embedding text, transforming files, running inference, or computing independent outputs can usually be structured this way. It is less appropriate for code that mutates shared external state without safeguards.
+For many data-parallel workloads, this is a reasonable requirement. Parsing documents, embedding text, transforming files, running inference, or computing independent outputs is usually already structured this way. It is less appropriate for code that mutates shared external state without safeguards.
 
-That tradeoff is worth stating plainly. Dynamic Hardware gets its efficiency by treating unfinished work as retryable. If retrying a unit of work is dangerous, the workload needs a different execution model.
+Dynamic Hardware gets its efficiency by treating unfinished work as retryable. If retrying a unit of work is dangerous, the workload needs a different execution model.
 
 But when work items are idempotent, this is exactly the right trade.
 
 ## The next step is moving work without killing it
 
-The long-term version of Dynamic Hardware should not need to kill the worker at all.
+The long-term version of Dynamic Hardware should not need to kill workers at all.
 
 Today, Burla runs workers in containers. The roadmap is to run workers inside VMs, then move the entire running VM to another machine when a node gets crowded. The worker, its memory, and any processes it started would keep running. The overloaded node would get more space. The migrated work would not be retried, because it would not have stopped.
 
-This is called live migration. The primitive is already real: [Google Cloud uses live migration](https://docs.cloud.google.com/compute/docs/instances/live-migration-process) to move running VMs during host maintenance without interrupting the workload, rebooting the instance, or changing the VM's application state from the guest's point of view.
+This is called live migration, and it's already in production at scale: [Google Cloud uses live migration](https://docs.cloud.google.com/compute/docs/instances/live-migration-process) to move running VMs during host maintenance without interrupting the workload, rebooting the instance, or changing the VM's application state from the guest's point of view.
 
-Using live migration for Dynamic Hardware would remove the idempotency requirement from this kind of rescheduling. Instead of killing the smallest workers around a large one, Burla could move them to machines with more room. If no good destination exists, `grow=True` could add a node and move the running workers there. Burla could also keep a little empty space in the cluster specifically as migration room.
+Using live migration for dynamic hardware would remove the idempotency requirement from this kind of rescheduling. Instead of killing the smallest workers around a large one, Burla could move them to machines with more room. If no good destination exists, Burla already has mechanisms for adding nodes during runtime, and can move the running workers there.
 
-That is the stronger version of the idea: users do not specify CPU or RAM, Burla keeps every node close to 100% CPU or RAM utilization, and the work keeps running while the system rearranges the hardware underneath it.
+This is the strongest version of the idea: users do not specify CPU or RAM, Burla keeps every node close to 100% CPU or RAM utilization, no work is killed or thrown out, and the system rearranges hardware underneath while your workload is running.
 
 ## The interface should be the work
 
@@ -170,16 +151,18 @@ The user says:
 
 > Parse these PDFs.
 
-Burla watches the workload as it actually behaves. It fills idle CPU and RAM with useful work. It backs off when a node saturates. It gives large tasks more room by removing smaller ones. It adds nodes when the job needs more parallelism.
+Burla watches the workload as it actually behaves. It fills idle CPU and RAM with useful work. It backs off when a node saturates. It gives large tasks more room by removing smaller ones. It adds nodes when the job needs more parallelism and removes them when they aren't needed.
 
 The result is not merely easier. It is structurally more efficient than asking a person to guess.
 
-A person choosing fixed resources upfront has less information than the system observing the job at runtime. The person sees the code and maybe a few examples. The system sees the actual CPU pressure, actual memory pressure, actual task distribution, and actual long tail as they happen.
+A person choosing fixed resources upfront has less information than the system observing the job at runtime. The person sees the code and maybe a few examples. The system sees the actual CPU pressure, actual memory pressure, actual task distribution, and the actual long tail as it happens.
 
-That is the real abstraction.
+We shouldn't specify:
 
-Not "run X code on Y hardware."
+> Run X code on Y hardware.
 
-Just:
+We should just say:
 
 > Run X code.
+
+This is a better abstraction.
