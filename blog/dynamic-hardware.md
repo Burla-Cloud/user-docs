@@ -1,5 +1,5 @@
 ---
-description: In fact, it's much better if you don't.
+description: '*assuming you''re a data scientist or ML-engineer.'
 layout:
   width: default
   title:
@@ -24,7 +24,7 @@ This might sound crazy but it's true. The reason why has nothing to do with our 
 
 The real reason is that modern cloud schedulers with access to live resource use information can vertically scale available CPU and RAM per workload in realtime, massively boosting efficiency, and eliminating memory errors.
 
-This violates one of the most basic assumptions of modern cloud computing: before you run a workload, you need to describe the hardware it should run on. Not only is this unnecessary, it forces you into a static resource box, where more useful work frequently _could_ happen but doesn't. How often does your workload use 100% CPU or RAM? [Estimates](https://www.datacenterdynamics.com/en/news/only-13-of-provisioned-cpus-and-20-of-memory-utilized-in-cloud-computing-report/) put average utilization below 25%.
+This violates one of the most basic assumptions of modern cloud computing: before you run a workload, you need to describe the hardware it should run on. Not only is this unnecessary, it forces you into a static box, where more useful work frequently _could_ happen but doesn't. How often does your workload use 100% CPU or RAM? [Estimates](https://www.datacenterdynamics.com/en/news/only-13-of-provisioned-cpus-and-20-of-memory-utilized-in-cloud-computing-report/) put average utilization below 25%.
 
 Let's clarify with a simple example. A data science team wants to parse 10,000 PDFs. Some are short. Some are enormous. Some are malformed. Some require much more memory, and many require very little. The job is clear: parse the PDFs. But the infrastructure interface asks a different question: how much CPU and RAM should each worker get? How many machines should I use? Should I process all the small ones separately? or run a separate cleaning step to avoid wasting resources?
 
@@ -58,7 +58,7 @@ This is not a user error. It is a bad abstraction.
 
 The system is asking the user to predict something that will only become visible during execution.
 
-## How Burla vertically scales CPU and RAM
+## The traditional solution
 
 A running machine cannot magically grow more CPUs or RAM. However, the number of workers running on that machine can change.
 
@@ -76,7 +76,7 @@ When the node saturates, Burla removes workers. For CPU, saturation means the wh
 
 This is how Burla adjusts CPU and RAM available to each task during runtime.
 
-## Why killing work is not waste
+## Killing work is not waste
 
 At first, this sounds inefficient. A worker may run for a while, get killed, and have its input retried later. Isn't that wasted work?
 
@@ -111,7 +111,7 @@ They describe the work.
 
 Burla adapts the infrastructure.
 
-## The constraint
+## What's the catch?
 
 There is one important constraint: work items must be idempotent.
 
@@ -123,7 +123,7 @@ Dynamic Hardware gets its efficiency by treating unfinished work as retryable. I
 
 But when work items are idempotent, this is exactly the right trade.
 
-## The next step is moving work without killing it
+## How we plan to eliminate the catch.
 
 The long-term version of Dynamic Hardware should not need to kill workers at all.
 
@@ -135,7 +135,7 @@ Using live migration for dynamic hardware would remove the idempotency requireme
 
 This is the strongest version of the idea: users do not specify CPU or RAM, Burla keeps every node close to 100% CPU or RAM utilization, no work is killed or thrown out, and the system rearranges hardware underneath while your workload is running.
 
-## The interface should be the work
+## Define the work. Infra is better if it handles itself.
 
 The deeper point is not that Burla chooses better defaults.
 
