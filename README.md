@@ -87,16 +87,16 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs, or thousands of machines.
 
-### Monitor progress in the dashboard:
+## A full platform for managing compute infrastructure.
 
-Cancel bad runs, filter logs to watch individual inputs, or monitor output files live in the Filesystem UI.
+Burla has all the features you need to seamlessly scale up and monitor any workload.\
+Manage pipeline runs, filter logs, upload/download files through the network filesystem UI, and more.
 
 <figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
 
-## Pricing:
+## &#x20;Pricing:
 
-Prices are **not** based on compute consumption.\
-Burla is $100/month per user for enterprises, and free for everyone else.
+Zero compute markup. Burla is $1000/month per enterprise user, and free for everyone else.
 
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
