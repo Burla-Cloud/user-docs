@@ -96,7 +96,7 @@ Manage pipeline runs, filter logs, upload/download files through the network fil
 
 ## &#x20;Pricing:
 
-Zero compute markup. Burla is $1000/month per enterprise user, and free for everyone else.
+Zero compute markup. Burla is $100/month per enterprise user, and free for everyone else.
 
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
