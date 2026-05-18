@@ -49,7 +49,7 @@ When you choose fixed resources upfront, there are only three possible outcomes:
 2. You set CPU and RAM too high.\
    Then the job runs, but VMs are full of reserved capacity that nobody is using. You are paying for machines that are sitting partly empty.
 3. You set CPU and RAM perfectly.\
-   This still loses, because different tasks require different resources. In the PDF example, a fixed worker size has to serve tiny PDFs and giant PDFs. If you size every worker for the giant PDFs, the tiny PDFs waste memory. If you size every worker for the tiny PDFs, the giant PDFs fail or crawl. Not to mention, within some single task resource use can vary drastically, and that space could be put to use!
+   This still loses, because different tasks require different resources. In the PDF example, a fixed worker size has to serve tiny PDFs and giant PDFs. If you size every worker for the giant PDFs, the tiny PDFs waste memory. If you size every worker for the tiny PDFs, the giant PDFs fail or crawl. Not to mention, within some single task resource use can vary drastically, and that extra space could be put to use.
 
 <figure><img src="../.gitbook/assets/dynamic-hardware-task-distribution.png" alt="A long-tail distribution where most PDFs need little CPU or RAM and a few need much more."><figcaption><p>Most parallel jobs are not made of identical work items. A fixed resource request has to pretend they are.</p></figcaption></figure>
 
