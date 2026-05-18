@@ -132,13 +132,11 @@ The user says:
 
 Burla watches the workload as it actually behaves. It fills idle CPU and RAM with useful work. It backs off when a machine saturates. It gives large tasks more room by removing smaller ones. It adds VMs when the job needs more parallelism and removes them when they aren't needed.
 
-The result is not merely easier. It is structurally more efficient than asking a person to guess.
-
-A person choosing fixed resources upfront has less information than the system observing the job at runtime. The person sees the code and maybe a few examples. The system sees the actual CPU pressure, actual memory pressure, actual task distribution, and the actual long tail as it happens.
+A person choosing fixed resources upfront has less information than the system observing the job at runtime. The person sees the code, data, and maybe a few examples. The system sees the actual CPU pressure, memory pressure, task distribution, and long tail as it happens.
 
 This is how infrastructure should be. User's define the work they want to happen, and the system figures out how to make it happen as quickly and efficiently as possible.
 
-Not only is this much easier (no more guessing) it frequently yields a 2-5x improvement in resource utilization, on what are often some of the most expensive and resource intense jobs happening inside a company. This means you can do 2-5x more work with the same resources, or pay 50-80% less for the same job, all while staying focused on your code, instead of infra config.
+Not only is this much easier (no more guessing) it frequently yields a 2-5x improvement in resource utilization, on what are often some of the most expensive and resource intense jobs happening inside a company. This means you can do 2-5x more work with the same resources, or pay 50-80% less for the same job. All while staying focused on your code, instead of your infra config.
 
 We shouldn't specify:
 
