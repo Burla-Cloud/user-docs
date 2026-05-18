@@ -34,11 +34,11 @@ The traditional interface is:
 
 > Run this code on this hardware.
 
-An ideal interface should be closer to:
+An ideal interface is closer to:
 
 > Run this code.
 
-The system should figure out the hardware while the job is running.
+The system should dynamically adjust hardware while the job is running.
 
 ## Problems with guessing
 
