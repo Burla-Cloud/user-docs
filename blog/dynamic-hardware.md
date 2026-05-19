@@ -18,7 +18,7 @@ layout:
     visible: true
 ---
 
-# You should never need to estimate how much CPU or RAM you need.
+# You should not need to estimate how much CPU or RAM you need.
 
 This might sound crazy but it's true. The reason why has nothing to do with our ability to guess.
 
@@ -100,7 +100,7 @@ For example, assuming a price of $0.05 per CPU hour:
 
 When Burla removes workers on a machine to free up resources, the total number of parallel workers goes down. In this scenario, Burla will boot and add more machines while the job is running to maintain maximum parallelism.
 
-Inversely, when Burla adds workers to a machine to increase utilization, it must remove workers elsewhere to stay below the job's maximum allowed parallelism. This is how Burla directly saves you money, by packing more workers into less machines where possible, and removing any machines that become empty.
+Conversely, when Burla adds workers to a machine to increase utilization, it must remove workers elsewhere to stay below the job's maximum allowed parallelism. This is how Burla directly saves you money, by packing more workers into less machines where possible, and removing any machines that become empty.
 
 <figure><img src="../.gitbook/assets/dynamic-hardware-grow-cluster.png" alt="A cluster grows by adding a new node that begins pulling document work from a queue."><figcaption><p>"Dynamic Hardware" is not just adaptive realtime concurrency control. It's adaptive infrastructure for the whole job.</p></figcaption></figure>
 
@@ -108,15 +108,13 @@ This is why "Dynamic Hardware" is a useful name even though the mechanism is rea
 
 From the user's perspective, the amount of hardware available to the workload is changing. A worker may effectively get more of a machine when other workers are removed, or less when more workers are added. The job may get more machines when more parallelism is needed, or less when it's not.
 
-Simoultainously, dynamic hardware provides a massive boost in resource efficiency, and simplifies the users job.
-
 ## What's the catch?
 
 There is one important constraint: workloads must be able to be retried (they must be idempotent).
 
 If a worker dies while parsing a PDF, that PDF may be parsed again later. The program must work correctly even if the same input is attempted more than once.
 
-For the majority of data workloads, this is already true. Parsing documents, embedding text, transforming files, running inference, or computing independent outputs. This is less appropriate for code that mutates shared external state without safeguards, like processing payments, or other things that cannot safely happen more than once.
+For the majority of data workloads, this is already true. Parsing documents, embedding text, transforming files, running inference, or computing independent outputs. This is less appropriate for code that mutates shared external state without safeguards, like processing payments, or other tasks that require extra consideration to make idempotent.
 
 ## Infrastructure is better when it handles itself.
 
