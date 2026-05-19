@@ -22,7 +22,7 @@ layout:
 ## Scale Python to 1000s of VMs with 90% utilization.
 
 Burla is a self-hostable compute platform. We make it fast, simple, and efficient to scale anything.\
-Easily run vector embeddings, AI inference, data pipelines, and more with a 2-5x boost in efficiency.
+Run vector embeddings, AI inference, data pipelines, and more with a 2-5x boost in efficiency.
 
 Burla only has one function:
 
