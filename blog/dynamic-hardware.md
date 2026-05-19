@@ -114,7 +114,7 @@ There is one important constraint: workloads must be able to be retried (they mu
 
 If a worker dies while parsing a PDF, that PDF may be parsed again later. The program must work correctly even if the same input is attempted more than once.
 
-For the majority of data workloads, this is already true. Parsing documents, embedding text, transforming files, running inference, or computing independent outputs. This is less appropriate for code that mutates shared external state without safeguards, like processing payments, or other tasks that require extra consideration to make idempotent.
+For the majority of big data workloads, this is already true. Parsing documents, embedding text, transforming files, running inference, or preprocessing pipelines. This is less appropriate for code that mutates shared external state without additional safeguards, like processing payments, or sending emails.
 
 ## Infrastructure is better when it handles itself.
 
