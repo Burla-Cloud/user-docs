@@ -21,8 +21,8 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla manages compute infrastructure inside your cloud, saving time, and boosting efficiency.\
-Scale any workload like vector embeddings, AI-inference, genomic-pipelines, and much more.
+Burla is a self-hostable platform for managing the compute runnning inside your cloud.\
+We make it trivial to scale any workload, and boost efficiency by 2-5x with smart vertical scaling.
 
 Burla only has one function:
 
@@ -41,7 +41,7 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Stop gluing cloud services together.                                  It's 2026, self-hosted data infrastructure is trivial now.
+## Stop gluing cloud services together.                                  It's 2026, self-hosted infrastructure is trivial now.
 
 Simply define the hardware or container you need inside your code next to the function that needs it.\
 Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, and any container.
@@ -90,11 +90,11 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 ## A full platform for managing compute infrastructure.
 
 Burla has all the features you need to seamlessly scale up and monitor any workload.\
-Manage data-pipelines, filter logs, upload/download files in Burla's network filesystem, and more.
+Manage data-pipelines, filter logs, upload/download files in our network filesystem, and much more.
 
 <figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
 
-## &#x20;Pricing:
+## Pricing:
 
 Zero compute markup.\
 Burla is $250/month per enterprise user, and free for everyone else.
