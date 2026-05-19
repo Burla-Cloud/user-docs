@@ -21,7 +21,7 @@ layout:
 
 ## Scale Python across 1000 CPUs or GPUs in 1 second.
 
-Burla is a self-hostable platform for managing the compute runnning inside your cloud.\
+Burla is a self-hostable platform for managing compute runnning inside your cloud.\
 We make it trivial to scale any workload, and boost efficiency by 2-5x with smart vertical scaling.
 
 Burla only has one function:
