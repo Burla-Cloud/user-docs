@@ -21,8 +21,8 @@ layout:
 
 ## Scale anything with infrastructure that manages itself.
 
-Burla is a self-hostable compute platform. We make scaling any workload fast, simple, and efficient.\
-Run embeddings, inference, ML-pipelines, and more with a better DX, and 2-5x boost in efficiency.
+Burla is a self-hostable compute platform for scaling big data workloads in your private cloud.\
+Run embeddings, inference, or ML-pipelines with instant feedback and a 2-5x boost in efficiency.
 
 Burla only has one function:
 
@@ -72,7 +72,7 @@ remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
 Few workloads use 100% CPU the entire time they run. Burla automatically puts extra space to use.\
 Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
 
-## Remote development, local feel.
+## Code like your laptop has 1000 CPUs or GPUs.
 
 Running code in the cloud shouldn't feel any different from running code locally.
 
