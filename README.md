@@ -21,7 +21,7 @@ layout:
 
 ## Scale anything with infrastructure that manages itself.
 
-Burla is a self-hostable compute platform. We make it fast, simple, and efficient to scale anything.\
+Burla is a self-hostable compute platform. We make scaling any workload fast, simple, and efficient.\
 Run embeddings, inference, ML-pipelines, and more with a better DX, and 2-5x boost in efficiency.
 
 Burla only has one function:
