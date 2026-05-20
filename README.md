@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Scale Python over 1000+ VMs in your cloud.               Infra is faster and more efficient when it run itself.
+## Scale Python over 1000+ VMs in your cloud.               Infra is faster and more efficient when it runs itself.
 
 Burla is a self-hostable compute platform for scaling big data workloads inside your cloud.\
 Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x higher efficiency.
