@@ -69,7 +69,6 @@ This frequently more than doubles compute efficiency, and eliminates out of memo
 remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
 ```
 
-Few workloads use 100% CPU the entire time they run. Burla automatically puts extra space to use.\
 Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
 
 ## Code like your laptop has 1000 CPUs or GPUs.
