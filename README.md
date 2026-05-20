@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Scale Python over 1000+ VMs in your cloud.               Infra is faster and more efficient when it runs itself.
+## Scale Python over 1000 VMs with one line of code.              Infra that manages itself is over twice as efficient.
 
 Burla is a self-hostable compute platform for scaling big data workloads inside your cloud.\
 Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x higher efficiency.
@@ -41,9 +41,9 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Don't overcomplicate it. Programmable infra is simpler.
+## Don't overcomplicate. Programmable infra is simpler.
 
-The fastest teams are building with programmable compute infrastructure.\
+Simply define the hardware or container you need inside your code next to the function that needs it.\
 Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, and any container.
 
 This code:
