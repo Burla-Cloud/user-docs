@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Scale Python over 1000+ VMs in your cloud.                  Infra is faster and more efficient when it manages itself.
+## Scale Python over 1000+ VMs in your cloud               Infra is faster and more efficient when it manages itself
 
 Burla is a self-hostable compute platform for scaling big data workloads in your cloud.\
 Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x higher efficiency.
@@ -41,7 +41,7 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Programmable infrastructure simplifies everything.
+## Programmable infra simplifies everything
 
 Define the hardware or container you need inside your code next to the function that needs it.\
 Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, and any container.
@@ -71,7 +71,7 @@ remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
 
 Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
 
-## Code like your laptop has 1000 CPUs or GPUs
+## How it works:
 
 Running code in the cloud shouldn't feel any different from running code locally.
 
@@ -86,7 +86,7 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs, or thousands of machines.
 
-## A full platform for managing compute inside your cloud.
+## A full-featured platform for managing compute
 
 Burla has all the features you need to scale up and monitor any workload.\
 Manage data-pipelines, filter logs, upload/download files in our network filesystem, and much more.
