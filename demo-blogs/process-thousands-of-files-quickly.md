@@ -133,11 +133,3 @@ summary_path.write_text(json.dumps(summary, indent=2) + "\n")
 print(summary)
 print(summary_path)
 ```
-
-### What's the point?
-
-The useful abstraction is not "run logs on a cluster." It is one file per worker, one report per file, one small reduce at the end.
-
-That shape is easy to debug. If one report looks wrong, you know exactly which input produced it. If one file fails, rerun that file. If the job grows from 1,000 files to 100,000 files, the function body does not change.
-
-If you have one very large file instead of many small files, continue with [Process one giant file quickly.](process-one-giant-file-quickly.md)

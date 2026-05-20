@@ -135,9 +135,3 @@ with MANIFEST_PATH.open("w") as f:
 
 print(MANIFEST_PATH)
 ```
-
-### What's the point?
-
-The resized images are only half the result. The manifest tells you which files worked, what dimensions they had, and which ones need a retry.
-
-If I were about to train on this dataset, I would want that manifest before training starts. Otherwise the model can silently skip the weird slice of the corpus, and you only find out later when the training data looks cleaner than reality.

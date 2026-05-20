@@ -122,11 +122,3 @@ Because we have 13 machines, the first 13 models start immediately and the rest 
 You can watch logs from the Jobs tab while the models train.
 
 <figure><img src="../.gitbook/assets/demo.gif" alt=""><figcaption></figcaption></figure>
-
-### What's the point?
-
-The point is not that XGBoost is hard to parallelize. It isn't.
-
-The annoying part is usually the stuff around it: picking machines, getting the CSV onto them, installing packages, running many trainings at once, and collecting the scores without turning the notebook into a platform project.
-
-If someone asked me to try a parameter grid on this dataset, this is the version I would actually want to run. Same CSV, same model code, no rewrite into a different framework just because my laptop is too small.

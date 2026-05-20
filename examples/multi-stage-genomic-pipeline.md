@@ -193,11 +193,3 @@ After it finishes, the PGEN/PVAR/PSAM files are available in the dashboard.
 The demo is available as a Colab notebook:
 
 [https://colab.research.google.com/drive/1lEbeGOoowZ9FKA9yctziWyhH6TvLuxTi?usp=sharing](https://colab.research.google.com/drive/1lEbeGOoowZ9FKA9yctziWyhH6TvLuxTi?usp=sharing)
-
-### What's the point?
-
-This is the real reason I like this example: the pipeline stays boring.
-
-The worker code is still Python calling `bcftools` and `plink`. The files still live in a normal shared folder. The only real change is that instead of nursing one sample through the pipeline, we run the cohort at the size it was meant to run.
-
-If this were my analysis, I would not want to spend the day building a scheduler before I even know whether the genotype conversion works. I would want to run the thing, look at the outputs, and only optimize once there is a real bottleneck.

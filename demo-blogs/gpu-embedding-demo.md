@@ -271,11 +271,3 @@ for rank, idx in enumerate(top_indices, start=1):
 ```
 
 This is the moment the example is trying to make boring: vectors are just files, metadata is just JSONL, and search is just a matrix multiply. Burla helped with the part that should be parallel, then got out of the way.
-
-### What's the point?
-
-Embedding examples often hide the hard part by quietly running a smaller model on CPU. That makes the notebook easy, but it dodges the thing users usually need help with: CUDA images, model load time, GPU quota, and the handoff between cheap preparation work and expensive model work.
-
-This example keeps the real split visible. CPU workers prepare article shards. A100 workers embed those shards and write vector artifacts. The client loads the finished files and asks the search question.
-
-That is the pattern I would copy into a real backfill for support tickets, PDFs, product catalogs, legal documents, code snippets, or anything else where the model belongs on GPUs but the rest of the pipeline does not.

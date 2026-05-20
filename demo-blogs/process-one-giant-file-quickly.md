@@ -156,11 +156,3 @@ summary_path.write_text(json.dumps(summary, indent=2) + "\n")
 print(summary)
 print(summary_path)
 ```
-
-### What's the point?
-
-The split is not a hack. It is the part that turns one awkward input into a clean parallel job.
-
-Once the chunk files exist, every worker has the same contract: read one chunk, write one report, return a small dict. That makes failures localized and reruns cheap. If chunk 37 has malformed JSON, you do not have to reason about a cluster. You inspect chunk 37.
-
-If you need help choosing the right input shape, continue with [Decide how to split your work.](../how-to-guides/choose-how-to-split-your-work.md)

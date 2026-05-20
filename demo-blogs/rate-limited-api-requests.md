@@ -120,9 +120,3 @@ with OUT_PATH.open("w") as f:
 
 print(OUT_PATH)
 ```
-
-### What's the point?
-
-Rate limits are where toy parallelism lies. A local async script can look great until it turns into a retry storm.
-
-The useful question is: can I finish the whole backfill without breaking the provider's contract? That means chunking, local sleeps, global concurrency, and output streaming. Burla handles the worker fleet; your function still owns the API behavior.

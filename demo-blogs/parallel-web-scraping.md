@@ -117,9 +117,3 @@ with OUT_PATH.open("w") as f:
 
 print(OUT_PATH)
 ```
-
-### What's the point?
-
-Scraping gets weird fast. DNS, TLS, parser misses, per-site politeness, and failure logging all matter.
-
-This design is plain on purpose: chunk URLs, reuse a client, parse the fields you need, return an error row when something fails. Once the output exists, you can compute failure rates by host or retry only bad chunks.

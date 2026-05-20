@@ -195,9 +195,3 @@ FINAL_DIR.mkdir(parents=True, exist_ok=True)
 
 # Then run: python analysis.py
 ```
-
-### What's the point?
-
-A sample can find funny reviews. It cannot tell you whether Video Games is actually more profane than Beauty, or whether one 10,594-exclamation review is rare or part of a pattern.
-
-I also like that this version does not need an LLM. Regexes, counters, lengths, caps, punctuation, context classifiers, and heaps are enough to produce both the public Wall of Rants and the much harsher Unhinged Mode.

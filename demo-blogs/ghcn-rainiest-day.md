@@ -132,9 +132,3 @@ part_paths = remote_parallel_map(process_year, years, func_cpu=1, func_ram=2, gr
 
 print(result_path)
 ```
-
-### What's the point?
-
-Extreme weather questions punish shortcuts. A clean modern subset can miss the actual record. A gridded product can be better for averages, but it smears the point measurement you need here.
-
-The important thing is that the filtering rule is code, not prose: `PRCP`, tenths of millimeters, empty quality flag, no missing value. Those details decide the result.

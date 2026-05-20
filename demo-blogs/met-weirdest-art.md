@@ -181,9 +181,3 @@ print(neighbor_path)
 ```
 
 The filter matters. Raw nearest neighbors mostly find same-period, same-object-type matches. The fun pairs are the ones that cross boundaries.
-
-### What's the point?
-
-I would not call this art history truth. It is visual coincidence at scale, and that is exactly why it is fun.
-
-A small gallery sample finds bowls next to bowls. The full run can find a 19th-century silverware case that looks weirdly like a Bronze Age Cypriot dagger blade. I would never trust that result from a tiny sample, because nearest-neighbor search is competitive. The candidate has to compete against the whole museum.

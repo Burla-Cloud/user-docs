@@ -158,9 +158,3 @@ def reduce_corpus(vec_paths: list[str]) -> str:
 
 print(cluster_path)
 ```
-
-### What's the point?
-
-The worker cannot know whether a topic is extinct. It only sees one shard. The label comes later, once the whole archive is visible.
-
-That is the useful shape here: many workers produce vectors, then one bigger worker makes the global decision. If I were doing this for patents, PubMed abstracts, legal opinions, or internal docs, I would keep the same split. The map stage is embarrassingly parallel. The reduce stage is where the corpus-level question becomes possible.

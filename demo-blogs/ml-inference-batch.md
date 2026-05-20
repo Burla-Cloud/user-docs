@@ -124,9 +124,3 @@ with OUT_PATH.open("w") as f:
 
 print(OUT_PATH)
 ```
-
-### What's the point?
-
-The endpoint version is usually overbuilt. Health checks, autoscaling, request formats, and idle capacity are useful when users are sending traffic. They are annoying when I just need to score a dataset once.
-
-The real question is whether the model, batch size, token length, memory, and output format survive the full corpus. A tiny sample mostly tells you the imports work. A batch job tells you whether the exact scoring code can finish every row and leave behind a file you can audit.

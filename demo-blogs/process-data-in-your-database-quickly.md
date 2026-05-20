@@ -146,9 +146,3 @@ summary = {
 
 print(summary)
 ```
-
-### What's the point?
-
-The database is usually the bottleneck, so the best version of this job is explicit about database pressure.
-
-The cluster can run thousands of workers. That does not mean your database wants thousands of connections. Split by indexed ranges, keep the worker query bounded, return small results, and cap concurrency where the real constraint lives.

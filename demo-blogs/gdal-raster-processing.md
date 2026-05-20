@@ -110,9 +110,3 @@ REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
 pd.DataFrame(results).to_csv(REPORT_PATH, index=False)
 print(REPORT_PATH)
 ```
-
-### What's the point?
-
-A pretty subset can produce a convincing map and still miss the data-quality problem.
-
-For geospatial work, I want one task to own one tile, scene, or chip group. Keep the source reads and output writes inside the worker. Return enough stats that the report can catch suspicious tiles before they quietly enter a model.

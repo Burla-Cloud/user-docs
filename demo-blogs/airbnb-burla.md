@@ -213,9 +213,3 @@ def build_site_outputs(inputs: dict) -> dict:
     grow=True,
 )
 ```
-
-### What's the point?
-
-I would not start with the website. I would start with artifact contracts: listings, photo manifest, CPU image scores, Haiku-validated photo categories, review scores, correlations, site JSON.
-
-That sounds boring, but it is what keeps the project honest. You can rerun one stage, inspect the bad shard, or try a new hypothesis without paying for everything again. I think this is the difference between a fun notebook and an analysis you can actually believe.

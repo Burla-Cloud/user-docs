@@ -141,9 +141,3 @@ out_path.write_text(json.dumps({
 
 print(out_path)
 ```
-
-### What's the point?
-
-A tag map gets better when it gets bigger. Small samples overstate tourist centers and erase regional vocabulary. The full run lets weird country signatures compete because every geotagged photo gets a vote.
-
-My favorite part is that this is mostly not ML. Reverse geocoding and token counting answer the question directly. If the metadata already contains the signal, spend the compute on coverage instead of inventing a model step.

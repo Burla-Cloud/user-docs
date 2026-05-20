@@ -156,9 +156,3 @@ out_path.write_text(json.dumps({
 
 print(out_path)
 ```
-
-### What's the point?
-
-Pretty summaries of famous repos are the boring version. I care about README culture at scale: install instructions, badges, code fences, category words, cloned templates, and empty placeholders.
-
-A model would make the rows sound smoother. I do not want smoother here. I want counts I can debug. If a category looks wrong, I can inspect the keyword weights and rerun the reduce.

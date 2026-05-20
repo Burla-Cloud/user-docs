@@ -151,9 +151,3 @@ classified.to_csv("/workspace/shared/nyc-taxi/zone_classification.csv")
 ```
 
 The classification happens after the scan, when every feed and every month is visible.
-
-### What's the point?
-
-Mobility data is full of traps. Yellow cabs, green cabs, app-based FHVs, and high-volume FHVs do not appear in the public data at the same time. If you scan one feed, you can mistake a reporting change for a neighborhood change.
-
-This version keeps the question honest. Count every month, keep the output small, and do the interpretation after the scan. Then you can change the ghost definition without redownloading 2.76 billion trips.

@@ -135,9 +135,3 @@ report.to_csv(REPORT_PATH, index=False)
 print(report[report["empty_file"] | report["high_null_revenue"]].head(20))
 print(REPORT_PATH)
 ```
-
-### What's the point?
-
-Parquet datasets often fail by partition. One day has a bad writer. One customer shard has null ids. One backfill wrote timestamps in seconds while the rest wrote milliseconds.
-
-Spark is great for many table scans, but a per-file audit is usually easier as normal Python. I want one row per object because that is the shape I need for triage. Sampling proves the scanner works. Scanning every shard tells you whether the dataset is clean.

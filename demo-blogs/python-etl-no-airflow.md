@@ -126,9 +126,3 @@ with REPORT_PATH.open("w") as f:
 
 print(REPORT_PATH)
 ```
-
-### What's the point?
-
-Transforming 10,000 files in parallel is easy. Loading them without flattening Postgres is the part that matters.
-
-That is why I like this shape. The Python stays boring, the insert stays idempotent, and the sink gets a real concurrency cap. You can put this behind cron or CI without adopting a workflow platform for one file drop.

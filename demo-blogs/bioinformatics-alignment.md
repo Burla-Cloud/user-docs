@@ -112,9 +112,3 @@ reports = remote_parallel_map(
     grow=True,
 )
 ```
-
-### What's the point?
-
-The command is known. The pain is getting the same command, reference, binaries, and output path onto enough machines at once.
-
-This is why I like one-sample-per-worker. The report gives sample-specific runtime and failures, and the output is already in S3. Once the smoke test works, run the cohort. That is where bad pairs, corrupt FASTQs, and mapping-rate outliers show up.

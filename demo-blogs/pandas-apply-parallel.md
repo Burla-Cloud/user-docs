@@ -129,9 +129,3 @@ final.to_parquet(final_path, index=False)
 
 print(f"Wrote {len(final):,} enriched rows to {final_path}")
 ```
-
-### What's the point?
-
-A lot of useful transforms are full of regexes, JSON parsing, weird buckets, and old product rules. They are not beautiful. They are just correct.
-
-This lets you keep that code and change the amount of hardware underneath it. For a one-off backfill or migration, that is often the most honest thing to do. The worker owns one chunk, the output is inspectable, and the final combine step is ordinary pandas.

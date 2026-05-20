@@ -102,9 +102,3 @@ se = math.sqrt(var / total_n)
 
 print({"price": mean, "standard_error": se, "paths": total_n})
 ```
-
-### What's the point?
-
-Monte Carlo is nice because the distributed-systems part should be almost nonexistent. Pick independent chunks, seed them cleanly, return sufficient statistics.
-
-Do not ship every simulated path back to the client. That would turn a clean simulation into an output-size problem. Return `sum`, `sum_sq`, counts, quantile sketches, or top events. The worker function is the experiment. The input list is the queue.
