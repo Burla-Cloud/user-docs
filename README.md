@@ -43,8 +43,7 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 ## Don't overcomplicate your pipelines.                                 The fastest teams use programmable infrastructure.
 
-Teams that define infra in their code build simpler more flexible pipelines that can fan different functions in and out across thousands of machines with varying sizes, types, and environments.\
-Burla can scale up to 10,000 CPUs in a one function call, thousands of GPUs, and any docker image.
+Teams that define infra in their code build simpler more flexible pipelines that can fan different functions in and out across thousands of machines with varying sizes, types, and environments.
 
 This code:
 
