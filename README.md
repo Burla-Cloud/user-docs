@@ -19,10 +19,10 @@ layout:
 
 # Home
 
-## Scale anything with infrastructure that manages itself.
+## Scale Python over 1000+ VMs in your cloud.                  Infra is faster and more efficient when it manages itself.
 
-Burla is a self-hostable compute platform for scaling big data workloads in your private cloud.\
-Run embeddings, inference, or ML-pipelines with instant feedback and a 2-5x boost in efficiency.
+Burla is a self-hostable compute platform for scaling big data workloads in your cloud.\
+Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x higher efficiency.
 
 Burla only has one function:
 
@@ -41,9 +41,9 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Stop gluing cloud services together.                                  It's 2026, compute infrastructure is trivial now.
+## Programmable infrastructure simplifies everything.
 
-Simply define the hardware or container you need inside your code next to the function that needs it.\
+Define the hardware or container you need inside your code next to the function that needs it.\
 Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, and any container.
 
 This code:
@@ -87,16 +87,16 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs, or thousands of machines.
 
-## A full platform for managing compute infrastructure.
+## A full platform for managing compute inside your cloud.
 
-Burla has all the features you need to seamlessly scale up and monitor any workload.\
+Burla has all the features you need to scale up and monitor any workload.\
 Manage data-pipelines, filter logs, upload/download files in our network filesystem, and much more.
 
 <figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
 
 ## Pricing:
 
-Zero compute markup.\
+Zero markup on compute.\
 Burla is $250/month per enterprise user, and free for everyone else.
 
 <figure><img src=".gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
