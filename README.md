@@ -19,10 +19,10 @@ layout:
 
 # Home
 
-## Run Python on 1000+ VMs with zero hassle.                     Automatic infra is fast, simple, and twice as efficient.
+## Run Python on 1000+ VMs with zero hassle.                     Automatic infra is faster, simpler, and more efficient.
 
 Burla is a self-hostable compute platform for scaling big data workloads inside your cloud.\
-Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x higher efficiency.
+Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x better efficiency.
 
 Burla only has one function:
 
@@ -43,8 +43,8 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 ## Don't overcomplicate your pipelines.                                 The fastest teams use programmable infrastructure.
 
-Define the hardware or container you need inside your code next to the function that needs it.\
-Burla can scale up to 10,000 CPUs in a single function call, thousands of GPUs, and any container.
+When you define hardware or containers per-function in your code, you can build simpler more flexible pipelines that fan work in/out across many machines of varying sizes and types.\
+Burla can scale up to 10,000 CPUs in a one function call, thousands of GPUs, and any docker image.
 
 This code:
 
@@ -86,7 +86,7 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs, or thousands of machines.
 
-## A full-featured platform for managing compute
+## A full-featured platform for managing your compute.
 
 Burla has all the features you need to scale up and monitor any workload.\
 Manage data-pipelines, filter logs, upload/download files in our network filesystem, and much more.
