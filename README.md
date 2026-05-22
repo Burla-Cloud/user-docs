@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Write code like your laptop has 1000 CPUs.                       Instant feedback, inside your cloud, with zero hassle.
+## Write code like your laptop has 1000 CPUs.            Instant feedback, inside your cloud, with zero hassle.
 
 Burla is a self-hostable compute platform for scaling big data workloads inside your cloud.\
 Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x higher utilization.
@@ -84,6 +84,9 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Any exceptions are thrown locally.
 * Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs, or thousands of machines.
+
+Code runs on a pool of VM's that are automatically managed by the platform to maximize efficiency.\
+Users can manually add and remove machines from the pool, or let the platform react to requests.&#x20;
 
 ## A full platform to scale up and monitor any workload.
 
