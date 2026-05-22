@@ -41,7 +41,7 @@ This example runs `my_function` on 1000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Don't overcomplicate your pipelines.                                 The fastest teams use programmable infrastructure.
+## Don't overcomplicate pipelines.                                         The fastest teams use programmable infrastructure.
 
 Teams that define infra in their code build simpler more flexible pipelines that can fan different functions in and out across thousands of machines with varying sizes, types, and environments.
 
