@@ -85,8 +85,8 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs, or thousands of machines.
 
-Code runs on a pool of VM's that are automatically managed by the platform to maximize efficiency.\
-Users can manually add and remove machines from the pool, or let the platform react to requests.&#x20;
+Code runs on a pool of VM's that are automatically managed by Burla to maximize efficiency.\
+You can manually add & remove machines from the pool, or let the platform react to requests.&#x20;
 
 ## A full platform to scale up and monitor any workload.
 
