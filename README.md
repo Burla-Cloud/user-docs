@@ -91,7 +91,7 @@ Users can manually add and remove machines from the pool, or let the platform re
 ## A full platform to scale up and monitor any workload.
 
 Keep an eye on your analysis or data pipeline from your phone.\
-Burla has all the features you need to closely monitor logs, output files, and compute.
+Burla has all the features you need to closely monitor logs, output files, and available compute.
 
 <figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
 
