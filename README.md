@@ -37,7 +37,7 @@ def my_function(x):
 remote_parallel_map(my_function, my_inputs)
 ```
 
-This runs `my_function` on 1,000 separate VMs in less than one second:
+This example runs `my_function` on 1,000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
