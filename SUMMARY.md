@@ -8,7 +8,7 @@
 
 ## Blog
 
-* [You should not need to estimate how much CPU or RAM you need.](blog/dynamic-hardware.md)
+* [You should never have to guess how much CPU or RAM you need.](blog/dynamic-hardware.md)
 
 ***
 
