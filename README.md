@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Run Python on 1000+ VMs with instant feedback.                    Automatic infra is faster, simpler, and more efficient.
+## Write code like your laptop has 1000 CPUs.                       Instant feedback, inside your cloud, with zero hassle.
 
 Burla is a self-hostable compute platform for scaling big data workloads inside your cloud.\
 Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x higher utilization.
