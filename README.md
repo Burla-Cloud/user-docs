@@ -19,10 +19,10 @@ layout:
 
 # Home
 
-## Scale Python to 1000 VMs in your cloud in 1 second.
+## Scale Python to 1000+ VMs in 1 second.          Automatically achieve 2-5x higher resource utilization.               &#x20;
 
-Burla is a self-hostable compute platform for scaling big data workloads inside your cloud.\
-Run analysis, inference, ML-pipelines, and more with instant feedback, and 2-5x higher utilization.
+Burla is a self-hostable compute platform for processing big data.\
+Scale analysis, inference, embeddings, and more with instant feedback, and better utilization.
 
 Burla only has one function:
 
@@ -41,9 +41,11 @@ This example runs `my_function` on 1,000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Build pipelines without YAML or complex frameworks.
+## Simplify pipelines with programmable infrastructure.
 
 Teams that define infra in their code build simpler more flexible pipelines that can fan different functions in and out across thousands of machines with varying sizes, types, and environments.
+
+Quickly develop pipelines that handle 100+ TB datasets, using plain Python anyone can understand.
 
 This code:
 
@@ -70,7 +72,7 @@ remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
 
 Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
 
-## How it works:
+## Write code like your laptop has 1000 CPUs or GPUs.
 
 Running code in the cloud shouldn't feel any different from running code locally.
 
@@ -86,11 +88,11 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Code starts running in under one second! Even with millions of inputs, or thousands of machines.
 
 Code runs on a pool of VM's that are automatically managed by Burla to maximize efficiency.\
-You can manually add & remove machines from the pool, or let the platform react to requests.&#x20;
+You can manually add & remove machines from the pool, or let the platform react live to requests.&#x20;
 
 ## A full platform to scale up and monitor any workload.
 
-Keep an eye on your analysis or data pipeline from your phone.\
+Keep an eye on your analysis, pipeline, or background job from your phone.\
 Burla has all the features you need to closely monitor logs, output files, and available compute.
 
 <figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
