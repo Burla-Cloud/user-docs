@@ -41,9 +41,9 @@ This example runs `my_function` on 1,000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Simplify pipelines with programmable infrastructure.
+## Pipelines are simpler with programmable infrastructure.
 
-Teams that define infra in their code build simpler more flexible pipelines that can fan different functions in and out across thousands of machines with varying sizes, types, and environments.
+With Burla you define infrastructure inside your code. This makes it trivial to create pipelines that fan different functions in/out across thousands of machines with varying sizes, types, and environments.
 
 Quickly develop pipelines that handle 100+ TB datasets, using plain Python anyone can understand.
 
