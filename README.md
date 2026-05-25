@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Scale Python to 1000+ VMs in 1 second.          Automatically achieve 2-5x higher resource utilization.               &#x20;
+## Scale Python to 1000+ VMs in 1 second.          Automatically achieve 2-5x higher utilization.               &#x20;
 
 Burla is a self-hostable compute platform for processing big data.\
 Scale analysis, inference, embeddings, and more with instant feedback, and better utilization.
