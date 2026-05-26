@@ -19,7 +19,7 @@ layout:
 
 # Home
 
-## Scale Python to 1000 VMs in your cloud in 1 second.             &#x20;
+## Scale Python to 1,000 VMs in your cloud in 1 second.             &#x20;
 
 Burla is a self-hostable compute platform for scaling big data workloads in your cloud.\
 Run analysis, inference, embeddings, and more with instant feedback, and 2-5x higher utilization.
@@ -41,7 +41,14 @@ This example runs `my_function` on 1,000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
-## Simplify pipelines with programmable infrastructure.
+## Scalable & efficient pipelines are not straightforward.
+
+Slow cloud services, deployments, or VM reboots mean waiting 5-10 minutes with every change.\
+Errors are vague, and configs are full of secret tradeoffs. >90% utilization a pipe dream.
+
+<figure><img src=".gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+
+## Programmable infrastructure simplifies everything.
 
 Easily fan Python in/out across thousands of machines with varying sizes, types, and environments.\
 Quickly develop pipelines that handle 100+ TB datasets, using simple code anyone can understand.
