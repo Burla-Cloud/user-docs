@@ -72,7 +72,7 @@ Creates a pipeline like:
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
 Burla automatically adjusts it's own pool of VMs underneath to maximize speed and efficiency.\
-Not only is this easier (no YAML, or config footguns), it's often 2-5x more compute efficient.
+Not only is this easier (no YAML, no config footguns), it's often 2-5x more compute efficient.
 
 
 
