@@ -46,9 +46,9 @@ This example runs `my_function` on 1,000 VMs in less than one second:
 Slow cloud services, deployments, or VM reboots mean waiting 5-10 minutes with every change.\
 Errors are vague, and configs are full of secret tradeoffs. 90% resource utilization a pipe dream.
 
-<figure><img src=".gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Image preview" alt=""><figcaption></figcaption></figure>
 
-## Programmable infrastructure simplifies everything.
+## Burla simplifies scaling with adaptive infrastructure.&#x20;
 
 Easily fan Python in/out across thousands of machines with varying sizes, types, and environments.\
 Quickly develop pipelines that handle 100+ TB datasets, using simple code anyone can understand.
@@ -64,6 +64,9 @@ remote_parallel_map(predict, [...], func_gpu="A100")
 Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+
+Burla automatically adjusts it's own pool of VMs underneath to maximize speed and efficiency.\
+Not only is this easier (no YAML, or config footguns), it's up to 2-5x more compute efficient as well.
 
 ## Infra that manages itself is over twice as efficient.
 
