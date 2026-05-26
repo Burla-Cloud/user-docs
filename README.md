@@ -44,7 +44,7 @@ This example runs `my_function` on 1,000 VMs in less than one second:
 ## Scalable & efficient pipelines are not straightforward.
 
 Slow cloud services, deployments, or VM reboots mean waiting 5-10 minutes with every change.\
-Errors are vague, and configs are full of secret tradeoffs. >90% utilization a pipe dream.
+Errors are vague, and configs are full of secret tradeoffs. 90% resource utilization a pipe dream.
 
 <figure><img src=".gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
