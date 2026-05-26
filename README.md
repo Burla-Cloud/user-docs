@@ -128,14 +128,7 @@ Burla is $250/month per enterprise user, and free for everyone else.
 
 <figure><img src=".gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
-## Run your first 1000-CPU job in 2 minutes:
-
-Zero setup required. Sign in, open the Colab notebook, and follow along. It's only 4 steps!
-
-1. [Sign in](https://login.burla.dev/) using your Google or Microsoft account.
-2. Run the quickstart in this Google Colab notebook:
-
-{% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
+#### Want to learn more? [Book a call](https://cal.com/jakez/burla?user=jakez) for a conversation with the people who built it.
 
 
 
