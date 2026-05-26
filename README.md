@@ -111,7 +111,7 @@ Burla has all the features you need to closely monitor logs, output files, and a
 Zero markup on compute.\
 Burla is $250/month per enterprise user, and free for everyone else.
 
-<figure><img src=".gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Updated pricing cards" alt=""><figcaption></figcaption></figure>
 
 ## Run your first 1000-CPU job in 2 minutes:
 
