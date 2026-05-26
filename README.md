@@ -43,12 +43,16 @@ This example runs `my_function` on 1,000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
+
+
 ## Scalable & efficient pipelines are not straightforward.
 
-Slow cloud services, deployments, or VM reboots mean waiting 5-10 minutes with every change.\
+Slow deployments, VM reboots, or container rebuilds mean waiting 5-10 minutes with every change.\
 Errors are vague, and configs are full of secret tradeoffs. 90% resource utilization is a pipe dream.
 
 <figure><img src=".gitbook/assets/Image preview" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Burla simplifies scaling with adaptive infrastructure.&#x20;
 
@@ -70,6 +74,8 @@ Creates a pipeline like:
 Burla automatically adjusts it's own pool of VMs underneath to maximize speed and efficiency.\
 Not only is this easier (no YAML, or config footguns), it's often 2-5x more compute efficient.
 
+
+
 ## Infra that manages itself is over twice as efficient.
 
 Burla vertically scales hardware available to each function call live while the program is running.\
@@ -81,7 +87,10 @@ This frequently more than doubles compute efficiency, and eliminates out of memo
 remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
 ```
 
+This system is possible due to Burla's unique architecture lacking a traditional master node.\
 Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
+
+
 
 ## How it works:
 
@@ -101,12 +110,16 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 Code runs on a pool of VM's that are automatically managed by Burla to maximize efficiency.\
 You can manually add & remove machines from the pool, or let the platform react live to requests.&#x20;
 
+
+
 ## A full platform to scale up and monitor any workload.
 
 Keep an eye on your analysis, pipeline, or background job from your phone.\
 Burla has all the features you need to closely monitor logs, output files, and available compute.
 
 <figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Pricing:
 
@@ -123,6 +136,8 @@ Zero setup required. Sign in, open the Colab notebook, and follow along. It's on
 2. Run the quickstart in this Google Colab notebook:
 
 {% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
+
+
 
 ***
 
