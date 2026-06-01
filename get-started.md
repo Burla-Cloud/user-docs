@@ -1,23 +1,7 @@
 # Getting Started
 
-There are two ways to host Burla, in your cloud (self-hosted) or in our cloud (managed).\
-Below are guides to get started with both. Don't hesitate to email jake@burla.dev if you get stuck!
-
-## Quickstart: Managed
-
-Getting started is simple. Our Google Colab notebook contains additional examples and instructions.
-
-1. [Sign up](https://login.burla.dev) using your Google or Microsoft account.
-2. Run our 1000-CPU Quickstart:
-
-{% embed url="https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing" %}
-
-***
-
-## Quickstart: Self-Hosted
-
 We recommend you first give Burla a try inside our cloud to make sure it's right for you.\
-Our quickstart is free and only takes 2 minutes: [Quickstart](https://colab.research.google.com/drive/1msf0EWJA2wdH4QG5wPX2BncSEr5uVufv?usp=sharing)
+To try this [schedule a call with us](https://cal.com/jakez/burla?user=jakez\&duration=30) and we'll send you a managed trial instance afterward.
 
 {% hint style="info" %}
 Self-Hosted Burla is currently exclusive to Google Cloud.\
