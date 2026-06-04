@@ -50,7 +50,7 @@ This example runs `my_function` on 1,000 VMs in less than one second:
 Slow deployments, VM reboots, or container rebuilds mean waiting 5-10 minutes with every change.\
 Errors are vague, and configs are full of secret tradeoffs. 90% resource utilization is a pipe dream.
 
-<figure><img src=".gitbook/assets/Image preview" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/pipeline-problems.png" alt=""><figcaption></figcaption></figure>
 
 
 
