@@ -86,6 +86,8 @@ remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
 This system is possible due to Burla's unique architecture lacking a traditional master node.\
 Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
 
+
+
 ## How it works:
 
 Running code in the cloud shouldn't feel any different from running code locally.
@@ -104,7 +106,9 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 Code runs on a pool of VM's that are automatically managed by Burla to maximize efficiency.\
 You can manually add & remove machines from the pool, or let the platform react live to requests.
 
-## A full platform to scale up and monitor any workload.
+
+
+## Everything you need to scale & monitor your workload.
 
 Keep an eye on your analysis, pipeline, or background job from your phone.\
 Burla has all the features you need to closely monitor logs, output files, and available compute.
