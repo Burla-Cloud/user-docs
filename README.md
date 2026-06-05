@@ -108,10 +108,10 @@ You can manually add & remove machines from the pool, or let the platform react 
 
 
 
-## Everything you need to scale & monitor your workload.
+## Everything you need to manage Python at scale.
 
-Keep an eye on your analysis, pipeline, or background job from your phone.\
-Burla has all the features you need to closely monitor logs, output files, and available compute.
+Monitor your analysis, pipeline, or background job from your phone.\
+Burla has all the features you need to closely manage logs, output files, and available compute.
 
 <figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
 
