@@ -3,7 +3,7 @@
 Burla's CLI contains the following commands:
 
 * [`burla install`](CLI-Reference.md#burla-install) Deploy self-hosted Burla in your Google Cloud project.
-* [`burla login`](CLI-Reference.md#burla-login) Connect your computer to the cluster you last logged into in the browser.
+* [`burla login`](CLI-Reference.md#burla-login) Authorize your computer execute code in your Burla instance.
 
 The global arg `--help` can be placed after any command or command group to see CLI documentation.
 

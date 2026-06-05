@@ -8,6 +8,8 @@ Self-Hosted Burla is currently exclusive to Google Cloud.\
 Please reach out and tell us if you want to Self-Host, but aren't on GCP! My email is: jake@burla.dev
 {% endhint %}
 
+
+
 #### 1. Ensure `gcloud` is setup and installed:
 
 If you haven't, [install the gcloud CLI](https://cloud.google.com/sdk/docs/install), and [login using application-default credentials](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment).
@@ -16,6 +18,8 @@ Ensure `gcloud` is pointing at the project you wish to install Burla inside:
 
 * To view your current gcloud project run: `gcloud config get project`
 * To change your current gcloud project run: `gcloud config set project <NEW-PROJECT-ID>`
+
+
 
 #### 2. Run the `burla install` command:
 
@@ -26,7 +30,7 @@ Run `pip install burla` then run `burla install`.
 <summary>What permissions does my Google Cloud account need to run <code>burla install</code> ?</summary>
 
 {% hint style="info" %}
-If you don't have permissions, run the command anyway, and it will tell you which ones you need!
+If you don't have permissions, run the command anyway, and it will tell you which ones you are missing. Email jake@burla.dev if you need any help!
 {% endhint %}
 
 To run `burla install` you'll need permission to run these `gcloud` commands:
@@ -37,11 +41,11 @@ To run `burla install` you'll need permission to run these `gcloud` commands:
 * `gcloud firestore databases create ...`
 * `gcloud run deploy ...`
 
-I've listed the **exact required permissions** for the `burla install` command [in it's CLI doc](CLI-Reference.md#prerequisites).
+The **exact required permissions** for `burla install` are listed in the [CLI documentation](CLI-Reference.md#prerequisites).
 
 </details>
 
-See the [install docs](CLI-Reference.md#burla-install) for more info regarding permissions.
+
 
 #### 3. Start a machine and run some code!
 
@@ -60,6 +64,8 @@ def my_function(my_input):
     
 remote_parallel_map(my_function, [1, 2, 3]) 
 ```
+
+
 
 ***
 
