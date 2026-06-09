@@ -23,8 +23,8 @@ layout:
 
 ## Scale Python to 1,000 VMs in your cloud in 1 second.
 
-Burla is a open-source compute platform for scaling big data workloads in your cloud.\
-Run analysis, inference, embeddings, and more with instant feedback, and 2-5x higher utilization.
+Burla is a open-source compute platform for scaling Python applications.\
+Run AI-inference, vector embeddings, ML-pipelines and more on thousands of VM's at once.
 
 Burla only has one function:
 
@@ -67,24 +67,18 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
-Burla automatically manages it's own pool of VMs underneath to maximize speed and efficiency.\
-Not only is this easier (no YAML, or config footguns), it's fundamentally more compute efficient.
 
 
+## With Burla, the same jobs use 50% less compute.&#x20;
 
-## With Burla, the same workloads use 50% less compute.
+Compared to software like Ray, Dask, or AWS Batch workloads running on Burla require less compute and automatically stay at 90%+ CPU/RAM utilization without taking any longer to finish the job.
 
-Burla vertically scales hardware available to each function call live while the program is running.\
-This frequently more than doubles compute efficiency, and eliminates out of memory errors.
+This is achieved with adaptive concurrency and horizontal autoscaling. Burla quickly reacts to changes in task resource utilization, and rearranges work during runtime to fill empty capacity.
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/CPU utilization comparison v2" alt=""><figcaption></figcaption></figure>
 
-```python
-remote_parallel_map(..., func_ram="dynamic", func_cpu="dynamic")
-```
-
-This system is possible due to Burla's unique architecture lacking a traditional master node.\
-Read [our blog post](blog/dynamic-hardware.md) to learn more about dynamic hardware.
+This system frequently more than doubles compute efficiency, and eliminates out of memory errors.\
+[Read our blog](blog/dynamic-hardware.md) to learn how it works.
 
 
 
@@ -103,7 +97,7 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Any packages or local modules are (very quickly) cloned on all remote machines.
 * Code starts running in under one second! Even with millions of inputs, or thousands of machines.
 
-Code runs on a pool of VM's that are automatically managed by Burla to maximize efficiency.\
+Burla automatically manages it's own pool of VMs underneath to maximize speed and efficiency.\
 You can manually add & remove machines from the pool, or let the platform react live to requests.
 
 
