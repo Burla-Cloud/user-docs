@@ -23,7 +23,7 @@ layout:
 
 ## Scale Python to 1,000 VMs in your cloud in 1 second.
 
-Burla is a self-hostable compute platform for scaling big data workloads in your cloud.\
+Burla is a open-source compute platform for scaling big data workloads in your cloud.\
 Run analysis, inference, embeddings, and more with instant feedback, and 2-5x higher utilization.
 
 Burla only has one function:
@@ -72,7 +72,7 @@ Not only is this easier (no YAML, or config footguns), it's fundamentally more c
 
 
 
-## With Burla, the same jobs use 50% less compute.
+## With Burla, the same workloads use 50% less compute.
 
 Burla vertically scales hardware available to each function call live while the program is running.\
 This frequently more than doubles compute efficiency, and eliminates out of memory errors.
@@ -123,6 +123,8 @@ Burla is $250/month per enterprise user, and free for everyone else.
 <figure><img src=".gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
 #### Want to learn more? [Book a call](https://cal.com/jakez/burla?user=jakez) for a conversation with the people who built it.
+
+
 
 ***
 
