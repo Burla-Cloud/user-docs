@@ -73,7 +73,7 @@ Creates a pipeline like:
 
 Compared to software like Ray, Dask, or AWS Batch workloads running on Burla require less compute and automatically stay at 90%+ CPU/RAM utilization without taking any longer to finish the job.
 
-This is achieved with adaptive concurrency and horizontal autoscaling. Burla quickly reacts to changes in task resource utilization, and rearranges work during runtime to fill empty capacity.
+This is achieved with adaptive concurrency and horizontal autoscaling. Burla quickly reacts to changes in task resource utilization, and rearranges work during runtime to fill excess capacity.
 
 <figure><img src=".gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
