@@ -84,7 +84,7 @@ This system frequently more than doubles compute efficiency, and eliminates out 
 
 ## How it works:
 
-Running code in the cloud shouldn't feel any different from running code locally!
+Running code in the cloud shouldn't feel any different from running code locally.
 
 ```python
 return_values = remote_parallel_map(my_function, my_inputs)
