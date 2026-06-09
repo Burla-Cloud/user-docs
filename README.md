@@ -75,7 +75,7 @@ Compared to software like Ray, Dask, or AWS Batch workloads running on Burla req
 
 This is achieved with adaptive concurrency and horizontal autoscaling. Burla quickly reacts to changes in task resource utilization, and rearranges work during runtime to fill empty capacity.
 
-<figure><img src=".gitbook/assets/CPU utilization comparison v2" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
 This system frequently more than doubles compute efficiency, and eliminates out of memory errors.\
 [Read our blog](blog/dynamic-hardware.md) to learn how it works.
