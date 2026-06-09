@@ -116,7 +116,7 @@ Burla is $250/month per enterprise user, and free for everyone else.
 
 <figure><img src=".gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
-#### Want to learn more? [Book a call](https://cal.com/jakez/burla?user=jakez) for a conversation with the people who built it.
+#### Want to learn more? [Book a call](https://cal.com/jakez/burla?user=jakez) to discover how Burla can accelerate your team.
 
 
 
