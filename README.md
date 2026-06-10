@@ -111,12 +111,20 @@ Burla has all the features you need to closely manage logs, output files, and av
 
 ## Pricing:
 
-Zero markup on compute.\
 Burla is $250/month per enterprise user, and free for everyone else.
 
 <figure><img src=".gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
+## Guarantee success with a paid pilot:
+
+We only get paid if agreed-upon improvements in runtime and efficiency are actually achieved.\
+Have piece of mind with direct 24/7 support from engineers experienced in ML at scale.
+
+<figure><img src=".gitbook/assets/Updated spacing.png" alt=""><figcaption></figcaption></figure>
+
 #### Want to learn more? [Book a call](https://cal.com/jakez/burla?user=jakez) to discover how Burla can accelerate your team.
+
+
 
 
 
