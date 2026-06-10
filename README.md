@@ -71,7 +71,7 @@ Creates a pipeline like:
 
 ## With Burla, the same jobs use 50% less compute.&#x20;
 
-Compared to software like Ray, Dask, or AWS Batch workloads running on Burla usually require far less total compute because they automatically stay near 90% CPU/RAM utilization the entire time.
+Compared to software like Ray, Dask, or AWS Batch workloads running on Burla require less total compute because they automatically stay close to 90% CPU/RAM utilization for the entire job.
 
 This is achieved with adaptive concurrency and horizontal autoscaling. Burla quickly reacts to changes in task resource utilization, and rearranges work during runtime to fill excess capacity.
 
