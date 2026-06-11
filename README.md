@@ -23,7 +23,7 @@ layout:
 
 ## Scale Python to 1,000 VMs in your cloud in 1 second.
 
-Burla is a open-source compute platform for scaling Python applications.\
+Burla is a self-hosted compute platform for scaling Python applications.\
 Run AI-inference, vector embeddings, ML-pipelines and more on thousands of VM's at once.
 
 Burla only has one function:
@@ -43,12 +43,16 @@ This example runs `my_function` on 1,000 VMs in less than one second:
 
 <figure><img src=".gitbook/assets/hell_cut_extended_no-zsh.gif" alt=""><figcaption></figcaption></figure>
 
+&#x20;
+
 ## Scalable & efficient pipelines are not straightforward.
 
 Slow deployments, VM reboots, or container rebuilds mean waiting 5-10 minutes with every change.\
 Errors are vague, and configs are full of secret tradeoffs. 90% resource utilization is a pipe dream.
 
 <figure><img src=".gitbook/assets/pipeline-problems.png" alt=""><figcaption></figcaption></figure>
+
+&#x20;
 
 ## Burla can scale any workload with a single function.
 
@@ -67,7 +71,9 @@ Creates a pipeline like:
 
 <figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
+&#x20;
 
+&#x20;
 
 ## With Burla, the same jobs use 50% less compute.&#x20;
 
@@ -80,7 +86,7 @@ This is achieved with adaptive concurrency and horizontal autoscaling. Burla qui
 This system frequently more than doubles compute efficiency, and eliminates out of memory errors.\
 [Read our blog](blog/dynamic-hardware.md) to learn how it works.
 
-
+&#x20;
 
 ## How it works:
 
@@ -100,7 +106,7 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 Burla automatically manages it's own pool of VMs underneath to maximize speed and efficiency.\
 You can manually add & remove machines from the pool, or let the platform react live to requests.
 
-
+&#x20;
 
 ## Everything you need to manage Python at scale.
 
@@ -109,24 +115,29 @@ Burla has all the features you need to closely manage logs, output files, and av
 
 <figure><img src=".gitbook/assets/area2-radius60-247-251-252.gif" alt=""><figcaption></figcaption></figure>
 
+&#x20;
+
 ## Pricing:
 
-Burla is $250/month per enterprise user, and free for everyone else.
+Zero markup on compute.\
+Burla is free for any personal, academic, or research use.
 
-<figure><img src=".gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
 
-## Guarantee success with a paid pilot:
+## How we partner:
 
 We only get paid if agreed-upon improvements in runtime and efficiency are actually achieved.\
-Have piece of mind with direct 24/7 support from engineers experienced in ML at scale.
+Have peace of mind with on-call support from engineers experienced in ML at scale.
 
 <figure><img src=".gitbook/assets/Updated spacing.png" alt=""><figcaption></figcaption></figure>
 
-#### Want to learn more? [Book a call](https://cal.com/jakez/burla?user=jakez) to discover how Burla can accelerate your team.
+&#x20;
 
+### [Book a discovery call](https://cal.com/jakez/burla?user=jakez) to learn how Burla can accelerate your team.
 
+&#x20;
 
-
+&#x20;
 
 ***
 

@@ -22,6 +22,8 @@ layout:
     visible: false
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # Read/Write Files to Cloud Storage
@@ -60,7 +62,7 @@ In the Burla dashboard → **Filesystem**, you should see:
 * `/workspace/shared/hello.txt`
 * `/workspace/shared/goodbye.txt`
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Step 2: Read files back (comes from GCS)
 
