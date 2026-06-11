@@ -133,7 +133,9 @@ Have peace of mind with on-call support from engineers experienced in ML at scal
 
 &#x20;
 
-### [Book a discovery call](https://cal.com/jakez/burla?user=jakez) to learn how Burla can accelerate your team.
+<h2 align="center"><a href="https://cal.com/jakez/burla?user=jakez">Book a discovery call</a></h2>
+
+<p align="center">To learn how Burla can boost velocity, efficiency, and developer happiness.</p>
 
 &#x20;
 
@@ -142,4 +144,4 @@ Have peace of mind with on-call support from engineers experienced in ML at scal
 ***
 
 Questions?\
-[Schedule a call](http://cal.com/jakez/burla), or email **jake@burla.dev**. We're always happy to talk.
+Email jake@burla.dev, we're always happy to talk.
