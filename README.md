@@ -23,7 +23,7 @@ layout:
 
 ## Scale Python to 1,000 VMs in your cloud in 1 second.
 
-Burla is an open-source compute platform for scaling Python applications.\
+Burla is the simplest distributed computing framework for Python.\
 Run ML-pipelines, preprocessing, inference and more with simpler code, and instant feedback.
 
 Burla only has one function:
