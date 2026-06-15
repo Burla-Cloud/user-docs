@@ -54,7 +54,7 @@ Errors are vague, and configs are full of secret tradeoffs. 90% resource utiliza
 
 &#x20;
 
-## Burla can scale any workload with a single function.
+## Burla can scale any workload using a single function.
 
 Easily fan Python in/out across thousands of machines with varying sizes, types, and environments.\
 Quickly develop pipelines that handle 100+ TB datasets, using simple code anyone can understand.
@@ -75,15 +75,15 @@ Creates a pipeline like:
 
 &#x20;
 
-## With Burla, the same jobs use 50% less compute.&#x20;
+## Complete the same work using 20-50% less compute.
 
 Compared to software like Ray, Dask, Airflow, or AWS Batch workloads running on Burla require less total compute, and automatically achieve close to 90% resource utilization for the duration of the job.
 
-This is achieved with adaptive concurrency and horizontal autoscaling. Burla quickly reacts to changes in task resource utilization, and rearranges work during runtime to fill excess capacity.
+This is achieved with adaptive concurrency and horizontal autoscaling. By automatically packing more tasks onto VM's experiencing low utilization, Burla get's more work done using less compute.
 
 <figure><img src=".gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
-This system frequently more than doubles compute efficiency, and eliminates out of memory errors.\
+This system frequently more than doubles efficiency, and eliminates out of memory errors.\
 [Read our blog](blog/dynamic-hardware.md) to learn how it works.
 
 &#x20;
@@ -101,7 +101,7 @@ When a Python function is run using `remote_parallel_map`, it runs in the cloud 
 * Anything it prints appears locally (and inside the dashboard).
 * Any exceptions are thrown locally.
 * Any packages or local modules are (very quickly) cloned on all remote machines.
-* Code starts running in under one second! Even with millions of inputs, or thousands of machines.
+* Code starts running in under one second! Even with millions of inputs, or thousands of VMs.
 
 Burla automatically manages it's own pool of VMs underneath to maximize speed and efficiency.\
 You can manually add & remove machines from the pool, or let the platform react live to requests.
