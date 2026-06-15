@@ -23,7 +23,7 @@ layout:
 
 ## Scale Python to 1,000 VMs in your cloud in 1 second.
 
-Burla is the fastest, simplest, and most efficient distributed computing framework for Python.\
+Burla is the fastest, simplest, and most efficient distributed compute framework for Python.\
 Scale ML-pipelines, preprocessing, inference, and more in your cloud with instant feedback.
 
 Burla only has one function:
