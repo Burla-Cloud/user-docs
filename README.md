@@ -75,7 +75,7 @@ Creates a pipeline like:
 
 &#x20;
 
-## Complete the same work using 20-50% less compute.
+## Your same workload requires 20-50% less compute.
 
 Compared to software like Ray, Dask, Airflow, or AWS Batch workloads running on Burla require less total compute, and automatically achieve close to 90% resource utilization for the duration of the job.
 
@@ -88,7 +88,7 @@ This system frequently more than doubles efficiency, and eliminates out of memor
 
 &#x20;
 
-## How it works:
+## How it works:  Remote development, local feel.
 
 Running code in the cloud shouldn't feel any different from running code locally.
 
