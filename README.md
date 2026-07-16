@@ -120,9 +120,9 @@ Burla has all the features you need to closely manage logs, output files, and av
 ## Pricing:
 
 Zero markup on compute.\
-Burla is free for any personal, academic, or research use.
+Burla is free to self-host. The managed version is $100 per platform user / month.
 
-<figure><img src=".gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/pricing-self-hosted-managed-gpt-image-2-v3.png" alt=""><figcaption></figcaption></figure>
 
 ## How we partner:
 
