@@ -124,18 +124,15 @@ Burla is free to self-host. The managed version is $100 per platform user / mont
 
 <figure><img src=".gitbook/assets/pricing-self-hosted-managed-gpt-image-2-v3.png" alt=""><figcaption></figcaption></figure>
 
-## How we partner:
-
-We only get paid if agreed-upon improvements in runtime and efficiency are actually achieved.\
-Have peace of mind with on-call support from engineers experienced in ML at scale.
-
-<figure><img src=".gitbook/assets/Updated spacing.png" alt=""><figcaption></figcaption></figure>
-
 &#x20;
 
 <h2 align="center"><a href="https://cal.com/jakez/burla?user=jakez">Book a discovery call</a></h2>
 
 <p align="center">To learn how Burla can boost velocity, efficiency, and developer happiness.</p>
+
+&#x20;
+
+&#x20;
 
 &#x20;
 
